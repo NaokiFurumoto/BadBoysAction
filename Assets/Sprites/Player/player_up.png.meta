@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 587e86ec7ab4bbe44a06519ccfb6ce9e
+guid: 78ca633ed4a1d994383bd96447bfcdff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8591229541748044061
-    second: chara_Sideup_0
+      213: -4804183303193504916
+    second: chara_up_0
   - first:
-      213: 5947294369815306637
-    second: chara_Sideup_1
+      213: 2259181880690574239
+    second: chara_up_1
   - first:
-      213: -8651465514785838383
-    second: chara_Sideup_2
+      213: 6495426008970223500
+    second: chara_up_2
   - first:
-      213: -5971784472085268154
-    second: chara_Sideup_3
+      213: -7536617244198087832
+    second: chara_up_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chara_Sideup_0
+      name: chara_up_0
       rect:
         serializedVersion: 2
         x: 1
@@ -129,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d11fbbbffbd2a3770800000000000000
-      internalID: 8591229541748044061
+      spriteID: c63d9494dbc145db0800000000000000
+      internalID: -4804183303193504916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_Sideup_1
+      name: chara_up_1
       rect:
         serializedVersion: 2
         x: 21
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d81a58f18b8098250800000000000000
-      internalID: 5947294369815306637
+      spriteID: f938f8963f93a5f10800000000000000
+      internalID: 2259181880690574239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_Sideup_2
+      name: chara_up_2
       rect:
         serializedVersion: 2
         x: 39
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dae5a4a3f1dfe780800000000000000
-      internalID: -8651465514785838383
+      spriteID: c8fd0897a83642a50800000000000000
+      internalID: 6495426008970223500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_Sideup_3
+      name: chara_up_3
       rect:
         serializedVersion: 2
         x: 59
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 649f92a99a5ff1da0800000000000000
-      internalID: -5971784472085268154
+      spriteID: 8635d7f0c8e886790800000000000000
+      internalID: -7536617244198087832
       vertices: []
       indices: 
       edges: []
