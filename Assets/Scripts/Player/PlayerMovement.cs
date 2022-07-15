@@ -4,9 +4,15 @@ using UnityEngine;
 /// <summary>
 /// キャラクターの移動に関するクラス
 /// </summary>
-public class PlayerMovement : Movement
+public partial class PlayerMovement : MonoBehaviour
 {
-    //■キャラを指に追随させる
+    /// <summary>
+    /// タッチクラス
+    /// </summary>
+    private InputManager inputManager;
+
+    [SerializeField]
+    private float moveSpeed = 2.0f; 
 
     /// <summary>
     /// タップした位置
@@ -42,21 +48,18 @@ public class PlayerMovement : Movement
     /// <summary>
     /// プレイヤーを移動させる
     /// </summary>
-    private void FixedUpdate()
+    private void Update()
     {
         //タップ入力位置を取得
         //ドラッグ中の位置を取得
         //現在の一から同期
 
-        //画面をタップ
-        if( Input.GetMouseButton(0))
-        {
-            //向きを変える
-            //var pointX = Input.mousePosition.x;
-            //var pointY = Input.mousePosition.y;
-        }
-       
+        //画面タップされたら方向を向く
+        if (!inputManager.TouchFlag)    
+            return;
 
+        PlayerTurning();
+        CharacterMovement();
     }
 
     /// <summary>
@@ -64,7 +67,8 @@ public class PlayerMovement : Movement
     /// </summary>
     private void Initialize()
     {
-        mainCamera = Camera.main;
+        mainCamera     = Camera.main;
+        inputManager   = InputManager.Instance;
 
         if(playerAnim == null)
         {
@@ -78,11 +82,12 @@ public class PlayerMovement : Movement
     /// </summary>
     private void PlayerTurning()
     {
-        tapPos      = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        tapPos      = inputManager.TouchingPos; 
         direction   = new Vector2(tapPos.x - transform.position.x,
-                                tapPos.y - transform.position.y).normalized;
+                                  tapPos.y - transform.position.y).normalized;
 
-        PlayerAnimation(direction.x, direction.y);
+        var playerDirection = PlayerAnimation(direction.x, direction.y);
+        ChangeAttacker(playerDirection.Item1, playerDirection.Item2);
     }
 
     /// <summary>
@@ -90,7 +95,7 @@ public class PlayerMovement : Movement
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    private void PlayerAnimation(float x, float y)
+    private (float,float) PlayerAnimation(float x, float y)
     {
         //0.5の数を偶数に合わせる
         x = Mathf.RoundToInt(x);
@@ -104,8 +109,21 @@ public class PlayerMovement : Movement
         x = Mathf.Abs(x);
         playerAnim.SetFloat("FaceX", x);
         playerAnim.SetFloat("FaceY", y);
+        return (x,y);
     }
 
-    
+    /// <summary>
+    /// プレイヤーの移動
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    private void CharacterMovement()
+    {
+        transform.position = Vector2.Lerp(transform.position,
+                                          inputManager.TouchingPos,
+                                          moveSpeed * Time.deltaTime);
+    }
+
+
 
 }
