@@ -60,7 +60,7 @@ public class Attacker : MonoBehaviour
     }
 
     /// <summary>
-    /// センサーに1度衝突した
+    /// センサーに衝突
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,9 +68,17 @@ public class Attacker : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             //TODO:一度攻撃してると実行しない
-            sprite.SetActive(true);
+            animator.SetTrigger("Attack");
             //吹き飛ばす：秒後でもいい？
         }
+    }
+
+    /// <summary>
+    /// センサーに衝突中
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
     }
 
     /// <summary>
@@ -79,14 +87,9 @@ public class Attacker : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
-       
         if (collision.CompareTag("Enemy"))
         {
             //攻撃したキャラが抜けたら
-            //TODO:アニメーションの切替に変更した方が軽い
-            //待機中のアニメーションを登録する
-            sprite.SetActive(false);
-            //吹き飛ばす：秒後でもいい？
         }
     }
 

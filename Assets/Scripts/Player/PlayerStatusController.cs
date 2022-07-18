@@ -8,14 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerStatusController : MonoBehaviour
 {
-    //■変数
-    //最大体力
-    //現在の体力
-    //初期ライフ
-    //吹き飛ばす力
-    //無敵状態
-    //生存判定
-
     /// <summary>
     /// 最大ライフ
     /// TODO:ゲームマネージャに持たせる？
@@ -36,6 +28,25 @@ public class PlayerStatusController : MonoBehaviour
     [SerializeField]
     private int startLife = 1;
 
+    /// <summary>
+    /// TODO:ゲームマネージャに持たせる
+    /// </summary>
+    public static readonly int DAMAGE = 1;
+
+    /// <summary>
+    /// TODO:ゲームマネージャに持たせる
+    /// </summary>
+    public static readonly int LIFEPOINT = 1;
+
+    /// <summary>
+    /// 死亡判定
+    /// </summary>
+    private bool isDead;
+
+    #region プロパティ
+    public bool IsDead => isDead;
+    #endregion
+
     private void Start()
     {
         Initialize();
@@ -48,15 +59,48 @@ public class PlayerStatusController : MonoBehaviour
     {
         //初回ならば
         life = startLife;
+        isDead = false;
     }
 
+    /// <summary>
+    /// ダメージを受ける
+    /// </summary>
+    /// <param name="damage"></param>
+    public void Damage()
+    {
+        if (life <= 0 || isDead)
+            return;
 
+        life -= DAMAGE;
+        if( life <= 0)
+        {
+            isDead = true;
+            //死亡処理
+        }
+    }
 
+    /// <summary>
+    /// ライフ回復
+    /// </summary>
+    public void RecoveryLife()
+    {
+        //最大値以上は回復しない
+        if (life >= maxLife)
+            return;
 
-    //■関数
-    //ライフを減らす
-    //ライフを増やす
-    //死亡判定
-    //向いてる方向？
+        life += LIFEPOINT;
+        //ライフアイコン点灯
+    }
+
+    /// <summary>
+    /// 死亡処理
+    /// </summary>
+    public void Dead()
+    {
+        //死亡アニメーション
+        //スタミナを減らす
+        //スタミナなければGAMEOVER
+    }
+   
 }
  
