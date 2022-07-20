@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+/// <summary>
+/// 敵の体力に関するクラス
+/// </summary>
 public class EnemyLifeAction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //アニメーション
+    //テキスト
+    //[SerializeField]
+    //private  ;
 }

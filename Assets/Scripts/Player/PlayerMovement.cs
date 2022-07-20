@@ -22,6 +22,7 @@ public partial class PlayerMovement : MonoBehaviour
     /// <summary>
     /// 向くべき方向
     /// </summary>
+    [SerializeField]
     private Vector2 direction;
 
     /// <summary>
@@ -39,6 +40,10 @@ public partial class PlayerMovement : MonoBehaviour
     /// カメラの取得
     /// </summary>
     private Camera mainCamera;
+
+    #region プロパティ
+    public Vector2 Direction => direction;
+    #endregion
 
     private void Start()
     {
@@ -69,6 +74,7 @@ public partial class PlayerMovement : MonoBehaviour
     {
         mainCamera     = Camera.main;
         inputManager   = InputManager.Instance;
+        direction      = -Vector2.up;
 
         if(playerAnim == null)
         {

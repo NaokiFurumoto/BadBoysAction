@@ -28,6 +28,9 @@ public class PlayerStatusController : MonoBehaviour
     [SerializeField]
     private int startLife = 1;
 
+    [SerializeField]
+    private Transform playerCenter;
+
     /// <summary>
     /// TODO:ゲームマネージャに持たせる
     /// </summary>
@@ -45,6 +48,8 @@ public class PlayerStatusController : MonoBehaviour
 
     #region プロパティ
     public bool IsDead => isDead;
+
+    public Transform PlayerCenter => playerCenter;
     #endregion
 
     private void Start()
@@ -66,12 +71,12 @@ public class PlayerStatusController : MonoBehaviour
     /// ダメージを受ける
     /// </summary>
     /// <param name="damage"></param>
-    public void Damage()
+    public void Damage(int damage)
     {
         if (life <= 0 || isDead)
             return;
 
-        life -= DAMAGE;
+        life -= damage;
         if( life <= 0)
         {
             isDead = true;

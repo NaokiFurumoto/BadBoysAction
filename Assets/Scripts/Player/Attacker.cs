@@ -18,11 +18,8 @@ public enum ATTACK_DIRECTION
 
 public class Attacker : MonoBehaviour
 {
-    /// <summary>
-    /// センサー
-    /// </summary>
-    [SerializeField]
-    private CircleCollider2D collider;
+    //TODO:どこかに定義
+    public readonly static float ATTACK_POWER = 50.0f;
 
     /// <summary>
     /// Sprite
@@ -42,9 +39,16 @@ public class Attacker : MonoBehaviour
     private ATTACK_DIRECTION attackType;
 
     /// <summary>
+    /// 移動クラス
+    /// </summary>
+    private PlayerMovement playerMovement;
+
+    #region プロパティ
+    /// <summary>
     /// 攻撃方向の取得
     /// </summary>
     public ATTACK_DIRECTION AttackType => attackType;
+    #endregion
 
     private void Start()
     {
@@ -56,6 +60,9 @@ public class Attacker : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").
+                                    GetComponent<PlayerMovement>();
+
         animator = sprite?.GetComponent<Animator>();
     }
 
@@ -67,9 +74,17 @@ public class Attacker : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            //TODO:一度攻撃してると実行しない
-            animator.SetTrigger("Attack");
-            //吹き飛ばす：秒後でもいい？
+            var _enemyStatus = collision.GetComponent<EnemyStatusController>();
+            var _rigid2D = _enemyStatus.Rigid2D;
+
+            //ダメージを受けていない状態かつ敵が移動中
+            if(!_enemyStatus.IsDamage && _enemyStatus.State == ENEMY_STATE.MOVE)
+            {
+                animator.SetTrigger("Attack");
+
+                _enemyStatus.SetDamageStatus();
+                _enemyStatus.Damage(playerMovement.Direction.normalized, ATTACK_POWER);
+            }
         }
     }
 
@@ -92,8 +107,4 @@ public class Attacker : MonoBehaviour
             //攻撃したキャラが抜けたら
         }
     }
-
-    //吹き飛ばす処理
-
-    
 }

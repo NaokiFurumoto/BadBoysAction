@@ -9,6 +9,7 @@ TagManager:
   - PlayerAnimator
   - PlayerAttack
   - EnemyAnimator
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - Block
+  - Wall
   - Item
   - 
   - 
@@ -46,9 +47,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 2396943635
+    locked: 0
   - name: Enemy
     uniqueID: 1219909235
     locked: 0
-  - name: Player
-    uniqueID: 2396943635
+  - name: PlayerAttack
+    uniqueID: 262292741
+    locked: 0
+  - name: Wall
+    uniqueID: 4019753949
     locked: 0
