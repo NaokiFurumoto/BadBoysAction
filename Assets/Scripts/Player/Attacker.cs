@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GlobalValue;
 /// <summary>
 /// キャラクターの攻撃に関するクラス
 /// </summary>
@@ -18,9 +19,6 @@ public enum ATTACK_DIRECTION
 
 public class Attacker : MonoBehaviour
 {
-    //TODO:どこかに定義
-    public readonly static float ATTACK_POWER = 50.0f;
-
     /// <summary>
     /// Sprite
     /// </summary>

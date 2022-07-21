@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GlobalValue;
 /// <summary>
 /// 敵移動クラス
 /// </summary>
@@ -70,6 +71,11 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
 
     /// <summary>
+    /// 本体：向き変更用
+    /// </summary>
+    private Transform body;
+
+    /// <summary>
     /// 敵のステータス管理クラス
     /// </summary>
     private EnemyStatusController enemyStatusController;
@@ -102,6 +108,8 @@ public class EnemyMovement : MonoBehaviour
         turningTimeDelay     *= turningDelay;
         enemyStatusController = GetComponent<EnemyStatusController>();
         enemyAttack           = GetComponent<EnemyAttack>();
+        body                  = animator.gameObject.transform;
+
         if (animator == null)
         {
             animator = GameObject.FindGameObjectWithTag("EnemyAnimator").
@@ -131,13 +139,13 @@ public class EnemyMovement : MonoBehaviour
         //プレーヤーを発見
         if (enemyStatusController.HasPlayerTarget)
         {
-            //攻撃していない場合に
+            //攻撃していない場合
             if (!enemyAttack.IsAttacked)
             {
                 //追いかける
                 Chase();
             }
-            else//攻撃した
+            else//攻撃した場合
             {
                 //クールダウン経過していない
                 if (!enemyAttack.IsDamageCoolDown)
@@ -174,7 +182,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         //十分離れてる：TODO　0.15ｆをどうする？
-        if (Vector3.Distance(transform.position, playerLastPos) > 0.05f)
+        if (Vector3.Distance(transform.position, playerLastPos) > PL_EN_DISTANCE)
         {
             movePos = (playerLastPos - transform.position).normalized * chaseSpeed;
         }
@@ -203,7 +211,7 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     private void TurnAround()
     {
-        tempScale = transform.localScale;
+        tempScale = body.localScale;
         if (enemyStatusController.HasPlayerTarget)
         {
             if (playerCenter.position.x > transform.position.x)
@@ -229,7 +237,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         //上記設定後に反映
-        transform.localScale = tempScale;
+        body.localScale = tempScale;
     }
 
     /// <summary>

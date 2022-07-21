@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using static GlobalValue;
 /// <summary>
 /// 敵の状態管理クラス
 /// </summary>
@@ -22,7 +24,19 @@ public class EnemyStatusController : MonoBehaviour
     /// 体力
     /// </summary>
     [SerializeField]
-    private int Life = 1;
+    private int life = 1;
+
+    /// <summary>
+    /// EnemyLifeAction
+    /// </summary>
+    [SerializeField]
+    private EnemyLifeAction enemyLifeAc;
+
+    /// <summary>
+    /// 壁に当たった回数
+    /// </summary>
+    [SerializeField]
+    private int wallDamageTimes;
 
     /// <summary>
     /// ターゲットを発見してるかの判定
@@ -42,6 +56,22 @@ public class EnemyStatusController : MonoBehaviour
     private bool isDamage;
 
     /// <summary>
+    /// 本体
+    /// </summary>
+    [SerializeField]
+    private Transform body;
+
+    /// <summary>
+    /// 色変更用
+    /// </summary>
+    private SpriteRenderer sprite;
+
+    /// <summary>
+    /// アニメーション
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
     /// 死亡判定
     /// </summary>
     private bool isDead;
@@ -54,8 +84,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// RigidBody2D
     /// </summary>
-    private CircleCollider2D collider2D;
-
+    private CircleCollider2D collider;
 
     #region プロパティ
     public ENEMY_STATE State
@@ -75,7 +104,6 @@ public class EnemyStatusController : MonoBehaviour
     }
     public bool HasPlayerTarget => hasPlayerTarget;
     public Rigidbody2D Rigid2D => rigid2D;
-    public CircleCollider2D Collider2D => collider2D;
     #endregion
 
     private void Start()
@@ -88,12 +116,20 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        rigid2D    = GetComponent<Rigidbody2D>();
-        collider2D = GetComponent<CircleCollider2D>();
-        collider2D.isTrigger = true;
-       // state      = ENEMY_STATE.NONE;
-        isDamage   = false;
-        isDead     = false;
+        rigid2D     = GetComponent<Rigidbody2D>();
+        collider    = GetComponent<CircleCollider2D>();
+        collider.isTrigger = true;
+
+        animator    = body.gameObject.GetComponent<Animator>();
+        sprite      = body.GetComponent<SpriteRenderer>();
+
+        state       = ENEMY_STATE.NONE;
+        isDamage    = false;
+        isDead      = false;
+
+        enemyLifeAc.SetLifeText(life);
+
+        wallDamageTimes = 0;
         //TODO:とりあえず発見
         hasPlayerTarget = true;
     }
@@ -108,20 +144,82 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
+    /// 攻撃を受けた時
+    /// </summary>
+    public void Damage(Vector2 direction,float power)
+    {
+        sprite.color = Color.red;
+
+        body.DOShakeScale(
+            duration: ENEMY_SHAKETIME,
+            strength: ENEMY_SHAKESTRENGTH
+        ).OnComplete(() =>
+        {
+            sprite.color = Color.white;
+            rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
+        });
+    }
+
+    /// <summary>
+    /// 壁と衝突
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall" && isDamage)
+        {
+            wallDamageTimes++;
+        }
+
+        if (life > 0 && !isDead)
+        {
+            if (wallDamageTimes >= WALL_DAMAGETIMES)
+            {
+                EnemyDead();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 死亡処理
+    /// </summary>
+    public void EnemyDead()
+    {
+        SetDeadStatus();
+        //死亡アニメーション
+        animator.SetTrigger("Dead");
+    }
+
+    /// <summary>
+    /// 死亡アニメーション完了後に呼ばれる
+    /// </summary>
+    public void DeadEndCallback()
+    {
+        //一旦非表示
+        this.gameObject.SetActive(false);
+    }
+
+
+    #region パラメーター変更
+    /// <summary>
     /// ダメージ中のステータス変更
     /// </summary>
     public void SetDamageStatus()
     {
         isDamage = true;
         state = ENEMY_STATE.DAMAGE;
-        collider2D.isTrigger = false;
+        collider.isTrigger = false;
     }
 
     /// <summary>
-    /// 攻撃を受けた時
+    /// 死亡中のステータス変更
     /// </summary>
-    public void Damage(Vector2 direction,float power)
+    public void SetDeadStatus()
     {
-        rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
+        life    = 0;
+        isDead  = true;
+        state   = ENEMY_STATE.DEATH;
+        rigid2D.simulated = false;  
     }
+    #endregion
 }

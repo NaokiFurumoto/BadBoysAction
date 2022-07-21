@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static GlobalValue;
 
 /// <summary>
 /// プレーヤーのステータス管理
@@ -10,7 +10,6 @@ public class PlayerStatusController : MonoBehaviour
 {
     /// <summary>
     /// 最大ライフ
-    /// TODO:ゲームマネージャに持たせる？
     /// </summary>
     [SerializeField]
     private int maxLife;
@@ -23,23 +22,12 @@ public class PlayerStatusController : MonoBehaviour
 
     /// <summary>
     /// 初期ライフ
-    /// TODO:ゲームマネージャに持たせる？
     /// </summary>
     [SerializeField]
-    private int startLife = 1;
+    private int startLife;
 
     [SerializeField]
     private Transform playerCenter;
-
-    /// <summary>
-    /// TODO:ゲームマネージャに持たせる
-    /// </summary>
-    public static readonly int DAMAGE = 1;
-
-    /// <summary>
-    /// TODO:ゲームマネージャに持たせる
-    /// </summary>
-    public static readonly int LIFEPOINT = 1;
 
     /// <summary>
     /// 死亡判定
@@ -63,8 +51,9 @@ public class PlayerStatusController : MonoBehaviour
     private void Initialize()
     {
         //初回ならば
-        life = startLife;
-        isDead = false;
+        life    = startLife 
+                = START_LIFEPOINT;
+        isDead  = false;
     }
 
     /// <summary>
@@ -93,7 +82,7 @@ public class PlayerStatusController : MonoBehaviour
         if (life >= maxLife)
             return;
 
-        life += LIFEPOINT;
+        life += RECOVERY_LIFEPOINT;
         //ライフアイコン点灯
     }
 
