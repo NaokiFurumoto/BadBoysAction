@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
+using static GlobalValue;
 /// <summary>
 /// 敵攻撃クラス
 /// </summary>
@@ -30,10 +31,25 @@ public class EnemyAttack : MonoBehaviour
     /// </summary>
     private float damageCoolDownTimer;
 
+    /// <summary>
+    /// ステータス操作
+    /// </summary>
+    private EnemyStatusController enemyStatusController;
+
+    /// <summary>
+    /// 移動操作
+    /// </summary>
+    private EnemyMovement enemyMovement;
+
+    /// <summary>
+    /// 自身のTransform
+    /// </summary>
+    private Transform trans;
+
+
     private void Start()
     {
-        isAttacked = false;
-        damageCoolDownTimer = 0;
+        Initialize();   
     }
 
     /// <summary>
@@ -41,36 +57,78 @@ public class EnemyAttack : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        
+        enemyStatusController = GetComponent<EnemyStatusController>();
+        enemyMovement         = GetComponent<EnemyMovement>();
+        isAttacked            = false;
+        damageCoolDownTimer   = 0;
+        trans                 = this.gameObject.transform;
     }
 
     #region プロパティ
     public bool IsAttacked { get { return isAttacked; } 
                              set { isAttacked = value; } }
     /// <summary>
-    /// クールダウンが経過したかどうか
+    /// クールダウン中判定
     /// </summary>
-    public bool IsDamageCoolDown => Time.time > damageCoolDownTimer;
+    public bool IsDamageCoolDown => Time.time < damageCoolDownTimer;
     #endregion
 
     /// <summary>
-    /// プレイヤーと接触時の処理
+    /// 接触時の処理
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsDamageCoolDown)
-            return;
-
-        //プレイヤーに接触:攻撃してない場合
-        if (collision.CompareTag("Player") && !isAttacked)
+        //プレーヤーの場合
+        if (collision.CompareTag("Player"))
         {
-            //クールダウン中は攻撃判定取れない
-            damageCoolDownTimer = Time.time + damageCoolDown;
-            isAttacked = true;
-            collision.GetComponent<PlayerStatusController>().Damage(damageAmount);
-            //ノックバックさせる？
-            return;
+            //ダメージ中
+            if (enemyStatusController.IsDamage)
+                return;
+
+            //クールダウン中
+            if (IsDamageCoolDown)
+                return;
+
+            if (!isAttacked)
+            {
+                //クールダウン中は攻撃判定取れない
+                damageCoolDownTimer = Time.time + damageCoolDown;
+                isAttacked = true;
+                collision.GetComponent<PlayerStatusController>().Damage(damageAmount);
+
+                //ノックバック
+                NockBack();
+
+                return;
+            }
+        }//敵の場合
+        else if (collision.CompareTag("Enemy"))
+        {
+            var enemyCtrl = collision.gameObject?.
+                            GetComponent<EnemyStatusController>();
+            if (enemyCtrl.State == ENEMY_STATE.DEATH)
+                return;
+
+            if(enemyStatusController.State == ENEMY_STATE.DAMAGE)
+            {
+                enemyCtrl.EnemyDamage();
+            }
         }
+    }
+
+    /// <summary>
+    /// ノックバック
+    /// </summary>
+    private void NockBack()
+    {
+        var nockbackPos = new Vector3();
+        var delta = -(enemyMovement.MoveDelta);
+        var distance = new Vector3(Mathf.Sign(delta.x), Mathf.Sign(delta.y), 0);
+
+        nockbackPos.x = trans.position.x + (NOCKBACK_DIFF * distance.x);
+        nockbackPos.y = trans.position.y + (NOCKBACK_DIFF * distance.y);
+
+        this.transform.DOMove(nockbackPos, NOCKBACK_TIME);
     }
 }

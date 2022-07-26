@@ -81,7 +81,7 @@ public class Attacker : MonoBehaviour
                 animator.SetTrigger("Attack");
 
                 _enemyStatus.SetDamageStatus();
-                _enemyStatus.Damage(playerMovement.Direction.normalized, ATTACK_POWER);
+                _enemyStatus.PlayerDamage(playerMovement.Direction.normalized, ATTACK_POWER);
             }
         }
     }

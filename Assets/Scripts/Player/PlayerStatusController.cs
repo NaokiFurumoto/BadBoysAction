@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
+using DG.Tweening;
 
 /// <summary>
 /// プレーヤーのステータス管理
@@ -30,6 +31,22 @@ public class PlayerStatusController : MonoBehaviour
     private Transform playerCenter;
 
     /// <summary>
+    /// 本体
+    /// </summary>
+    [SerializeField]
+    private Transform body;
+
+    /// <summary>
+    /// 色変更用
+    /// </summary>
+    private SpriteRenderer sprite;
+
+    /// <summary>
+    /// アニメーション
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
     /// 死亡判定
     /// </summary>
     private bool isDead;
@@ -50,10 +67,11 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        //初回ならば
-        life    = startLife 
-                = START_LIFEPOINT;
-        isDead  = false;
+        sprite   = body.GetComponent<SpriteRenderer>();
+        animator = body.gameObject.GetComponent<Animator>();    
+        life     = startLife 
+                 = START_LIFEPOINT;
+        isDead   = false;
     }
 
     /// <summary>
@@ -66,10 +84,22 @@ public class PlayerStatusController : MonoBehaviour
             return;
 
         life -= damage;
-        if( life <= 0)
+        if( life <= 0) //死亡処理
         {
             isDead = true;
-            //死亡処理
+            //接触判定を無くす
+            Dead();
+        }
+        else//ダメージ処理
+        {
+            sprite.color = Color.red;
+
+            transform.DOPunchScale(
+                SHAKESTRENGTH,
+                SHAKETIME).OnComplete(() =>
+                {
+                    sprite.color = Color.white;
+                });
         }
     }
 
@@ -92,6 +122,7 @@ public class PlayerStatusController : MonoBehaviour
     public void Dead()
     {
         //死亡アニメーション
+        animator.SetTrigger("Dead");
         //スタミナを減らす
         //スタミナなければGAMEOVER
     }

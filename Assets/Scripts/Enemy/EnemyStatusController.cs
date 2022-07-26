@@ -82,7 +82,7 @@ public class EnemyStatusController : MonoBehaviour
     private Rigidbody2D rigid2D;
 
     /// <summary>
-    /// RigidBody2D
+    /// Collider2D
     /// </summary>
     private CircleCollider2D collider;
 
@@ -144,19 +144,53 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// UŒ‚‚ğó‚¯‚½
+    /// ƒvƒŒƒCƒ„[‚©‚çUŒ‚‚ğó‚¯‚½
     /// </summary>
-    public void Damage(Vector2 direction,float power)
+    public void PlayerDamage(Vector2 direction,float power)
     {
         sprite.color = Color.red;
 
-        body.DOShakeScale(
-            duration: ENEMY_SHAKETIME,
-            strength: ENEMY_SHAKESTRENGTH
+        body.DOPunchScale(
+            SHAKESTRENGTH,
+            SHAKETIME
         ).OnComplete(() =>
         {
             sprite.color = Color.white;
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
+        });
+    }
+
+    /// <summary>
+    /// “G‚©‚çUŒ‚‚ğó‚¯‚½
+    /// </summary>
+    public void EnemyDamage()
+    {
+        life--;
+        enemyLifeAc.SetLifeText(life);
+        if (life <= 0)
+        {
+            state = ENEMY_STATE.DEATH;
+        }
+        else
+        {
+            state = ENEMY_STATE.MOVE;
+        }
+
+        isDamage = true;
+        sprite.color = Color.red;
+
+        body.DOPunchPosition(
+            STAY_SHAKESTRENGTH,
+            STAY_SHAKETIME
+        ).OnComplete(() =>
+        {
+            if(state == ENEMY_STATE.DEATH)
+            {
+                EnemyDead();
+            } 
+
+            sprite.color = Color.white;
+            isDamage = false;
         });
     }
 
