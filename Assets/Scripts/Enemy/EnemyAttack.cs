@@ -83,7 +83,7 @@ public class EnemyAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //ダメージ中
-            if (enemyStatusController.IsDamage)
+            if (enemyStatusController.State == ENEMY_STATE.DAMAGE)
                 return;
 
             //クールダウン中
@@ -113,6 +113,7 @@ public class EnemyAttack : MonoBehaviour
             if(enemyStatusController.State == ENEMY_STATE.DAMAGE)
             {
                 enemyCtrl.EnemyDamage();
+                enemyStatusController.EnemyDamage();
             }
         }
     }

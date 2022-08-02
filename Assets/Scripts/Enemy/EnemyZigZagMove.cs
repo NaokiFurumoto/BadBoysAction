@@ -8,10 +8,22 @@ using static GlobalValue;
 /// </summary>
 public class EnemyZigZagMove : EnemyMovement
 {
+    /// <summary>
+    /// ジグザグ加算値
+    /// </summary>
+    private float add_x;
+    
+    /// <summary>
+    /// zigzag移動スピード
+    /// </summary>
+    [SerializeField]
+    private float zigzagSpeed = 10.0f;
 
-    private float add_x;                       //三角関数の数値設定
-    private float speed = 10f;              //スピードの数値
-    private float radius =0.2f;           //半径の設定
+    /// <summary>
+    /// zigzag半径
+    /// </summary>
+    [SerializeField]
+    private float radius =　0.2f; 
 
     /// <summary>
     /// 初期化
@@ -40,9 +52,7 @@ public class EnemyZigZagMove : EnemyMovement
             movePos = Vector3.zero;
         }
 
-        add_x = radius * Mathf.Sin(Time.time * speed);
+        add_x = radius * Mathf.Sin(Time.time * zigzagSpeed);
         BaseMoving(movePos.x + add_x, movePos.y);
     }
-
-
 }

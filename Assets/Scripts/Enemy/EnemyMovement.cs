@@ -13,6 +13,9 @@ public enum ENEMY_MOVETYPE
     CHASE,  //まっすぐ向かう
     AROUND, //周回
     ZIGZAG,//ジグザグ
+    RAPIDED,//急接近
+    //ESCAPE,
+    HORMING,//ホーミング
 }
 public class EnemyMovement : MonoBehaviour
 {
@@ -103,6 +106,8 @@ public class EnemyMovement : MonoBehaviour
 
     #region プロパティ
     public Vector2    MoveDelta       => moveDelta;
+    public ENEMY_MOVETYPE MoveType => enemyMoveType;
+
     #endregion
 
     protected void Start()

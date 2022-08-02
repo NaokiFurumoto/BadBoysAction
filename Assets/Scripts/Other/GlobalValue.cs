@@ -12,7 +12,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// 敵が飛ばされた時の壁の接触回数
     /// </summary>
-    public readonly static int WALL_DAMAGETIMES = 3;
+    public readonly static int WALL_DAMAGETIMES = 4;
 
     /// <summary>
     /// プレイヤーの攻撃力
@@ -47,7 +47,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// シェイク時間
     /// </summary>
-    public static readonly float SHAKETIME = 0.3f;
+    public static readonly float SHAKETIME = 0.4f;
 
     /// <summary>
     /// シェイクの強さ
@@ -79,4 +79,30 @@ public class GlobalValue : MonoBehaviour
     /// </summary>
     public static readonly float NOCKBACK_TIME = 0.3f;
 
+    /// <summary>
+    /// 敵生成半径
+    /// </summary>
+    public static readonly float EN_CREATEPOS_RADIUS = 2.0f;
+
+    /// <summary>
+    /// 敵生成差分X
+    /// </summary>
+    public static readonly float CREATE_DIFFX = 0.4f;
+
+    /// <summary>
+    /// 敵生成差分Y
+    /// </summary>
+    public static readonly float CREATE_DIFFY = 0.5f;
+
+    //最小生成時間：最大生成時間
+
+    /// </summary>
+    /// 1つの生成器で表示される最大数
+    /// <summary>
+    public static readonly int MAX_GE_CREATECOUNT = 30;
+
+    //敵キャラの移動スピード調整：100体撃破毎
+    //Chase：最小0.5最大2　：増加0.1
+    //ZigZag：最小0.5最大2　：増加0.1
+    //Around:最小0.5最大3：0.1　回転時間2-5：ランダム　スピード2/10：0.2
 }

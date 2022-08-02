@@ -86,6 +86,11 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     private CircleCollider2D collider;
 
+    /// <summary>
+    /// UIController
+    /// </summary>
+    private UiController uiController;
+
     #region プロパティ
     public ENEMY_STATE State
     {
@@ -122,6 +127,9 @@ public class EnemyStatusController : MonoBehaviour
 
         animator    = body.gameObject.GetComponent<Animator>();
         sprite      = body.GetComponent<SpriteRenderer>();
+
+        uiController = GameObject.FindGameObjectWithTag("UI").
+                                  GetComponent<UiController>();
 
         state       = ENEMY_STATE.NONE;
         isDamage    = false;
@@ -170,28 +178,28 @@ public class EnemyStatusController : MonoBehaviour
         if (life <= 0)
         {
             state = ENEMY_STATE.DEATH;
+            rigid2D.simulated = false;
+            EnemyDead();
         }
         else
         {
-            state = ENEMY_STATE.MOVE;
-        }
+            if (state == ENEMY_STATE.DAMAGE)
+                return;
 
-        isDamage = true;
-        sprite.color = Color.red;
+            state = ENEMY_STATE.DAMAGE;
+            isDamage = true;
+            sprite.color = Color.red;
 
-        body.DOPunchPosition(
-            STAY_SHAKESTRENGTH,
-            STAY_SHAKETIME
-        ).OnComplete(() =>
-        {
-            if(state == ENEMY_STATE.DEATH)
+            body.DOPunchPosition(
+                STAY_SHAKESTRENGTH,
+                STAY_SHAKETIME
+            ).OnComplete(() =>
             {
-                EnemyDead();
-            } 
-
-            sprite.color = Color.white;
-            isDamage = false;
-        });
+                sprite.color = Color.white;
+                isDamage = false;
+                state = ENEMY_STATE.MOVE;
+            });
+        }
     }
 
     /// <summary>
@@ -229,8 +237,9 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void DeadEndCallback()
     {
-        //一旦非表示
-        this.gameObject.SetActive(false);
+        //削除：更新するまでは残る
+        Destroy(this.gameObject);
+        uiController?.SetTextKillsNumber();
     }
 
 

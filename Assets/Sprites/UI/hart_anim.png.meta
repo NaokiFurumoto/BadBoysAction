@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: fd34cae7d500bb44e8bfac2a4c4adf01
+guid: 448f1b3590a8d78408b604ca6fb729ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2598405713278941328
-    second: point_0
+      213: 7880492182945198482
+    second: hart_anim_0
   - first:
-      213: -3835824855162435635
-    second: point_1
+      213: 8566512681223964694
+    second: hart_anim_1
   - first:
-      213: -4079772753064381757
-    second: point_2
+      213: -4303599761151950726
+    second: hart_anim_2
   - first:
-      213: 2218114506861609516
-    second: point_3
+      213: 5398578604819433528
+    second: hart_anim_3
+  - first:
+      213: 52517776873282676
+    second: hart_anim_4
+  - first:
+      213: 4588121802321853492
+    second: hart_anim_5
+  - first:
+      213: 4642964631848154855
+    second: hart_anim_6
+  - first:
+      213: -4938181079763392015
+    second: hart_anim_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +70,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 35
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +127,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: point_0
+      name: hart_anim_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 16
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +141,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0983652ba346f0420800000000000000
-      internalID: 2598405713278941328
+      spriteID: 291f0b343e12d5d60800000000000000
+      internalID: 7880492182945198482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_1
+      name: hart_anim_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 11
         y: 0
-        width: 20
-        height: 16
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc7cd670e9964cac0800000000000000
-      internalID: -3835824855162435635
+      spriteID: 618cb3075ed52e670800000000000000
+      internalID: 8566512681223964694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_2
+      name: hart_anim_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 22
         y: 0
-        width: 20
-        height: 16
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2b741fb4cb167c0800000000000000
-      internalID: -4079772753064381757
+      spriteID: a70051591da8644c0800000000000000
+      internalID: -4303599761151950726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_3
+      name: hart_anim_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 33
         y: 0
-        width: 20
-        height: 16
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +204,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2280a4546358ce10800000000000000
-      internalID: 2218114506861609516
+      spriteID: 838494063aa9bea40800000000000000
+      internalID: 5398578604819433528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hart_anim_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47cdceac3a49ab000800000000000000
+      internalID: 52517776873282676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hart_anim_5
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 0
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c7e9568784caf30800000000000000
+      internalID: 4588121802321853492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hart_anim_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e6f202bbbf1f6040800000000000000
+      internalID: 4642964631848154855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hart_anim_7
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9e528b87e087bb0800000000000000
+      internalID: -4938181079763392015
       vertices: []
       indices: 
       edges: []

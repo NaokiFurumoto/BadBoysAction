@@ -16,10 +16,10 @@ public class EnemyLifeAction : MonoBehaviour
     /// テキストの変更
     /// </summary>
     /// <param name="damage"></param>
-    public void SetLifeText(int life)
+    public void SetLifeText(int _life)
     {
-        life = Mathf.Clamp(life, 0, ENMAX_LIFEPOINT);
-        textMesh.text = life.ToString();
+        _life = Mathf.Clamp(_life, 0, ENMAX_LIFEPOINT);
+        textMesh.text = _life.ToString();
     }
 
 }

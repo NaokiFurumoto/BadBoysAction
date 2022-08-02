@@ -10,6 +10,9 @@ TagManager:
   - PlayerAttack
   - EnemyAnimator
   - Wall
+  - UI
+  - GeneratorRoot
+  - StaminaRoot
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - Enemy
   - Wall
   - Item
-  - 
+  - UI
   - 
   - 
   - 
@@ -58,4 +61,7 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 4019753949
+    locked: 0
+  - name: UI
+    uniqueID: 1121911501
     locked: 0

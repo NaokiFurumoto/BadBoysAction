@@ -37,14 +37,17 @@ public class EnemyChaseMove : EnemyMovement
             movePos = Vector3.zero;
         }
 
-        EnemyMove(movePos.x, movePos.y);
+        BaseMoving(movePos.x, movePos.y);
     }
 
-    
-    private void EnemyMove(float x, float y)
+
+    /// <summary>
+    /// äÓñ{à⁄ìÆèàóù
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    protected override void BaseMoving(float x, float y)
     {
-        moveDelta = new Vector2(x * xSpeed, y * ySpeed);
-        transform.Translate(moveDelta.x * Time.deltaTime,
-                            moveDelta.y * Time.deltaTime, 0);
+        base.BaseMoving(x, y);
     }
 }
