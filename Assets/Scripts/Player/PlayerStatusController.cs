@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 using DG.Tweening;
+using System;
 
 /// <summary>
 /// プレーヤーのステータス管理
 /// </summary>
 public class PlayerStatusController : MonoBehaviour
 {
-    /// <summary>
-    /// 最大ライフ
-    /// </summary>
-    [SerializeField]
-    private int maxLife;
-
     /// <summary>
     /// 現在のライフ
     /// </summary>
@@ -51,10 +46,19 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     private bool isDead;
 
+    /// <summary>
+    /// Life管理
+    /// </summary>
+    private LifesManager lifesManager;
+
     #region プロパティ
     public bool IsDead => isDead;
 
     public Transform PlayerCenter => playerCenter;
+    #endregion
+
+    #region コールバック
+    public Action OnComplate;
     #endregion
 
     private void Start()
@@ -68,10 +72,14 @@ public class PlayerStatusController : MonoBehaviour
     private void Initialize()
     {
         sprite   = body.GetComponent<SpriteRenderer>();
-        animator = body.gameObject.GetComponent<Animator>();    
-        life     = startLife 
-                 = START_LIFEPOINT;
+        animator = body.gameObject.GetComponent<Animator>();
+        lifesManager = GameObject.FindGameObjectWithTag("LifesRoot").
+                                  GetComponent<LifesManager>();
+        //life     = startLife 
+        //         = START_LIFEPOINT;
         isDead   = false;
+        
+        lifesManager?.SetLife(life);
     }
 
     /// <summary>
@@ -84,7 +92,9 @@ public class PlayerStatusController : MonoBehaviour
             return;
 
         life -= damage;
-        if( life <= 0) //死亡処理
+        lifesManager.SetLife(life);
+
+        if ( life <= 0) //死亡処理
         {
             isDead = true;
             //接触判定を無くす
@@ -109,11 +119,16 @@ public class PlayerStatusController : MonoBehaviour
     public void RecoveryLife()
     {
         //最大値以上は回復しない
-        if (life >= maxLife)
+        if (life >= MAX_LIFEPOINT)
             return;
 
         life += RECOVERY_LIFEPOINT;
+
         //ライフアイコン点灯
+        lifesManager?.SetLife(life);
+
+        //ライフアイコン削除
+        OnComplate();
     }
 
     /// <summary>

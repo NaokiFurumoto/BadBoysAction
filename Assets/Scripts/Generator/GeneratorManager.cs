@@ -42,6 +42,8 @@ public class GeneratorManager : MonoBehaviour
     /// </summary>
     private UiController uiController;
 
+    private ItemController itemController;
+
     //最大生成器表示数：5
 
     //切り替え用カウント数：100になると0とする
@@ -68,6 +70,9 @@ public class GeneratorManager : MonoBehaviour
 
         uiController = GameObject.FindGameObjectWithTag("UI").
                                   GetComponent<UiController>();
+
+        itemController = GameObject.FindGameObjectWithTag("ItemController").
+                                    GetComponent<ItemController>();
         
         //開始時にストップ
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);
@@ -168,11 +173,15 @@ public class GeneratorManager : MonoBehaviour
             ChangeGeneratorState(GENERATOR_STATE.STOP);
             ChangeGeneratorActive(false);
 
+            //体力ドロップ
+            itemController.SetDropItem(DROPITEM_TYPE.LIFE);
+            itemController.CreateDropItem();
+
             //レベルに応じて切替
             switch (level)
             {
                 case GAMELEVEL.LEVEL_1:
-                    //開始時だから何もしない
+                    SetGeneratorLevel(1);
                     break;
                 case GAMELEVEL.LEVEL_2:
                     //生成器２個表示

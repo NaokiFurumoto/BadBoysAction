@@ -22,12 +22,12 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// プレイヤーの最大ライフ値
     /// </summary>
-    public readonly static int MAX_LIFEPOINT = 5;
+    public readonly static int MAX_LIFEPOINT = 10;
 
     /// <summary>
     /// プレイヤーの最小ライフ値
     /// </summary>
-    public readonly static int START_LIFEPOINT = 2;
+    public readonly static int START_LIFEPOINT = 1;
 
     /// <summary>
     /// 敵の最大ライフ値
@@ -100,6 +100,26 @@ public class GlobalValue : MonoBehaviour
     /// 1つの生成器で表示される最大数
     /// <summary>
     public static readonly int MAX_GE_CREATECOUNT = 30;
+
+    /// <summary>
+    /// ドロップアイテム配置位置最小X
+    /// </summary>
+    public static readonly float DROPITEM_POSX_MIN = -2.5f;
+
+    /// <summary>
+    /// ドロップアイテム配置位置最大X
+    /// </summary>
+    public static readonly float DROPITEM_POSX_MAX = 2.5f;
+
+    /// <summary>
+    /// ドロップアイテム配置位置最小Y
+    /// </summary>
+    public static readonly float DROPITEM_POSY_MIN = -4.2f;
+
+    /// <summary>
+    /// ドロップアイテム配置位置最大Y
+    /// </summary>
+    public static readonly float DROPITEM_POSY_MAX = 4.2f;
 
     //敵キャラの移動スピード調整：100体撃破毎
     //Chase：最小0.5最大2　：増加0.1
