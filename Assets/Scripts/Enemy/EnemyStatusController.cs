@@ -250,6 +250,7 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void SetDamageStatus()
     {
+        this.gameObject.layer = 11; 
         isDamage = true;
         state = ENEMY_STATE.DAMAGE;
     }
