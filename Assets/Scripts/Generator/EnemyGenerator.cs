@@ -52,6 +52,9 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField]
     private Transform enemysParent;
 
+    [SerializeField]
+    private GameController gameController;
+
     /// <summary>
     /// ìGê∂ê¨êî
     /// </summary>
@@ -141,6 +144,11 @@ public class EnemyGenerator : MonoBehaviour
         state = GENERATOR_STATE.STOP;
         createDelayTime = 0;
         progressTime = 0;
+        if (gameController == null)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController")
+                                   .GetComponent<GameController>();
+        }
     }
 
     /// <summary>
@@ -148,6 +156,10 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        //ÉQÅ[ÉÄäJénÇµÇƒÇ¢Ç»ÇØÇÍÇŒìÆÇ©Ç≥Ç»Ç¢
+        if (gameController.State != INGAME_STATE.PLAYING)
+            return;
+
         if (state == GENERATOR_STATE.STOP)
             return;
 

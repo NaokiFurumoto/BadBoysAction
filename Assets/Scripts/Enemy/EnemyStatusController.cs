@@ -163,6 +163,7 @@ public class EnemyStatusController : MonoBehaviour
             SHAKETIME
         ).OnComplete(() =>
         {
+            collider.isTrigger = false;
             sprite.color = Color.white;
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
         });
@@ -251,7 +252,6 @@ public class EnemyStatusController : MonoBehaviour
     {
         isDamage = true;
         state = ENEMY_STATE.DAMAGE;
-        collider.isTrigger = false;
     }
 
     /// <summary>

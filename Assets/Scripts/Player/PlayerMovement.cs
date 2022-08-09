@@ -41,6 +41,9 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private Camera mainCamera;
 
+    [SerializeField]
+    private GameController gameController;
+
     #region プロパティ
     public Vector2 Direction => direction;
     #endregion
@@ -55,9 +58,9 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //タップ入力位置を取得
-        //ドラッグ中の位置を取得
-        //現在の一から同期
+        //ゲーム開始していなければ動かさない
+        if (gameController.State != INGAME_STATE.PLAYING )
+            return;
 
         //画面タップされたら方向を向く
         if (!inputManager.TouchFlag)    
@@ -80,6 +83,12 @@ public partial class PlayerMovement : MonoBehaviour
         {
             playerAnim = GameObject.FindGameObjectWithTag("PlayerAnimator")
                                    .GetComponent<Animator>();
+        }
+
+        if (gameController == null)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController")
+                                   .GetComponent<GameController>();
         }
     }
 

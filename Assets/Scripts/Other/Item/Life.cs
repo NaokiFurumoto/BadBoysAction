@@ -16,6 +16,7 @@ public class Life : DropItem
         var status = collision.gameObject.GetComponent<PlayerStatusController>();
         if(status != null) 
         {
+            status.OnComplate = null;
             status.OnComplate += Destroy;
             status?.RecoveryLife();
         }

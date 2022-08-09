@@ -57,7 +57,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// Stayシェイク時間
     /// </summary>
-    public static readonly float STAY_SHAKETIME = 0.6f;
+    public static readonly float STAY_SHAKETIME = 0.7f;
 
     /// <summary>
     /// Stay_シェイクの強さ
@@ -120,6 +120,21 @@ public class GlobalValue : MonoBehaviour
     /// ドロップアイテム配置位置最大Y
     /// </summary>
     public static readonly float DROPITEM_POSY_MAX = 4.2f;
+
+    /// <summary>
+    /// スタミナ回復時間
+    /// </summary>
+    public static float STAMINA_RECOVERY_TIME = 300.0f;
+
+    /// <summary>
+    /// 最大スタミナ数
+    /// </summary>
+    public static int STAMINA_MAXNUMBER = 3;
+
+    /// <summary>
+    /// スタート開始時間
+    /// </summary>
+    public static float START_PLAYINGTIME = 2.0f;
 
     //敵キャラの移動スピード調整：100体撃破毎
     //Chase：最小0.5最大2　：増加0.1
