@@ -109,6 +109,7 @@ public class EnemyStatusController : MonoBehaviour
     }
     public bool HasPlayerTarget => hasPlayerTarget;
     public Rigidbody2D Rigid2D => rigid2D;
+    public int Life => life;
     #endregion
 
     private void Start()
@@ -172,9 +173,9 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// “G‚©‚çUŒ‚‚ğó‚¯‚½
     /// </summary>
-    public void EnemyDamage()
+    public void EnemyDamage(int _damage)
     {
-        life--;
+        life-= _damage;
         enemyLifeAc.SetLifeText(life);
         if (life <= 0)
         {
@@ -216,11 +217,25 @@ public class EnemyStatusController : MonoBehaviour
 
         if (life > 0 && !isDead)
         {
-            if (wallDamageTimes >= WALL_DAMAGETIMES)
+            if (wallDamageTimes >= life)
             {
                 EnemyDead();
             }
         }
+
+        //ˆÈ‘O‚Ìd—l
+        //if (collision.gameObject.tag == "Wall" && isDamage)
+        //{
+        //    wallDamageTimes++;
+        //}
+
+        //if (life > 0 && !isDead)
+        //{
+        //    if (wallDamageTimes >= WALL_DAMAGETIMES)
+        //    {
+        //        EnemyDead();
+        //    }
+        //}
     }
 
     /// <summary>

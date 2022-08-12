@@ -11,11 +11,11 @@ using System;
 //ゲーム状態
 public enum INGAME_STATE
 {
-    NONE,//未設定
-    START,//開始
-    PLAYING,//ゲーム中
-    STOP,//ストップ
-    RESULT,//結果
+    NONE = 0,//未設定
+    START = 1,//開始
+    PLAYING = 2,//ゲーム中
+    STOP = 3,//ストップ
+    RESULT = 4,//結果
 }
 public class GameController : MonoBehaviour
 {
@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     /// </summary>
     [SerializeField]
     private INGAME_STATE state;
-    private INGAME_STATE ss;
 
     /// <summary>
     /// スタート画面
@@ -32,7 +31,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject startView;
 
-    public INGAME_STATE State => state;
+    /// <summary>
+    /// オプション画面
+    /// </summary>
+    [SerializeField]
+    private GameObject optionView;
+
+    public INGAME_STATE State
+    {
+        get { return state; }
+        set { state = value; }
+    }
 
     void Start()
     {
@@ -58,7 +67,7 @@ public class GameController : MonoBehaviour
         Invoke("PlayGame", START_PLAYINGTIME);
     }
 
-    private void PlayGame()
+    public void PlayGame()
     {
         state = INGAME_STATE.PLAYING;
     }
@@ -82,7 +91,7 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// 一時停止
+    /// 再開
     /// </summary>
     public void GameResume()
     {
@@ -91,10 +100,39 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// 開始アニメーション終了後に呼ばれる
+    /// Viewの非表示
     /// </summary>
-    public void DisableStartView()
+    public void DisableView(ViewBase _view)
     {
-        startView.gameObject.SetActive(false);
+        _view.gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// Viewの表示
+    /// </summary>
+    public void EnableView(ViewBase _view)
+    {
+        _view.gameObject.SetActive(true);
+    }
+
+    #region View
+    /// <summary>
+    /// オプションボタンが押されたときに呼ぶ
+    /// </summary>
+    public void OnClickOptionButton()
+    {
+        if (State == INGAME_STATE.STOP)
+        {
+            //閉じる
+            GameResume();
+            optionView.SetActive(false);
+        }
+        else if(State == INGAME_STATE.PLAYING)
+        {
+            //開く
+            GameStop();
+            optionView.SetActive(true);
+        }
+    }
+    #endregion
 }

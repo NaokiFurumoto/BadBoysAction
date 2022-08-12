@@ -58,8 +58,7 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //ゲーム開始していなければ動かさない
-        if (gameController.State != INGAME_STATE.PLAYING )
+        if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
         //画面タップされたら方向を向く

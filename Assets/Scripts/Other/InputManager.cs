@@ -25,6 +25,12 @@ public class InputManager : MonoBehaviour
     /// タッチ状態
     /// </summary>
     private TouchPhase touchPhase;
+
+    /// <summary>
+    /// ゲームの状態
+    /// </summary>
+    [SerializeField]
+    private GameController gameController;
     #endregion
 
     #region プロパティ
@@ -58,6 +64,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        //ゲーム開始していなければ動かさない
+        if (gameController.State != INGAME_STATE.PLAYING)
+            return;
+
         //ゲームプレイ中に実行させる
         //Editor
         if (Application.isEditor)

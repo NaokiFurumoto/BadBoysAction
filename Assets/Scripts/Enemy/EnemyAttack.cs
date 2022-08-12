@@ -112,8 +112,9 @@ public class EnemyAttack : MonoBehaviour
 
             if(enemyStatusController.State == ENEMY_STATE.DAMAGE)
             {
-                enemyCtrl.EnemyDamage();
-                enemyStatusController.EnemyDamage();
+                var damage = enemyStatusController.Life;
+                enemyCtrl.EnemyDamage(damage);
+                //enemyStatusController.EnemyDamage(damage);
             }
         }
     }

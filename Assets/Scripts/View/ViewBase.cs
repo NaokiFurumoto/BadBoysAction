@@ -15,7 +15,7 @@ public abstract class ViewBase : MonoBehaviour
 
     protected Animator animator;
 
-    public abstract void OpenEndAnimation();
+    public virtual void OpenEndAnimation() { }
 
     protected virtual void OnEnable()
     {
@@ -25,6 +25,6 @@ public abstract class ViewBase : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        //animator?.SetTrigger("idle");
+        animator?.SetTrigger("close");
     }
 }

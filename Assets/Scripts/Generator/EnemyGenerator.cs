@@ -157,8 +157,8 @@ public class EnemyGenerator : MonoBehaviour
     private void Update()
     {
         //ƒQ[ƒ€ŠJn‚µ‚Ä‚¢‚È‚¯‚ê‚Î“®‚©‚³‚È‚¢
-        if (gameController.State != INGAME_STATE.PLAYING)
-            return;
+        //if (gameController.State != INGAME_STATE.PLAYING)
+        //    return;
 
         if (state == GENERATOR_STATE.STOP)
             return;
