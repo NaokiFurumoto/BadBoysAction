@@ -90,6 +90,12 @@ public class EnemyAttack : MonoBehaviour
             if (IsDamageCoolDown)
                 return;
 
+            //クールダウン経過
+            if (!IsDamageCoolDown)
+            {
+                isAttacked = false;
+            }
+
             if (!isAttacked)
             {
                 //クールダウン中は攻撃判定取れない
@@ -99,7 +105,6 @@ public class EnemyAttack : MonoBehaviour
 
                 //ノックバック
                 NockBack();
-
                 return;
             }
         }//敵の場合
@@ -114,7 +119,6 @@ public class EnemyAttack : MonoBehaviour
             {
                 var damage = enemyStatusController.Life;
                 enemyCtrl.EnemyDamage(damage);
-                //enemyStatusController.EnemyDamage(damage);
             }
         }
     }

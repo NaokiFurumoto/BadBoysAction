@@ -366,6 +366,7 @@ MonoBehaviour:
   state: 0
   isDamage: 0
   body: {fileID: 99102265624471706}
+  moveType: 0
 --- !u!114 &99102266307262406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,3 +450,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 99102265880213300}
+  encountLife: 000000000a0000000a000000640000000000000032000000000000000a0000000000000014000000

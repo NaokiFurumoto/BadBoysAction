@@ -40,6 +40,26 @@ public class GlobalValue : MonoBehaviour
     public static readonly int PLAYER_DAMAGE = 1;
 
     /// <summary>
+    /// プレイヤー移動範囲最大X
+    /// </summary>
+    public static readonly float PL_MAXMOVE_X = 4;
+
+    /// <summary>
+    /// プレイヤー移動範囲最小X
+    /// </summary>
+    public static readonly float PL_MINMOVE_X = -4;
+
+    /// <summary>
+    /// プレイヤー移動範囲最大Y
+    /// </summary>
+    public static readonly float PL_MAXMOVE_Y = 7;
+
+    /// <summary>
+    /// プレイヤー移動範囲最小Y
+    /// </summary>
+    public static readonly float PL_MINMOVE_Y = -8;
+
+    /// <summary>
     /// ライフ回復値
     /// </summary>
     public readonly static int RECOVERY_LIFEPOINT = 1;
@@ -82,7 +102,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// 敵生成半径
     /// </summary>
-    public static readonly float EN_CREATEPOS_RADIUS = 2.0f;
+    public static readonly float EN_CREATEPOS_RADIUS = 4.0f;
 
     /// <summary>
     /// 敵生成差分X
@@ -124,7 +144,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static float STAMINA_RECOVERY_TIME = 300.0f;
+    public static float STAMINA_RECOVERY_TIME = 600.0f;
 
     /// <summary>
     /// 最大スタミナ数
@@ -135,6 +155,17 @@ public class GlobalValue : MonoBehaviour
     /// スタート開始時間
     /// </summary>
     public static float START_PLAYINGTIME = 2.0f;
+
+    /// <summary>
+    /// Fade時間
+    /// </summary>
+    public static float FADETIME = 1.0f;
+
+    /// <summary>
+    /// 初期Scale
+    /// </summary>
+    public static Vector3 INIT_SCALE = new Vector3(1.0f,1.0f,1.0f);
+
 
     //敵キャラの移動スピード調整：100体撃破毎
     //Chase：最小0.5最大2　：増加0.1

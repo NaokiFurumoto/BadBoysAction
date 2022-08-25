@@ -37,9 +37,19 @@ public class PlayerStatusController : MonoBehaviour
     private SpriteRenderer sprite;
 
     /// <summary>
+    /// 色変更用
+    /// </summary>
+    private Transform spriteTransform;
+
+    /// <summary>
     /// アニメーション
     /// </summary>
     private Animator animator;
+
+    /// <summary>
+    /// 攻撃クラス
+    /// </summary>
+    private AttackerManager  attackerManager;
 
     /// <summary>
     /// 死亡判定
@@ -50,6 +60,24 @@ public class PlayerStatusController : MonoBehaviour
     /// Life管理
     /// </summary>
     private LifesManager lifesManager;
+
+    /// <summary>
+    /// ゲーム管理
+    /// </summary>
+    private GameController gameController;
+
+    /// <summary>
+    /// ゲーム開始位置
+    /// </summary>
+    private Vector2 startPosition;
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// 無敵モード
+    /// </summary>
+    [SerializeField]
+    protected bool MUTEKI = false;
+#endif
 
     #region プロパティ
     public bool IsDead => isDead;
@@ -71,15 +99,31 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        sprite   = body.GetComponent<SpriteRenderer>();
+        InitializeComponent();
+
+        spriteTransform = sprite.transform;
+        isDead   = false;
+
+        //無敵ならば
+        if (MUTEKI)
+        {
+            life = 1000;
+        }
+
+        lifesManager?.SetLife(life);
+        startPosition = transform.position;
+    }
+
+    private void InitializeComponent()
+    {
+        sprite = body.GetComponent<SpriteRenderer>();
         animator = body.gameObject.GetComponent<Animator>();
         lifesManager = GameObject.FindGameObjectWithTag("LifesRoot").
                                   GetComponent<LifesManager>();
-        //life     = startLife 
-        //         = START_LIFEPOINT;
-        isDead   = false;
-        
-        lifesManager?.SetLife(life);
+        gameController = GameObject.FindGameObjectWithTag("GameController").
+                                    GetComponent<GameController>();
+        attackerManager = GameObject.FindGameObjectWithTag("PlayerAttack").
+                                    GetComponent<AttackerManager>();
     }
 
     /// <summary>
@@ -97,18 +141,20 @@ public class PlayerStatusController : MonoBehaviour
         if ( life <= 0) //死亡処理
         {
             isDead = true;
-            //接触判定を無くす
             Dead();
         }
         else//ダメージ処理
         {
-            sprite.color = Color.red;
+            //センサーの非表示
 
-            transform.DOPunchScale(
+            //リアクション
+            sprite.color = Color.red;
+            spriteTransform.DOPunchScale(
                 SHAKESTRENGTH,
                 SHAKETIME).OnComplete(() =>
                 {
                     sprite.color = Color.white;
+                    spriteTransform.localScale = INIT_SCALE;
                 });
         }
     }
@@ -120,7 +166,10 @@ public class PlayerStatusController : MonoBehaviour
     {
         //最大値以上は回復しない
         if (life >= MAX_LIFEPOINT)
+        {
+            OnComplate();
             return;
+        }
 
         life += RECOVERY_LIFEPOINT;
 
@@ -136,10 +185,26 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     public void Dead()
     {
-        //死亡アニメーション
         animator.SetTrigger("Dead");
-        //スタミナを減らす
-        //スタミナなければGAMEOVER
+        isDead = true;
+    }
+
+    /// <summary>
+    /// リトライ処理
+    /// </summary>
+    public void RetryPlayer()
+    {
+        var player = this.gameObject;
+        if (!player.activeSelf)
+        {
+            player.SetActive(true);
+        }
+        player.transform.position = startPosition;
+        attackerManager.ActivateAttacker(ATTACK_DIRECTION.FRONT);
+
+        isDead = false;
+        life = 1;
+        lifesManager.SetLife(life);
     }
    
 }

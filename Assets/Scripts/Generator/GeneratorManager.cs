@@ -219,5 +219,32 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
+    //¶¬‚³‚ê‚½‘S‚Ä‚Ì“G‚Ìíœ
+    private void DeleteEnemys()
+    {
+        foreach(var generator in enemyGenerators)
+        {
+            generator.DeleteEnemys();
+        }
+    }
+
+    /// <summary>
+    /// ƒŠƒgƒ‰ƒCˆ—
+    /// </summary>
+    public void RetryGenerator()
+    {
+        DeleteEnemys();
+        ChangeGeneratorActive(false);
+
+        activeEnemyGenerators.Clear();
+        activeEnemyGenerators.Add(enemyGenerators[0]);
+        enemyGenerators[0].gameObject.SetActive(true);
+
+        ChangeKillCount = 0;
+        level = GAMELEVEL.LEVEL_1;
+
+        ChangeGeneratorState(GENERATOR_STATE.GENERATE);
+    }
+
 }
 

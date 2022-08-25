@@ -62,6 +62,17 @@ public class EnemyStatusController : MonoBehaviour
     private Transform body;
 
     /// <summary>
+    /// 敵のタイプ
+    /// </summary>
+    [SerializeField]
+    private ENEMY_MOVETYPE moveType;
+
+    /// <summary>
+    /// 移動処理クラス
+    /// </summary>
+    private EnemyMovement enemyMovement;
+
+    /// <summary>
     /// 色変更用
     /// </summary>
     private SpriteRenderer sprite;
@@ -122,25 +133,38 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        rigid2D     = GetComponent<Rigidbody2D>();
-        collider    = GetComponent<CircleCollider2D>();
+        InitializeComponent();
+
+        state = ENEMY_STATE.NONE;
+        
+        isDamage = false;
+        isDead = false;
+
+        //体力設定
+        life = enemyLifeAc.SetCreateLife();
+        enemyLifeAc.SetLifeText(life);
+
+        wallDamageTimes = 0;
+
+        //発見判定
+        hasPlayerTarget = true;
+    }
+
+    private void InitializeComponent()
+    {
+        rigid2D = GetComponent<Rigidbody2D>();
+
+        collider = GetComponent<CircleCollider2D>();
         collider.isTrigger = true;
 
-        animator    = body.gameObject.GetComponent<Animator>();
-        sprite      = body.GetComponent<SpriteRenderer>();
+        animator = body.gameObject.GetComponent<Animator>();
+        sprite = body.GetComponent<SpriteRenderer>();
 
         uiController = GameObject.FindGameObjectWithTag("UI").
                                   GetComponent<UiController>();
 
-        state       = ENEMY_STATE.NONE;
-        isDamage    = false;
-        isDead      = false;
-
-        enemyLifeAc.SetLifeText(life);
-
-        wallDamageTimes = 0;
-        //TODO:とりあえず発見
-        hasPlayerTarget = true;
+        enemyMovement = gameObject.GetComponent<EnemyMovement>();
+        moveType = enemyMovement.MoveType;
     }
 
     /// <summary>
@@ -155,7 +179,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// プレイヤーから攻撃を受けた時
     /// </summary>
-    public void PlayerDamage(Vector2 direction,float power)
+    public void PlayerDamage(Vector2 direction, float power)
     {
         sprite.color = Color.red;
 
@@ -175,7 +199,7 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void EnemyDamage(int _damage)
     {
-        life-= _damage;
+        life -= _damage;
         enemyLifeAc.SetLifeText(life);
         if (life <= 0)
         {
@@ -222,20 +246,6 @@ public class EnemyStatusController : MonoBehaviour
                 EnemyDead();
             }
         }
-
-        //以前の仕様
-        //if (collision.gameObject.tag == "Wall" && isDamage)
-        //{
-        //    wallDamageTimes++;
-        //}
-
-        //if (life > 0 && !isDead)
-        //{
-        //    if (wallDamageTimes >= WALL_DAMAGETIMES)
-        //    {
-        //        EnemyDead();
-        //    }
-        //}
     }
 
     /// <summary>
@@ -265,7 +275,7 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void SetDamageStatus()
     {
-        this.gameObject.layer = 11; 
+        this.gameObject.layer = 11;
         isDamage = true;
         state = ENEMY_STATE.DAMAGE;
     }
@@ -275,10 +285,18 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void SetDeadStatus()
     {
-        life    = 0;
-        isDead  = true;
-        state   = ENEMY_STATE.DEATH;
-        rigid2D.simulated = false;  
+        life = 0;
+        isDead = true;
+        state = ENEMY_STATE.DEATH;
+        rigid2D.simulated = false;
+    }
+
+    //生成時の体力設定
+    public void SetCreateLife()
+    {
+        //ライフは1から10まで
+        //タイプによってライフの変更
+        //ライフ割合ステータスクラスがいる
     }
     #endregion
 }

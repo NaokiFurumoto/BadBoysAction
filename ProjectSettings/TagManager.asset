@@ -17,6 +17,8 @@ TagManager:
   - ItemController
   - LifesRoot
   - Enemy_Bullet
+  - Btn_UI
+  - Fade_UI
   layers:
   - Default
   - TransparentFX

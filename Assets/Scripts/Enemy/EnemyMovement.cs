@@ -105,9 +105,8 @@ public class EnemyMovement : MonoBehaviour
     #endregion
 
     #region プロパティ
-    public Vector2    MoveDelta       => moveDelta;
+    public Vector2 MoveDelta => moveDelta;
     public ENEMY_MOVETYPE MoveType => enemyMoveType;
-
     #endregion
 
     protected void Start()

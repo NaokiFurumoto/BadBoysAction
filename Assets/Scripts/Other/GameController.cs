@@ -11,13 +11,13 @@ using System;
 //ゲーム状態
 public enum INGAME_STATE
 {
-    NONE = 0,//未設定
-    START = 1,//開始
+    NONE    = 0,//未設定
+    START   = 1,//開始
     PLAYING = 2,//ゲーム中
-    STOP = 3,//ストップ
-    RESULT = 4,//結果
+    STOP    = 3,//ストップ
+    RESULT  = 4,//結果
 }
-public class GameController : MonoBehaviour
+public partial class GameController : MonoBehaviour
 {
     /// <summary>
     /// ゲーム中の状態
@@ -26,16 +26,19 @@ public class GameController : MonoBehaviour
     private INGAME_STATE state;
 
     /// <summary>
-    /// スタート画面
+    /// UI管理クラス
     /// </summary>
-    [SerializeField]
-    private GameObject startView;
+    private UiController uiController;
 
     /// <summary>
-    /// オプション画面
+    /// プレイヤーの制御
     /// </summary>
-    [SerializeField]
-    private GameObject optionView;
+    private PlayerStatusController playerStatusController;
+
+    /// <summary>
+    /// プレイヤーの制御
+    /// </summary>
+    private GeneratorManager generatorManager;
 
     public INGAME_STATE State
     {
@@ -46,6 +49,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Initialize();
+        InitializeView();
         GameStart();
     }
 
@@ -55,6 +59,15 @@ public class GameController : MonoBehaviour
     private void Initialize()
     {
         state = INGAME_STATE.NONE;
+
+        uiController = GameObject.FindGameObjectWithTag("UI").
+                                     GetComponent<UiController>();
+
+        playerStatusController = GameObject.FindGameObjectWithTag("Player").
+                                            GetComponent<PlayerStatusController>();
+
+        generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
+                                            GetComponent<GeneratorManager>();
     }
 
     /// <summary>
@@ -67,6 +80,9 @@ public class GameController : MonoBehaviour
         Invoke("PlayGame", START_PLAYINGTIME);
     }
 
+    /// <summary>
+    /// プレイ中設定
+    /// </summary>
     public void PlayGame()
     {
         state = INGAME_STATE.PLAYING;
@@ -86,8 +102,9 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void GameResult()
     {
+        Time.timeScale = 0;
         state = INGAME_STATE.RESULT;
-        //停止処理
+        gameOverView.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -100,39 +117,20 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Viewの非表示
+    /// リトライ
     /// </summary>
-    public void DisableView(ViewBase _view)
+    public void RetryGame()
     {
-        _view.gameObject.SetActive(false);
+        fadeView.gameObject.SetActive(false);
+        Time.timeScale = 1;
+        GameStart();
     }
 
-    /// <summary>
-    /// Viewの表示
-    /// </summary>
-    public void EnableView(ViewBase _view)
+    private void RetryStatus()
     {
-        _view.gameObject.SetActive(true);
+        playerStatusController?.RetryPlayer();
+        generatorManager?.RetryGenerator();
+        uiController.RetryUI();
     }
-
-    #region View
-    /// <summary>
-    /// オプションボタンが押されたときに呼ぶ
-    /// </summary>
-    public void OnClickOptionButton()
-    {
-        if (State == INGAME_STATE.STOP)
-        {
-            //閉じる
-            GameResume();
-            optionView.SetActive(false);
-        }
-        else if(State == INGAME_STATE.PLAYING)
-        {
-            //開く
-            GameStop();
-            optionView.SetActive(true);
-        }
-    }
-    #endregion
 }
+

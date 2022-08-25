@@ -10,6 +10,18 @@ using static GlobalValue;
 public class UiController : MonoBehaviour
 {
     /// <summary>
+    /// ライフ管理
+    /// </summary>
+    [SerializeField]
+    private LifesManager lifesManager;
+
+    /// <summary>
+    /// スタミナ管理
+    /// </summary>
+    [SerializeField]
+    private StaminasManager staminasManager;
+
+    /// <summary>
     /// 撃破数テキスト表示
     /// </summary>
     [SerializeField]
@@ -30,6 +42,11 @@ public class UiController : MonoBehaviour
     /// 自身の初期化
     /// </summary>
     private void Awake() { }
+
+    #region
+    public LifesManager LifesManager => lifesManager;
+    public StaminasManager StaminasManager => staminasManager;
+    #endregion
 
     /// <summary>
     /// 外部初期化
@@ -72,5 +89,13 @@ public class UiController : MonoBehaviour
             return num;
 
         return 0;
+    }
+
+    /// <summary>
+    /// リトライ設定
+    /// </summary>
+    public void RetryUI()
+    {
+        text_Kills.text = "0";
     }
 }

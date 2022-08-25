@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 4644631807818585442}
+  encountLife: 0a0000001e000000640000000000000000000000320000000a000000000000000000000005000000
 --- !u!1 &4644631807080785766
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +412,7 @@ MonoBehaviour:
   state: 0
   isDamage: 0
   body: {fileID: 4644631807080785765}
+  moveType: 0
 --- !u!114 &4644631808171512889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,11 +441,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: 1
-  ySpeed: 1.5
-  chaseSpeed: 0.5
+  ySpeed: 0.2
+  chaseSpeed: 5
   turningDelay: 0
   turningTimeDelay: 0
   animator: {fileID: 4644631807080785763}
   enemyMoveType: 3
-  zigzagSpeed: 8
-  radius: 6
+  zigzagSpeed: 4
+  radius: 8

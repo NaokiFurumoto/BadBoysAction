@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class InputManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameController gameController;
+
+    /// <summary>
+    /// ポイントデータ
+    /// </summary>
+    private PointerEventData pointerEventData;
     #endregion
 
     #region プロパティ
@@ -60,14 +66,11 @@ public class InputManager : MonoBehaviour
                         = touchLastPos 
                         = Vector2.zero;
         touchPhase      = TouchPhase.Began;
+        pointerEventData = new PointerEventData(EventSystem.current);
     }
 
     private void Update()
     {
-        //ゲーム開始していなければ動かさない
-        if (gameController.State != INGAME_STATE.PLAYING)
-            return;
-
         //ゲームプレイ中に実行させる
         //Editor
         if (Application.isEditor)
@@ -75,6 +78,19 @@ public class InputManager : MonoBehaviour
             //押した瞬間
             if (Input.GetMouseButtonDown(0))
             {
+                var hitobjects = GetObjectAll();
+                if(hitobjects.Count > 0)
+                {
+                    foreach (RaycastResult obj in hitobjects)
+                    {
+                        if (obj.gameObject.CompareTag("Btn_UI"))
+                        {
+                            return;
+                        }
+                    }
+
+                }
+
                 touchFlag       = true;
                 touchPhase      = TouchPhase.Began;
                 touchBeginPos   = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -108,5 +124,23 @@ public class InputManager : MonoBehaviour
                 touchFlag   = true;
             }
         }
+    }
+
+    /// <summary>
+    /// ヒットしたオブジェクトを全て取得
+    /// </summary>
+    /// <returns></returns>
+    public List<RaycastResult> GetObjectAll()
+    {
+        //RaycastAllの結果格納用List
+        List<RaycastResult> RayResult = new List<RaycastResult>();
+
+        //PointerEventDataにマウスの位置をセット
+        pointerEventData.position = Input.mousePosition;
+
+        //RayCast（スクリーン座標）
+        EventSystem.current.RaycastAll(pointerEventData, RayResult);
+
+        return RayResult;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GlobalValue;
 /// <summary>
 /// キャラクターの移動に関するクラス
 /// </summary>
@@ -12,7 +13,7 @@ public partial class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
-    private float moveSpeed = 2.0f; 
+    private float moveSpeed = 2.0f;
 
     /// <summary>
     /// タップした位置
@@ -61,12 +62,13 @@ public partial class PlayerMovement : MonoBehaviour
         if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
-        //画面タップされたら方向を向く
-        if (!inputManager.TouchFlag)    
+        ////画面タップされたら方向を向く
+        if (!inputManager.TouchFlag)
             return;
 
         PlayerTurning();
         CharacterMovement();
+
     }
 
     /// <summary>
@@ -74,11 +76,11 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
-        mainCamera     = Camera.main;
-        inputManager   = InputManager.Instance;
-        direction      = -Vector2.up;
+        mainCamera = Camera.main;
+        inputManager = InputManager.Instance;
+        direction = -Vector2.up;
 
-        if(playerAnim == null)
+        if (playerAnim == null)
         {
             playerAnim = GameObject.FindGameObjectWithTag("PlayerAnimator")
                                    .GetComponent<Animator>();
@@ -87,7 +89,7 @@ public partial class PlayerMovement : MonoBehaviour
         if (gameController == null)
         {
             gameController = GameObject.FindGameObjectWithTag("GameController")
-                                   .GetComponent<GameController>();
+                                       .GetComponent<GameController>();
         }
     }
 
@@ -96,8 +98,8 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private void PlayerTurning()
     {
-        tapPos      = inputManager.TouchingPos; 
-        direction   = new Vector2(tapPos.x - transform.position.x,
+        tapPos = inputManager.TouchingPos;
+        direction = new Vector2(tapPos.x - transform.position.x,
                                   tapPos.y - transform.position.y).normalized;
 
         var playerDirection = PlayerAnimation(direction.x, direction.y);
@@ -109,13 +111,13 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    private (float,float) PlayerAnimation(float x, float y)
+    private (float, float) PlayerAnimation(float x, float y)
     {
         //0.5の数を偶数に合わせる
         x = Mathf.RoundToInt(x);
         y = Mathf.RoundToInt(y);
 
-        tempScale   = transform.localScale;
+        tempScale = transform.localScale;
         tempScale.x = x > 0 ? Mathf.Abs(tempScale.x) : -Mathf.Abs(tempScale.x);
         transform.localScale = tempScale;
 
@@ -123,7 +125,7 @@ public partial class PlayerMovement : MonoBehaviour
         x = Mathf.Abs(x);
         playerAnim.SetFloat("FaceX", x);
         playerAnim.SetFloat("FaceY", y);
-        return (x,y);
+        return (x, y);
     }
 
     /// <summary>
@@ -133,11 +135,13 @@ public partial class PlayerMovement : MonoBehaviour
     /// <param name="y"></param>
     private void CharacterMovement()
     {
-        transform.position = Vector2.Lerp(transform.position,
-                                          inputManager.TouchingPos,
-                                          moveSpeed * Time.deltaTime);
+        var pos = Vector2.Lerp(transform.position,
+                               inputManager.TouchingPos,
+                               moveSpeed * Time.deltaTime);
+
+        var x = Mathf.Clamp(pos.x, PL_MINMOVE_X, PL_MAXMOVE_X);
+        var y = Mathf.Clamp(pos.y, PL_MINMOVE_Y, PL_MAXMOVE_Y);
+
+        transform.position = new Vector2(x, y);
     }
-
-
-
 }

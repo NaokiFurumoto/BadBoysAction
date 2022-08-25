@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4454552150171817656}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -8.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
 --- !u!114 &4454552150171817659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,8 +64,11 @@ MonoBehaviour:
   - {fileID: 8355520966603795551, guid: 3a92534bd778e9f458fe3c0ac815f3cf, type: 3}
   - {fileID: 4644631808171512891, guid: 3d438c6d3a5483342a22d24554650960, type: 3}
   - {fileID: 8229138143265305112, guid: 95eddd47a026e2e4692102989ba993e7, type: 3}
-  enemyEncounts: 640000000000000000000000
+  - {fileID: 4272686423724025683, guid: dd668572224b547418eb3da6a1458009, type: 3}
+  - {fileID: 99102266307262400, guid: c423125fe6850a24ba2d20c0eded42f2, type: 3}
+  enemyEncounts: 0000000064000000000000000000000000000000
   enemysParent: {fileID: 0}
+  gameController: {fileID: 0}
   rank: 1
   state: 0
   createDelayTime: 0

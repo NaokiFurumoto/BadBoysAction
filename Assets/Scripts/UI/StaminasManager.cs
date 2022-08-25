@@ -77,7 +77,7 @@ public class StaminasManager : MonoBehaviour
     /// <summary>
     /// スタミナ使用
     /// </summary>
-    public bool UseStamina()
+    public void UseStamina()
     {
         //スタミナを1つ使用：若い順
         foreach(var stamina in staminaStatus)
@@ -85,12 +85,9 @@ public class StaminasManager : MonoBehaviour
             if (stamina.IsRecovery)
             {
                 stamina.ChangeStaminaImage(false);
-                return true;
+                return;
             }
         }
-
-        //使用されない状態
-        return false;
     }
 
     /// <summary>
@@ -117,7 +114,7 @@ public class StaminasManager : MonoBehaviour
     /// 回復チェック
     /// </summary>
     /// <returns></returns>
-    private bool IsCheckRecovery()
+    public bool IsCheckRecovery()
     {
         useStaminaNumber = 0;
         foreach (var stamina in staminaStatus)
@@ -129,7 +126,7 @@ public class StaminasManager : MonoBehaviour
         }
 
         //true:回復されている
-        return useStaminaNumber >= STAMINA_MAXNUMBER;
+        return useStaminaNumber > 0;
     }
 
     /// <summary>

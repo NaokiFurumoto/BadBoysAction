@@ -79,6 +79,8 @@ public class EnemyGenerator : MonoBehaviour
     /// 生成する敵
     /// </summary>
     private GameObject createEnemyObj;
+
+    private List<GameObject> enemyAllObjects = new List<GameObject>();
     #endregion
 
     #region 生成機に関して
@@ -111,6 +113,7 @@ public class EnemyGenerator : MonoBehaviour
 
     #region プロパティ
     public GENERATOR_STATE State { get { return state; } set { state = value; } }
+    public List<GameObject> EnemyAllObjects => enemyAllObjects;
     #endregion
 
     /// <summary>
@@ -119,9 +122,6 @@ public class EnemyGenerator : MonoBehaviour
     private void OnEnable()
     {
         Initialize();
-
-        //生成間隔設定
-        SetCreateDelay();
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private void OnDisable()
     {
-        
+
     }
 
     private void Initialize()
@@ -142,8 +142,8 @@ public class EnemyGenerator : MonoBehaviour
 
         //生成機
         state = GENERATOR_STATE.STOP;
-        createDelayTime = 0;
         progressTime = 0;
+        createDelayTime = 1.0f;
         if (gameController == null)
         {
             gameController = GameObject.FindGameObjectWithTag("GameController")
@@ -157,10 +157,7 @@ public class EnemyGenerator : MonoBehaviour
     private void Update()
     {
         //ゲーム開始していなければ動かさない
-        //if (gameController.State != INGAME_STATE.PLAYING)
-        //    return;
-
-        if (state == GENERATOR_STATE.STOP)
+        if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
         //生成中
@@ -169,7 +166,7 @@ public class EnemyGenerator : MonoBehaviour
             //経過時間
             progressTime += Time.deltaTime;
 
-            if(progressTime > createDelayTime)
+            if (progressTime > createDelayTime)
             {
                 //敵のセット
                 createEnemyObj = SetEnemy();
@@ -192,8 +189,8 @@ public class EnemyGenerator : MonoBehaviour
 
         var obj = Instantiate(createEnemyObj, createEnemyPos, Quaternion.identity);
         obj.transform.SetParent(enemysParent);
-
-        //敵のHPを設定する処理必要？
+        enemyAllObjects.Add(obj);
+        
         enemyCreateCount++;
         //生成チェック
         CheckOverChangeState();
@@ -221,26 +218,19 @@ public class EnemyGenerator : MonoBehaviour
         createEnemyPos = new Vector3((float)tempPos_x, (float)tempPos_y, 0);
     }
 
-    //生成間隔の設定処理
-    private void SetCreateDelay()
-    {
-        createDelayTime = 1.0f;
-    }
-
-
     /// <summary>
     /// 生成する敵キャラを設定
     /// </summary>
     private GameObject SetEnemy()
     {
         var totalRatio = TotalRatio();
-        var createNum = Random.Range(1,totalRatio);
-       
+        var createNum = Random.Range(1, totalRatio);
+
         var total = 0;
         for (int i = 0; i < enemyTypeCount; i++)
         {
             total += enemyEncounts[i];
-            if(createNum <= total)
+            if (createNum <= total)
             {
                 return enemyObjects[i];
             }
@@ -276,8 +266,8 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (enemysParent == null)
             return;
-        
-        if(enemysParent.childCount >= MAX_GE_CREATECOUNT)
+
+        if (enemysParent.childCount >= MAX_GE_CREATECOUNT)
         {
             state = GENERATOR_STATE.STOP;
         }
@@ -287,6 +277,20 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    //敵のHPを設定：敵キャラのコードを呼び出す
-    
+    /// <summary>
+    /// 表示されてる敵の削除
+    /// </summary>
+    public void DeleteEnemys()
+    {
+        if (enemyAllObjects.Count == 0)
+            return;
+
+        foreach (var enemy in enemyAllObjects)
+        {
+            Destroy(enemy);
+        }
+
+        enemyAllObjects.Clear();
+        enemyCreateCount = 0;
+    }
 }
