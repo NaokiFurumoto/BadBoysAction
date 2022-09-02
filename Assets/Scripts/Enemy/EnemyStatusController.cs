@@ -78,6 +78,11 @@ public class EnemyStatusController : MonoBehaviour
     private SpriteRenderer sprite;
 
     /// <summary>
+    /// 色変更用
+    /// </summary>
+    private TrailRenderer trail;
+
+    /// <summary>
     /// アニメーション
     /// </summary>
     private Animator animator;
@@ -140,6 +145,8 @@ public class EnemyStatusController : MonoBehaviour
         isDamage = false;
         isDead = false;
 
+        trail.enabled = false;
+
         //体力設定
         life = enemyLifeAc.SetCreateLife();
         enemyLifeAc.SetLifeText(life);
@@ -159,6 +166,8 @@ public class EnemyStatusController : MonoBehaviour
 
         animator = body.gameObject.GetComponent<Animator>();
         sprite = body.GetComponent<SpriteRenderer>();
+
+        trail = sprite.gameObject.GetComponent<TrailRenderer>();
 
         uiController = GameObject.FindGameObjectWithTag("UI").
                                   GetComponent<UiController>();
@@ -190,6 +199,8 @@ public class EnemyStatusController : MonoBehaviour
         {
             collider.isTrigger = false;
             sprite.color = Color.white;
+            trail.enabled = true;
+
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
         });
     }

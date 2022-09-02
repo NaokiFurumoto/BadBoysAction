@@ -166,6 +166,8 @@ public class GlobalValue : MonoBehaviour
     /// </summary>
     public static Vector3 INIT_SCALE = new Vector3(1.0f,1.0f,1.0f);
 
+    public static string SOUNDGROUP_NID = "SoundGroup_";
+
 
     //敵キャラの移動スピード調整：100体撃破毎
     //Chase：最小0.5最大2　：増加0.1

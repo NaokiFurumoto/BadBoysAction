@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 78ca633ed4a1d994383bd96447bfcdff
+guid: f259583971356974ba98b48716d07312
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4804183303193504916
-    second: chara_up_0
+      213: 1842031175669529485
+    second: lowdown_player_0
   - first:
-      213: 2259181880690574239
-    second: chara_up_1
+      213: 4622967306192018535
+    second: lowdown_player_1
   - first:
-      213: 6495426008970223500
-    second: chara_up_2
+      213: -952980397973618914
+    second: lowdown_player_2
   - first:
-      213: -7536617244198087832
-    second: chara_up_3
+      213: 5988943931487839419
+    second: lowdown_player_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chara_up_0
+      name: lowdown_player_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 16
-        height: 22
+        x: 0
+        y: 0
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c63d9494dbc145db0800000000000000
-      internalID: -4804183303193504916
+      spriteID: d8b3af24895309910800000000000000
+      internalID: 1842031175669529485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_up_1
+      name: lowdown_player_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1
-        width: 16
-        height: 23
+        x: 24
+        y: 0
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f938f8963f93a5f10800000000000000
-      internalID: 2259181880690574239
+      spriteID: 76cd1dd7544182040800000000000000
+      internalID: 4622967306192018535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_up_2
+      name: lowdown_player_2
       rect:
         serializedVersion: 2
-        x: 39
-        y: 1
-        width: 16
-        height: 22
+        x: 48
+        y: 0
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8fd0897a83642a50800000000000000
-      internalID: 6495426008970223500
+      spriteID: e1f3fdc806556c2f0800000000000000
+      internalID: -952980397973618914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_up_3
+      name: lowdown_player_3
       rect:
         serializedVersion: 2
-        x: 59
-        y: 1
-        width: 16
-        height: 23
+        x: 72
+        y: 0
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8635d7f0c8e886790800000000000000
-      internalID: -7536617244198087832
+      spriteID: bb4601066c00d1350800000000000000
+      internalID: 5988943931487839419
       vertices: []
       indices: 
       edges: []

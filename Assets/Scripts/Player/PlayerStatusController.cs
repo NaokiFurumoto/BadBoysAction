@@ -32,6 +32,12 @@ public class PlayerStatusController : MonoBehaviour
     private Transform body;
 
     /// <summary>
+    /// 攻撃Root
+    /// </summary>
+    [SerializeField]
+    private GameObject attackRoot;
+
+    /// <summary>
     /// 色変更用
     /// </summary>
     private SpriteRenderer sprite;
@@ -112,6 +118,7 @@ public class PlayerStatusController : MonoBehaviour
 
         lifesManager?.SetLife(life);
         startPosition = transform.position;
+        attackRoot.SetActive(true);
     }
 
     private void InitializeComponent()
@@ -140,7 +147,6 @@ public class PlayerStatusController : MonoBehaviour
 
         if ( life <= 0) //死亡処理
         {
-            isDead = true;
             Dead();
         }
         else//ダメージ処理
@@ -185,8 +191,9 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     public void Dead()
     {
-        animator.SetTrigger("Dead");
         isDead = true;
+        attackRoot.SetActive(false);
+        animator.SetTrigger("Dead");
     }
 
     /// <summary>
@@ -205,6 +212,8 @@ public class PlayerStatusController : MonoBehaviour
         isDead = false;
         life = 1;
         lifesManager.SetLife(life);
+
+        attackRoot.SetActive(true);
     }
    
 }

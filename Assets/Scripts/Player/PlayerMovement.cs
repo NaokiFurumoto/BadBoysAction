@@ -45,6 +45,8 @@ public partial class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameController gameController;
 
+    private PlayerStatusController playerStatusController;
+
     #region プロパティ
     public Vector2 Direction => direction;
     #endregion
@@ -62,13 +64,16 @@ public partial class PlayerMovement : MonoBehaviour
         if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
+        //死亡していたら移動させない
+        if (playerStatusController.IsDead)
+            return;
+
         ////画面タップされたら方向を向く
         if (!inputManager.TouchFlag)
             return;
 
         PlayerTurning();
         CharacterMovement();
-
     }
 
     /// <summary>
@@ -91,6 +96,8 @@ public partial class PlayerMovement : MonoBehaviour
             gameController = GameObject.FindGameObjectWithTag("GameController")
                                        .GetComponent<GameController>();
         }
+
+        playerStatusController = GetComponent<PlayerStatusController>();
     }
 
     /// <summary>

@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 2813eb8693b0f8449912d66971e8f241
+guid: 252488e61387c5947aa09186f23013a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 333095391086266003
-    second: chara_side_down_0
+      213: 5381437733523225541
+    second: front_hand_0
   - first:
-      213: -3347247866336749985
-    second: chara_side_down_1
-  - first:
-      213: -363776953909002465
-    second: chara_side_down_2
-  - first:
-      213: 392882218457424078
-    second: chara_side_down_3
+      213: 4502727406106661576
+    second: front_hand_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +52,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chara_side_down_0
+      name: front_hand_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
-        height: 24
+        width: 20
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +123,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 396440e4e746f9400800000000000000
-      internalID: 333095391086266003
+      spriteID: 5cbf8874b15beaa40800000000000000
+      internalID: 5381437733523225541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chara_side_down_1
+      name: front_hand_1
       rect:
         serializedVersion: 2
-        x: 21
+        x: 20
         y: 0
-        width: 14
-        height: 23
+        width: 20
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,50 +144,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5650dfcccf2c81d0800000000000000
-      internalID: -3347247866336749985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chara_side_down_2
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 0
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1fb7cca9ca93faf0800000000000000
-      internalID: -363776953909002465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chara_side_down_3
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 14
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec0e8bdcb4cc37500800000000000000
-      internalID: 392882218457424078
+      spriteID: 8c2576928b6ec7e30800000000000000
+      internalID: 4502727406106661576
       vertices: []
       indices: 
       edges: []

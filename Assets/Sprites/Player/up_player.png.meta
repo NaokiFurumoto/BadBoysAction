@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 5f562d0df8f9ed545b43874dc7a63ab0
+guid: 1ace94a60bfca0b48a109515ec6b9c0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5732796137715397656
-    second: mahoutukai_front_0
+      213: -4691323197502956798
+    second: up_player_0
   - first:
-      213: 1219611556041505685
-    second: mahoutukai_front_1
+      213: -6057688838810090719
+    second: up_player_1
   - first:
-      213: -7876183786485474111
-    second: mahoutukai_front_2
+      213: 8683163985703088256
+    second: up_player_2
   - first:
-      213: 1419684480075473104
-    second: mahoutukai_front_3
+      213: 8703469423946466127
+    second: up_player_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mahoutukai_front_0
+      name: up_player_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 16
-        height: 23
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eb0eb159440170b0800000000000000
-      internalID: -5732796137715397656
+      spriteID: 20b5946586215eeb0800000000000000
+      internalID: -4691323197502956798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mahoutukai_front_1
+      name: up_player_1
       rect:
         serializedVersion: 2
-        x: 21
+        x: 24
         y: 0
-        width: 16
-        height: 22
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59bb0d99f3eece010800000000000000
-      internalID: 1219611556041505685
+      spriteID: 12340ea9814ceeba0800000000000000
+      internalID: -6057688838810090719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mahoutukai_front_2
+      name: up_player_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 48
         y: 0
-        width: 16
-        height: 23
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cc97d4739c22b290800000000000000
-      internalID: -7876183786485474111
+      spriteID: 0803c4eb3abc08870800000000000000
+      internalID: 8683163985703088256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mahoutukai_front_3
+      name: up_player_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 72
         y: 0
-        width: 16
-        height: 22
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d0a808438bb3b310800000000000000
-      internalID: 1419684480075473104
+      spriteID: f438dcff35fe8c870800000000000000
+      internalID: 8703469423946466127
       vertices: []
       indices: 
       edges: []
