@@ -53,6 +53,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Stage
+    uniqueID: 1568953231
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -70,6 +73,9 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 4019753949
+    locked: 0
+  - name: Effect
+    uniqueID: 946554305
     locked: 0
   - name: UI
     uniqueID: 1121911501

@@ -107,6 +107,12 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     private UiController uiController;
 
+    /// <summary>
+    /// Effect
+    /// </summary>
+    [SerializeField]
+    private GameObject effect;
+
     #region プロパティ
     public ENEMY_STATE State
     {
@@ -277,6 +283,14 @@ public class EnemyStatusController : MonoBehaviour
         //削除：更新するまでは残る
         Destroy(this.gameObject);
         uiController?.SetTextKillsNumber();
+    }
+
+    /// <summary>
+    /// エフェクト表示
+    /// </summary>
+    public void PlayEffect()
+    {
+        effect?.SetActive(true);
     }
 
 

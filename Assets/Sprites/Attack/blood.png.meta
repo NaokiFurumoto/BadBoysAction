@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 218297260728ef3428792ff86db520d1
+guid: 8dfc3ac0ef4f2ab48ba3b73ff3c7829a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8639696192361307600
-    second: Attack_Side_0
+      213: -2126246720042785711
+    second: blood_0
   - first:
-      213: -184174111750808032
-    second: Attack_Side_1
+      213: -174042169833062346
+    second: blood_1
   - first:
-      213: -8547824895435233068
-    second: Attack_Side_2
+      213: 8958670535985375444
+    second: blood_2
+  - first:
+      213: 4711116328407865328
+    second: blood_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack_Side_0
+      name: blood_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dd9df079ed56e770800000000000000
-      internalID: 8639696192361307600
+      spriteID: 154a20b9fdd0e72e0800000000000000
+      internalID: -2126246720042785711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_Side_1
+      name: blood_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 12
         y: 0
-        width: 16
-        height: 16
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02e15440f9ea17df0800000000000000
-      internalID: -184174111750808032
+      spriteID: 6308923919da59df0800000000000000
+      internalID: -174042169833062346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_Side_2
+      name: blood_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 24
         y: 0
-        width: 16
-        height: 16
+        width: 12
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,8 +171,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d8a751cb86006980800000000000000
-      internalID: -8547824895435233068
+      spriteID: 4d8aa2d2367935c70800000000000000
+      internalID: 8958670535985375444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blood_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f71b42175f316140800000000000000
+      internalID: 4711116328407865328
       vertices: []
       indices: 
       edges: []

@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: fd34cae7d500bb44e8bfac2a4c4adf01
+guid: b00d97d11e49d0e49aed881a7b19a38e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2598405713278941328
-    second: point_0
+      213: -132698275519985569
+    second: enemy_chaise01_0
   - first:
-      213: -3835824855162435635
-    second: point_1
+      213: 8920590253868824965
+    second: enemy_chaise01_1
   - first:
-      213: -4079772753064381757
-    second: point_2
+      213: -7689316627213342857
+    second: enemy_chaise01_2
   - first:
-      213: 2218114506861609516
-    second: point_3
+      213: -7160436114742763495
+    second: enemy_chaise01_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: point_0
+      name: enemy_chaise01_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 16
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0983652ba346f0420800000000000000
-      internalID: 2598405713278941328
+      spriteID: f5803591f9f882ef0800000000000000
+      internalID: -132698275519985569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_1
+      name: enemy_chaise01_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 24
         y: 0
-        width: 20
-        height: 16
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc7cd670e9964cac0800000000000000
-      internalID: -3835824855162435635
+      spriteID: 589b9a4929d4ccb70800000000000000
+      internalID: 8920590253868824965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_2
+      name: enemy_chaise01_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 48
         y: 0
-        width: 20
-        height: 16
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2b741fb4cb167c0800000000000000
-      internalID: -4079772753064381757
+      spriteID: 777a17d644f0a4590800000000000000
+      internalID: -7689316627213342857
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: point_3
+      name: enemy_chaise01_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 72
         y: 0
-        width: 20
-        height: 16
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2280a4546358ce10800000000000000
-      internalID: 2218114506861609516
+      spriteID: 91021ef8a4501ac90800000000000000
+      internalID: -7160436114742763495
       vertices: []
       indices: 
       edges: []
