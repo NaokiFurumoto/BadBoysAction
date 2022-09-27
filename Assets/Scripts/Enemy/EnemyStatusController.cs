@@ -206,6 +206,7 @@ public class EnemyStatusController : MonoBehaviour
             collider.isTrigger = false;
             sprite.color = Color.white;
             trail.enabled = true;
+            animator.SetTrigger("Damage");
 
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
         });

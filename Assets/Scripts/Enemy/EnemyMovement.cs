@@ -80,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
     /// <summary>
     /// 本体：向き変更用
     /// </summary>
+    [SerializeField]
     protected  Transform body;
 
     /// <summary>
@@ -128,7 +129,6 @@ public class EnemyMovement : MonoBehaviour
         enemyTrans            = transform;
         enemyStatusController = GetComponent<EnemyStatusController>();
         enemyAttack           = GetComponent<EnemyAttack>();
-        body                  = animator.gameObject.transform;
 
         if (animator == null)
         {

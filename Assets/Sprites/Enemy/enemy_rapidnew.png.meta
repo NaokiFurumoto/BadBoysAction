@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: fad97489898e4e74dba93986f51be279
+guid: 7b5258a312bc1094ca14931e0adac487
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7094741490370267818
-    second: enemy_chaise_main_0
+      213: -7849158158271061384
+    second: enemy_rapidnew_0
   - first:
-      213: 5486642669103226851
-    second: enemy_chaise_main_1
+      213: 8363382755959186832
+    second: enemy_rapidnew_1
   - first:
-      213: -7129295222414781987
-    second: enemy_chaise_main_2
+      213: -1663997930796311389
+    second: enemy_rapidnew_2
   - first:
-      213: 8719170334704967837
-    second: enemy_chaise_main_3
+      213: 5473820715445260137
+    second: enemy_rapidnew_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy_chaise_main_0
+      name: enemy_rapidnew_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 36
+        width: 28
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaaceb2cbc5957260800000000000000
-      internalID: 7094741490370267818
+      spriteID: 872e46edd30321390800000000000000
+      internalID: -7849158158271061384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_chaise_main_1
+      name: enemy_rapidnew_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 28
         y: 0
-        width: 24
-        height: 36
+        width: 28
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ef16652078742c40800000000000000
-      internalID: 5486642669103226851
+      spriteID: 09523913e44b01470800000000000000
+      internalID: 8363382755959186832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_chaise_main_2
+      name: enemy_rapidnew_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 56
         y: 0
-        width: 24
-        height: 36
+        width: 28
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1d31194c7af0d90800000000000000
-      internalID: -7129295222414781987
+      spriteID: 3ac96ebb2ba48e8e0800000000000000
+      internalID: -1663997930796311389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_chaise_main_3
+      name: enemy_rapidnew_3
       rect:
         serializedVersion: 2
-        x: 72
+        x: 84
         y: 0
-        width: 24
-        height: 36
+        width: 28
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d90a6382937b00970800000000000000
-      internalID: 8719170334704967837
+      spriteID: 96f0a4c60fae6fb40800000000000000
+      internalID: 5473820715445260137
       vertices: []
       indices: 
       edges: []

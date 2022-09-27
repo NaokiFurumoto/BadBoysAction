@@ -5486,7 +5486,7 @@ Transform:
   m_GameObject: {fileID: 1758721687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 99.1588, y: 175.79507, z: 1}
+  m_LocalScale: {x: 0.89, y: 0.89, z: 0}
   m_Children: []
   m_Father: {fileID: 440510911}
   m_RootOrder: 0
@@ -5531,8 +5531,8 @@ SpriteRenderer:
   m_SortingLayerID: 1568953231
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3d14b778d5fc76d41816f0430dcbcd3b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6284,9 +6284,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 229843568154584518, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883932204791393, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2585404166410406597, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585404166410406597, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2585404166410406616, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
       propertyPath: m_RootOrder
@@ -6336,9 +6348,21 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 60235308}
+    - target: {fileID: 3188505138322875672, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3862273083288946316, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
       propertyPath: m_Name
       value: AttackSprites
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733810763552070688, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867795004011329808, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 529f6af77d685a942b276eb4a1e82bf2, type: 3}
@@ -6411,7 +6435,7 @@ PrefabInstance:
       objectReference: {fileID: 8229138143265305112, guid: 79ac9c7ac94bf5a45ab72dc8e88cbd35, type: 3}
     - target: {fileID: 4454552150171817659, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
       propertyPath: enemyEncounts.Array.data[0]
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4454552150171817659, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
       propertyPath: enemyEncounts.Array.data[1]
@@ -6423,7 +6447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4454552150171817659, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
       propertyPath: enemyEncounts.Array.data[3]
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4454552150171817659, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
       propertyPath: enemyEncounts.Array.data[4]

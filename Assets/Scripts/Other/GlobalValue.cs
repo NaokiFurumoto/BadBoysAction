@@ -17,7 +17,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// プレイヤーの攻撃力
     /// </summary>
-    public readonly static float ATTACK_POWER = 20.0f;
+    public readonly static float ATTACK_POWER = 30.0f;
 
     /// <summary>
     /// プレイヤーの最大ライフ値

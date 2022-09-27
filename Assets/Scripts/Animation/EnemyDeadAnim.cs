@@ -21,7 +21,7 @@ public class EnemyDeadAnim : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //éÄñSèIóπí ímé¿çs
-        EnemyStatusController enemyStatus = animator.transform.parent.gameObject.
+        EnemyStatusController enemyStatus = animator.transform.parent.parent.gameObject.
                                             GetComponent<EnemyStatusController>();
         if (enemyStatus != null)
         {
