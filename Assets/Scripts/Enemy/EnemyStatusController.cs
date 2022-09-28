@@ -100,7 +100,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// Collider2D
     /// </summary>
-    private CircleCollider2D collider;
+    private PolygonCollider2D collider;
 
     /// <summary>
     /// UIController
@@ -167,7 +167,7 @@ public class EnemyStatusController : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
 
-        collider = GetComponent<CircleCollider2D>();
+        collider = GetComponent<PolygonCollider2D>();
         collider.isTrigger = true;
 
         animator = body.gameObject.GetComponent<Animator>();
