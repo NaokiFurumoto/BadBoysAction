@@ -41,3 +41,7 @@ Assets/StreamingAssets/crashlytics-build.properties
  
 *.log
 Logs/
+
+#日本語Font追加
+MochiyPopPOne-Regular SDF.asset
+MochiyPopPOne-Regular SDF.asset.meta
