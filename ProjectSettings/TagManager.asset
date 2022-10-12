@@ -19,6 +19,7 @@ TagManager:
   - Enemy_Bullet
   - Btn_UI
   - Fade_UI
+  - DialogRoot
   layers:
   - Default
   - TransparentFX

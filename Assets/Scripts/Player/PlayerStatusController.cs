@@ -46,6 +46,7 @@ public class PlayerStatusController : MonoBehaviour
     /// 色変更用
     /// </summary>
     private Transform spriteTransform;
+   
 
     /// <summary>
     /// アニメーション
@@ -89,6 +90,13 @@ public class PlayerStatusController : MonoBehaviour
     public bool IsDead => isDead;
 
     public Transform PlayerCenter => playerCenter;
+
+    public SpriteRenderer Sprite
+    {
+        get { return sprite; }
+        set { sprite = value; }
+    }
+
     #endregion
 
     #region コールバック
@@ -107,7 +115,8 @@ public class PlayerStatusController : MonoBehaviour
     {
         InitializeComponent();
 
-        spriteTransform = sprite.transform;
+        spriteTransform = sprite?.transform;
+        //startSpritePos = new Vector3(0,0.461f,0);
         isDead   = false;
 
         //無敵ならば
@@ -119,6 +128,7 @@ public class PlayerStatusController : MonoBehaviour
         lifesManager?.SetLife(life);
         startPosition = transform.position;
         attackRoot.SetActive(true);
+        animator.SetTrigger("Play");
     }
 
     private void InitializeComponent()
@@ -142,6 +152,9 @@ public class PlayerStatusController : MonoBehaviour
         if (life <= 0 || isDead)
             return;
 
+        //カメラアクション
+        CameraAction.PlayerDamage();
+
         life -= damage;
         lifesManager.SetLife(life);
 
@@ -151,8 +164,6 @@ public class PlayerStatusController : MonoBehaviour
         }
         else//ダメージ処理
         {
-            //センサーの非表示
-
             //リアクション
             sprite.color = Color.red;
             spriteTransform.DOPunchScale(
@@ -207,13 +218,15 @@ public class PlayerStatusController : MonoBehaviour
             player.SetActive(true);
         }
         player.transform.position = startPosition;
-        attackerManager.ActivateAttacker(ATTACK_DIRECTION.FRONT);
+
+        attackerManager?.ActivateAttacker(ATTACK_DIRECTION.FRONT);
 
         isDead = false;
         life = 1;
         lifesManager.SetLife(life);
 
         attackRoot.SetActive(true);
+        
     }
    
 }

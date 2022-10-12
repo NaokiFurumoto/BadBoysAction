@@ -77,7 +77,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// Stayシェイク時間
     /// </summary>
-    public static readonly float STAY_SHAKETIME = 0.7f;
+    public static readonly float STAY_SHAKETIME = 1.0f;
 
     /// <summary>
     /// Stay_シェイクの強さ
@@ -144,7 +144,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static float STAMINA_RECOVERY_TIME = 600.0f;
+    public static float STAMINA_RECOVERY_TIME = 1800.0f;
 
     /// <summary>
     /// 最大スタミナ数
@@ -166,7 +166,30 @@ public class GlobalValue : MonoBehaviour
     /// </summary>
     public static Vector3 INIT_SCALE = new Vector3(1.0f,1.0f,1.0f);
 
+    /// <summary>
+    /// サウンドグループ
+    /// </summary>
     public static string SOUNDGROUP_NID = "SoundGroup_";
+
+    /// <summary>
+    /// カメラ初期サイズ
+    /// </summary>
+    public static float CAMERA_INITSIZE = 8.5f;
+
+    /// <summary>
+    /// カメラ初期位置
+    /// </summary>
+    public static Vector3 CAMERA_INITPOS = new Vector3(0.0f, 0.0f, -10.0f);
+
+    /// <summary>
+    /// 汎用ダイアログの名前
+    /// </summary>
+    public static string COMMONDIALOG_PREFAB_NAME = "CommaonDialog";
+
+    /// <summary>
+    /// スタミナ回復ダイアログの名前
+    /// </summary>
+    public static string STAMINADIALOG_PREFAB_NAME = "StaminaRicoveryDialog";
 
 
     //敵キャラの移動スピード調整：100体撃破毎

@@ -58,4 +58,13 @@ public class EnemyLifeAction : MonoBehaviour
         return 1;
     }
 
+    /// <summary>
+    /// ï\é¶êÿë÷
+    /// </summary>
+    /// <param name="isActive"></param>
+    public void ChangeActiveLifeImage(bool isActive)
+    {
+        this.gameObject.SetActive(isActive);
+    }
+
 }

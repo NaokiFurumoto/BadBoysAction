@@ -50,9 +50,12 @@ public partial class GameController : MonoBehaviour
     {
         Initialize();
         InitializeView();
-        GameStart();
+
+        //ここに置いたらあかん
+        PlayInGame();
     }
 
+   
     /// <summary>
     /// 初期化
     /// </summary>
@@ -71,19 +74,38 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
+    /// インゲーム開始
+    /// </summary>
+    public void PlayInGame()
+    {
+        //スタミナチェック
+        if (uiController.StaminasManager.IsCheckRecovery())
+        {
+            //スタミナを使用して再開
+            uiController.StaminasManager.UseStamina();
+            GameStart();
+        }
+        else
+        {
+            //スタミナ確認ダイアログ表示
+        }
+        
+    }
+
+    /// <summary>
     /// ゲーム開始
     /// </summary>
     public void GameStart()
     {
         state = INGAME_STATE.START;
         startView.gameObject.SetActive(true);
-        Invoke("PlayGame", START_PLAYINGTIME);
+        Invoke("SetPlayGame", START_PLAYINGTIME);
     }
 
     /// <summary>
     /// プレイ中設定
     /// </summary>
-    public void PlayGame()
+    public void SetPlayGame()
     {
         state = INGAME_STATE.PLAYING;
     }

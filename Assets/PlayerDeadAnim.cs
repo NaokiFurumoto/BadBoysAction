@@ -17,8 +17,10 @@ public class PlayerDeadAnim : StateMachineBehaviour
                                         GetComponent<GameController>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
+        var Conteroll = player.GetComponent<PlayerStatusController>();
+       
         player?.SetActive(false);
-
+        Conteroll.Sprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         gameController.GameResult();
     }
 

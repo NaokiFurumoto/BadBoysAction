@@ -6,7 +6,7 @@ using static GlobalValue;
 using System;
 
 /// <summary>
-/// View‚ÉŠÖ‚·‚é§Œä
+/// View‚ÉŠÖ‚·‚é§ŒäƒNƒ‰ƒX
 /// </summary>
 public partial class GameController : MonoBehaviour
 {

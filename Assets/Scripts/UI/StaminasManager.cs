@@ -48,7 +48,8 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (IsCheckRecovery())
+        //1つでも使用されていれば更新
+        if (!IsCheckUsedStamina())
             return;
 
         //時間チェック：時間経過すれば1つ回復
@@ -95,11 +96,6 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     private void RecoveryOneStamina()
     {
-        //回復されてれば実行しない
-        if (IsCheckRecovery())
-            return;
-
-        //回復する必要があるか？
         foreach(var stamina in staminaStatus)
         {
             if (!stamina.IsRecovery)
@@ -112,6 +108,7 @@ public class StaminasManager : MonoBehaviour
 
     /// <summary>
     /// 回復チェック
+    /// 使用できるスタミナがあるかどうか
     /// </summary>
     /// <returns></returns>
     public bool IsCheckRecovery()
@@ -127,6 +124,24 @@ public class StaminasManager : MonoBehaviour
 
         //true:回復されている
         return useStaminaNumber > 0;
+    }
+
+
+    /// <summary>
+    ///1つでもスタミナが消費されてるかどうか
+    /// </summary>
+    /// <returns></returns>
+    public bool IsCheckUsedStamina()
+    {
+        foreach (var stamina in staminaStatus)
+        {
+            if (!stamina.IsRecovery)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -113,6 +113,12 @@ public class EnemyStatusController : MonoBehaviour
     [SerializeField]
     private GameObject effect;
 
+    /// <summary>
+    /// Shadow
+    /// </summary>
+    [SerializeField]
+    private GameObject shadow;
+
     #region プロパティ
     public ENEMY_STATE State
     {
@@ -207,6 +213,7 @@ public class EnemyStatusController : MonoBehaviour
             sprite.color = Color.white;
             trail.enabled = true;
             animator.SetTrigger("Damage");
+            shadow.SetActive(false);
 
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
         });
@@ -223,6 +230,8 @@ public class EnemyStatusController : MonoBehaviour
         {
             state = ENEMY_STATE.DEATH;
             rigid2D.simulated = false;
+            shadow.SetActive(false);
+
             EnemyDead();
         }
         else
@@ -272,7 +281,6 @@ public class EnemyStatusController : MonoBehaviour
     public void EnemyDead()
     {
         SetDeadStatus();
-        //死亡アニメーション
         animator.SetTrigger("Dead");
     }
 
@@ -315,6 +323,10 @@ public class EnemyStatusController : MonoBehaviour
         isDead = true;
         state = ENEMY_STATE.DEATH;
         rigid2D.simulated = false;
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f); 
+
+        enemyLifeAc.ChangeActiveLifeImage(false);
+        trail.enabled = false;
     }
 
     //生成時の体力設定
