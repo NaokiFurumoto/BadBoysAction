@@ -1,13 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using static GlobalValue;
 using System;
+using System.Linq;
 
 public class StaminasManager : MonoBehaviour
 {
+    public static StaminasManager Instance;
+
     /// <summary>
     /// スタミナリスト
     /// </summary>
@@ -35,6 +35,8 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        Instance ??= this;
+        
         if (staminaStatus == null)
         {
             var array = this.gameObject.GetComponentsInChildren<StaminaStatus>();
@@ -64,7 +66,8 @@ public class StaminasManager : MonoBehaviour
     /// <summary>
     /// 全回復
     /// </summary>
-    public void FullRecovery()
+    /// <param name="isDialog">回復後にダイアログを表示するか？</param>
+    public void FullRecovery(bool isDialog, Action callback = null)
     {
         if (staminaStatus == null)
             return;
@@ -72,6 +75,23 @@ public class StaminasManager : MonoBehaviour
         {
             stamina.ChangeStaminaImage(true);
             useStaminaNumber = STAMINA_MAXNUMBER;
+        }
+
+        if (isDialog)
+        {
+            ///全回復お知らせダイアログ
+            var dialog = 
+                CommonDialog.ShowDialog
+                (
+                    STAMINA_FULLRECOVERY_TITLE,
+                    STAMINA_FULLRECOVERY_DESC,
+                    null,
+                    CLOSE,
+                    null,
+                    () => callback()
+                );
+
+            CommonDialogManager.Instance.AddList(dialog);
         }
     }
 
@@ -142,6 +162,54 @@ public class StaminasManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// 残りスタミナ数を取得
+    /// </summary>
+    /// <returns></returns>
+    public int GetUseStaminaNumber()
+    {
+        var index = 0;
+        foreach (var stamina in staminaStatus)
+        {
+            if (stamina.IsRecovery)
+            {
+                index++;
+            }
+        }
+
+        return index;
+    }
+
+    /// <summary>
+    /// スタミナを個数で設定
+    /// </summary>
+    /// <param name="num"></param>
+    public void SetStaminaNumber(int num)
+    {
+        for (var i = 0; i < num; i++)
+        {
+            var useIndex = GetUseStaminaNumber();
+
+            if (useIndex >= num)
+            {
+                return;
+            }
+            else
+            {   //1つ回復
+                RecoveryOneStamina();
+            }
+        }
+    }
+
+    /// <summary>
+    /// スタミナを全て使用不可とする
+    /// </summary>
+    public void SetAllDisable()
+    {
+        staminaStatus.ForEach(stamina => stamina.ChangeStaminaImage(false));
+
     }
 
     /// <summary>

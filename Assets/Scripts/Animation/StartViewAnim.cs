@@ -17,17 +17,17 @@ public class StartViewAnim : StateMachineBehaviour
     //}
 
     /// <summary>
-    /// スタートアニメーション終了時
+    /// アニメーション終了時
     /// </summary>
     /// <param name="animator"></param>
     /// <param name="stateInfo"></param>
     /// <param name="layerIndex"></param>
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        var startView = animator.gameObject.GetComponent<StartView>();
-        if(startView != null)
+        var view = animator.gameObject.GetComponent<ViewBase>();
+        if(view != null)
         {
-            startView.OpenEndAnimation();
+            view.OpenEndAnimation();
         }
     }
 

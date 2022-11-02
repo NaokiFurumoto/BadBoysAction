@@ -291,7 +291,7 @@ public class EnemyStatusController : MonoBehaviour
     {
         //削除：更新するまでは残る
         Destroy(this.gameObject);
-        uiController?.SetTextKillsNumber();
+        uiController?.SetPlayKillsNumber();
     }
 
     /// <summary>

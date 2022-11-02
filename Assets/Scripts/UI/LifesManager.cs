@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static GlobalValue;
+using System.Linq;
 
 /// <summary>
 /// ‘Ì—Í‚ÌŠÇ—
@@ -58,5 +59,17 @@ public class LifesManager : MonoBehaviour
                 life.ChangeLifeImage(false);
             }
         }
+    }
+
+    /// <summary>
+    /// ƒ‰ƒCƒt”‚Ìæ“¾
+    /// </summary>
+    /// <returns></returns>
+    public int GetLifeNum()
+    {
+        if (lifeStatuses.Count == 0)
+            return 0;
+
+        return lifeStatuses.Count(status => status.IsHave);
     }
 }

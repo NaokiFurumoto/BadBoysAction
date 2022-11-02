@@ -48,12 +48,16 @@ public class GeneratorManager : MonoBehaviour
 
     //切り替え用カウント数：100になると0とする
     [SerializeField]
-    private int ChangeKillCount;
+    private int changeKillCount;
 
     private void Start()
     {
         Initialize();
     }
+
+    #region プロパティ
+    public GAMELEVEL LEVEL { get { return level; } set { level = value; } }
+    #endregion
 
     /// <summary>
     /// 初期化
@@ -64,7 +68,7 @@ public class GeneratorManager : MonoBehaviour
         activeEnemyGenerators.Add(enemyGenerators[0]);
         enemyGenerators[0].gameObject.SetActive(true);
 
-        ChangeKillCount = 0;
+        changeKillCount = 0;
 
         level = GAMELEVEL.LEVEL_1;
 
@@ -165,9 +169,9 @@ public class GeneratorManager : MonoBehaviour
     public void ChangeUpdateGenerator()
     {
         //値の更新
-        ChangeKillCount++;
+        changeKillCount++;
 
-        if (ChangeKillCount >= 100)
+        if (changeKillCount >= 100)
         {
             //一度停止
             ChangeGeneratorState(GENERATOR_STATE.STOP);
@@ -215,7 +219,7 @@ public class GeneratorManager : MonoBehaviour
                     break;
             }
             ChangeGeneratorState(GENERATOR_STATE.GENERATE);
-            ChangeKillCount = 0;
+            changeKillCount = 0;
         }
     }
 
@@ -240,7 +244,7 @@ public class GeneratorManager : MonoBehaviour
         activeEnemyGenerators.Add(enemyGenerators[0]);
         enemyGenerators[0].gameObject.SetActive(true);
 
-        ChangeKillCount = 0;
+        changeKillCount = 0;
         level = GAMELEVEL.LEVEL_1;
 
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);

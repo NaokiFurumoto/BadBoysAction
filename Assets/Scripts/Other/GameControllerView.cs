@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using static GlobalValue;
+using UnityEngine.Advertisements;
 using System;
 
 /// <summary>
@@ -28,22 +30,20 @@ public partial class GameController : MonoBehaviour
     [SerializeField]
     private GameObject gameOverView;
 
-    /// <summary>
-    /// Fade画面
-    /// </summary>
-    [SerializeField]
-    private GameFade fadeView;
+    ///// <summary>
+    ///// Fade画面
+    ///// </summary>
+    //[SerializeField]
+    //private GameFade fadeView;
 
     //コールバック
-    private Action FadeinAction;
-    private Action RetryAction;
+    private UnityAction RetryAction;
 
     /// <summary>
     /// View初期化
     /// </summary>
     private void InitializeView()
     {
-        FadeinAction = RetryFadein;
         RetryAction = RetryGame;
     }
 
@@ -87,30 +87,39 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void OnClickRetryButtin()
     {
-        //暗転後に再開
-        fadeView.gameObject.SetActive(true);
-        fadeView.Play(GameFade.Mode.OUT, Color.black, FADETIME, FadeinAction);
-
         if (uiController.StaminasManager.IsCheckRecovery())
         {
             //スタミナを使用して再開
             uiController.StaminasManager.UseStamina();
+
+            FadeFilter.Instance.FadeIn(Color.black, FADETIME, RetryAction);
+            RetryStatus();
+            gameOverView.gameObject.SetActive(false);
         }
         else
         {
             //スタミナ確認ダイアログ表示
+            var dialog = 
+                CommonDialog.ShowDialog
+                (
+                    STAMINA_LESS_TITLE,
+                    STAMINA_LESS_DESC,
+                    MOVIECHECK,
+                    CLOSE,
+                    () => UnityAdsManager.Instance.ShowRewarded(result =>
+                    {
+                        //スタミナ全回復
+                        if (result == ShowResult.Finished)
+                        {
+                            StaminasManager.Instance.FullRecovery
+                            (true, CommonDialogManager.Instance.DeleteDialogAll);
+                        }
+                    }
+                ));
+
+            //リストに追加
+            CommonDialogManager.Instance.AddList(dialog);
         }
     }
-
-    /// <summary>
-    /// FadeIn処理
-    /// </summary>
-    private void RetryFadein()
-    {
-        fadeView.Play(GameFade.Mode.IN, new Color(1.0f,1.0f,1.0f,0.0f), FADETIME, RetryAction);
-
-        gameOverView.gameObject.SetActive(false);
-        RetryStatus();
-    }
-
+   
 }

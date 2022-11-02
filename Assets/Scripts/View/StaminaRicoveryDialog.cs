@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Advertisements;
 using static GlobalValue;
+using System;
 
 /// <summary>
 /// スタミナ回復ダイアログ
@@ -27,10 +29,16 @@ public class StaminaRicoveryDialog : MonoBehaviour
 
     private static GameObject prefab;
 
+    private IEnumerator Start()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        OpenDialogCallBack();
+    }
+
     /// <summary>
     /// ダイアログが開いた後に呼ばれる関数
     /// </summary>
-    public void EndAnimationCallBack()
+    public void OpenDialogCallBack()
     {
         //バックボタンの有効
         var eventTrigger = closeBackButton?.gameObject.AddComponent<EventTrigger>();
@@ -45,28 +53,27 @@ public class StaminaRicoveryDialog : MonoBehaviour
         OnDestroyedCallBack?.Invoke();
     }
 
-    public static StaminaRicoveryDialog ShowDialog()
+    public static void ShowDialog()
     {
         if(prefab == null)
         {
             prefab = Resources.Load(STAMINADIALOG_PREFAB_NAME) as GameObject;
         }
 
-        var instance = Instantiate(prefab);
-        var dialog = instance?.GetComponent<StaminaRicoveryDialog>();
         var rootParent = GameObject.FindGameObjectWithTag("DialogRoot").transform;
-        if(rootParent != null)
-        {
-            instance.transform.parent = rootParent;
-        }
+        var instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, rootParent);
+        var dialog = instance?.GetComponent<StaminaRicoveryDialog>();
 
         dialog.closeButton.onClick.AddListener(() => Destroy(dialog.gameObject));
-        //dialog.okButton.onClick.AddListener();
-
-        return dialog;
+        dialog.okButton.onClick.AddListener(() => 
+                UnityAdsManager.Instance.ShowRewarded( result => 
+                {
+                    //スタミナ全回復
+                    if(result == ShowResult.Finished)
+                    {
+                        StaminasManager.Instance.FullRecovery( true );
+                    }
+                }));
     }
-
-    //広告処理：Unity Ads//https://www.youtube.com/watch?v=FWSQaTDnS0o
-
-
+   
 }

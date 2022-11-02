@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using static GlobalValue;
+using System;
 
 public class CommonDialog : MonoBehaviour
 {
@@ -33,10 +34,18 @@ public class CommonDialog : MonoBehaviour
 
     private static GameObject prefab;
 
+
     /// <summary>
     /// 初期化
     /// </summary>
-    private void Start()
+    private IEnumerator Start()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        OpenDialogCallBack();
+    }
+
+
+    private void OpenDialogCallBack()
     {
         ///イベントの登録
         var eventTrigger = backGround.gameObject.AddComponent<EventTrigger>();
@@ -51,11 +60,22 @@ public class CommonDialog : MonoBehaviour
         onDestroyed?.Invoke();
     }
 
+    /// <summary>
+    /// ダイアログを作成して表示
+    /// </summary>
+    /// <param name="title">タイトルテキスト</param>
+    /// <param name="desc">文言テキスト</param>
+    /// <param name="ok">OKボタン名</param>
+    /// <param name="ng">NGボタン名</param>
+    /// <param name="okCallBack">コールバック</param>
+    /// <returns></returns>
     public static CommonDialog ShowDialog(
         string title,
         string desc,
+        string ok = null,
         string ng = null,
-        string ok = null
+        UnityAction okCallBack = null,
+        UnityAction ngCallBack = null
     )
     {
         if(prefab == null)
@@ -63,7 +83,8 @@ public class CommonDialog : MonoBehaviour
             prefab = Resources.Load(COMMONDIALOG_PREFAB_NAME) as GameObject;
         }
 
-        var instance = Instantiate(prefab);
+        var rootParent = GameObject.FindGameObjectWithTag("DialogRoot").transform;
+        var instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, rootParent);
         var comDialog = instance.GetComponent<CommonDialog>();
 
         comDialog.txt_Title.text = title;
@@ -78,7 +99,7 @@ public class CommonDialog : MonoBehaviour
         else
         {
             comDialog.okButton.GetComponentInChildren<TextMeshProUGUI>().text = ok;
-            comDialog.okButton.onClick.AddListener(() => Destroy(comDialog.gameObject));
+            comDialog.okButton.onClick.AddListener(okCallBack);
         }
 
         ///
@@ -90,8 +111,18 @@ public class CommonDialog : MonoBehaviour
         else
         {
             comDialog.closeButton.GetComponentInChildren<TextMeshProUGUI>().text = ng;
-            comDialog.closeButton.onClick.AddListener(() => Destroy(comDialog.gameObject));
+            if(ngCallBack == null)
+            {
+                comDialog.closeButton.onClick.AddListener(() => Destroy(comDialog.gameObject));
+            }
+            else
+            {
+                comDialog.closeButton.onClick.AddListener(ngCallBack);
+            }
         }
+
+       
+        okCallBack ??= () => Destroy(comDialog.gameObject);
 
         return comDialog;
     }

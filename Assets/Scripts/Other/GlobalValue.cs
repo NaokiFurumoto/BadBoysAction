@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalValue : MonoBehaviour
+public partial class GlobalValue
 {
     /// <summary>
     /// プレイヤーと敵の最小接近距離
@@ -144,6 +144,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
+    //public static float STAMINA_RECOVERY_TIME = 1800.0f;
     public static float STAMINA_RECOVERY_TIME = 1800.0f;
 
     /// <summary>
@@ -159,7 +160,7 @@ public class GlobalValue : MonoBehaviour
     /// <summary>
     /// Fade時間
     /// </summary>
-    public static float FADETIME = 1.0f;
+    public static float FADETIME = 2.0f;
 
     /// <summary>
     /// 初期Scale
@@ -182,14 +183,14 @@ public class GlobalValue : MonoBehaviour
     public static Vector3 CAMERA_INITPOS = new Vector3(0.0f, 0.0f, -10.0f);
 
     /// <summary>
-    /// 汎用ダイアログの名前
+    /// 汎用ダイアログのパス
     /// </summary>
-    public static string COMMONDIALOG_PREFAB_NAME = "CommaonDialog";
+    public static string COMMONDIALOG_PREFAB_NAME = "Prefabs/Common/CommonDialog";
 
     /// <summary>
-    /// スタミナ回復ダイアログの名前
+    /// スタミナ回復ダイアログのパス
     /// </summary>
-    public static string STAMINADIALOG_PREFAB_NAME = "StaminaRicoveryDialog";
+    public static string STAMINADIALOG_PREFAB_NAME = "Prefabs/Common/StaminaRecoveryDialog";
 
 
     //敵キャラの移動スピード調整：100体撃破毎
