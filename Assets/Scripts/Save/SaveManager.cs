@@ -64,7 +64,7 @@ public class SaveManager : MonoBehaviour
     /// 初回時のセーブデータを取得
     /// </summary>
     /// <returns></returns>
-    private SaveData GetInitSaveData()
+    public SaveData GetInitSaveData()
     {
         SaveData data = new SaveData();
         data.StaminaNumber = STAMINA_MAXNUMBER;
@@ -73,6 +73,8 @@ public class SaveManager : MonoBehaviour
         data.LifeNumber = START_LIFEPOINT;
         data.GemeLevel = GAMELEVEL.LEVEL_1;
         data.PlayTime = 0;
+        data.BGM_Volume = 0.5f;
+        data.SE_Volume = 0.5f;
         //data.IsGameOver = false;
         return data;
     }

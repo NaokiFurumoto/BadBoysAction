@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public class LogoScene : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("LogoWork");
+        LogoWork().Forget();
     }
 
-   private IEnumerator LogoWork()
+   private async UniTask LogoWork()
     {
-        yield return new WaitForSeconds(1.0f);
+        await UniTask.Delay(1000);
         FadeFilter.Instance.FadeIn(Color.black, 1.0f);
-        yield return new WaitForSeconds(2.0f);
+        await UniTask.Delay(2000);
         FadeFilter.Instance.FadeOut(Color.black, 2.0f);
-        yield return new WaitForSeconds(2.0f);
-        SceneManager.LoadScene("StartScene");
+        await UniTask.Delay(2000);
+        LoadScene.Load("StartScene");
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 using static GlobalValue;
 using System;
 using System.Linq;
+using TMPro;
 
 public class StaminasManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class StaminasManager : MonoBehaviour
     /// 計測時間
     /// </summary>
     private float progressTime;
+
+    /// <summary>
+    /// 残り回復時間テキスト表示
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI text_RecoveryTime;
 
     void Start()
     {
@@ -55,10 +62,21 @@ public class StaminasManager : MonoBehaviour
             return;
 
         //時間チェック：時間経過すれば1つ回復
+        var kesstime = STAMINA_RECOVERY_TIME - Time.deltaTime;
+
         progressTime += Time.deltaTime;
+
+        //UI更新
+        SetRecoveryTime(progressTime);
+
         if (progressTime >= STAMINA_RECOVERY_TIME)
         {
             RecoveryOneStamina();
+           
+            //回復後のスタミナ数が満タンならテキスト非表示
+            var isMax = GetUseStaminaNumber() == STAMINA_MAXNUMBER ? false : true;
+            ActiveTextRecovery(isMax);
+
             progressTime = 0;
         }
     }
@@ -76,6 +94,7 @@ public class StaminasManager : MonoBehaviour
             stamina.ChangeStaminaImage(true);
             useStaminaNumber = STAMINA_MAXNUMBER;
         }
+        ActiveTextRecovery(false);
 
         if (isDialog)
         {
@@ -220,4 +239,26 @@ public class StaminasManager : MonoBehaviour
     {
         return DateTime.Now;
     }
+
+    /// <summary>
+    /// 残りスタミナ回復時間の表示
+    /// </summary>
+    /// <param name="progress"></param>
+    private void SetRecoveryTime(float progress)
+    {
+        float recoveryTime = STAMINA_RECOVERY_TIME - progress;
+        var span = new TimeSpan(0, 0, (int)recoveryTime);
+
+        text_RecoveryTime.text = span.ToString(@"mm\:ss");
+    }
+
+    /// <summary>
+    /// 回復時間の表示切替
+    /// </summary>
+    /// <param name="ismax"></param>
+    public void ActiveTextRecovery(bool ismax)
+    {
+        text_RecoveryTime.gameObject.SetActive(ismax);
+    }
+   
 }

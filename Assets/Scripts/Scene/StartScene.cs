@@ -7,6 +7,8 @@ using TMPro;
 using static GlobalValue;
 using UnityEngine.Advertisements;
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 /// <summary>
 /// スタート画面に関する対応
 /// </summary>
@@ -21,6 +23,9 @@ public class StartScene : MonoBehaviour
     [SerializeField]
     private Button btnBG;
 
+    [SerializeField]
+    private GameObject startMenuView;
+
 
     void Awake()
     {
@@ -30,20 +35,20 @@ public class StartScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("EnableTap");
+        EnableTap().Forget();
     }
 
     /// <summary>
     /// タップボタンの有効
     /// </summary>
     /// <returns></returns>
-    private IEnumerator EnableTap()
+    private async UniTask EnableTap()
     {
-        yield return new WaitForSeconds(1.0f);
+        await UniTask.Delay(1000);
         FadeFilter.Instance.FadeIn(Color.black, 1.0f);
-        yield return new WaitForSeconds(2.0f);
+        await UniTask.Delay(2000);
         menu.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        await UniTask.Delay(500);
         btnBG.interactable = true;
     }
 
@@ -52,8 +57,42 @@ public class StartScene : MonoBehaviour
     /// </summary>
     public void OnClickTapBG()
     {
+
+        GoGameScene().Forget();
+        
+    }
+
+    private async UniTask GoGameScene()
+    {
+        FadeFilter.Instance.FadeOut(Color.black, 1.0f);
+        await UniTask.Delay(1000);
+        LoadScene.Load("GameScene");
+    }
+
+
+
+    /// <summary>
+    /// ランキング表示
+    /// </summary>
+    public void OnClickRank()
+    {
         Debug.Log("開始");
     }
 
-    
+    /// <summary>
+    /// メニュ－表示
+    /// </summary>
+    public void OnClickMenu()
+    {
+        menu.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// メニュー画面の開閉
+    /// </summary>
+    /// <param name="isActive"></param>
+    public void StartMenuViewActivate(bool isActive)
+    {
+        startMenuView?.SetActive(isActive);
+    }
 }

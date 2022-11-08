@@ -62,6 +62,8 @@ MonoBehaviour:
   - {fileID: 6457171857674539235, guid: 759df1796ace2154985535a83e393c7e, type: 3}
   - {fileID: 6895491509008326182, guid: e805fc1f7a368694497ab0ae84f08ea4, type: 3}
   - {fileID: 8484086300968670691, guid: 9414393e86790d24aad2ada7afe4decd, type: 3}
+  - {fileID: 8148006614471842091, guid: f3caf17fb51f14f4ea5e57e78bfac845, type: 3}
+  - {fileID: 2564291196395577126, guid: b02411b412dddca4d8b2b4bf2e011d3e, type: 3}
   LoadGameObjectList_Start: []
   LoadGameObjectList_Update: []
   LoadGameObjectList_FixedUpdate: []

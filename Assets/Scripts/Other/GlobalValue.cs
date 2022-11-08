@@ -145,7 +145,7 @@ public partial class GlobalValue
     /// スタミナ回復時間
     /// </summary>
     //public static float STAMINA_RECOVERY_TIME = 1800.0f;
-    public static float STAMINA_RECOVERY_TIME = 1800.0f;
+    public static float STAMINA_RECOVERY_TIME = 3600.0f;
 
     /// <summary>
     /// 最大スタミナ数
@@ -191,6 +191,10 @@ public partial class GlobalValue
     /// スタミナ回復ダイアログのパス
     /// </summary>
     public static string STAMINADIALOG_PREFAB_NAME = "Prefabs/Common/StaminaRecoveryDialog";
+
+    public readonly static string ISO_8601_FORMAT     = "yyyy-MM-ddTHH:mm:ss.fffZ";
+
+    public readonly static float STOP_TIME     = Mathf.Infinity;
 
 
     //敵キャラの移動スピード調整：100体撃破毎

@@ -27,6 +27,12 @@ public class SaveData
     //プレイ回数
     public int PlayTime;
 
+    //BGM音量
+    public float BGM_Volume;
+
+    //SE音量
+    public float SE_Volume;
+
     //GameOver判定：途中データ用
     //public bool IsGameOver;
 

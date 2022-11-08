@@ -34,5 +34,10 @@ public partial class GlobalValue
     public readonly static string STAMINA_LESS_DESC = "動画視聴することで<br>スタミナが全回復されます。<br>視聴しますか？。";
 
 
+    /// <summary>
+    /// セーブデータ関連
+    /// </summary>
+    public readonly static string SAVEDATA_CLEAR_TITlE = "データクリア";
+    public readonly static string SAVEDATA_CLEAR_DESC = "セーブデータを初期化します。<br>よろしいですか？";
 
 }

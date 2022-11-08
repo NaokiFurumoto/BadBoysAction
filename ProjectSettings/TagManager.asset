@@ -20,6 +20,7 @@ TagManager:
   - Btn_UI
   - Fade_UI
   - DialogRoot
+  - View_Root
   layers:
   - Default
   - TransparentFX

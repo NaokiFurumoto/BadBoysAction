@@ -61,7 +61,7 @@ public class GameOverView : ViewBase
         {
             //ハイスコア演出表示
             HiScoreEffect(true);
-            uiController.SetHiScore(hiScore);
+            uiController.SetHiScore(score);
         }
 
         //スコアを初期化

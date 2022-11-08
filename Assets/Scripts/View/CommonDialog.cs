@@ -34,7 +34,6 @@ public class CommonDialog : MonoBehaviour
 
     private static GameObject prefab;
 
-
     /// <summary>
     /// ‰Šú‰»
     /// </summary>
@@ -126,4 +125,5 @@ public class CommonDialog : MonoBehaviour
 
         return comDialog;
     }
+
 }

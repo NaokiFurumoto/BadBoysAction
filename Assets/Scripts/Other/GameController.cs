@@ -100,6 +100,7 @@ public partial class GameController : MonoBehaviour
         {
             //スタミナを使用して再開
             uiController.StaminasManager.UseStamina();
+
             GameStart();
         }
         else
@@ -152,7 +153,10 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GameStart()
     {
-       
+        //スタミナを必ず使用してる状態なのでテキストは表示させる
+        StaminasManager.Instance.ActiveTextRecovery(true);
+        //スコアの初期化
+
         state = INGAME_STATE.START;
         startView.gameObject.SetActive(true);
         Invoke("SetPlayGame", START_PLAYINGTIME);
@@ -172,7 +176,7 @@ public partial class GameController : MonoBehaviour
     public void GameStop()
     {
         state = INGAME_STATE.STOP;
-        Time.timeScale = 0;
+        TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
     }
 
     /// <summary>
@@ -180,7 +184,7 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GameResult()
     {
-        Time.timeScale = 0;
+        TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
         state = INGAME_STATE.RESULT;
         uiController.SetIsGameOver(true);
 
@@ -196,7 +200,7 @@ public partial class GameController : MonoBehaviour
     public void GameResume()
     {
         state = INGAME_STATE.PLAYING;
-        Time.timeScale = 1;
+        TimeManager.Instance.ResetSlow();
     }
 
     /// <summary>
@@ -206,8 +210,8 @@ public partial class GameController : MonoBehaviour
     {
         //セーブ処理
         SavegameInfo();
-        
-        Time.timeScale = 1;
+
+        TimeManager.Instance.ResetSlow();
         GameStart();
     }
 
