@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Buffers;
+
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -30,7 +31,7 @@ using System.Diagnostics.CodeAnalysis;
         }
 
         /// <summary>Array範囲外ならnullを返す</summary>
-        [return: MaybeNull]
+        
         public static T GetOrNull<T>( this T[] array, int index ) where T : class
         {
             if ( array == null || (uint)index >= (uint)array.Length )
@@ -126,7 +127,7 @@ using System.Diagnostics.CodeAnalysis;
         /// マージ
         /// </summary>
         /// ***********************************************************************
-        [return: MaybeNull]
+     
         public static T[] Merge<T>( T[] list1, T[] list2, bool isSameEnable = true /*同一データの許可フラグ*/ )
         {
             T[] result = list1;
@@ -159,7 +160,7 @@ using System.Diagnostics.CodeAnalysis;
         /// コールのたびにデリゲートのアロケーションが発生するのを防ぐための、Array.Find,Linq.Firstの変形.
         /// </summary>
         /// ***********************************************************************
-        [return: MaybeNull]
+      
         public static TItem FindEquals<TItem, TKey>( this TItem[] array, Func<TItem, TKey> func, TKey key )
         {
             if (array == null)
@@ -188,7 +189,7 @@ using System.Diagnostics.CodeAnalysis;
         /// FindEquals string特化
         /// </summary>
         /// ***********************************************************************
-        [return: MaybeNull]
+       
         public static TItem FindEquals<TItem>( this TItem[] array, Func<TItem, string> func, string key )
         {
             if (array == null)
@@ -215,7 +216,7 @@ using System.Diagnostics.CodeAnalysis;
         /// コールのたびにデリゲートのアロケーションが発生するのを防ぐための、Linq.Firstの変形.
         /// </summary>
         /// ***********************************************************************
-        [return: MaybeNull]
+  
         public static int FindIndexEquals<TItem, TKey>( this TItem[] array, Func<TItem, TKey> func, TKey key )
         {
             if (array == null)
@@ -284,8 +285,8 @@ using System.Diagnostics.CodeAnalysis;
         /// nullなら空配列を返す
         /// </summary>
         /// ***********************************************************************
-        [return: NotNull]
-        public static T[] OrEmpty<T>( [AllowNull] this T[] array )
+  
+        public static T[] OrEmpty<T>(this T[] array )
         {
             if ( array ==null ) return Array.Empty<T>();
             return array;
@@ -311,7 +312,7 @@ using System.Diagnostics.CodeAnalysis;
             }
         }
 
-        public static T[] WhereToArray<T>([AllowNull] this List<T> list, Func<T, bool> predicate)
+        public static T[] WhereToArray<T>(this List<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 return Array.Empty<T>();
@@ -345,7 +346,7 @@ using System.Diagnostics.CodeAnalysis;
         }
 
         /// <summary>二分検索</summary>
-        [return: MaybeNull]
+      
         public static T BinarySearch<T, TKey>(this T[] array, Func<T, TKey> key, TKey value)
         {
             var left = -1;
@@ -367,30 +368,9 @@ using System.Diagnostics.CodeAnalysis;
         }
 
         /// <summary>二分検索.string特化.</summary>
-        [return: MaybeNull]
-        public static T BinarySearch<T>(this T[] array, Func<T, string> key, string value)
-        {
-            if (array == null)
-                Utility.Throw(new ArgumentNullException(nameof(array)));
 
-            var left = -1;
-            var right = array.Length;
+        
 
-            while (right - left > 1)
-            {
-                var mid = (left + right) / 2;
-                var target = array[mid];
-                var cmp = key(target).CompareToFast(value);
-
-                if (cmp > 0) { right = mid; }
-                else if (cmp < 0) { left = mid; }
-                else { return target; }
-            }
-
-            return default;
-        }
-
-        [return: MaybeNull]
         public static int BinarySearchIndex<T, TKey>(this T[] array, Func<T, TKey> key, TKey value)
         {
             var left = -1;
@@ -435,26 +415,7 @@ using System.Diagnostics.CodeAnalysis;
             return array;
         }
 
-        public static void SortBy<T>(this T[] array, Func<T, string> keyFunc)
-        {
-            var count = array.Length;
-            var keys = ArrayPool<string>.Shared.Rent(count);
-            var items = ArrayPool<T>.Shared.Rent(count);
-            for (var i = 0; i < count; ++i)
-            {
-                var item = array[i];
-                items[i] = item;
-                keys[i] = keyFunc(item);
-            }
-
-            Array.Sort(keys, items, 0, count, StringUtility.StringOrdinalComparer.Shared);
-            for (var i = 0; i < count; ++i)
-            {
-                array[i] = items[i];
-            }
-            ArrayPool<string>.Shared.Return(keys);
-            ArrayPool<T>.Shared.Return(items, true);
-        }
+       
 
         public static TItem[] StableSortBy<TItem,TKey>(this TItem[] array, Func<TItem, TKey> func)
         {
