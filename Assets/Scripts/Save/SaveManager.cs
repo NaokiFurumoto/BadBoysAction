@@ -71,7 +71,7 @@ public class SaveManager : MonoBehaviour
         data.KillsNumber = 0;
         data.HiScoreNumber = 0;
         data.LifeNumber = START_LIFEPOINT;
-        data.GemeLevel = GAMELEVEL.LEVEL_1;
+        data.GemeLevel = 1;
         data.PlayTime = 0;
         data.BGM_Volume = 0.5f;
         data.SE_Volume = 0.5f;

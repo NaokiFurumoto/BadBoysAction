@@ -61,12 +61,13 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     /// <summary>
     /// インターステイシャル広告の表示
     /// </summary>
-    public void ShowInterstitial()
+    public void ShowInterstitial(Action<ShowResult> finish)
     {
         //広告が再生できる状態
         if (Advertisement.IsReady(InterstitialID))
         {
             Advertisement.Show(InterstitialID);
+            this.finish = finish;
         }
     }
 

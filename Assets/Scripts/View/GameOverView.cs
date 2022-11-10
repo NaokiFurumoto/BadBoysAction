@@ -66,6 +66,7 @@ public class GameOverView : ViewBase
 
         //ƒXƒRƒA‚ğ‰Šú‰»
         uiController.SetLoadingKillsNumber(0);
+        uiController.SetGameLevel(1);
     }
 
     /// <summary>

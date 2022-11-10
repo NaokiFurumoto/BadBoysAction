@@ -10,6 +10,24 @@ using static GlobalValue;
 public class UiController : MonoBehaviour
 {
     /// <summary>
+    /// ゲームレベル表示
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI text_gameLevel;
+
+    /// <summary>
+    /// レベル数
+    /// </summary>
+    [SerializeField]
+    private int gameLevel;
+
+    /// <summary>
+    /// レベルMAXオブジェクト
+    /// </summary>
+    [SerializeField]
+    private GameObject levelMaxObject;
+
+    /// <summary>
     /// ライフ管理
     /// </summary>
     [SerializeField]
@@ -39,8 +57,15 @@ public class UiController : MonoBehaviour
     private int hiScore;
 
     /// <summary>
+    /// ハイスコアテキスト表示
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI text_HiScore;
+
+    /// <summary>
     /// プレイ回数
     /// </summary>
+    [SerializeField]
     private int playTime;
 
     /// <summary>
@@ -48,11 +73,10 @@ public class UiController : MonoBehaviour
     /// </summary>
     private bool isGameOver;
 
-
     /// <summary>
     /// 生成器親管理クラス
     /// </summary>
-    private GeneratorManager generatorManager;
+    private NewGenerateManager generatorManager;
 
     /// <summary>
     /// 自身の初期化
@@ -62,7 +86,7 @@ public class UiController : MonoBehaviour
     #region プロパティ
     public LifesManager LifesManager => lifesManager;
     public StaminasManager StaminasManager => staminasManager;
-    public int KillsNUM => killsNum;
+    public int KillsNUM { get { return killsNum; } set {killsNum = value;} }
 
     public int HiScore => hiScore;
 
@@ -81,17 +105,8 @@ public class UiController : MonoBehaviour
     private void Initialize()
     {
         generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
-                                      GetComponent<GeneratorManager>();
+                                      GetComponent<NewGenerateManager>();
         isGameOver = false;
-    }
-
-    /// <summary>
-    /// ロード完了後のUI表示周りの設定対応
-    /// </summary>
-    public void UpdateLoadedUI()
-    {
-
-        text_Kills.text = killsNum.ToString();
     }
 
     /// <summary>
@@ -104,7 +119,6 @@ public class UiController : MonoBehaviour
             return;
         killsNum++;
         text_Kills.text = killsNum.ToString();
-        generatorManager?.ChangeGameLevel(killsNum);
         generatorManager?.ChangeUpdateGenerator();
     }
 
@@ -121,13 +135,16 @@ public class UiController : MonoBehaviour
         return 0;
     }
 
+   
     /// <summary>
-    /// リトライ設定
+    /// スコアのクリア
     /// </summary>
-    public void RetryUI()
+    public void UpdateScore()
     {
         killsNum = 0;
         text_Kills.text = "0";
+        text_HiScore.text = hiScore.ToString();
+        SetGameLevel(1);
     }
 
    //-------------------------------Save・Load----------------------------------------//
@@ -156,10 +173,22 @@ public class UiController : MonoBehaviour
     /// <summary>
     /// ゲームレベル変更
     /// </summary>
-    public void SetGameLevel(GAMELEVEL level)
+    public void SetGameLevel(int level)
     {
-        generatorManager.LEVEL = level;
-        generatorManager.ChangeUpdateGenerator();
+        gameLevel = level;
+        gameLevel = Mathf.Clamp(gameLevel, 1, MAX_GAMELEVEL);
+        text_gameLevel.text = gameLevel.ToString();
+
+        if (level >= MAX_GAMELEVEL)
+        {
+            text_gameLevel.gameObject.SetActive(false);
+            levelMaxObject.gameObject.SetActive(true);
+        }
+        else
+        {
+            text_gameLevel.gameObject.SetActive(true);
+            levelMaxObject.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -169,6 +198,15 @@ public class UiController : MonoBehaviour
     public void SetPlayTime(int playTime)
     {
         this.playTime = playTime;
+    }
+
+    /// <summary>
+    /// プレイ回数追加
+    /// </summary>
+    /// <param name="playTime"></param>
+    public void AddPlayTime()
+    {
+        this.playTime++;
     }
 
     /// <summary>
@@ -241,7 +279,7 @@ public class UiController : MonoBehaviour
     /// ゲームレベルの取得
     /// </summary>
     /// <returns></returns>
-    public GAMELEVEL GetGameLevel() => generatorManager.LEVEL;
+    public int GetGameLevel() => gameLevel;
 
     /// <summary>
     /// プレイ回数の取得

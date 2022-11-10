@@ -46,7 +46,7 @@ public partial class GameController : MonoBehaviour
     /// <summary>
     /// プレイヤーの制御
     /// </summary>
-    private GeneratorManager generatorManager;
+    private NewGenerateManager generatorManager;
 
     /// <summary>
     /// 開始時Fadeinのコールバック
@@ -85,7 +85,7 @@ public partial class GameController : MonoBehaviour
                                             GetComponent<PlayerStatusController>();
 
         generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
-                                            GetComponent<GeneratorManager>();
+                                            GetComponent<NewGenerateManager>();
 
         startFadeinCallBack = PlayInGame;
     }
@@ -120,7 +120,7 @@ public partial class GameController : MonoBehaviour
                         if (result == ShowResult.Finished)
                         {
                             StaminasManager.Instance.FullRecovery(true,() => { CommonDialogManager.Instance.DeleteDialogAll();
-                                GameStart();
+                                                                               GameStart();
                             });
                         }
                     }
@@ -156,6 +156,10 @@ public partial class GameController : MonoBehaviour
         //スタミナを必ず使用してる状態なのでテキストは表示させる
         StaminasManager.Instance.ActiveTextRecovery(true);
         //スコアの初期化
+        uiController.UpdateScore();
+
+        //敵生成
+        generatorManager.StartGenerate();
 
         state = INGAME_STATE.START;
         startView.gameObject.SetActive(true);
@@ -184,14 +188,37 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GameResult()
     {
+        //プレイ回数追加
+        uiController.AddPlayTime();
+
+        //停止処理
         TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
         state = INGAME_STATE.RESULT;
-        uiController.SetIsGameOver(true);
 
         //セーブする
         SavegameInfo();
 
-        gameOverView.gameObject.SetActive(true);
+        //このタイミングで広告表示。２回に１回広告表示：
+        if(uiController.PlayTime % 2  == 0)
+        {
+           //広告終了後のコールバック
+            Action<ShowResult> call = (result) =>
+            {
+                //ゲームリザルト画面を表示
+                uiController.SetIsGameOver(true);
+                gameOverView.gameObject.SetActive(true);
+            };
+
+            UnityAdsManager.Instance.ShowInterstitial(call);
+
+        }
+        else
+        {
+            //ゲームリザルト画面を表示
+            uiController.SetIsGameOver(true);
+            gameOverView.gameObject.SetActive(true);
+        }
+        
     }
 
     /// <summary>
@@ -222,7 +249,7 @@ public partial class GameController : MonoBehaviour
     {
         playerStatusController?.RetryPlayer();
         generatorManager?.RetryGenerator();
-        uiController.RetryUI();
+        uiController.UpdateScore();
     }
 
     /// <summary>
@@ -251,8 +278,8 @@ public partial class GameController : MonoBehaviour
             uiController.SetLife(loadData.LifeNumber);
         }
 
-        //表示更新
-        uiController.UpdateLoadedUI();
+        //表示更新：中断処理分け行う
+        uiController.UpdateScore();
 
         //暗転解除後にゲーム開始
         FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);

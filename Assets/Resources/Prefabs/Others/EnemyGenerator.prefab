@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4454552150171817657}
   - component: {fileID: 4454552150171817658}
-  - component: {fileID: 4454552150171817659}
+  - component: {fileID: 8539707611900869167}
   m_Layer: 0
   m_Name: EnemyGenerator
   m_TagString: Untagged
@@ -48,7 +48,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
---- !u!114 &4454552150171817659
+--- !u!114 &8539707611900869167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,18 +57,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4454552150171817656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8c47f8dcd98024d90aae5006057cd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 93504fa428a881745894d0756e6ca167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObjects:
-  - {fileID: 8355520966603795551, guid: 3a92534bd778e9f458fe3c0ac815f3cf, type: 3}
-  - {fileID: 4644631808171512891, guid: 3d438c6d3a5483342a22d24554650960, type: 3}
-  - {fileID: 8229138143265305112, guid: 95eddd47a026e2e4692102989ba993e7, type: 3}
+  - {fileID: 8229138143265305112, guid: 79ac9c7ac94bf5a45ab72dc8e88cbd35, type: 3}
   - {fileID: 4272686423724025683, guid: dd668572224b547418eb3da6a1458009, type: 3}
   - {fileID: 99102266307262400, guid: c423125fe6850a24ba2d20c0eded42f2, type: 3}
-  enemyEncounts: 0000000064000000000000000000000000000000
+  - {fileID: 8229138143265305112, guid: 95eddd47a026e2e4692102989ba993e7, type: 3}
+  enemyEncounts: e80300001e000000140000000a000000
   enemysParent: {fileID: 0}
   gameController: {fileID: 0}
-  rank: 1
+  index: 0
   state: 0
   createDelayTime: 0
+  createDelayTaskTime: 0
+  startDelayTaskTime: 0

@@ -114,13 +114,6 @@ public partial class GlobalValue
     /// </summary>
     public static readonly float CREATE_DIFFY = 0.5f;
 
-    //最小生成時間：最大生成時間
-
-    /// </summary>
-    /// 1つの生成器で表示される最大数
-    /// <summary>
-    public static readonly int MAX_GE_CREATECOUNT = 30;
-
     /// <summary>
     /// ドロップアイテム配置位置最小X
     /// </summary>
@@ -195,6 +188,32 @@ public partial class GlobalValue
     public readonly static string ISO_8601_FORMAT     = "yyyy-MM-ddTHH:mm:ss.fffZ";
 
     public readonly static float STOP_TIME     = Mathf.Infinity;
+
+    /// <summary>
+    /// 敵の生成位置の差分
+    /// </summary>
+    public readonly static float ENEMY_CREATE_DIFF_MAX = 5.0f;
+    public readonly static float ENEMY_CREATE_DIFF_MIN = 1.0f;
+
+    /// <summary>
+    /// 開始時の敵生成遅延時間
+    /// </summary>
+    public readonly static int START_CREATE_DIFF = 1000;
+
+    /// <summary>
+    /// 画面に表示させる最大数
+    /// </summary>
+    public readonly static int ENEMY_SCREEN_MAXCOUNT = 100;
+
+    /// <summary>
+    /// レベルアップ数
+    /// </summary>
+    public readonly static int LEVELUP_COUNT = 50;
+
+    /// <summary>
+    /// 最大ゲームレベル
+    /// </summary>
+    public readonly static int MAX_GAMELEVEL = 100;
 
 
     //敵キャラの移動スピード調整：100体撃破毎

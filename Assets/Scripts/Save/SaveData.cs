@@ -22,7 +22,7 @@ public class SaveData
     public int LifeNumber;
 
     //ステージレベル
-    public GAMELEVEL GemeLevel;
+    public int GemeLevel;
 
     //プレイ回数
     public int PlayTime;
