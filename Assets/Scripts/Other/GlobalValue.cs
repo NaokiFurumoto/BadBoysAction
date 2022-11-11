@@ -201,19 +201,46 @@ public partial class GlobalValue
     public readonly static int START_CREATE_DIFF = 1000;
 
     /// <summary>
-    /// 画面に表示させる最大数
+    /// レベルアップ時の生成待機時間
     /// </summary>
-    public readonly static int ENEMY_SCREEN_MAXCOUNT = 100;
+    public readonly static int LEVELUP_INTERVAL = 2000;
 
     /// <summary>
-    /// レベルアップ数
+    /// 画面に表示させる最大数
     /// </summary>
-    public readonly static int LEVELUP_COUNT = 50;
+    public readonly static int ENEMY_SCREEN_MAXCOUNT = 50;
+
+    /// <summary>
+    /// 初期経験値
+    /// </summary>
+    public readonly static int LEVELUP_COUNT = 10;
+
+    /// <summary>
+    /// 加算経験値
+    /// </summary>
+    public readonly static int ADDLEVELUP_COUNT = 10;
 
     /// <summary>
     /// 最大ゲームレベル
     /// </summary>
     public readonly static int MAX_GAMELEVEL = 100;
+
+    /// <summary>
+    /// 開始時の生成時間
+    /// </summary>
+    public readonly static float FIRST_CREATETIME = 1.0f;
+
+    /// <summary>
+    /// レベルアップ時の生成時間減算値
+    /// </summary>
+    public readonly static float CREATE_TIMEDIFF = 0.01f;
+
+    /// <summary>
+    /// 敵の生成時間最終値
+    /// </summary>
+    public readonly static float LAST_CREATETIME = 0.01f;
+
+
 
 
     //敵キャラの移動スピード調整：100体撃破毎

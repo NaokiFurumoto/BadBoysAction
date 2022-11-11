@@ -7702,6 +7702,22 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 60235308}
+    - target: {fileID: 8539707611900869167, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
+      propertyPath: enemyEncounts.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539707611900869167, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
+      propertyPath: enemyEncounts.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539707611900869167, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
+      propertyPath: enemyEncounts.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539707611900869167, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
+      propertyPath: enemyEncounts.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4454552150171817658, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 568475c92bd7b484eb0e05765f93bb68, type: 3}

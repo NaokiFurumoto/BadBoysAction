@@ -56,6 +56,9 @@ public class NewEnemyGenerator : MonoBehaviour
     [SerializeField]
     private GameController gameController;
 
+    [SerializeField]
+    private UiController uiController;
+
     /// <summary>
     /// 敵生成数
     /// </summary>
@@ -81,31 +84,47 @@ public class NewEnemyGenerator : MonoBehaviour
     /// </summary>
     private GameObject createEnemyObj;
 
+    /// <summary>
+    /// スクリーンサイズ
+    /// </summary>
     private Vector3 rightTopScreen;
     private Vector3 leftBottomScreen;
 
+    /// <summary>
+    /// 生成中の全てのオブジェクト
+    /// </summary>
     private List<GameObject> enemyAllObjects = new List<GameObject>();
     #endregion
 
 
     #region 生成機に関して
     /// <summary>
-    /// 状態
+    /// 生成状態
     /// </summary>
     [SerializeField]
     private GENERATOR_STATE state;
 
     /// <summary>
-    /// 自身の位置
+    /// 生成間隔時間：レベルによって変化させる
     /// </summary>
-    private Vector3 rootPosition;
-
-    //生成間隔時間：レベルによって変化させる
     [SerializeField]
     private float createDelayTime;
 
-    //生成遅延開始時間
+    /// <summary>
+    /// 敵画面表示数：レベルによって変化させる
+    /// </summary>
+    [SerializeField]
+    private int enemyScreenDisplayIndex;
+
+    /// <summary>
+    /// 生成遅延開始時間
+    /// </summary>
     private int startDelayTaskTime;
+
+    /// <summary>
+    /// 敵エンカウント率初期値
+    /// </summary>
+    private List<int> EncountClearList = new List<int>();
 
     /// <summary>
     /// 計測時間：Time.deltaTimeで加算していく
@@ -116,8 +135,6 @@ public class NewEnemyGenerator : MonoBehaviour
     #region プロパティ
     public GENERATOR_STATE State { get { return state; } set { state = value; } }
     public List<GameObject> EnemyAllObjects => enemyAllObjects;
-
-    //レベルによって親から設定させる値
     public float CreateDelayTime { get { return createDelayTime; } set { createDelayTime = value; } }
     public List<int> EnemyEncounts { get { return enemyEncounts; } set { enemyEncounts = value; } }
     public int StartDelayTaskTime { get { return startDelayTaskTime; } set { startDelayTaskTime = value; } }
@@ -135,29 +152,37 @@ public class NewEnemyGenerator : MonoBehaviour
 
         //敵
         enemyCreateCount = 0;
-        rootPosition = transform.position;
         enemyTypeCount = enemyObjects.Count;
 
         //生成機
         state = GENERATOR_STATE.STOP;
         progressTime = 0.0f;
         startDelayTaskTime = START_CREATE_DIFF;
+        EncountClearList = enemyEncounts;
 
         //レベルによって変化させる
-        createDelayTime = 0.01f;
-
-        if (gameController == null)
-        {
-            gameController = GameObject.FindGameObjectWithTag("GameController")
-                                   .GetComponent<GameController>();
-        }
+        createDelayTime = FIRST_CREATETIME;
+        enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
     }
 
     /// <summary>
     /// 外部初期初期化
     /// </summary>
     private void Start() { InitializeOther(); }
-    private void InitializeOther() { }
+    private void InitializeOther() 
+    {
+        if (gameController == null)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController")
+                                   .GetComponent<GameController>();
+        }
+
+        if (uiController == null)
+        {
+            uiController = GameObject.FindGameObjectWithTag("UI")
+                                   .GetComponent<UiController>();
+        }
+    }
 
     #region UniTask
     /// <summary>
@@ -186,7 +211,6 @@ public class NewEnemyGenerator : MonoBehaviour
 
             if (progressTime > createDelayTime)
             {
-                //生成チェック
                 if (IsCheckOver()) return;
 
                 //敵のセット
@@ -235,11 +259,6 @@ public class NewEnemyGenerator : MonoBehaviour
                     && (rightTopScreen.x + ENEMY_CREATE_DIFF_MIN >= x)
                     && (leftBottomScreen.y - ENEMY_CREATE_DIFF_MIN <= y)
                     && (rightTopScreen.y + ENEMY_CREATE_DIFF_MIN >= y);
-                   
-
-            //isCheck = leftBottomScreen.x - ENEMY_CREATE_DIFF_MIN <= x ? rightTopScreen.x + ENEMY_CREATE_DIFF_MIN >= x
-            //        : leftBottomScreen.y - ENEMY_CREATE_DIFF_MIN <= y ? rightTopScreen.y + ENEMY_CREATE_DIFF_MIN >= y
-            //        : false;
 
         } while (isCheck);
 
@@ -282,11 +301,10 @@ public class NewEnemyGenerator : MonoBehaviour
     /// <summary>
     /// 生成間隔の変更
     /// </summary>
-    private void ChangeCreateDelay()
+    private void AddEnemyEncount()
     {
-        //撃破数によって間隔を短く：最小と最大を設ける
-        //撃破数が100を超える度に生成間隔を-0.1秒づつ短くする？
-        //最小値と最大値の間
+        var list = enemyEncounts.Select(x => x + 1).ToList();
+        enemyEncounts = list;
     }
 
     /// <summary>
@@ -317,30 +335,26 @@ public class NewEnemyGenerator : MonoBehaviour
 
 
     //レベルアップ時の更新処理
-    public void LevelUpdate(int level)
+    public void LevelUpdate()
     {
-        //createDelayTaskTime:生成間隔
+        //生成間隔更新
+        createDelayTime -= CREATE_TIMEDIFF;
+        createDelayTime = Mathf.Clamp(createDelayTime, LAST_CREATETIME, FIRST_CREATETIME);
 
-
-        //最初から有効にする
-        //ゲームレベルによって敵の生成間隔と、敵の種類をを変化させる。：ランダム性がいる？
-        //ゲームレベルによって最大生成数を変化させる？
-        //Unitaskで生成？Whileで？
-
+        enemyScreenDisplayIndex++;
+        AddEnemyEncount();
     }
-    //リトライ用のリフレッシュ処理が必要
 
-
-
-
-
-
-
-
-    //最初から有効にする
-    //ゲームレベルによって敵の生成間隔と、敵の種類をを変化させる。：ランダム性がいる？
-    //ゲームレベルによって最大生成数を変化させる？
-    //Unitaskで生成？Whileで？
+    /// <summary>
+    /// リトライ後の更新処理
+    /// </summary>
+    public void RetryInitialize()
+    {
+        progressTime = 0.0f;
+        enemyEncounts = EncountClearList;
+        createDelayTime = FIRST_CREATETIME;
+        enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+    }
 
 }
 

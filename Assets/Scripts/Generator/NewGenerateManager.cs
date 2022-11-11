@@ -24,7 +24,9 @@ public class NewGenerateManager : MonoBehaviour
     [SerializeField]
     private int gameLevel;
 
-    //停止中判定
+    /// <summary>
+    /// 停止中判定
+    /// </summary>
     private bool IsInterval;
 
     /// <summary>
@@ -32,11 +34,23 @@ public class NewGenerateManager : MonoBehaviour
     /// </summary>
     private UiController uiController;
 
+    /// <summary>
+    /// アイテム操作クラス
+    /// </summary>
     private ItemController itemController;
 
-    //切り替え用カウント数：100になると0とする
+    /// <summary>
+    /// レベルアップ用カウント数
+    /// </summary>
     [SerializeField]
     private int changeKillCount;
+
+    /// <summary>
+    /// 必要経験値：変動させる
+    /// </summary>
+    [SerializeField]
+    private int levelupNeedCount;
+
 
     #region プロパティ
     public int GameLevel { get { return gameLevel; } set { gameLevel = value; } }
@@ -51,6 +65,7 @@ public class NewGenerateManager : MonoBehaviour
         gameLevel = 1;
         changeKillCount = 0;
         IsInterval = false;
+        levelupNeedCount = LEVELUP_COUNT;
     }
 
     /// <summary>
@@ -79,16 +94,20 @@ public class NewGenerateManager : MonoBehaviour
         enemyGenerator.StartCallGenerator().Forget();
     }
 
-
-    //撃破数に応じて、レベルの変更
+    /// <summary>
+    /// 撃破数に応じて、レベルの変更
+    /// </summary>
     public void ChangeUpdateGenerator()
     {
         changeKillCount++;
-        if (changeKillCount > LEVELUP_COUNT)
+        if (changeKillCount >= levelupNeedCount)
         {
             //レベルアップ
             gameLevel++;
             uiController.SetGameLevel(gameLevel);
+            enemyGenerator.LevelUpdate();
+
+            levelupNeedCount += ADDLEVELUP_COUNT;
 
             //インターバルを設ける
             ChangeGeneratorState(GENERATOR_STATE.STOP);
@@ -107,7 +126,6 @@ public class NewGenerateManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// 生成器の状態を変更
     /// </summary>
@@ -122,13 +140,14 @@ public class NewGenerateManager : MonoBehaviour
     /// <returns></returns>
     private async UniTask GenerateStandBy()
     {
-        //待機:レベルが上がれば伸ばす
-        await UniTask.Delay(2000);
+        await UniTask.Delay(LEVELUP_INTERVAL);
         IsInterval = false;
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);
     }
 
-    //生成された全ての敵の削除
+    /// <summary>
+    /// 全ての敵の削除
+    /// </summary>
     private void DeleteEnemys()
     {
         enemyGenerator.DeleteEnemys();
@@ -141,6 +160,7 @@ public class NewGenerateManager : MonoBehaviour
     {
         DeleteEnemys();
         InitializeThis();
+        enemyGenerator.RetryInitialize();
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);
     }
 
