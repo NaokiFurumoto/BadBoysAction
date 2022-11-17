@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 8229138143265305115}
   - component: {fileID: 8229138143265305114}
   - component: {fileID: 8229138143265305113}
-  - component: {fileID: 6351523241497258802}
+  - component: {fileID: 8240340023201279396}
   m_Layer: 7
   m_Name: Enemy_around
   m_TagString: Enemy
@@ -500,8 +500,8 @@ MonoBehaviour:
   enemyLifeAc: {fileID: 8229138144109406967}
   wallDamageTimes: 0
   state: 0
-  isDamage: 0
-  body: {fileID: 8229138143233047060}
+  body: {fileID: 5427946476091630123}
+  spriteBody: {fileID: 8229138143233047065}
   moveType: 0
   effect: {fileID: 5017499211074799823}
   shadow: {fileID: 536850130614350198}
@@ -546,8 +546,8 @@ MonoBehaviour:
   followRate: 200
   followTargetDistance: 3
   aroundTime: 3
---- !u!60 &6351523241497258802
-PolygonCollider2D:
+--- !u!58 &8240340023201279396
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -556,28 +556,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.2754278, y: 0.49362597}
-      - {x: 0.023933053, y: 0.57399094}
-      - {x: -0.16908517, y: 0.52184254}
-      - {x: -0.22827715, y: 0.06011281}
-      - {x: -0.12348336, y: -0.44044736}
-      - {x: 0.20964253, y: -0.42608744}
-      - {x: 0.31443623, y: 0.060112968}
+  m_Offset: {x: 0.04, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &8229138144109406966
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 8229138144239679985}
-  encountLife: 000000000000000000000000000000000000000000000000000000002003000084030000e8030000
+  encountLife: 000000000000000000000000000000000000000000000000000000002003000084030000b6030000e80300005a00000050000000460000003c00000032000000280000001e000000140000000a000000
 --- !u!1 &8229138144239679984
 GameObject:
   m_ObjectHideFlags: 0

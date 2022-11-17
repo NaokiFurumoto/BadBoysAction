@@ -65,19 +65,29 @@ public partial class GlobalValue
     public readonly static int RECOVERY_LIFEPOINT = 1;
 
     /// <summary>
-    /// シェイク時間
+    /// 敵シェイク時間
     /// </summary>
-    public static readonly float SHAKETIME = 0.4f;
+    public static readonly float SHAKETIME = 0.5f;
 
     /// <summary>
-    /// シェイクの強さ
+    /// 敵シェイクの強さ
     /// </summary>
-    public static readonly Vector3 SHAKESTRENGTH = new Vector3(1.2f, 1.2f, 1.2f);
+    public static readonly Vector3 SHAKESTRENGTH = new Vector3(0.8f, 0.8f, 0.0f);
+
+    /// <summary>
+    /// Playerシェイク時間
+    /// </summary>
+    public static readonly float PLAYER_SHAKETIME = 1.0f;
+
+    /// <summary>
+    /// Playerシェイクの強さ
+    /// </summary>
+    public static readonly Vector3 PLAYER_SHAKESTRENGTH = new Vector3(0.5f, 0.5f, 0.0f);
 
     /// <summary>
     /// Stayシェイク時間
     /// </summary>
-    public static readonly float STAY_SHAKETIME = 1.0f;
+    public static readonly float STAY_SHAKETIME = 2.0f;
 
     /// <summary>
     /// Stay_シェイクの強さ
@@ -92,7 +102,7 @@ public partial class GlobalValue
     /// <summary>
     /// ノックバック移動差分
     /// </summary>
-    public static readonly float NOCKBACK_DIFF = 0.5f;
+    public static readonly float NOCKBACK_DIFF = 1.0f;
 
     /// <summary>
     /// ノックバック移動時間
@@ -117,27 +127,26 @@ public partial class GlobalValue
     /// <summary>
     /// ドロップアイテム配置位置最小X
     /// </summary>
-    public static readonly float DROPITEM_POSX_MIN = -2.5f;
+    public static readonly float DROPITEM_POSX_MIN = -3.5f;
 
     /// <summary>
     /// ドロップアイテム配置位置最大X
     /// </summary>
-    public static readonly float DROPITEM_POSX_MAX = 2.5f;
+    public static readonly float DROPITEM_POSX_MAX = 3.5f;
 
     /// <summary>
     /// ドロップアイテム配置位置最小Y
     /// </summary>
-    public static readonly float DROPITEM_POSY_MIN = -4.2f;
+    public static readonly float DROPITEM_POSY_MIN = -4.5f;
 
     /// <summary>
     /// ドロップアイテム配置位置最大Y
     /// </summary>
-    public static readonly float DROPITEM_POSY_MAX = 4.2f;
+    public static readonly float DROPITEM_POSY_MAX = 4.5f;
 
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    //public static float STAMINA_RECOVERY_TIME = 1800.0f;
     public static float STAMINA_RECOVERY_TIME = 3600.0f;
 
     /// <summary>
@@ -203,12 +212,18 @@ public partial class GlobalValue
     /// <summary>
     /// レベルアップ時の生成待機時間
     /// </summary>
-    public readonly static int LEVELUP_INTERVAL = 2000;
+    public readonly static int LEVELUP_INTERVAL = 1000;
 
     /// <summary>
     /// 画面に表示させる最大数
     /// </summary>
-    public readonly static int ENEMY_SCREEN_MAXCOUNT = 50;
+    public readonly static int ENEMY_SCREEN_MAXCOUNT = 10;
+
+    /// <summary>
+    /// 画面に表示させる加算値
+    /// </summary>
+    /// </summary>
+    public readonly static int ENEMY_SCREEN_ADDCOUNT = 2;
 
     /// <summary>
     /// 初期経験値
@@ -228,7 +243,7 @@ public partial class GlobalValue
     /// <summary>
     /// 開始時の生成時間
     /// </summary>
-    public readonly static float FIRST_CREATETIME = 1.0f;
+    public readonly static float FIRST_CREATETIME = 0.5f;
 
     /// <summary>
     /// レベルアップ時の生成時間減算値
@@ -238,13 +253,20 @@ public partial class GlobalValue
     /// <summary>
     /// 敵の生成時間最終値
     /// </summary>
-    public readonly static float LAST_CREATETIME = 0.01f;
+    public readonly static float LAST_CREATETIME = 0.005f;
 
+    /// <summary>
+    /// 無敵時間
+    /// </summary>
+    public readonly static float MUTEKI_TIMES = 5.0f;
 
+    /// <summary>
+    /// 無敵ドロップ確率
+    /// </summary>
+    public readonly static int MUTEKI_DROPINDEX = 100;
 
-
-    //敵キャラの移動スピード調整：100体撃破毎
-    //Chase：最小0.5最大2　：増加0.1
-    //ZigZag：最小0.5最大2　：増加0.1
-    //Around:最小0.5最大3：0.1　回転時間2-5：ランダム　スピード2/10：0.2
+    /// <summary>
+    /// アイテム削除時間
+    /// </summary>
+    public readonly static float DROPITEM_DELETE_TIMES = 30.0f;
 }

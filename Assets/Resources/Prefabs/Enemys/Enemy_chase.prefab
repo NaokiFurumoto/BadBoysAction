@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 8229138143265305115}
   - component: {fileID: 8229138143265305114}
   - component: {fileID: -3644030028803689407}
-  - component: {fileID: 3511289808461257147}
+  - component: {fileID: 5122253238386983359}
   m_Layer: 7
   m_Name: Enemy_chase
   m_TagString: Enemy
@@ -500,8 +500,8 @@ MonoBehaviour:
   enemyLifeAc: {fileID: 8229138144109406967}
   wallDamageTimes: 0
   state: 0
-  isDamage: 0
-  body: {fileID: 8229138143233047060}
+  body: {fileID: 2987066260851137985}
+  spriteBody: {fileID: 8229138143233047065}
   moveType: 1
   effect: {fileID: 5017499211074799823}
   shadow: {fileID: 2628554998908705081}
@@ -540,8 +540,8 @@ MonoBehaviour:
   animator: {fileID: 8229138143233047066}
   body: {fileID: 2987066260851137985}
   enemyMoveType: 1
---- !u!60 &3511289808461257147
-PolygonCollider2D:
+--- !u!58 &5122253238386983359
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -550,31 +550,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.18323599, y: 0.36465678}
-      - {x: 0.16042247, y: 0.4710745}
-      - {x: -0.13659161, y: 0.47308886}
-      - {x: -0.19314757, y: 0.2753321}
-      - {x: -0.19419199, y: 0.050900936}
-      - {x: -0.26065624, y: -0.00792332}
-      - {x: -0.18542576, y: -0.3614555}
-      - {x: 0.1743719, y: -0.3654688}
-      - {x: 0.18428156, y: -0.028001517}
-      - {x: 0.18147153, y: 0.24541503}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &8229138144109406966
 GameObject:
   m_ObjectHideFlags: 0

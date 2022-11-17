@@ -109,4 +109,6 @@ public class StartMenuView : ViewBase
 
         Destroy(dialog.gameObject);
     }
+
+    //Líœˆ—
 }

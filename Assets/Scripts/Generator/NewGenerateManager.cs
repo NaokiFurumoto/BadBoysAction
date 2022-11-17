@@ -78,9 +78,8 @@ public class NewGenerateManager : MonoBehaviour
         await UniTask.Yield();
         uiController = GameObject.FindGameObjectWithTag("UI").
                                  GetComponent<UiController>();
+        itemController = ItemController.Instance;
 
-        itemController = GameObject.FindGameObjectWithTag("ItemController").
-                                    GetComponent<ItemController>();
         //開始時にストップ
         ChangeGeneratorState(GENERATOR_STATE.STOP);
     }
@@ -114,7 +113,7 @@ public class NewGenerateManager : MonoBehaviour
 
             //体力ドロップ
             itemController.SetDropItem(DROPITEM_TYPE.LIFE);
-            itemController.CreateDropItem();
+            itemController.CreateDropItem(true);
             changeKillCount = 0;
 
             //インターバル中は実行させない

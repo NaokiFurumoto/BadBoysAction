@@ -38,6 +38,12 @@ public class PlayerStatusController : MonoBehaviour
     private GameObject attackRoot;
 
     /// <summary>
+    /// 無敵Root
+    /// </summary>
+    [SerializeField]
+    private GameObject mutekiRoot;
+
+    /// <summary>
     /// 色変更用
     /// </summary>
     private SpriteRenderer sprite;
@@ -46,7 +52,6 @@ public class PlayerStatusController : MonoBehaviour
     /// 色変更用
     /// </summary>
     private Transform spriteTransform;
-   
 
     /// <summary>
     /// アニメーション
@@ -64,6 +69,11 @@ public class PlayerStatusController : MonoBehaviour
     private bool isDead;
 
     /// <summary>
+    /// クールタイム判定
+    /// </summary>
+    private bool isCoolTimeCheck;
+
+    /// <summary>
     /// Life管理
     /// </summary>
     private LifesManager lifesManager;
@@ -78,16 +88,21 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     private Vector2 startPosition;
 
-#if UNITY_EDITOR
+    /// <summary>
+    /// トロフィー無敵モード
+    /// </summary>
+    private bool isMuteki;
+
     /// <summary>
     /// 無敵モード
     /// </summary>
     [SerializeField]
     protected bool MUTEKI = false;
-#endif
+
 
     #region プロパティ
     public bool IsDead => isDead;
+    public bool IsMuteki => isMuteki;
 
     public Transform PlayerCenter => playerCenter;
 
@@ -116,19 +131,24 @@ public class PlayerStatusController : MonoBehaviour
         InitializeComponent();
 
         spriteTransform = sprite?.transform;
-        //startSpritePos = new Vector3(0,0.461f,0);
+        sprite.color = Color.red;
+        isCoolTimeCheck = false;
         isDead   = false;
+        isMuteki = false;
 
+#if UNITY_EDITOR
         //無敵ならば
         if (MUTEKI)
         {
             life = 1000;
         }
+#endif
 
         lifesManager?.SetLife(life);
         startPosition = transform.position;
         attackRoot.SetActive(true);
-        animator.SetTrigger("Play");
+        mutekiRoot.SetActive(false);
+        //animator.SetTrigger("Play");
     }
 
     private void InitializeComponent()
@@ -144,34 +164,85 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
+    /// 無敵開始処理
+    /// アイテム取得後呼ばれる
+    /// </summary>
+    /// <param name="isMuteki">無敵判定</param>
+    public void MutekiAttack()
+    {
+        //取得アイテム削除
+        OnComplate();
+
+        if (isMuteki)
+        {
+            StopCoroutine("MutekiActions");
+            PlayerEffectManager.Instance.DeleteSelectEffects(EFFECT_TYPE.MUTEKI);
+        }
+
+        SwitchAttackType(true);
+        var effect = PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.MUTEKI);
+        StartCoroutine("MutekiActions", effect);
+        isMuteki = true;
+    }
+
+    /// <summary>
+    /// 無敵アクション中
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MutekiActions(GameObject effect)
+    {
+        yield return new WaitForSeconds(MUTEKI_TIMES);
+
+        SwitchAttackType(false);
+        PlayerEffectManager.Instance.DeleteEffect(effect);
+        isMuteki = false;
+    }
+
+    /// <summary>
+    /// 攻撃方法切替
+    /// </summary>
+    /// <param name="isMuteki">無敵判定</param>
+    private void SwitchAttackType(bool isMuteki)
+    {
+        //攻撃アニメーションの初期化
+        attackerManager.SetAllAnimatorIdle();
+
+        attackRoot.SetActive(!isMuteki);
+        mutekiRoot.SetActive(isMuteki);
+    }
+
+    /// <summary>
     /// ダメージを受ける
     /// </summary>
     /// <param name="damage"></param>
     public void Damage(int damage)
     {
-        if (life <= 0 || isDead)
+        if (life <= 0 || isDead || isCoolTimeCheck)
             return;
+
+        isCoolTimeCheck = true;
+        life -= damage;
+        lifesManager.SetLife(life);
 
         //カメラアクション
         CameraAction.PlayerDamage();
 
-        life -= damage;
-        lifesManager.SetLife(life);
-
         if ( life <= 0) //死亡処理
         {
+            isCoolTimeCheck = false;
             Dead();
         }
         else//ダメージ処理
         {
+            animator.SetTrigger("Damage");
+
             //リアクション
-            sprite.color = Color.red;
             spriteTransform.DOPunchScale(
-                SHAKESTRENGTH,
-                SHAKETIME).OnComplete(() =>
+                PLAYER_SHAKESTRENGTH,
+                PLAYER_SHAKETIME).OnComplete(() =>
                 {
-                    sprite.color = Color.white;
                     spriteTransform.localScale = INIT_SCALE;
+                    isCoolTimeCheck = false;
                 });
         }
     }
@@ -181,6 +252,8 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     public void RecoveryLife()
     {
+        PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.LIFE_RECOVERY);
+
         //最大値以上は回復しない
         if (life >= MAX_LIFEPOINT)
         {
@@ -226,7 +299,6 @@ public class PlayerStatusController : MonoBehaviour
         lifesManager.SetLife(life);
 
         attackRoot.SetActive(true);
-        
     }
    
 }

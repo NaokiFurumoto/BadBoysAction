@@ -46,6 +46,7 @@ public class Attacker : MonoBehaviour
     /// 攻撃方向の取得
     /// </summary>
     public ATTACK_DIRECTION AttackType => attackType;
+    public Animator AttackAnimator => animator;
     #endregion
 
     private void Start()
@@ -75,11 +76,15 @@ public class Attacker : MonoBehaviour
             var _enemyStatus = collision.GetComponent<EnemyStatusController>();
             var _rigid2D = _enemyStatus.Rigid2D;
 
-            //ダメージを受けていない状態かつ敵が移動中
-            if(!_enemyStatus.IsDamage && _enemyStatus.State == ENEMY_STATE.MOVE)
-            {
-                animator.SetTrigger("Attack");
+            if (_enemyStatus.State == ENEMY_STATE.DAMAGE)
+                return;
 
+            if(_enemyStatus.State == ENEMY_STATE.NOCKBACK || _enemyStatus.State == ENEMY_STATE.MOVE)
+            {
+                //アイテムドロップ抽選
+                ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
+
+                animator.SetTrigger("Attack");
                 _enemyStatus.SetDamageStatus();
                 _enemyStatus.PlayEffect();
                 _enemyStatus.PlayerDamage(playerMovement.Direction.normalized, ATTACK_POWER);
@@ -107,5 +112,14 @@ public class Attacker : MonoBehaviour
         {
             //攻撃したキャラが抜けたら
         }
+    }
+
+    /// <summary>
+    /// アニメーションの初期化設定
+    /// 初期ステートに戻す
+    /// </summary>
+    public void SetAnimationIdle()
+    {
+        this.animator?.Play("idle");
     }
 }

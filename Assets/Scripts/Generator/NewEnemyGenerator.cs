@@ -312,7 +312,7 @@ public class NewEnemyGenerator : MonoBehaviour
     /// </summary>
     public bool IsCheckOver()
     {
-        return enemysParent.childCount >= ENEMY_SCREEN_MAXCOUNT ? true : false;
+        return enemysParent.childCount >= enemyScreenDisplayIndex ? true : false;
     }
 
     /// <summary>
@@ -339,9 +339,13 @@ public class NewEnemyGenerator : MonoBehaviour
     {
         //ê∂ê¨ä‘äuçXêV
         createDelayTime -= CREATE_TIMEDIFF;
-        createDelayTime = Mathf.Clamp(createDelayTime, LAST_CREATETIME, FIRST_CREATETIME);
 
-        enemyScreenDisplayIndex++;
+        if(createDelayTime <= 0.01f)
+        {
+            createDelayTime = LAST_CREATETIME;
+        }
+
+        enemyScreenDisplayIndex += ENEMY_SCREEN_ADDCOUNT;
         AddEnemyEncount();
     }
 

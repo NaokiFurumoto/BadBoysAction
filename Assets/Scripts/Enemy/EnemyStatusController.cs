@@ -15,7 +15,7 @@ public enum ENEMY_STATE
     MOVE,//移動中
     ATTACK,//攻撃中
     DAMAGE,//ダメージを受けてる
-    POOL,//Poolされてる
+    NOCKBACK,//ノックバック中
     DEATH,//死亡
 }
 public class EnemyStatusController : MonoBehaviour
@@ -52,14 +52,20 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// ダメージ判定
     /// </summary>
-    [SerializeField]
-    private bool isDamage;
+    //[SerializeField]
+    //private bool isDamage;
 
     /// <summary>
     /// 本体
     /// </summary>
     [SerializeField]
     private Transform body;
+
+    /// <summary>
+    /// 本体
+    /// </summary>
+    [SerializeField]
+    private GameObject spriteBody;
 
     /// <summary>
     /// 敵のタイプ
@@ -100,7 +106,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// Collider2D
     /// </summary>
-    private PolygonCollider2D collider;
+    private CircleCollider2D collider;
 
     /// <summary>
     /// UIController
@@ -130,11 +136,11 @@ public class EnemyStatusController : MonoBehaviour
         get { return isDead; }
         set { isDead = value; }
     }
-    public bool IsDamage
-    {
-        get { return isDamage; }
-        set { isDamage = value; }
-    }
+    //public bool IsDamage
+    //{
+    //    get { return isDamage; }
+    //    set { isDamage = value; }
+    //}
     public bool HasPlayerTarget => hasPlayerTarget;
     public Rigidbody2D Rigid2D => rigid2D;
     public int Life => life;
@@ -153,8 +159,8 @@ public class EnemyStatusController : MonoBehaviour
         InitializeComponent();
 
         state = ENEMY_STATE.NONE;
-        
-        isDamage = false;
+
+        //isDamage = false;
         isDead = false;
 
         trail.enabled = false;
@@ -173,13 +179,13 @@ public class EnemyStatusController : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
 
-        collider = GetComponent<PolygonCollider2D>();
+        collider = GetComponent<CircleCollider2D>();
         collider.isTrigger = true;
 
-        animator = body.gameObject.GetComponent<Animator>();
-        sprite = body.GetComponent<SpriteRenderer>();
+        animator = spriteBody.gameObject.GetComponent<Animator>();
+        sprite = spriteBody.GetComponent<SpriteRenderer>();
 
-        trail = sprite.gameObject.GetComponent<TrailRenderer>();
+        trail = spriteBody.gameObject.GetComponent<TrailRenderer>();
 
         uiController = GameObject.FindGameObjectWithTag("UI").
                                   GetComponent<UiController>();
@@ -203,7 +209,6 @@ public class EnemyStatusController : MonoBehaviour
     public void PlayerDamage(Vector2 direction, float power)
     {
         sprite.color = Color.red;
-
         body.DOPunchScale(
             SHAKESTRENGTH,
             SHAKETIME
@@ -226,6 +231,7 @@ public class EnemyStatusController : MonoBehaviour
     {
         life -= _damage;
         enemyLifeAc.SetLifeText(life);
+
         if (life <= 0)
         {
             state = ENEMY_STATE.DEATH;
@@ -239,8 +245,7 @@ public class EnemyStatusController : MonoBehaviour
             if (state == ENEMY_STATE.DAMAGE)
                 return;
 
-            state = ENEMY_STATE.DAMAGE;
-            isDamage = true;
+            state = ENEMY_STATE.NOCKBACK;
             sprite.color = Color.red;
 
             body.DOPunchPosition(
@@ -249,7 +254,6 @@ public class EnemyStatusController : MonoBehaviour
             ).OnComplete(() =>
             {
                 sprite.color = Color.white;
-                isDamage = false;
                 state = ENEMY_STATE.MOVE;
             });
         }
@@ -261,7 +265,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall" && isDamage)
+        if (collision.gameObject.tag == "Wall" && state == ENEMY_STATE.DAMAGE)
         {
             wallDamageTimes++;
         }
@@ -310,7 +314,6 @@ public class EnemyStatusController : MonoBehaviour
     public void SetDamageStatus()
     {
         this.gameObject.layer = 11;
-        isDamage = true;
         state = ENEMY_STATE.DAMAGE;
     }
 

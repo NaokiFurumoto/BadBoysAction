@@ -250,6 +250,8 @@ public partial class GameController : MonoBehaviour
         playerStatusController?.RetryPlayer();
         generatorManager?.RetryGenerator();
         uiController.UpdateScore();
+        ItemController.Instance.Retry();
+        PlayerEffectManager.Instance.Retry();
     }
 
     /// <summary>

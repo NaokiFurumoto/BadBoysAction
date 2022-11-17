@@ -394,8 +394,8 @@ GameObject:
   - component: {fileID: 99102266307262407}
   - component: {fileID: 99102266307262406}
   - component: {fileID: 99102266307262401}
-  - component: {fileID: 2020609319697439350}
   - component: {fileID: 1656296719394038677}
+  - component: {fileID: -6787525174982514074}
   m_Layer: 7
   m_Name: Enemy_horming
   m_TagString: Enemy
@@ -436,8 +436,8 @@ MonoBehaviour:
   enemyLifeAc: {fileID: 99102266441205629}
   wallDamageTimes: 0
   state: 0
-  isDamage: 0
-  body: {fileID: 99102265624471706}
+  body: {fileID: 4817137557462784297}
+  spriteBody: {fileID: 99102265624471655}
   moveType: 0
   effect: {fileID: 6791765037293498250}
   shadow: {fileID: 3368453648316669268}
@@ -480,45 +480,6 @@ MonoBehaviour:
   hormingTime: 15
   idleTime: 2
   Maxkaku: 0.05
---- !u!60 &2020609319697439350
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99102266307262400}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.25792003, y: 0.15650582}
-      - {x: 0.18897104, y: 0.36963844}
-      - {x: 0.05485107, y: 0.41564226}
-      - {x: -0.13480945, y: 0.41208124}
-      - {x: -0.25243673, y: 0.3694713}
-      - {x: -0.34706372, y: 0.13289142}
-      - {x: -0.34815878, y: -0.042985648}
-      - {x: -0.22984007, y: -0.14949298}
-      - {x: -0.24195436, y: -0.2801304}
-      - {x: -0.22080374, y: -0.4907173}
-      - {x: 0.15339929, y: -0.50195146}
-      - {x: 0.17952806, y: -0.27240467}
-      - {x: 0.15854405, y: -0.15827847}
-      - {x: 0.27700907, y: -0.061708987}
 --- !u!50 &1656296719394038677
 Rigidbody2D:
   serializedVersion: 4
@@ -540,6 +501,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &-6787525174982514074
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99102266307262400}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &99102266441205628
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 99102265880213300}
-  encountLife: 0000000000000000000000000000000000000000e8030000f401000064000000320000000a000000
+  encountLife: 0000000000000000000000000000000000000000e8030000f40100006400000032000000280000001e000000140000000a0000000a0000000a000000
 --- !u!1 &2819886837833738308
 GameObject:
   m_ObjectHideFlags: 0

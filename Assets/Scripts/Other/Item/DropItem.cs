@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GlobalValue;
 
 public enum DROPITEM_TYPE
 {
     NONE,
     LIFE,
+    MUTEKI
 }
 public abstract class DropItem : MonoBehaviour
 {
@@ -23,6 +25,13 @@ public abstract class DropItem : MonoBehaviour
 
     public DROPITEM_TYPE Type => type;
     public int Amount => amount;
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(DROPITEM_DELETE_TIMES);
+        Destroy();
+        ItemController.Instance.RemoveNullItem();
+    }
 
     public abstract void OnTriggerEnter2D(Collider2D collision);
     

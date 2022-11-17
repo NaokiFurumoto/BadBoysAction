@@ -80,4 +80,16 @@ public class AttackerManager : MonoBehaviour
             }
         }
     }
+
+    
+    /// <summary>
+    /// 全Attackのアニメーションのリセット
+    /// </summary>
+    public void SetAllAnimatorIdle()
+    {
+        foreach(var anim in this.attackers)
+        {
+            anim?.SetAnimationIdle();
+        }
+    }
 }

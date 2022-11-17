@@ -78,7 +78,7 @@ public class WallEffect : MonoBehaviour
         if (collisionObject.tag == "Enemy") 
         {
             var controller = collision.gameObject.GetComponent<EnemyStatusController>();
-            if (controller == null || !controller.IsDamage)
+            if (controller == null || !(controller.State == ENEMY_STATE.DAMAGE))
                 return;
 
             //“G‚ªƒ_ƒ[ƒW’†‚Ì‘Î‰

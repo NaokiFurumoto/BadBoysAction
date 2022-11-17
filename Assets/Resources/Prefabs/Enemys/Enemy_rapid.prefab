@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 4272686423724025680}
   - component: {fileID: 4272686423724025681}
   - component: {fileID: 4272686423724025682}
-  - component: {fileID: 8891173787151326756}
+  - component: {fileID: 5690990230411185151}
   m_Layer: 7
   m_Name: Enemy_rapid
   m_TagString: Enemy
@@ -279,8 +279,8 @@ MonoBehaviour:
   enemyLifeAc: {fileID: 4272686424515673392}
   wallDamageTimes: 0
   state: 0
-  isDamage: 0
-  body: {fileID: 4272686424900863712}
+  body: {fileID: 3774033558324774698}
+  spriteBody: {fileID: 4272686424900863715}
   moveType: 4
   effect: {fileID: 4718924594214837415}
   shadow: {fileID: 7953576114404642051}
@@ -323,8 +323,8 @@ MonoBehaviour:
   idleTime: 1
   rapidTime: 3
   rapidSpeed: 4
---- !u!60 &8891173787151326756
-PolygonCollider2D:
+--- !u!58 &5690990230411185151
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -336,26 +336,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.11524321, y: 0.37633085}
-      - {x: -0.2109985, y: 0.23606205}
-      - {x: -0.4281974, y: -0.15792012}
-      - {x: -0.42907268, y: -0.32143113}
-      - {x: -0.23527652, y: -0.3005911}
-      - {x: -0.14179337, y: -0.17950416}
-      - {x: 0.17426553, y: -0.117557526}
-      - {x: 0.23248124, y: 0.37002796}
+  m_Offset: {x: -0.09, y: -0.08}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &4272686424515673393
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 4272686423624195241}
-  encountLife: 00000000000000000000000000000000000000000000000064000000e8030000f401000064000000
+  encountLife: 00000000000000000000000000000000000000000000000064000000e8030000f4010000c8000000
 --- !u!1 &4272686424900863715
 GameObject:
   m_ObjectHideFlags: 0

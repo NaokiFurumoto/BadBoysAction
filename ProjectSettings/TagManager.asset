@@ -21,6 +21,8 @@ TagManager:
   - Fade_UI
   - DialogRoot
   - View_Root
+  - PlayerMutekiAttack
+  - Toropi
   layers:
   - Default
   - TransparentFX

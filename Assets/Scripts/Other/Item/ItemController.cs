@@ -8,17 +8,24 @@ using static GlobalValue;
 /// </summary>
 public class ItemController : MonoBehaviour
 {
+    public static ItemController Instance;
+
     /// <summary>
     /// ドロップアイテムリスト
     /// </summary>
     [SerializeField]
-    private List<DropItem> dropItems = new List<DropItem>();
+    private List<DropItem> dropItemsList = new List<DropItem>();
 
     [SerializeField]
     private Transform dropRoot;
 
     [SerializeField]
     private Vector3 dropItemPos;
+
+    /// <summary>
+    /// ゲーム上に配置してあるアイテムリスト
+    /// </summary>
+    private static List<DropItem> dropedItems = new List<DropItem>();
 
     /// <summary>
     /// ドロップアイテムタイプ
@@ -30,17 +37,19 @@ public class ItemController : MonoBehaviour
     /// </summary>
     private DropItem selectDropItem;
 
-    private void Start()
+    private void Awake()
     {
-        Initialize();
+        InitializeThis();
     }
 
     /// <summary>
     /// 初期化
     /// </summary>
-    private void Initialize()
+    private void InitializeThis()
     {
+        Instance ??= this;
         dropItemType = DROPITEM_TYPE.NONE;
+        dropedItems.Clear();
     }
 
     /// <summary>
@@ -49,7 +58,7 @@ public class ItemController : MonoBehaviour
     /// <param name="_itemType"></param>
     public void SetDropItem(DROPITEM_TYPE _itemType)
     {
-        foreach(var item in dropItems)
+        foreach(var item in dropItemsList)
         {
             if(item.Type == _itemType)
             {
@@ -71,16 +80,68 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
+    /// アイテム抽選
+    /// </summary>
+    public void DropItemLottery(Vector2 pos)
+    {
+        //ランダムで抽選
+        var hitValue = Random.Range(1, MUTEKI_DROPINDEX);
+        var getValue = Random.Range(1, MUTEKI_DROPINDEX);
+        if(hitValue == getValue)
+        {
+            //当たり
+            SetDropItem(DROPITEM_TYPE.MUTEKI);
+            dropItemPos = pos;
+            CreateDropItem(false);
+        }
+    }
+
+    /// <summary>
     /// ドロップアイテム配置
     /// </summary>
-    public void CreateDropItem()
+    /// <param name="isRandom">ランダム配置かどうか</param>
+    public void CreateDropItem(bool isRandom)
     {
         if (selectDropItem == null)
             return;
 
-        SetDropPosition();
+        if (isRandom)
+        {
+            SetDropPosition();
+        }
 
         var obj = Instantiate(selectDropItem,dropItemPos,Quaternion.identity);
         obj.transform.SetParent(dropRoot);
+
+        dropedItems.Add(obj.GetComponent<DropItem>());
+        dropedItems.RemoveAll(item => item == null);
+    }
+
+    /// <summary>
+    /// ドロップアイテムすべて削除
+    /// </summary>
+    public void RemoveDropItems()
+    {
+        if (dropedItems.Count <= 0)
+            return;
+        RemoveNullItem();
+        dropedItems.ForEach(item => item?.Destroy());
+    }
+
+    /// <summary>
+    /// Null要素の削除
+    /// </summary>
+    public void RemoveNullItem()
+    {
+        dropedItems.RemoveAll(item => item == null);
+    }
+
+    /// <summary>
+    /// リトライ処理
+    /// </summary>
+    public void Retry()
+    {
+        RemoveDropItems();
+        dropedItems.Clear();
     }
 }

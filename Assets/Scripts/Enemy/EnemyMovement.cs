@@ -143,7 +143,9 @@ public class EnemyMovement : MonoBehaviour
     protected void FixedUpdate()
     {
         //自身が死亡状態か、ダメージを受けてたら実行しない
-        if (enemyStatusController.IsDead || enemyStatusController.IsDamage)
+        if (enemyStatusController.IsDead
+            || enemyStatusController.State == ENEMY_STATE.DAMAGE
+            || enemyStatusController.State == ENEMY_STATE.NOCKBACK)
         {
             return;
         }
