@@ -131,7 +131,7 @@ public class PlayerStatusController : MonoBehaviour
         InitializeComponent();
 
         spriteTransform = sprite?.transform;
-        sprite.color = Color.red;
+        //sprite.color = Color.red;
         isCoolTimeCheck = false;
         isDead   = false;
         isMuteki = false;
@@ -144,11 +144,9 @@ public class PlayerStatusController : MonoBehaviour
         }
 #endif
 
-        lifesManager?.SetLife(life);
         startPosition = transform.position;
         attackRoot.SetActive(true);
         mutekiRoot.SetActive(false);
-        //animator.SetTrigger("Play");
     }
 
     private void InitializeComponent()
@@ -245,6 +243,15 @@ public class PlayerStatusController : MonoBehaviour
                     isCoolTimeCheck = false;
                 });
         }
+    }
+
+    /// <summary>
+    /// プレイヤーのライフ設定
+    /// </summary>
+    /// <param name="lifeNum"></param>
+    public void PlayerSetLife(int lifeNum)
+    {
+        life = lifeNum;
     }
 
     /// <summary>

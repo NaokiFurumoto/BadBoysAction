@@ -133,7 +133,7 @@ public class StaminasManager : MonoBehaviour
     /// <summary>
     /// スタミナを１つ回復
     /// </summary>
-    private void RecoveryOneStamina()
+    public void RecoveryOneStamina()
     {
         foreach(var stamina in staminaStatus)
         {
@@ -259,6 +259,37 @@ public class StaminasManager : MonoBehaviour
     public void ActiveTextRecovery(bool ismax)
     {
         text_RecoveryTime.gameObject.SetActive(ismax);
+    }
+
+    /// <summary>
+    /// ロード後のスタミナ回復処理
+    /// </summary>
+    /// <param name="loadingTime">最後にセーブされた時間</param>
+    public void loadRecoveryStaminas(long loadingTime)
+    {
+        // スタミナが全回なら実行しない
+        if (!IsCheckUsedStamina())
+            return;
+
+        var nowTime = TimeManager.Instance.GetDayTimeInteger();
+        var diffTime = nowTime - loadingTime;
+
+        if (diffTime >= STAMINA_RECOVERY_LONGTIME)
+        {
+            //全開
+            FullRecovery(true, null);
+        }
+        else
+        {
+            diffTime -= STAMINA_RECOVERY_ONE_LONGTIME;
+            while (diffTime >= 0)
+            {
+                RecoveryOneStamina();
+                if (!IsCheckUsedStamina())
+                    break;
+                diffTime -= STAMINA_RECOVERY_ONE_LONGTIME;
+            }
+        }
     }
    
 }

@@ -18,8 +18,8 @@ public class UVScroll : MonoBehaviour
 
     private void Update()
     {
-        offset.x += _scrollX * Time.deltaTime;
-        offset.y += _scrollY * Time.deltaTime;
+        offset.x += _scrollX * Time.unscaledDeltaTime;
+        offset.y += _scrollY * Time.unscaledDeltaTime;
         _targetMaterial.mainTextureOffset = offset;
     }
 }

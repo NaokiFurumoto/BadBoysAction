@@ -159,10 +159,26 @@ public class NewEnemyGenerator : MonoBehaviour
         progressTime = 0.0f;
         startDelayTaskTime = START_CREATE_DIFF;
         EncountClearList = enemyEncounts;
+    }
 
+    /// <summary>
+    /// 開始時の変化させる値
+    /// </summary>
+    public void InitializeData()
+    {
         //レベルによって変化させる
         createDelayTime = FIRST_CREATETIME;
         enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+    }
+
+    /// <summary>
+    /// ロード時の変化させる値
+    /// </summary>
+    public void InitializeLoadedData()
+    {
+        //レベルによって変化させる
+        createDelayTime = GetCreateDelayTime();
+        enemyScreenDisplayIndex = GetEnemyScreenDisplayIndex();
     }
 
     /// <summary>
@@ -359,6 +375,44 @@ public class NewEnemyGenerator : MonoBehaviour
         createDelayTime = FIRST_CREATETIME;
         enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
     }
+
+    #region get/Set
+    /// <summary>
+    /// レベルアップ用カウント数
+    /// </summary>
+    /// <returns></returns>
+    public float GetCreateDelayTime()
+    {
+        return createDelayTime;
+    }
+
+    /// <summary>
+    /// 必要経験値
+    /// </summary>
+    /// <returns></returns>
+    public int GetEnemyScreenDisplayIndex()
+    {
+        return enemyScreenDisplayIndex;
+    }
+
+    /// <summary>
+    /// レベルアップ用カウント数
+    /// </summary>
+    /// <returns></returns>
+    public void SetCreateDelayTime(float count)
+    {
+        createDelayTime = count;
+    }
+
+    /// <summary>
+    /// 必要経験値
+    /// </summary>
+    /// <returns></returns>
+    public void SetEnemyScreenDisplayIndex(int count)
+    {
+        enemyScreenDisplayIndex = count;
+    }
+    #endregion
 
 }
 

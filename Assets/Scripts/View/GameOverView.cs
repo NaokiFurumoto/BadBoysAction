@@ -53,6 +53,9 @@ public class GameOverView : ViewBase
     /// </summary>
     public override void OpenEndAnimation() 
     {
+        //中断復帰解除
+        uiController.SetIsBreak(false);
+
         //ハイスコア更新されていれば
         var score = uiController.GetKillsNumber();
         var hiScore = uiController.GetHiScore();
@@ -78,6 +81,14 @@ public class GameOverView : ViewBase
         hiScoreObject.SetActive(enable);
         ClackerRightObject.SetActive(enable);
         ClackerLeftObject.SetActive(enable);
+    }
+
+    /// <summary>
+    /// ハイスコアをシェアする
+    /// </summary>
+    public void SnsShare()
+    {
+        SnsManager.Instance?.Tweet();
     }
 
 }

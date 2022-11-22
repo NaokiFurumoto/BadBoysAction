@@ -145,9 +145,19 @@ public partial class GlobalValue
     public static readonly float DROPITEM_POSY_MAX = 4.5f;
 
     /// <summary>
-    /// スタミナ回復時間
+    /// スタミナ回復時間：秒
     /// </summary>
     public static float STAMINA_RECOVERY_TIME = 3600.0f;
+
+    /// <summary>
+    /// スタミナ回復時間
+    /// </summary>
+    public static int STAMINA_RECOVERY_ONE_LONGTIME = 3000;
+
+    /// <summary>
+    /// スタミナ回復時間
+    /// </summary>
+    public static int STAMINA_RECOVERY_LONGTIME = 9000;
 
     /// <summary>
     /// 最大スタミナ数

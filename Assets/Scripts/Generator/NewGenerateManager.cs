@@ -57,15 +57,29 @@ public class NewGenerateManager : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// 自身の初期化
+    /// ゲーム開始時の初期化
     /// </summary>
-    private void Awake() { InitializeThis(); }
-    private void InitializeThis()
+    public void InitializeThis()
     {
         gameLevel = 1;
         changeKillCount = 0;
         IsInterval = false;
         levelupNeedCount = LEVELUP_COUNT;
+        //敵生成初期化
+        enemyGenerator.InitializeData();
+    }
+
+    /// <summary>
+    /// ロード時の初期化
+    /// </summary>
+    public void InitializeLoaded()
+    {
+        gameLevel = uiController.GetGameLevel();
+        changeKillCount = GetChangeKillCount();
+        IsInterval = false;
+        levelupNeedCount = GetLevelupNeedCount();
+        //敵生成初期化
+        enemyGenerator.InitializeLoadedData();
     }
 
     /// <summary>
@@ -161,6 +175,42 @@ public class NewGenerateManager : MonoBehaviour
         InitializeThis();
         enemyGenerator.RetryInitialize();
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);
+    }
+
+    /// <summary>
+    /// レベルアップ用カウント数
+    /// </summary>
+    /// <returns></returns>
+    public int GetChangeKillCount()
+    {
+        return changeKillCount;
+    }
+
+    /// <summary>
+    /// 必要経験値
+    /// </summary>
+    /// <returns></returns>
+    public int GetLevelupNeedCount()
+    {
+        return levelupNeedCount;
+    }
+
+    /// <summary>
+    /// レベルアップ用カウント数
+    /// </summary>
+    /// <returns></returns>
+    public void SetChangeKillCount(int count)
+    {
+        changeKillCount = count;
+    }
+
+    /// <summary>
+    /// 必要経験値
+    /// </summary>
+    /// <returns></returns>
+    public void SetLevelupNeedCount(int count)
+    {
+        levelupNeedCount = count;
     }
 
 }

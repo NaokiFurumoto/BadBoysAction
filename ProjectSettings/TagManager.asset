@@ -23,6 +23,7 @@ TagManager:
   - View_Root
   - PlayerMutekiAttack
   - Toropi
+  - EnemyGenerator
   layers:
   - Default
   - TransparentFX

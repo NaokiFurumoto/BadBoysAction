@@ -69,9 +69,14 @@ public class UiController : MonoBehaviour
     private int playTime;
 
     /// <summary>
-    /// ゲームオーバー判定
+    /// 中断復帰判定
     /// </summary>
-    private bool isGameOver;
+    private bool isBreak;
+
+    /// <summary>
+    /// 課金判定
+    /// </summary>
+    private bool isAds;
 
     /// <summary>
     /// 生成器親管理クラス
@@ -106,7 +111,7 @@ public class UiController : MonoBehaviour
     {
         generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
                                       GetComponent<NewGenerateManager>();
-        isGameOver = false;
+        isBreak = false;
     }
 
     /// <summary>
@@ -135,7 +140,6 @@ public class UiController : MonoBehaviour
         return 0;
     }
 
-   
     /// <summary>
     /// スコアのクリア
     /// </summary>
@@ -144,11 +148,25 @@ public class UiController : MonoBehaviour
         killsNum = 0;
         text_Kills.text = "0";
         text_HiScore.text = hiScore.ToString();
+        LifesManager.SetLife(1);
         SetGameLevel(1);
+        generatorManager.InitializeThis();
     }
 
-   //-------------------------------Save・Load----------------------------------------//
-   #region Load関連
+    /// <summary>
+    /// スコアのクリア
+    /// </summary>
+    public void UpdateLoadedScore()
+    {
+        text_Kills.text = GetTextKillsNumber().ToString();
+        text_HiScore.text = hiScore.ToString();
+        SetGameLevel(GetGameLevel());
+        LifesManager.SetLife(GetLifeNum());
+        generatorManager.InitializeLoaded();
+    }
+
+    //-------------------------------Save・Load----------------------------------------//
+    #region Load関連
     ////// <summary>
     /// 初回ロード後の撃破数設定
     /// </summary>
@@ -227,6 +245,15 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
+    /// スタミナ設定
+    /// </summary>
+    /// <param name="num"></param>
+    public void SetLoadStamina(long loadedTimes)
+    {
+        staminasManager.loadRecoveryStaminas(loadedTimes);
+    }
+
+    /// <summary>
     /// ライフ設定
     /// </summary>
     /// <param name="num"></param>
@@ -241,12 +268,21 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ゲームオーバー判定
+    /// 中断復帰の設定
     /// </summary>
     /// <param name="num"></param>
-    public void SetIsGameOver(bool judge)
+    public void SetIsBreak(bool judge)
     {
-        isGameOver = judge;
+        isBreak = judge;
+    }
+
+    /// <summary>
+    /// 課金判定
+    /// </summary>
+    /// <param name="num"></param>
+    public void SetIsAds(bool judge)
+    {
+        isAds = judge;
     }
     #endregion
 
@@ -288,10 +324,13 @@ public class UiController : MonoBehaviour
     public int GetPlayTime() => playTime;
 
     /// <summary>
-    ///  ゲームオーバー判定
+    ///  中断復帰判定取得
     /// </summary>
-    public bool GetIsGameOver() => isGameOver;
-    #endregion
+    public bool GetIsBreak() => isBreak;
 
-    
+    /// <summary>
+    /// 課金判定取得
+    /// </summary>
+    public bool GetIsAds() => isAds;
+    #endregion
 }

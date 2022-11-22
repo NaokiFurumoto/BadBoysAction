@@ -23,6 +23,8 @@ public class LifesManager : MonoBehaviour
     [SerializeField]
     private int haveLifeNumber;
 
+    private PlayerStatusController playerStatusController;
+
     void Start()
     {
        Initialize();
@@ -38,6 +40,9 @@ public class LifesManager : MonoBehaviour
             var array = this.gameObject.GetComponentsInChildren<LifeStatus>();
             lifeStatuses.AddRange(array);
         }
+
+        playerStatusController = GameObject.FindGameObjectWithTag("Player").
+                                           GetComponent<PlayerStatusController>();
     }
    
     /// <summary>
@@ -59,6 +64,8 @@ public class LifesManager : MonoBehaviour
                 life.ChangeLifeImage(false);
             }
         }
+        //プレイヤーのライフ更新
+        playerStatusController.PlayerSetLife(_lifePoint);
     }
 
     /// <summary>

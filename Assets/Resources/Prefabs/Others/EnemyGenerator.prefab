@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8539707611900869167}
   m_Layer: 0
   m_Name: EnemyGenerator
-  m_TagString: Untagged
+  m_TagString: EnemyGenerator
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,8 +68,7 @@ MonoBehaviour:
   enemyEncounts: e80300001e000000140000000a000000
   enemysParent: {fileID: 0}
   gameController: {fileID: 0}
-  index: 0
+  uiController: {fileID: 0}
   state: 0
   createDelayTime: 0
-  createDelayTaskTime: 0
-  startDelayTaskTime: 0
+  enemyScreenDisplayIndex: 0

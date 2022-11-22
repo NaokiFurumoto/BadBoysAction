@@ -13,11 +13,11 @@ using System;
 //ゲーム状態
 public enum INGAME_STATE
 {
-    NONE    = 0,//未設定
-    START   = 1,//開始
+    NONE = 0,//未設定
+    START = 1,//開始
     PLAYING = 2,//ゲーム中
-    STOP    = 3,//ストップ
-    RESULT  = 4,//結果
+    STOP = 3,//ストップ
+    RESULT = 4,//結果
 }
 public partial class GameController : MonoBehaviour
 {
@@ -49,6 +49,12 @@ public partial class GameController : MonoBehaviour
     private NewGenerateManager generatorManager;
 
     /// <summary>
+    /// 敵の制御
+    /// </summary>
+    private NewEnemyGenerator enemyGenerator;
+
+
+    /// <summary>
     /// 開始時Fadeinのコールバック
     /// </summary>
     private UnityAction startFadeinCallBack;
@@ -65,12 +71,12 @@ public partial class GameController : MonoBehaviour
     {
         Initialize();
         InitializeView();
-        
+
         //ロード処理
         StartCoroutine("LoadingGameInfo");
     }
 
-   
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -88,6 +94,45 @@ public partial class GameController : MonoBehaviour
                                             GetComponent<NewGenerateManager>();
 
         startFadeinCallBack = PlayInGame;
+
+        enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
+                                      GetComponent<NewEnemyGenerator>();
+    }
+
+    /// <summary>
+    /// ロード処理
+    /// </summary>
+    private IEnumerator LoadingGameInfo()
+    {
+        //セーブシステム使うか：でバック用
+        if (!IsUseSaveSystem)
+            yield break;
+
+        SaveData loadData;
+        do
+        {
+            yield return null;
+            loadData = SaveManager.Instance.Load();
+
+        }
+        while (loadData == null);
+
+        SetStatus(loadData);
+
+        //中断復帰かつ、リザルト表示でなければ
+        if (uiController.GetIsBreak() && loadData.gameState != INGAME_STATE.RESULT)
+        {
+            //中断時のデータ反映
+            uiController.UpdateLoadedScore();
+            StaminasManager.Instance.RecoveryOneStamina();
+        }
+        else
+        {
+            uiController.UpdateScore();
+        }
+       
+        //暗転解除後にゲーム開始:PlayInGame()
+        FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
     }
 
     /// <summary>
@@ -119,8 +164,10 @@ public partial class GameController : MonoBehaviour
                         //スタミナ全回復
                         if (result == ShowResult.Finished)
                         {
-                            StaminasManager.Instance.FullRecovery(true,() => { CommonDialogManager.Instance.DeleteDialogAll();
-                                                                               GameStart();
+                            StaminasManager.Instance.FullRecovery(true, () =>
+                            {
+                                CommonDialogManager.Instance.DeleteDialogAll();
+                                GameStart();
                             });
                         }
                     }
@@ -153,10 +200,8 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GameStart()
     {
-        //スタミナを必ず使用してる状態なのでテキストは表示させる
+        //スタミナを必ず使用してる状態なのでテキストは表示させる:そんなことない
         StaminasManager.Instance.ActiveTextRecovery(true);
-        //スコアの初期化
-        uiController.UpdateScore();
 
         //敵生成
         generatorManager.StartGenerate();
@@ -195,17 +240,17 @@ public partial class GameController : MonoBehaviour
         TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
         state = INGAME_STATE.RESULT;
 
-        //セーブする
-        SavegameInfo();
+        //セーブする:
+        SaveManager.Instance.GamePlaingSave();
 
         //このタイミングで広告表示。２回に１回広告表示：
-        if(uiController.PlayTime % 2  == 0)
+        if (uiController.PlayTime % 2 == 0)
         {
-           //広告終了後のコールバック
+            //広告終了後のコールバック
             Action<ShowResult> call = (result) =>
             {
                 //ゲームリザルト画面を表示
-                uiController.SetIsGameOver(true);
+                uiController.SetIsBreak(false);
                 gameOverView.gameObject.SetActive(true);
             };
 
@@ -215,10 +260,10 @@ public partial class GameController : MonoBehaviour
         else
         {
             //ゲームリザルト画面を表示
-            uiController.SetIsGameOver(true);
+            uiController.SetIsBreak(false);
             gameOverView.gameObject.SetActive(true);
         }
-        
+
     }
 
     /// <summary>
@@ -236,7 +281,7 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-        SavegameInfo();
+        SaveManager.Instance.GamePlaingSave();
 
         TimeManager.Instance.ResetSlow();
         GameStart();
@@ -254,61 +299,28 @@ public partial class GameController : MonoBehaviour
         PlayerEffectManager.Instance.Retry();
     }
 
-    /// <summary>
-    /// 初回ロード処理
-    /// </summary>
-    private IEnumerator LoadingGameInfo()
-    {
-        if (!IsUseSaveSystem)
-            yield break;
-
-        yield return null;
-
-        SaveData loadData;
-        do
-        {
-            loadData = SaveManager.Instance.Load();
-        }
-        while (loadData == null);
-
-        {
-            uiController.SetLoadingKillsNumber(loadData.KillsNumber);
-            uiController.SetHiScore(loadData.HiScoreNumber);
-            uiController.SetGameLevel(loadData.GemeLevel);
-            uiController.SetPlayTime(loadData.PlayTime);
-            uiController.SetStamina(loadData.StaminaNumber);
-            uiController.SetLife(loadData.LifeNumber);
-        }
-
-        //表示更新：中断処理分け行う
-        uiController.UpdateScore();
-
-        //暗転解除後にゲーム開始
-        FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
-    }
+    
 
     /// <summary>
-    /// セーブ処理
-    /// GameOver後/
+    /// ステータス設定
     /// </summary>
-    public void SavegameInfo()
+    /// <param name="loadData"></param>
+    private void SetStatus(SaveData loadData)
     {
-        if (!IsUseSaveSystem)
-            return;
+        uiController.SetLoadingKillsNumber(loadData.KillsNumber);
+        uiController.SetHiScore(loadData.HiScoreNumber);
+        uiController.SetGameLevel(loadData.GemeLevel);
+        uiController.SetPlayTime(loadData.PlayTime);
+        uiController.SetStamina(loadData.StaminaNumber);
+        uiController.SetLife(loadData.LifeNumber);
+        uiController.SetIsBreak(loadData.IsBreak);
+        uiController.SetIsAds(loadData.IsShowAds);
+        uiController.SetLoadStamina(loadData.saveTime);
 
-        SaveData saveData = new SaveData();
-
-        {
-            //saveData.IsGameOver = uiController.GetIsGameOver();
-            saveData.StaminaNumber = uiController.GetStamina();
-            saveData.KillsNumber = uiController.GetKillsNumber();
-            saveData.HiScoreNumber = uiController.GetHiScore();
-            saveData.LifeNumber = uiController.GetLifeNum();
-            saveData.GemeLevel = uiController.GetGameLevel();
-            saveData.PlayTime = uiController.GetPlayTime();
-        }
-
-        SaveManager.Instance.Save(saveData);
+        generatorManager.SetChangeKillCount(loadData.changeKillCount);
+        generatorManager.SetLevelupNeedCount(loadData.levelupNeedCount);
+        enemyGenerator.SetCreateDelayTime(loadData.createDelayTime);
+        enemyGenerator.SetEnemyScreenDisplayIndex(loadData.enemyScreenDisplayIndex);
     }
 
 }

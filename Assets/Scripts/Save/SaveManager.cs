@@ -7,22 +7,45 @@ using static GlobalValue;
 /// </summary>
 public class SaveManager : MonoBehaviour
 {
-    private string filePath;
     public static SaveManager Instance;
 
-    private void Awake()
-    {
-        InitializeAwake();
-    }
+    private string filePath;
+
+    private UiController uiController;
+
+    private NewGenerateManager generatorManager;
+
+    private NewEnemyGenerator enemyGenerator;
+
+    private GameController gameController;
 
 
+    private void Awake() { InitializeAwake(); }
     private void InitializeAwake()
     {
         Instance ??= this;
         //アプリが実行中に保持するデータを格納できるディレクトリパス
         filePath = Application.persistentDataPath + "/" + ".savedata.json";
     }
-   
+
+    private void Start() { InitializeThis(); }
+    private void InitializeThis()
+    {
+
+        uiController = GameObject.FindGameObjectWithTag("UI")
+                               .GetComponent<UiController>();
+
+        generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
+                                      GetComponent<NewGenerateManager>();
+
+        enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
+                                      GetComponent<NewEnemyGenerator>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController")
+                               .GetComponent<GameController>();
+    }
+
+
 
     /// <summary>
     /// セーブ
@@ -32,15 +55,21 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(savedata);
 
         //テキストファイルにデータを書き込むことができる
-        using (StreamWriter streamWriter = new StreamWriter(filePath)) 
+        using (StreamWriter streamWriter = new StreamWriter(filePath))
         {
             streamWriter.Write(json);
             streamWriter.Flush();
-        } 
-     }
+        }
+    }
 
     /// <summary>
-    /// ロード
+    /// ロード:
+    //while (true)
+    //{
+    //    whileで繰り返し待機処理
+    //    if (File.Exists(Path)) break;
+    //    yield return null;
+    //}
     /// </summary>
     public SaveData Load()
     {
@@ -48,12 +77,12 @@ public class SaveManager : MonoBehaviour
         if (File.Exists(filePath))
         {
             StreamReader reader;
-            using(reader = new StreamReader(filePath))
+            using (reader = new StreamReader(filePath))
             {
                 string data = reader.ReadToEnd();
                 return JsonUtility.FromJson<SaveData>(data);
             }
-            
+
         }
 
         //初回はfileが存在しないのでこちら
@@ -75,7 +104,39 @@ public class SaveManager : MonoBehaviour
         data.PlayTime = 0;
         data.BGM_Volume = 0.5f;
         data.SE_Volume = 0.5f;
-        //data.IsGameOver = false;
+        data.IsBreak = false;
+        data.IsShowAds = false;
+        data.saveTime = TimeManager.Instance.GetDayTimeInteger();
+        data.changeKillCount = 0;
+        data.levelupNeedCount = LEVELUP_COUNT;
+        data.createDelayTime = FIRST_CREATETIME;
+        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
         return data;
+    }
+
+    /// <summary>
+    /// ゲーム途中セーブ
+    /// </summary>
+    public void GamePlaingSave()
+    {
+        SaveData saveData = new SaveData();
+        {
+            saveData.StaminaNumber = uiController.GetStamina();
+            saveData.KillsNumber = uiController.GetKillsNumber();
+            saveData.HiScoreNumber = uiController.GetHiScore();
+            saveData.LifeNumber = uiController.GetLifeNum();
+            saveData.GemeLevel = uiController.GetGameLevel();
+            saveData.PlayTime = uiController.GetPlayTime();
+            saveData.IsBreak = uiController.GetIsBreak();
+            saveData.IsShowAds = uiController.GetIsAds();
+            saveData.saveTime = TimeManager.Instance.GetDayTimeInteger();
+            saveData.changeKillCount = generatorManager.GetChangeKillCount();
+            saveData.levelupNeedCount = generatorManager.GetLevelupNeedCount();
+            saveData.createDelayTime = enemyGenerator.GetCreateDelayTime();
+            saveData.enemyScreenDisplayIndex = enemyGenerator.GetEnemyScreenDisplayIndex();
+            saveData.gameState = gameController.State;
+        }
+
+        SaveManager.Instance.Save(saveData);
     }
 }

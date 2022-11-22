@@ -33,8 +33,30 @@ public class SaveData
     //SE音量
     public float SE_Volume;
 
-    //GameOver判定：途中データ用
-    //public bool IsGameOver;
+    //広告表示判定：課金機能
+    public bool IsShowAds;
 
-    //スタミナ回復用時間観測
+    //中断状態の判定
+    public bool IsBreak;
+
+    //セーブした時間
+    public long saveTime;
+
+    //レベルアップ用カウント数
+    public int changeKillCount;
+
+    //必要経験値
+    public int levelupNeedCount;
+
+    //生成間隔時間
+    public float createDelayTime;
+
+    //敵画面表示数
+    public int enemyScreenDisplayIndex;
+
+    //ゲームの状態
+    public INGAME_STATE gameState;
+
+    //修羅モード開放：LV99到達か、課金、スタミナ無限
+
 }
