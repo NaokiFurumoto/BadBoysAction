@@ -71,6 +71,7 @@ public partial class GameController : MonoBehaviour
     {
         Initialize();
         InitializeView();
+        SaveManager.Instance?.InitializeThis();
 
         //ロード処理
         StartCoroutine("LoadingGameInfo");
@@ -93,7 +94,7 @@ public partial class GameController : MonoBehaviour
         generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
                                             GetComponent<NewGenerateManager>();
 
-        startFadeinCallBack = PlayInGame;
+        startFadeinCallBack = OpenFirstView;
 
         enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
                                       GetComponent<NewEnemyGenerator>();
@@ -116,35 +117,49 @@ public partial class GameController : MonoBehaviour
 
         }
         while (loadData == null);
-
-        SetStatus(loadData);
-
-        //中断復帰かつ、リザルト表示でなければ
-        if (uiController.GetIsBreak() && loadData.gameState != INGAME_STATE.RESULT)
+        
+        //中断復帰かつ、リザルト表示じゃない、体力が0ではない
+        if (loadData.IsBreak && loadData.gameState != INGAME_STATE.RESULT && loadData.LifeNumber != 0 )
         {
+            SetStatus(loadData);
             //中断時のデータ反映
-            uiController.UpdateLoadedScore();
-            StaminasManager.Instance.RecoveryOneStamina();
+           // StaminasManager.Instance.RecoveryOneStamina();
         }
         else
         {
-            uiController.UpdateScore();
+            //リスタートデータの反映
+            var changeData = SaveManager.Instance.ChangeRestartDate(loadData);
+            SetStatus(changeData);
         }
        
         //暗転解除後にゲーム開始:PlayInGame()
         FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
     }
 
+   
+
     /// <summary>
     /// インゲーム開始
     /// </summary>
     public void PlayInGame()
     {
-        //スタミナチェック
-        if (uiController.StaminasManager.IsCheckRecovery())
+        ///課金していたらスタミナをフル回復して、スタート
+        if (uiController.GetIsAds())
         {
-            //スタミナを使用して再開
-            uiController.StaminasManager.UseStamina();
+            StaminasManager.Instance.FullRecovery(false);
+            GameStart();
+            return;
+        }
+
+        //スタミナチェック
+        if (StaminasManager.Instance.IsCheckRecovery())
+        {
+            var aa = uiController.GetIsBreak();
+            if (!uiController.GetIsBreak())
+            {
+                //中断復帰じゃない場合はスタミナを使用する
+                StaminasManager.Instance.UseStamina();
+            }
 
             GameStart();
         }
@@ -167,6 +182,7 @@ public partial class GameController : MonoBehaviour
                             StaminasManager.Instance.FullRecovery(true, () =>
                             {
                                 CommonDialogManager.Instance.DeleteDialogAll();
+                                GameResume();
                                 GameStart();
                             });
                         }
@@ -177,13 +193,14 @@ public partial class GameController : MonoBehaviour
                     {
                         if (StaminasManager.Instance.IsCheckRecovery())
                         {
-                            StaminasManager.Instance.UseStamina();
+                            //StaminasManager.Instance.UseStamina();
                             CommonDialogManager.Instance.DeleteDialogAll();
                             GameStart();
                         }
                         else
                         {
-                            //タイトルに戻る
+                            //タイトル画面に遷移
+                            StartCoroutine("FadeTitle");
                         }
                     }
 
@@ -193,6 +210,18 @@ public partial class GameController : MonoBehaviour
             CommonDialogManager.Instance.AddList(dialog);
         }
 
+    }
+
+    /// <summary>
+    /// タイトル画面に遷移
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator FadeTitle()
+    {
+        FadeFilter.Instance.FadeOut(Color.black, 1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
+        GameResume();
+        LoadScene.Load("StartScene");
     }
 
     /// <summary>
@@ -244,7 +273,7 @@ public partial class GameController : MonoBehaviour
         SaveManager.Instance.GamePlaingSave();
 
         //このタイミングで広告表示。２回に１回広告表示：
-        if (uiController.PlayTime % 2 == 0)
+        if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
         {
             //広告終了後のコールバック
             Action<ShowResult> call = (result) =>
@@ -281,8 +310,7 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-        SaveManager.Instance.GamePlaingSave();
-
+        //SaveManager.Instance.GamePlaingSave();
         TimeManager.Instance.ResetSlow();
         GameStart();
     }
@@ -307,6 +335,8 @@ public partial class GameController : MonoBehaviour
     /// <param name="loadData"></param>
     private void SetStatus(SaveData loadData)
     {
+        IsOpenFirstview = loadData.IsFirstViewOpen;
+
         uiController.SetLoadingKillsNumber(loadData.KillsNumber);
         uiController.SetHiScore(loadData.HiScoreNumber);
         uiController.SetGameLevel(loadData.GemeLevel);
@@ -317,10 +347,14 @@ public partial class GameController : MonoBehaviour
         uiController.SetIsAds(loadData.IsShowAds);
         uiController.SetLoadStamina(loadData.saveTime);
 
+        generatorManager.GameLevel = loadData.GemeLevel;
+        generatorManager.IsInterval = false;
         generatorManager.SetChangeKillCount(loadData.changeKillCount);
         generatorManager.SetLevelupNeedCount(loadData.levelupNeedCount);
+
         enemyGenerator.SetCreateDelayTime(loadData.createDelayTime);
         enemyGenerator.SetEnemyScreenDisplayIndex(loadData.enemyScreenDisplayIndex);
+        enemyGenerator.SetLoadedEnemyEncounts(loadData.GemeLevel);
     }
 
 }

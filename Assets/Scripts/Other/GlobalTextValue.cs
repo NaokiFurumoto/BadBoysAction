@@ -12,6 +12,8 @@ public partial class GlobalValue
     public readonly static string OK = "OK";
     public readonly static string CLOSE = "閉じる";
     public readonly static string MOVIECHECK = "視聴";
+    public readonly static string LOADBATTLE_YES = "再開する";
+    public readonly static string LOADBATTLE_NO = "最初から";
    
 
     /// <summary>
@@ -39,5 +41,18 @@ public partial class GlobalValue
     /// </summary>
     public readonly static string SAVEDATA_CLEAR_TITlE = "データクリア";
     public readonly static string SAVEDATA_CLEAR_DESC = "セーブデータを初期化します。<br>よろしいですか？";
+
+    /// <summary>
+    /// タイトル戻る
+    /// </summary>
+    public readonly static string OPTION_GOSTART_TITLE = "タイトルに戻る";
+    public readonly static string OPTION_GOSTART_DESC = "現在のバトルを終了して<br>タイトルに戻ります。<br>よろしいでしょうか？";
+
+    /// <summary>
+    /// 中断データ
+    /// </summary>
+    public readonly static string LOADBATTLE_TITLE = "戦闘中！！";
+    public readonly static string LOADBATTLE_DESC = "中断された戦闘データがあります。<br>再開しますか？";
+
 
 }

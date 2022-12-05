@@ -26,6 +26,8 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     private float progressTime;
 
+    private GameController gameController;
+
     /// <summary>
     /// 残り回復時間テキスト表示
     /// </summary>
@@ -42,18 +44,23 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     private void Initialize()
     {
+        //参照が外れてるので初期化F
         Instance ??= this;
-        
-        if (staminaStatus == null)
+
+        if (Instance == null)
         {
-            var array = this.gameObject.GetComponentsInChildren<StaminaStatus>();
-            staminaStatus.AddRange(array);
+            Instance = GameObject.FindGameObjectWithTag("StaminaRoot").
+                                    GetComponent<StaminasManager>();
         }
+
         progressTime = 0;
+        gameController = GameObject.FindGameObjectWithTag("GameController").
+                                        GetComponent<GameController>();
     }
 
     /// <summary>
-    /// 回復更新
+    /// ゲーム中の回復更新
+    /// 1時間に１つ回復
     /// </summary>
     void Update()
     {
@@ -62,7 +69,7 @@ public class StaminasManager : MonoBehaviour
             return;
 
         //時間チェック：時間経過すれば1つ回復
-        var kesstime = STAMINA_RECOVERY_TIME - Time.deltaTime;
+        //var kesstime = STAMINA_RECOVERY_TIME - Time.deltaTime;
 
         progressTime += Time.deltaTime;
 
@@ -72,7 +79,7 @@ public class StaminasManager : MonoBehaviour
         if (progressTime >= STAMINA_RECOVERY_TIME)
         {
             RecoveryOneStamina();
-           
+
             //回復後のスタミナ数が満タンならテキスト非表示
             var isMax = GetUseStaminaNumber() == STAMINA_MAXNUMBER ? false : true;
             ActiveTextRecovery(isMax);
@@ -87,9 +94,9 @@ public class StaminasManager : MonoBehaviour
     /// <param name="isDialog">回復後にダイアログを表示するか？</param>
     public void FullRecovery(bool isDialog, Action callback = null)
     {
-        if (staminaStatus == null)
-            return;
-        foreach(var stamina in staminaStatus)
+        if (staminaStatus == null) return;
+
+        foreach (var stamina in staminaStatus)
         {
             stamina.ChangeStaminaImage(true);
             useStaminaNumber = STAMINA_MAXNUMBER;
@@ -99,7 +106,7 @@ public class StaminasManager : MonoBehaviour
         if (isDialog)
         {
             ///全回復お知らせダイアログ
-            var dialog = 
+            var dialog =
                 CommonDialog.ShowDialog
                 (
                     STAMINA_FULLRECOVERY_TITLE,
@@ -109,7 +116,7 @@ public class StaminasManager : MonoBehaviour
                     null,
                     () => callback()
                 );
-
+            gameController?.GameStop();
             CommonDialogManager.Instance.AddList(dialog);
         }
     }
@@ -120,7 +127,7 @@ public class StaminasManager : MonoBehaviour
     public void UseStamina()
     {
         //スタミナを1つ使用：若い順
-        foreach(var stamina in staminaStatus)
+        foreach (var stamina in staminaStatus)
         {
             if (stamina.IsRecovery)
             {
@@ -135,11 +142,12 @@ public class StaminasManager : MonoBehaviour
     /// </summary>
     public void RecoveryOneStamina()
     {
-        foreach(var stamina in staminaStatus)
+        //最後からチェック
+        for(var i = staminaStatus.Count()-1; i >= 0; i--)
         {
-            if (!stamina.IsRecovery)
+            if (!staminaStatus[i].IsRecovery)
             {
-                stamina.ChangeStaminaImage(true);
+                staminaStatus[i].ChangeStaminaImage(true);
                 return;
             }
         }
@@ -167,7 +175,8 @@ public class StaminasManager : MonoBehaviour
 
 
     /// <summary>
-    ///1つでもスタミナが消費されてるかどうか
+    ///プレイ中に1つでもスタミナが消費されてるかどうか
+    ///プレイ中以外で呼ぶな！！
     /// </summary>
     /// <returns></returns>
     public bool IsCheckUsedStamina()
@@ -185,6 +194,7 @@ public class StaminasManager : MonoBehaviour
 
     /// <summary>
     /// 残りスタミナ数を取得
+    /// プレイ中以外で呼ぶな！！
     /// </summary>
     /// <returns></returns>
     public int GetUseStaminaNumber()
@@ -207,18 +217,14 @@ public class StaminasManager : MonoBehaviour
     /// <param name="num"></param>
     public void SetStaminaNumber(int num)
     {
-        for (var i = 0; i < num; i++)
+        //一度全部falseに設定する
+        staminaStatus.ForEach(status => status.ChangeStaminaImage(false));
+        if (num == 0) return;
+        //0/1/2 = 1/2 1 =2
+        for (var i = (staminaStatus.Count()-1); num > 0; i--)
         {
-            var useIndex = GetUseStaminaNumber();
-
-            if (useIndex >= num)
-            {
-                return;
-            }
-            else
-            {   //1つ回復
-                RecoveryOneStamina();
-            }
+            num--;
+            staminaStatus[i].ChangeStaminaImage(true);
         }
     }
 
@@ -277,7 +283,12 @@ public class StaminasManager : MonoBehaviour
         if (diffTime >= STAMINA_RECOVERY_LONGTIME)
         {
             //全開
-            FullRecovery(true, null);
+            FullRecovery(true, () =>
+            {
+                CommonDialogManager.Instance.DeleteDialogAll();
+                gameController.GameResume();
+                //GameStart();
+            });
         }
         else
         {
@@ -291,5 +302,5 @@ public class StaminasManager : MonoBehaviour
             }
         }
     }
-   
+
 }

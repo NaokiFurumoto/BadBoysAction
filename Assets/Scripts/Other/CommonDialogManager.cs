@@ -40,6 +40,7 @@ public class CommonDialogManager : MonoBehaviour
         if (dialogs.Count == 0)
             return;
 
+        dialogs.RemoveAll(list => list == null);
         foreach(var dialog in dialogs)
         {
             Destroy(dialog.gameObject);

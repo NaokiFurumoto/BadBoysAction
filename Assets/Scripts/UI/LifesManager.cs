@@ -74,9 +74,6 @@ public class LifesManager : MonoBehaviour
     /// <returns></returns>
     public int GetLifeNum()
     {
-        if (lifeStatuses.Count == 0)
-            return 0;
-
-        return lifeStatuses.Count(status => status.IsHave);
+        return haveLifeNumber;
     }
 }

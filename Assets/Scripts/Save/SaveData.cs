@@ -57,6 +57,9 @@ public class SaveData
     //ゲームの状態
     public INGAME_STATE gameState;
 
+    //初回説明画面表示
+    public bool IsFirstViewOpen;
+
     //修羅モード開放：LV99到達か、課金、スタミナ無限
 
 }

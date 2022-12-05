@@ -5,6 +5,13 @@ using UnityEngine;
 public partial class GlobalValue
 {
     /// <summary>
+    /// シーン名
+    /// </summary>
+    public static string GAMESCENENAME = "GameScene";
+    public static string STARTSCENENAME = "StartScene";
+    public static string LOGOSCENENAME = "LogoScene";
+
+    /// <summary>
     /// プレイヤーと敵の最小接近距離
     /// </summary>
     public readonly static float PL_EN_DISTANCE = 0.2f;
@@ -152,12 +159,12 @@ public partial class GlobalValue
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static int STAMINA_RECOVERY_ONE_LONGTIME = 3000;
+    public static int STAMINA_RECOVERY_ONE_LONGTIME = 6000;
 
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static int STAMINA_RECOVERY_LONGTIME = 9000;
+    public static int STAMINA_RECOVERY_LONGTIME = 18000;
 
     /// <summary>
     /// 最大スタミナ数

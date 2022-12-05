@@ -6,6 +6,7 @@ using UnityEngine.Advertisements;
 
 public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
 {
+    private UiController uiController;
 
 #if UNITY_IOS
     public const string GameID = "4969449";
@@ -36,6 +37,8 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
             Instance = this;
         }
 
+        uiController = GameObject.FindGameObjectWithTag("UI").
+                                     GetComponent<UiController>();
         Advertisement.Initialize(GameID);
         //LŠÖ˜A‚ÌƒCƒxƒ“ƒg‚ª”­¶‚·‚é‚æ‚¤‚É“o˜^(IUnityAdsListener—pj
         Advertisement.AddListener(this);
@@ -54,8 +57,13 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
         {
             yield return new WaitForSeconds(0.5f);
         }
-        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
-        Advertisement.Banner.Show(BannerID);
+
+        //L‰Û‹à‚µ‚Ä‚¢‚È‚¢ê‡
+        if (!uiController.GetIsAds())
+        {
+            Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+            Advertisement.Banner.Show(BannerID);
+        }
     }
 
     /// <summary>

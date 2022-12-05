@@ -166,20 +166,20 @@ public class NewEnemyGenerator : MonoBehaviour
     /// </summary>
     public void InitializeData()
     {
-        //レベルによって変化させる
         createDelayTime = FIRST_CREATETIME;
         enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        ClearEnemyEncounts();
     }
 
     /// <summary>
     /// ロード時の変化させる値
     /// </summary>
-    public void InitializeLoadedData()
-    {
-        //レベルによって変化させる
-        createDelayTime = GetCreateDelayTime();
-        enemyScreenDisplayIndex = GetEnemyScreenDisplayIndex();
-    }
+    //public void InitializeLoadedData(SaveData data)
+    //{
+    //    //createDelayTime = GetCreateDelayTime();
+    //    //enemyScreenDisplayIndex = GetEnemyScreenDisplayIndex();
+    //    SetLoadedEnemyEncounts(data.GemeLevel);
+    //}
 
     /// <summary>
     /// 外部初期初期化
@@ -348,8 +348,6 @@ public class NewEnemyGenerator : MonoBehaviour
         enemyCreateCount = 0;
     }
 
-
-
     //レベルアップ時の更新処理
     public void LevelUpdate()
     {
@@ -374,6 +372,23 @@ public class NewEnemyGenerator : MonoBehaviour
         enemyEncounts = EncountClearList;
         createDelayTime = FIRST_CREATETIME;
         enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+    }
+
+    /// <summary>
+    /// エンカウント率セット
+    /// </summary>
+    /// <param name="level"></param>
+    public void SetLoadedEnemyEncounts(int level)
+    {
+        enemyEncounts = enemyEncounts.Select(list => list += level).ToList();
+    }
+
+    /// <summary>
+    /// エンカウント率クリア
+    /// </summary>
+    public void ClearEnemyEncounts()
+    {
+        enemyEncounts = EncountClearList;
     }
 
     #region get/Set

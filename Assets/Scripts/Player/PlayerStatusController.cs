@@ -215,7 +215,7 @@ public class PlayerStatusController : MonoBehaviour
     /// <param name="damage"></param>
     public void Damage(int damage)
     {
-        if (life <= 0 || isDead || isCoolTimeCheck)
+        if (life <= 0 || isDead || isCoolTimeCheck || isMuteki)
             return;
 
         isCoolTimeCheck = true;
@@ -224,16 +224,16 @@ public class PlayerStatusController : MonoBehaviour
 
         //カメラアクション
         CameraAction.PlayerDamage();
+        animator.SetTrigger("Damage");
 
         if ( life <= 0) //死亡処理
         {
+            
             isCoolTimeCheck = false;
             Dead();
         }
         else//ダメージ処理
         {
-            animator.SetTrigger("Damage");
-
             //リアクション
             spriteTransform.DOPunchScale(
                 PLAYER_SHAKESTRENGTH,

@@ -67,9 +67,10 @@ public class GameOverView : ViewBase
             uiController.SetHiScore(score);
         }
 
-        //スコアを初期化
-        uiController.SetLoadingKillsNumber(0);
-        uiController.SetGameLevel(1);
+        //更新後に保存
+        var saveData = SaveManager.Instance.Load();
+        saveData.HiScoreNumber = uiController.GetHiScore();
+        SaveManager.Instance.Save(saveData);
     }
 
     /// <summary>
@@ -90,5 +91,7 @@ public class GameOverView : ViewBase
     {
         SnsManager.Instance?.Tweet();
     }
+
+    
 
 }

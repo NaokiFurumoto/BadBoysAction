@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using static GlobalValue;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// セーブ・ロード処理を行うクラス
@@ -29,20 +30,22 @@ public class SaveManager : MonoBehaviour
     }
 
     private void Start() { InitializeThis(); }
-    private void InitializeThis()
+    public void InitializeThis()
     {
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
+        {
+            uiController = GameObject.FindGameObjectWithTag("UI")
+                                   .GetComponent<UiController>();
 
-        uiController = GameObject.FindGameObjectWithTag("UI")
-                               .GetComponent<UiController>();
+            generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
+                                          GetComponent<NewGenerateManager>();
 
-        generatorManager = GameObject.FindGameObjectWithTag("GeneratorRoot").
-                                      GetComponent<NewGenerateManager>();
+            enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
+                                          GetComponent<NewEnemyGenerator>();
 
-        enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
-                                      GetComponent<NewEnemyGenerator>();
-
-        gameController = GameObject.FindGameObjectWithTag("GameController")
-                               .GetComponent<GameController>();
+            gameController = GameObject.FindGameObjectWithTag("GameController")
+                                   .GetComponent<GameController>();
+        }
     }
 
 
@@ -111,6 +114,100 @@ public class SaveManager : MonoBehaviour
         data.levelupNeedCount = LEVELUP_COUNT;
         data.createDelayTime = FIRST_CREATETIME;
         data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        data.IsFirstViewOpen = false;
+        return data;
+    }
+
+    /// <summary>
+    /// データクリア時のセーブデータを取得
+    /// スタミナのデータと広告は取得積内容に
+    /// </summary>
+    /// <returns></returns>
+    public SaveData GetClearSaveData()
+    {
+        SaveData data = new SaveData();
+        data.StaminaNumber = uiController.GetStamina();
+        data.KillsNumber = 0;
+        data.HiScoreNumber = 0;
+        data.LifeNumber = START_LIFEPOINT;
+        data.GemeLevel = 1;
+        data.PlayTime = uiController.GetPlayTime();
+        data.BGM_Volume = 0.5f;
+        data.SE_Volume = 0.5f;
+        data.IsBreak = false;
+        data.IsShowAds = uiController.GetIsAds();
+        data.saveTime = TimeManager.Instance.GetDayTimeInteger();
+        data.changeKillCount = 0;
+        data.levelupNeedCount = LEVELUP_COUNT;
+        data.createDelayTime = FIRST_CREATETIME;
+        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        data.IsFirstViewOpen = gameController.IsOpenFirstview;
+        return data;
+    }
+
+    /// <summary>
+    /// ロードデータをクリアデータに変更
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public SaveData ChangeCleartDate(SaveData data)
+    {
+        data.KillsNumber = 0;
+        data.HiScoreNumber = 0;
+        data.LifeNumber = START_LIFEPOINT;
+        data.GemeLevel = 1;
+        data.PlayTime = 0;
+        data.IsBreak = false;
+        data.changeKillCount = 0;
+        data.levelupNeedCount = LEVELUP_COUNT;
+        data.createDelayTime = FIRST_CREATETIME;
+        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        data.IsFirstViewOpen = false;
+        return data;
+    }
+
+    /// <summary>
+    /// ロードデータをリスタートデータに変更
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public SaveData ChangeRestartDate(SaveData data)
+    {
+        data.KillsNumber = 0;
+        data.LifeNumber = START_LIFEPOINT;
+        data.GemeLevel = 1;
+        data.IsBreak = false;
+        data.changeKillCount = 0;
+        data.levelupNeedCount = LEVELUP_COUNT;
+        data.createDelayTime = FIRST_CREATETIME;
+        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        return data;
+    }
+
+    
+
+    /// <summary>
+    /// リスタート時のセーブデータを取得
+    /// スタミナのデータと広告は取得積内容に
+    /// </summary>
+    /// <returns></returns>
+    public SaveData GetReStartSaveData()
+    {
+        SaveData data = new SaveData();
+        data.StaminaNumber = uiController.GetStamina();
+        data.KillsNumber = 0;
+        data.HiScoreNumber = uiController.GetHiScore();
+        data.LifeNumber = START_LIFEPOINT;
+        data.GemeLevel = 1;
+        data.PlayTime = uiController.GetPlayTime();
+        data.IsBreak = false;
+        data.IsShowAds = uiController.GetIsAds();
+        //data.saveTime = TimeManager.Instance.GetDayTimeInteger();
+        data.changeKillCount = 0;
+        data.levelupNeedCount = LEVELUP_COUNT;
+        data.createDelayTime = FIRST_CREATETIME;
+        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
+        data.IsFirstViewOpen = true;
         return data;
     }
 
@@ -135,6 +232,7 @@ public class SaveManager : MonoBehaviour
             saveData.createDelayTime = enemyGenerator.GetCreateDelayTime();
             saveData.enemyScreenDisplayIndex = enemyGenerator.GetEnemyScreenDisplayIndex();
             saveData.gameState = gameController.State;
+            saveData.IsFirstViewOpen = gameController.IsOpenFirstview;
         }
 
         SaveManager.Instance.Save(saveData);

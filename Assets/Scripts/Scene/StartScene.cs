@@ -8,7 +8,6 @@ using static GlobalValue;
 using UnityEngine.Advertisements;
 using System;
 using System.Threading;
-using Cysharp.Threading.Tasks;
 /// <summary>
 /// スタート画面に関する対応
 /// </summary>
@@ -30,46 +29,67 @@ public class StartScene : MonoBehaviour
     void Awake()
     {
         btnBG.interactable = false;
+        Time.timeScale = 1.0f;
         menu.gameObject.SetActive(false);
     }
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        EnableTap().Forget();
+        //ここでデータのロード
+        var data = SaveManager.Instance.Load();
+        if (data.IsBreak && data.StaminaNumber != 0)
+        {
+            //戦闘中！！
+            //中断された戦闘データがあります。再開しますか？
+            //再開する、最初から
+            //ダイアログを表示
+            var dialog = CommonDialog.ShowDialog
+                (
+                    LOADBATTLE_TITLE,
+                    LOADBATTLE_DESC,
+                    LOADBATTLE_YES,
+                    LOADBATTLE_NO,
+                    () => OnClickTapBG(),
+                    () => StartCoroutine("InitDataStart")
+                );
+            yield break;
+        }
+
+        yield return null;
+        StartCoroutine("EnableTap");
     }
+
 
     /// <summary>
     /// タップボタンの有効
     /// </summary>
     /// <returns></returns>
-    private async UniTask EnableTap()
+    private IEnumerator EnableTap()
     {
-        await UniTask.Delay(1000);
+        yield return new WaitForSecondsRealtime(1.0f);
         FadeFilter.Instance.FadeIn(Color.black, 1.0f);
-        await UniTask.Delay(2000);
+        yield return new WaitForSecondsRealtime(2.0f);
         menu.SetActive(true);
-        await UniTask.Delay(500);
+        yield return new WaitForSecondsRealtime(0.5f);
         btnBG.interactable = true;
     }
 
+   
     /// <summary>
     /// GameSceneに遷移する
     /// </summary>
     public void OnClickTapBG()
     {
-
-        GoGameScene().Forget();
-        
+        StartCoroutine("GoGameScene");
     }
 
-    private async UniTask GoGameScene()
+
+    private IEnumerator GoGameScene()
     {
         FadeFilter.Instance.FadeOut(Color.black, 1.0f);
-        await UniTask.Delay(1000);
+        yield return new WaitForSecondsRealtime(1.0f);
         LoadScene.Load("GameScene");
     }
-
-
 
     /// <summary>
     /// ランキング表示
@@ -84,7 +104,7 @@ public class StartScene : MonoBehaviour
     /// </summary>
     public void OnClickMenu()
     {
-        menu.gameObject.SetActive(true);
+        StartMenuViewActivate(true);
     }
 
     /// <summary>
@@ -94,5 +114,19 @@ public class StartScene : MonoBehaviour
     public void StartMenuViewActivate(bool isActive)
     {
         startMenuView?.SetActive(isActive);
+    }
+
+    //初期データで更新
+    private IEnumerator InitDataStart()
+    {
+        var loadData = SaveManager.Instance.Load();
+        loadData.IsBreak = false;
+
+        SaveManager.Instance.Save(loadData);
+
+        FadeFilter.Instance.FadeOut(Color.black, 1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
+        var dloadData = SaveManager.Instance.Load();
+        LoadScene.Load("GameScene");
     }
 }

@@ -16,6 +16,13 @@ public partial class GameController : MonoBehaviour
     /// スタート画面
     /// </summary>
     [SerializeField]
+    private ViewBase FirstGameInfoView;
+
+
+    /// <summary>
+    /// スタート画面
+    /// </summary>
+    [SerializeField]
     private GameObject startView;
 
     /// <summary>
@@ -30,14 +37,13 @@ public partial class GameController : MonoBehaviour
     [SerializeField]
     private GameObject gameOverView;
 
-    ///// <summary>
-    ///// Fade画面
-    ///// </summary>
-    //[SerializeField]
-    //private GameFade fadeView;
-
     //コールバック
     private UnityAction RetryAction;
+
+    /// <summary>
+    /// ゲーム説明画面を表示させるかどうか
+    /// </summary>
+    public bool IsOpenFirstview;
 
     /// <summary>
     /// View初期化
@@ -83,10 +89,37 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
+    /// ゲーム説明画面の表示
+    /// </summary>
+    public void OpenFirstView()
+    {
+        if (IsOpenFirstview)
+        {
+            PlayInGame();
+        }
+        else
+        {
+            EnableView(FirstGameInfoView);
+            var firstView = FirstGameInfoView as FirstGameInfoView;
+            firstView.CallBack = PlayInGame;
+        }
+    }
+
+
+    /// <summary>
     /// リトライボタンが押されたとき
     /// </summary>
     public void OnClickRetryButtin()
     {
+        ///課金していたらそのままリトライ
+        if (uiController.GetIsAds())
+        {
+            FadeFilter.Instance.FadeIn(Color.black, FADETIME, RetryAction);
+            RetryStatus();
+            gameOverView.gameObject.SetActive(false);
+            return;
+        }
+
         if (uiController.StaminasManager.IsCheckRecovery())
         {
             //スタミナを使用して再開
@@ -99,7 +132,7 @@ public partial class GameController : MonoBehaviour
         else
         {
             //スタミナ確認ダイアログ表示
-            var dialog = 
+            var dialog =
                 CommonDialog.ShowDialog
                 (
                     STAMINA_LESS_TITLE,
@@ -121,5 +154,27 @@ public partial class GameController : MonoBehaviour
             CommonDialogManager.Instance.AddList(dialog);
         }
     }
-   
+
+    /// <summary>
+    /// タイトル画面に以降
+    /// </summary>
+    public void GoTitle()
+    {
+        //クリアデータの取得:リスタートデータの取得
+        //var loadingData = SaveManager.Instance.GetClearSaveData();
+        //if (loadingData == null)
+        //    return;
+
+        //SaveManager.Instance.Save(loadingData);
+        StartCoroutine("GoFadeTitle");
+    }
+
+    private IEnumerator GoFadeTitle()
+    {
+        FadeFilter.Instance.FadeOut(Color.black, 1.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
+        GameResume();
+        LoadScene.Load("StartScene");
+    }
+
 }

@@ -104,11 +104,12 @@ public class StartMenuView : ViewBase
     /// </summary>
     private void SaveDataClearCallback()
     {
-       loadingData =  SaveManager.Instance.GetInitSaveData();
-       SaveManager.Instance.Save(loadingData);
+        var data = SaveManager.Instance.ChangeCleartDate(loadingData);
+        SaveManager.Instance.Save(data);
 
+        slider_BGM.SetPosition(new Vector2(0.5f, 0.0f));
+        slider_SE.SetPosition(new Vector2(0.5f, 0.0f));
         Destroy(dialog.gameObject);
     }
 
-    //Líœˆ—
 }

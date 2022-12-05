@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GlobalValue;
+using UnityEngine.SceneManagement;
 
 public class OnApplication : MonoBehaviour
 {
@@ -12,40 +14,46 @@ public class OnApplication : MonoBehaviour
     private GameController gameController;
 
     private void Start() { InitializeThis(); }
-   
+
     private void InitializeThis()
     {
-        if (gameController == null)
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
         {
-            gameController = GameObject.FindGameObjectWithTag("GameController")
-                                   .GetComponent<GameController>();
-        }
+            if (gameController == null)
+            {
+                gameController = GameObject.FindGameObjectWithTag("GameController")
+                                       .GetComponent<GameController>();
+            }
 
-        if (uiController == null)
-        {
-            uiController = GameObject.FindGameObjectWithTag("UI")
-                                   .GetComponent<UiController>();
+            if (uiController == null)
+            {
+                uiController = GameObject.FindGameObjectWithTag("UI")
+                                       .GetComponent<UiController>();
+            }
         }
     }
 
     private void OnApplicationPause(bool pause)
     {
-        InitializeThis();
-
-        if (pause)
-        {   //バックグラウンドへ
-            //今の状態をセーブする
-            uiController.SetIsBreak(true);
-            SaveManager.Instance.GamePlaingSave();
-            gameController.OnClickOptionButton();
-            Debug.Log("一時停止");
-        }
-        else
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
         {
-            //復帰
-            SaveManager.Instance.Load();
-            uiController.SetIsBreak(false);
-            Debug.Log("バックグラウンドからの復帰");
+            InitializeThis();
+
+            if (pause)
+            {   //バックグラウンドへ
+                //今の状態をセーブする
+                uiController.SetIsBreak(true);
+                SaveManager.Instance.GamePlaingSave();
+                gameController.OnClickOptionButton();
+                Debug.Log("一時停止");
+            }
+            else
+            {
+                //復帰
+                SaveManager.Instance.Load();
+                uiController.SetIsBreak(false);
+                Debug.Log("バックグラウンドからの復帰");
+            }
         }
     }
 
@@ -55,8 +63,11 @@ public class OnApplication : MonoBehaviour
     /// <param name="pause"></param>
     private void OnApplicationQuit()
     {
-        uiController.SetIsBreak(true);
-        SaveManager.Instance.GamePlaingSave();
-        Debug.Log("中断");
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
+        {
+            uiController.SetIsBreak(true);
+            SaveManager.Instance.GamePlaingSave();
+            Debug.Log("中断");
+        }
     }
 }

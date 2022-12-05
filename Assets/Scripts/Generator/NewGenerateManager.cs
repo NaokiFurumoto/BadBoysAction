@@ -27,7 +27,7 @@ public class NewGenerateManager : MonoBehaviour
     /// <summary>
     /// 停止中判定
     /// </summary>
-    private bool IsInterval;
+    private bool isInterval;
 
     /// <summary>
     /// UI操作
@@ -54,6 +54,7 @@ public class NewGenerateManager : MonoBehaviour
 
     #region プロパティ
     public int GameLevel { get { return gameLevel; } set { gameLevel = value; } }
+    public bool IsInterval { get { return isInterval; } set { isInterval = value; } }
     #endregion
 
     /// <summary>
@@ -63,7 +64,7 @@ public class NewGenerateManager : MonoBehaviour
     {
         gameLevel = 1;
         changeKillCount = 0;
-        IsInterval = false;
+        isInterval = false;
         levelupNeedCount = LEVELUP_COUNT;
         //敵生成初期化
         enemyGenerator.InitializeData();
@@ -72,14 +73,14 @@ public class NewGenerateManager : MonoBehaviour
     /// <summary>
     /// ロード時の初期化
     /// </summary>
-    public void InitializeLoaded()
+    public void InitializeLoaded( SaveData data )
     {
-        gameLevel = uiController.GetGameLevel();
-        changeKillCount = GetChangeKillCount();
-        IsInterval = false;
-        levelupNeedCount = GetLevelupNeedCount();
+       // gameLevel = uiController.GetGameLevel();
+        //changeKillCount = GetChangeKillCount();
+        //sInterval = false;
+        //levelupNeedCount = GetLevelupNeedCount();
         //敵生成初期化
-        enemyGenerator.InitializeLoadedData();
+        //enemyGenerator.InitializeLoadedData(data);
     }
 
     /// <summary>
@@ -131,9 +132,9 @@ public class NewGenerateManager : MonoBehaviour
             changeKillCount = 0;
 
             //インターバル中は実行させない
-            if (!IsInterval)
+            if (!isInterval)
             {
-                IsInterval = true;
+                isInterval = true;
                 GenerateStandBy().Forget();
             }
         }
@@ -154,7 +155,7 @@ public class NewGenerateManager : MonoBehaviour
     private async UniTask GenerateStandBy()
     {
         await UniTask.Delay(LEVELUP_INTERVAL);
-        IsInterval = false;
+        isInterval = false;
         ChangeGeneratorState(GENERATOR_STATE.GENERATE);
     }
 

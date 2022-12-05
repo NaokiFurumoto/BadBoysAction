@@ -16,8 +16,8 @@ public class CommonDialog : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI txt_Desc;
 
-    [SerializeField]
-    private Button closeBackButton;
+    //[SerializeField]
+    //private Button closeBackButton;
 
     [SerializeField]
     private Button closeButton;
@@ -25,35 +25,12 @@ public class CommonDialog : MonoBehaviour
     [SerializeField]
     private Button okButton;
 
-
-    [SerializeField]
-    private Image backGround;
-
     //単純にvoid delegateの事。１行でできる。
     public UnityAction onDestroyed;
 
     private static GameObject prefab;
 
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    private IEnumerator Start()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        OpenDialogCallBack();
-    }
-
-
-    private void OpenDialogCallBack()
-    {
-        ///イベントの登録
-        var eventTrigger = backGround.gameObject.AddComponent<EventTrigger>();
-        var entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerClick;
-        entry.callback.AddListener(eventData => { Destroy(this.gameObject); });
-        eventTrigger.triggers.Add(entry);
-    }
-
+   
     private void OnDestroy()
     {
         onDestroyed?.Invoke();

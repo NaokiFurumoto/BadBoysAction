@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 using static GlobalValue;
 /// <summary>
 /// インゲームUIに関する操作/更新など
@@ -63,6 +64,18 @@ public class UiController : MonoBehaviour
     private TextMeshProUGUI text_HiScore;
 
     /// <summary>
+    /// 通常スタミナ残り表示
+    /// </summary>
+    [SerializeField]
+    private GameObject NormalStTimes;
+
+    /// <summary>
+    /// 課金スタミナ表示
+    /// </summary>
+    [SerializeField]
+    private GameObject adsStTimes;
+
+    /// <summary>
     /// プレイ回数
     /// </summary>
     [SerializeField]
@@ -91,7 +104,7 @@ public class UiController : MonoBehaviour
     #region プロパティ
     public LifesManager LifesManager => lifesManager;
     public StaminasManager StaminasManager => staminasManager;
-    public int KillsNUM { get { return killsNum; } set {killsNum = value;} }
+    public int KillsNUM { get { return killsNum; } set { killsNum = value; } }
 
     public int HiScore => hiScore;
 
@@ -115,6 +128,16 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
+    /// 課金していたらスタミナ表示を切り替える
+    /// </summary>
+    /// <param name="isAds"></param>
+    public void SwitchAdsStamina(bool isAds)
+    {
+        NormalStTimes.SetActive(!isAds);
+        adsStTimes.SetActive(isAds);
+    }
+
+    /// <summary>
     /// 敵死亡時の撃破数の設定
     /// </summary>
     /// <param name="_number"></param>
@@ -127,14 +150,14 @@ public class UiController : MonoBehaviour
         generatorManager?.ChangeUpdateGenerator();
     }
 
-    
+
     /// <summary>
     /// 撃破数の取得
     /// </summary>
     public int GetTextKillsNumber()
     {
         int num;
-        if (int.TryParse(text_Kills.text,out num))
+        if (int.TryParse(text_Kills.text, out num))
             return num;
 
         return 0;
@@ -150,19 +173,18 @@ public class UiController : MonoBehaviour
         text_HiScore.text = hiScore.ToString();
         LifesManager.SetLife(1);
         SetGameLevel(1);
-        generatorManager.InitializeThis();
     }
 
     /// <summary>
     /// スコアのクリア
     /// </summary>
-    public void UpdateLoadedScore()
+    public void UpdateLoadedScore(SaveData data)
     {
-        text_Kills.text = GetTextKillsNumber().ToString();
-        text_HiScore.text = hiScore.ToString();
-        SetGameLevel(GetGameLevel());
-        LifesManager.SetLife(GetLifeNum());
-        generatorManager.InitializeLoaded();
+        //text_Kills.text = GetTextKillsNumber().ToString();
+        //text_HiScore.text = hiScore.ToString();
+        //SetGameLevel(GetGameLevel());
+        //LifesManager.SetLife(GetLifeNum());
+       // generatorManager.InitializeLoaded(data);
     }
 
     //-------------------------------Save・Load----------------------------------------//
@@ -185,7 +207,8 @@ public class UiController : MonoBehaviour
     /// </summary>
     public void SetHiScore(int score)
     {
-       hiScore = score;
+        hiScore = score;
+        text_HiScore.text = hiScore.ToString();
     }
 
     /// <summary>
@@ -233,7 +256,7 @@ public class UiController : MonoBehaviour
     /// <param name="num"></param>
     public void SetStamina(int num)
     {
-        if(num <= 0)
+        if (num <= 0)
         {
             //スタミナを全て使用不可とする
             staminasManager.SetAllDisable();
@@ -283,6 +306,7 @@ public class UiController : MonoBehaviour
     public void SetIsAds(bool judge)
     {
         isAds = judge;
+        SwitchAdsStamina(isAds);
     }
     #endregion
 
@@ -332,5 +356,6 @@ public class UiController : MonoBehaviour
     /// 課金判定取得
     /// </summary>
     public bool GetIsAds() => isAds;
+    //public bool GetIsAds() => true;
     #endregion
 }
