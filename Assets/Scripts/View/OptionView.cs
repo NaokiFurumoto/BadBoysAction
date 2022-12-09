@@ -12,10 +12,36 @@ public class OptionView : ViewBase
     private GameObject BG;
 
     /// <summary>
+    /// ログイン画面
+    /// </summary>
+    [SerializeField]
+    private GameObject loginViewObj;
+    private LoginView loginView;
+
+    /// <summary>
+    /// サインアップオブジェクト
+    /// </summary>
+    [SerializeField]
+    private GameObject sighup;
+
+    /// <summary>
+    /// ログイン/アウトオブジェクト
+    /// </summary>
+    [SerializeField]
+    private GameObject login;
+
+    /// <summary>
+    /// ユーザー
+    /// </summary>
+    [SerializeField]
+    private UserAuth user;
+
+    /// <summary>
     /// 初期化
     /// </summary>
     private IEnumerator Start()
     {
+        loginView = loginViewObj?.GetComponent<LoginView>();
         yield return new WaitForSecondsRealtime(1);
         OpenDialogCallBack();
     }
@@ -49,16 +75,37 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
+    /// サインアップ画面の表示
+    /// </summary>
+    public void OnClickSignUpBtn()
+    {
+        loginViewObj?.SetActive(true);
+        loginView?.SwitchMenu(LoginView.LOGIN_TYPE.NEW);
+    }
+
+    /// <summary>
+    /// ログイン画面の表示
+    /// </summary>
+    public void OnClickLoginBtn()
+    {
+        loginViewObj?.SetActive(true);
+        loginView?.SwitchMenu(LoginView.LOGIN_TYPE.LOGIN);
+    }
+
+    /// <summary>
+    /// ログアウト画面の表示
+    /// </summary>
+    public void OnClickLogoutBtn()
+    {
+        loginViewObj?.SetActive(true);
+        loginView?.SwitchMenu(LoginView.LOGIN_TYPE.LOGOUT);
+    }
+
+    /// <summary>
     /// タイトル画面に以降
     /// </summary>
     private void GoTitleCallback()
     {
-        ////クリアデータの取得:リスタートデータの取得
-        //var loadingData = SaveManager.Instance.GetClearSaveData();
-        //if (loadingData == null)
-        //    return;
-
-        //SaveManager.Instance.Save(loadingData);
         StartCoroutine("FadeTitle");
     }
 
@@ -70,8 +117,13 @@ public class OptionView : ViewBase
         LoadScene.Load("StartScene");
     }
 
+    /// <summary>
+    /// 有効時
+    /// </summary>
     protected override void OnEnable()
     {
+        //sighup.SetActive(!user.IsSignUp);
+        //login.SetActive(user.IsSignUp);
     }
 
     protected override void OnDisable()

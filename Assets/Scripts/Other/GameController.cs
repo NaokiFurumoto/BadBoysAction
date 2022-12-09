@@ -7,6 +7,8 @@ using static GlobalValue;
 using UnityEngine.Advertisements;
 using System;
 
+//using NCMB;
+
 /// <summary>
 /// ƒCƒ“ƒQ[ƒ€‚Ìó‘ÔŠÇ—
 /// </summary>
