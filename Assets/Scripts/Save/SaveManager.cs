@@ -20,6 +20,8 @@ public class SaveManager : MonoBehaviour
 
     private GameController gameController;
 
+    private UserAuth user;
+
 
     private void Awake() { InitializeAwake(); }
     private void InitializeAwake()
@@ -45,6 +47,9 @@ public class SaveManager : MonoBehaviour
 
             gameController = GameObject.FindGameObjectWithTag("GameController")
                                    .GetComponent<GameController>();
+
+            user = GameObject.FindGameObjectWithTag("User")
+                                   .GetComponent<UserAuth>();
         }
     }
 
@@ -115,33 +120,10 @@ public class SaveManager : MonoBehaviour
         data.createDelayTime = FIRST_CREATETIME;
         data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
         data.IsFirstViewOpen = false;
-        return data;
-    }
-
-    /// <summary>
-    /// データクリア時のセーブデータを取得
-    /// スタミナのデータと広告は取得積内容に
-    /// </summary>
-    /// <returns></returns>
-    public SaveData GetClearSaveData()
-    {
-        SaveData data = new SaveData();
-        data.StaminaNumber = uiController.GetStamina();
-        data.KillsNumber = 0;
-        data.HiScoreNumber = 0;
-        data.LifeNumber = START_LIFEPOINT;
-        data.GemeLevel = 1;
-        data.PlayTime = uiController.GetPlayTime();
-        data.BGM_Volume = 0.5f;
-        data.SE_Volume = 0.5f;
-        data.IsBreak = false;
-        data.IsShowAds = uiController.GetIsAds();
-        data.saveTime = TimeManager.Instance.GetDayTimeInteger();
-        data.changeKillCount = 0;
-        data.levelupNeedCount = LEVELUP_COUNT;
-        data.createDelayTime = FIRST_CREATETIME;
-        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
-        data.IsFirstViewOpen = gameController.IsOpenFirstview;
+        data.IsSighin = false;
+        data.IsLogin = false;
+        data.UserName = "";
+        data.Passward = "";
         return data;
     }
 
@@ -163,6 +145,9 @@ public class SaveManager : MonoBehaviour
         data.createDelayTime = FIRST_CREATETIME;
         data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
         data.IsFirstViewOpen = false;
+        data.IsLogin = false;
+        data.UserName = "";
+        data.Passward = "";
         return data;
     }
 
@@ -181,33 +166,6 @@ public class SaveManager : MonoBehaviour
         data.levelupNeedCount = LEVELUP_COUNT;
         data.createDelayTime = FIRST_CREATETIME;
         data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
-        return data;
-    }
-
-    
-
-    /// <summary>
-    /// リスタート時のセーブデータを取得
-    /// スタミナのデータと広告は取得積内容に
-    /// </summary>
-    /// <returns></returns>
-    public SaveData GetReStartSaveData()
-    {
-        SaveData data = new SaveData();
-        data.StaminaNumber = uiController.GetStamina();
-        data.KillsNumber = 0;
-        data.HiScoreNumber = uiController.GetHiScore();
-        data.LifeNumber = START_LIFEPOINT;
-        data.GemeLevel = 1;
-        data.PlayTime = uiController.GetPlayTime();
-        data.IsBreak = false;
-        data.IsShowAds = uiController.GetIsAds();
-        //data.saveTime = TimeManager.Instance.GetDayTimeInteger();
-        data.changeKillCount = 0;
-        data.levelupNeedCount = LEVELUP_COUNT;
-        data.createDelayTime = FIRST_CREATETIME;
-        data.enemyScreenDisplayIndex = ENEMY_SCREEN_MAXCOUNT;
-        data.IsFirstViewOpen = true;
         return data;
     }
 
@@ -233,6 +191,10 @@ public class SaveManager : MonoBehaviour
             saveData.enemyScreenDisplayIndex = enemyGenerator.GetEnemyScreenDisplayIndex();
             saveData.gameState = gameController.State;
             saveData.IsFirstViewOpen = gameController.IsOpenFirstview;
+            saveData.IsSighin = user.IsSignUp;
+            saveData.IsLogin = user.IsLogin;
+            saveData.UserName = user.CurrentPlayer;
+            saveData.Passward = user.CurrentPassward;
         }
 
         SaveManager.Instance.Save(saveData);

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-//using NCMB;
+using NCMB;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -16,9 +16,8 @@ public class LoginView : ViewBase
         LOGOUT//ログアウト
     }
 
-    // ログイン画面のときtrue, 新規登録画面のときfalse
     [SerializeField]
-    private bool isLogin;
+    private OptionView optionView;
 
     //ユーザー情報
     [SerializeField]
@@ -50,10 +49,11 @@ public class LoginView : ViewBase
 
     protected override void OnEnable()
     {
-        //if (!userAuth.IsSignUp)
-        //{
-        //    userAuth.logOut();
-        //}
+        if(optionView == null)
+        {
+            optionView = GameObject.FindWithTag("OptionView")
+                        .GetComponent<OptionView>();
+        }
     }
 
     protected override void OnDisable()
@@ -79,6 +79,7 @@ public class LoginView : ViewBase
     public void OnClickClose()
     {
         this.gameObject.SetActive(false);
+        optionView.ChangeLayout();
     }
 }
 

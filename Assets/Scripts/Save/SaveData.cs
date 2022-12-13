@@ -60,6 +60,18 @@ public class SaveData
     //初回説明画面表示
     public bool IsFirstViewOpen;
 
+    //サインイン判定
+    public bool IsSighin;
+
+    //ログイン判定
+    public bool IsLogin;
+
+    //ユーザー名
+    public string UserName;
+
+    //パスワード
+    public string Passward;
+
     //修羅モード開放：LV99到達か、課金、スタミナ無限
 
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-//using NCMB;
+using NCMB;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
@@ -19,9 +19,28 @@ public class SignUpMenu : LoginMenuBase
     private GameObject caution_txt;
 
     [SerializeField]
+    private GameObject success_txt;
+
+    [SerializeField]
     private Button btn_SighUp;
 
-    public Action FailureCallback;
+    private Action FailureCallback;
+    private Action SuccessCallback;
+
+    protected override void OnEnable()
+    {
+        FailureCallback = FailureSignUp;
+        SuccessCallback = SuccessSignUp;
+    }
+
+    protected override void OnDisable()
+    {
+        FailureCallback = null;
+        SuccessCallback = null;
+        caution_txt.SetActive(false);
+        success_txt.SetActive(false);
+    }
+
 
     public override void OnEndEdit_ID()
     {
@@ -33,10 +52,14 @@ public class SignUpMenu : LoginMenuBase
         pass = inputFieldPASS.text;
     }
 
+    /// <summary>
+    /// サインアップ
+    /// </summary>
     public void OnSignUp()
     {
-        //NCMBUser currentUser = NCMBUser.CurrentUser;
-        //user.signUp(id, pass, FailureCallback);
+        if (user == null)
+            return;
+        user.signUp(id, pass, FailureCallback, SuccessCallback);
     }
 
     /// <summary>
@@ -44,16 +67,25 @@ public class SignUpMenu : LoginMenuBase
     /// </summary>
     public void FailureSignUp()
     {
-        
         if (!caution_txt.activeSelf)
         {
             caution_txt.SetActive(true);
+            success_txt.SetActive(false);
         }
     }
 
-    protected override void OnEnable()
+    /// <summary>
+    /// サインアップ成功時のコールバック
+    /// </summary>
+    public void SuccessSignUp()
     {
-        FailureCallback = FailureSignUp;
+
+        if (!success_txt.activeSelf)
+        {
+            caution_txt.SetActive(false);
+            success_txt.SetActive(true);
+        }
     }
 
+   
 }

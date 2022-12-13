@@ -37,6 +37,24 @@ public class OptionView : ViewBase
     private UserAuth user;
 
     /// <summary>
+    /// ログインボタン
+    /// </summary>
+    [SerializeField]
+    private Button loginBtn;
+
+    /// <summary>
+    /// サインインボタン
+    /// </summary>
+    [SerializeField]
+    private Button sighinBtn;
+
+    /// <summary>
+    /// ログアウトボタン
+    /// </summary>
+    [SerializeField]
+    private Button logoutBtn;
+
+    /// <summary>
     /// 初期化
     /// </summary>
     private IEnumerator Start()
@@ -118,13 +136,34 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
+    /// レイアウトの変更
+    /// </summary>
+    public void ChangeLayout()
+    {
+        sighup.SetActive(!user.IsSignUp);
+        login.SetActive(user.IsSignUp);
+        loginBtn.interactable = !(user.IsLogin);
+        logoutBtn.interactable = user.IsLogin;
+        sighinBtn.interactable = !(user.IsLogin);
+    }
+
+    /// <summary>
     /// 有効時
     /// </summary>
     protected override void OnEnable()
     {
-        //sighup.SetActive(!user.IsSignUp);
-        //login.SetActive(user.IsSignUp);
+        //一度ロード
+        var loadData = SaveManager.Instance.Load();
+        if(user != null && loadData != null)
+        {
+            user.IsSignUp = loadData.IsSighin;
+            user.IsLogin = loadData.IsLogin;
+            var name = loadData.UserName;
+            var pw = loadData.Passward;
+            ChangeLayout();
+        }
     }
+       
 
     protected override void OnDisable()
     {

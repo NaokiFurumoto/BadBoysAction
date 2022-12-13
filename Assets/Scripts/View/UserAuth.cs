@@ -1,68 +1,121 @@
 using UnityEngine;
 using System.Collections;
-//using NCMB;
+using NCMB;
 using System.Collections.Generic;
 using System;
 
 public class UserAuth : MonoBehaviour
 {
-    ///// <summary> プレイヤー名 <summary>
-    //[SerializeField]
-    //private string currentPlayerName;
+    /// <summary> プレイヤー名 <summary>
+    [SerializeField]
+    private string currentPlayerName;
 
-    //[SerializeField]
-    //private bool isSighUp = false;
+    /// <summary> パスワード <summary>
+    [SerializeField]
+    private string currentPassward;
 
-    //public bool IsSignUp { get { return isSighUp; } set { isSighUp = value; } }
+    [SerializeField]
+    private bool isSighUp = false;
 
-    //// mobile backendに接続してログイン ------------------------
-    //public void logIn(string id, string pw)
-    //{
+    [SerializeField]
+    private bool isLogin = false;
 
-    //    NCMBUser.LogInAsync(id, pw, (NCMBException e) => {
-    //        // 接続成功したら
-    //        if (e == null)
-    //        {
-    //            currentPlayerName = id;
-    //        }
-    //    });
-    //}
+    public bool IsSignUp { get { return isSighUp; } set { isSighUp = value; } }
+    public bool IsLogin { get { return isLogin; } set { isLogin = value; } }
+    // 現在のプレイヤー名を返す --------------------
+    public string CurrentPlayer
+    {
+        get { return currentPlayerName; }
+        set { currentPlayerName = value; }
+    }
 
-    //// mobile backendに接続して新規会員登録 ------------------------
-    //public void signUp(string id,  string pw, Action callback)
-    //{
+    public string CurrentPassward
+    {
+        get { return currentPassward; }
+        set { currentPassward = value; }
+    }
 
-    //    NCMBUser user = new NCMBUser();
-    //    user.UserName = id;
-    //    user.Password = pw;
-    //    user.SignUpAsync((NCMBException e) => {
+    // mobile backendに接続してログイン ------------------------
+    public void logIn(string id, string pw, Action failCallback = null, Action successCallback = null)
+    {
+        var loadData = SaveManager.Instance.Load();
+        NCMBUser.LogInAsync(id, pw, (NCMBException e) =>
+        {
+            // 接続成功したら
+            if (e == null)
+            {
+                currentPlayerName = id;
+                currentPassward = pw;
+                isLogin = true;
+                if (successCallback != null)
+                {
+                    successCallback();
+                }
 
-    //        if (e == null)
-    //        {
-    //            //サインアップ完了している
-    //            isSighUp = true;
-    //            //サインアップ情報を保存
-    //            currentPlayerName = id;
-    //        }
-    //        else
-    //        {
-    //            callback();
-    //        }
-    //    });
-    //}
+                loadData.IsLogin = true;
+                loadData.UserName = id;
+                loadData.Passward = pw;
+                SaveManager.Instance.Save(loadData);
+            }
+            else
+            {
+                //ログイン失敗コールバック
+                if (failCallback != null)
+                {
+                    failCallback();
+                }
+            }
+        });
+    }
 
-    //// mobile backendに接続してログアウト ------------------------
-    //public void logOut()
-    //{
+    // mobile backendに接続して新規会員登録 ------------------------
+    public void signUp(string id, string pw, Action failCallback = null, Action successCallback = null)
+    {
+        NCMBUser user = new NCMBUser();
+        user.UserName = id;
+        user.Password = pw;
+        user.SignUpAsync((NCMBException e) =>
+        {
+            var loadData = SaveManager.Instance.Load();
+            if (e == null)
+            {
+                //サインアップ完了している
+                isSighUp = true;
+                if (successCallback != null)
+                {
+                    successCallback();
+                }
+                loadData.IsSighin = true;
+                SaveManager.Instance.Save(loadData);
+            }
+            else
+            {
+                if (failCallback != null)
+                {
+                    failCallback();
+                }
+            }
+        });
+    }
 
-    //    NCMBUser.LogOutAsync((NCMBException e) => {
-    //        if (e == null)
-    //        {
-    //            currentPlayerName = null;
-    //        }
-    //    });
-    //}
+    // mobile backendに接続してログアウト ------------------------
+    public void logOut(Action failCallback = null, Action successCallback = null)
+    {
+        NCMBUser.LogOutAsync((NCMBException e) =>
+        {
+            if (e == null)
+            {
+                currentPlayerName = "";
+                currentPassward = "";
+                isLogin = false;
+                successCallback();
+            }
+            else
+            {
+                failCallback();
+            }
+        });
+    }
 
-    //// 現在のプレイヤー名を返す --------------------
-    //public string currentPlayer() => currentPlayerName;
+
 }

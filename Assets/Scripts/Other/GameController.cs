@@ -6,8 +6,7 @@ using TMPro;
 using static GlobalValue;
 using UnityEngine.Advertisements;
 using System;
-
-//using NCMB;
+using NCMB;
 
 /// <summary>
 /// インゲームの状態管理
@@ -124,8 +123,6 @@ public partial class GameController : MonoBehaviour
         if (loadData.IsBreak && loadData.gameState != INGAME_STATE.RESULT && loadData.LifeNumber != 0 )
         {
             SetStatus(loadData);
-            //中断時のデータ反映
-           // StaminasManager.Instance.RecoveryOneStamina();
         }
         else
         {
@@ -211,7 +208,6 @@ public partial class GameController : MonoBehaviour
             //リストに追加
             CommonDialogManager.Instance.AddList(dialog);
         }
-
     }
 
     /// <summary>

@@ -25,6 +25,15 @@ public class StartScene : MonoBehaviour
     [SerializeField]
     private GameObject startMenuView;
 
+    [SerializeField]
+    private UserAuth user;
+
+    [SerializeField]
+    private GameObject txt_Login;
+
+    [SerializeField]
+    private GameObject txt_NotLogin
+        ;
 
     void Awake()
     {
@@ -54,8 +63,30 @@ public class StartScene : MonoBehaviour
                 );
             yield break;
         }
-
         yield return null;
+
+        
+        //ログインしていたら、ログイン情報の表示してログイン
+        var isLogin = data.IsLogin;
+        if (isLogin)
+        {
+            var name = data.UserName;
+            var pass = data.Passward;
+            txt_Login.SetActive(true);
+            txt_NotLogin.SetActive(false);
+
+            if(!(String.IsNullOrEmpty(name)) && !(String.IsNullOrEmpty(pass)))
+            {
+                user.logIn(name, pass);
+            }
+            
+        }
+        else
+        {
+            txt_Login.SetActive(false);
+            txt_NotLogin.SetActive(true);
+        }
+
         StartCoroutine("EnableTap");
     }
 

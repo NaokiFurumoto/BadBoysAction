@@ -24,6 +24,8 @@ TagManager:
   - PlayerMutekiAttack
   - Toropi
   - EnemyGenerator
+  - OptionView
+  - User
   layers:
   - Default
   - TransparentFX
