@@ -32,8 +32,10 @@ public class StartScene : MonoBehaviour
     private GameObject txt_Login;
 
     [SerializeField]
-    private GameObject txt_NotLogin
-        ;
+    private GameObject txt_NotLogin;
+
+    [SerializeField]
+    private Button rankBtn;
 
     void Awake()
     {
@@ -44,6 +46,7 @@ public class StartScene : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        FadeFilter.Instance.FadeIn(Color.black, 0.5f);
         //ここでデータのロード
         var data = SaveManager.Instance.Load();
         if (data.IsBreak && data.StaminaNumber != 0)
@@ -63,8 +66,6 @@ public class StartScene : MonoBehaviour
                 );
             yield break;
         }
-        yield return null;
-
         
         //ログインしていたら、ログイン情報の表示してログイン
         var isLogin = data.IsLogin;
@@ -78,13 +79,17 @@ public class StartScene : MonoBehaviour
             if(!(String.IsNullOrEmpty(name)) && !(String.IsNullOrEmpty(pass)))
             {
                 user.logIn(name, pass);
+                user.IsLogin = true;
+                user.IsSignUp = true;
             }
-            
+
+            rankBtn.interactable = true;
         }
         else
         {
             txt_Login.SetActive(false);
             txt_NotLogin.SetActive(true);
+            rankBtn.interactable = false;
         }
 
         StartCoroutine("EnableTap");
@@ -97,8 +102,8 @@ public class StartScene : MonoBehaviour
     /// <returns></returns>
     private IEnumerator EnableTap()
     {
-        yield return new WaitForSecondsRealtime(1.0f);
-        FadeFilter.Instance.FadeIn(Color.black, 1.0f);
+        //yield return new WaitForSecondsRealtime(1.0f);
+        //FadeFilter.Instance.FadeIn(Color.black, 1.0f);
         yield return new WaitForSecondsRealtime(2.0f);
         menu.SetActive(true);
         yield return new WaitForSecondsRealtime(0.5f);

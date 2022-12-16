@@ -353,6 +353,10 @@ public partial class GameController : MonoBehaviour
         enemyGenerator.SetCreateDelayTime(loadData.createDelayTime);
         enemyGenerator.SetEnemyScreenDisplayIndex(loadData.enemyScreenDisplayIndex);
         enemyGenerator.SetLoadedEnemyEncounts(loadData.GemeLevel);
+        UserAuth.Instance.CurrentPlayer = loadData.UserName;
+        UserAuth.Instance.CurrentPassward = loadData.Passward;
+        UserAuth.Instance.IsLogin = loadData.IsLogin;
+        UserAuth.Instance.IsSignUp = loadData.IsSighin;
     }
 
 }

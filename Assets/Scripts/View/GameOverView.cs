@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOverView : ViewBase
 {
@@ -35,13 +37,29 @@ public class GameOverView : ViewBase
     [SerializeField]
     private GameObject ClackerLeftObject;
 
+    /// <summary>
+    /// ランクボタン
+    /// </summary>
+    [SerializeField]
+    private Button btn_Rank;
+
+    /// <summary>
+    /// ユーザー
+    /// </summary>
+    [SerializeField]
+    private UserAuth user;
+
+
     protected override  void OnEnable()
     {
         base.OnEnable();
 
+        btn_Rank.interactable = false;
         HiScoreEffect(false);
         uiController ??= GameObject.FindGameObjectWithTag("UI").
                                      GetComponent<UiController>();
+        user ??= GameObject.FindGameObjectWithTag("User").
+                                     GetComponent<UserAuth>();
         //撃破数の表示
         text_Kills.text = uiController?.GetTextKillsNumber().ToString();
     }
@@ -65,6 +83,8 @@ public class GameOverView : ViewBase
             //ハイスコア演出表示
             HiScoreEffect(true);
             uiController.SetHiScore(score);
+
+            btn_Rank.interactable = user.IsLogin ? true : false;
         }
 
         //更新後に保存
@@ -92,6 +112,29 @@ public class GameOverView : ViewBase
         SnsManager.Instance?.Tweet();
     }
 
-    
+    /// <summary>
+    /// ランキングボタンに遷移
+    /// </summary>
+    public void OnClickRank()
+    {
+        SceneManager.sceneLoaded += KeepScore;
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(uiController.GetKillsNumber());
+    }
+
+    /// <summary>
+    /// ランキングシーンに渡すもの
+    /// </summary>
+    /// <param name="nextScene"></param>
+    /// <param name="mode"></param>
+    private void KeepScore(Scene nextScene, LoadSceneMode mode)
+    {
+        var rank = GameObject.Find("RankingSceneManager").GetComponent<RankingScene>();
+        rank.UserName = user.CurrentPlayer;
+        rank.Score = uiController.GetKillsNumber();
+        rank.Hiscore = uiController.GetHiScore();
+        rank.IsGameOver = true;
+        // イベントの削除
+        SceneManager.sceneLoaded -= KeepScore;
+    }
 
 }

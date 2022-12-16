@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 using static GlobalValue;
@@ -20,6 +21,13 @@ public class StartMenuView : ViewBase
     /// </summary>
     [SerializeField]
     private MenuObject_Sliderbar slider_SE;
+
+    /// <summary>
+    /// ランキングボタン
+    /// </summary>
+    [SerializeField]
+    private Button rankBtn;
+
 
     /// <summary>
     /// ロードデータ
@@ -107,6 +115,7 @@ public class StartMenuView : ViewBase
         var data = SaveManager.Instance.ChangeCleartDate(loadingData);
         SaveManager.Instance.Save(data);
 
+        rankBtn.interactable = false;
         slider_BGM.SetPosition(new Vector2(0.5f, 0.0f));
         slider_SE.SetPosition(new Vector2(0.5f, 0.0f));
         Destroy(dialog.gameObject);

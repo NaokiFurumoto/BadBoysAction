@@ -12,10 +12,8 @@ public enum FADE_STATE
     IN,//ñæÇÈÇ≠Ç»ÇÈ
     OUT//à√Ç≠Ç»ÇÈ
 }
-public class FadeFilter : MonoBehaviour
+public class FadeFilter : Singleton<FadeFilter>
 {
-    public static FadeFilter Instance = null;
-
     [SerializeField]
     private GameObject fadeFilterObject = null;
 
@@ -35,12 +33,11 @@ public class FadeFilter : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        Instance = this;
         fadeState = FADE_STATE.NON;
         sprite = fadeFilterObject.GetComponent<SpriteRenderer>();
         //sprite.enabled = false;
     }
-    
+
     /// <summary>
     /// ïœêîÉZÉbÉg
     /// </summary>

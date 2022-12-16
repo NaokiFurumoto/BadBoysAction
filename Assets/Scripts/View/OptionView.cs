@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static GlobalValue;
 
 public class OptionView : ViewBase
@@ -55,10 +56,20 @@ public class OptionView : ViewBase
     private Button logoutBtn;
 
     /// <summary>
+    /// ランクボタン
+    /// </summary>
+    [SerializeField]
+    private Button rankBtn;
+
+    private UiController uiController;
+
+    /// <summary>
     /// 初期化
     /// </summary>
     private IEnumerator Start()
     {
+        uiController = GameObject.FindGameObjectWithTag("UI").
+                                 GetComponent<UiController>();
         loginView = loginViewObj?.GetComponent<LoginView>();
         yield return new WaitForSecondsRealtime(1);
         OpenDialogCallBack();
@@ -90,6 +101,8 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickRankBtn()
     {
+        SceneManager.sceneLoaded += KeepScore;
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(uiController.GetKillsNumber());
     }
 
     /// <summary>
@@ -129,9 +142,9 @@ public class OptionView : ViewBase
 
     private IEnumerator FadeTitle()
     {
+        gameController.GameResume();
         FadeFilter.Instance.FadeOut(Color.black, 1.0f);
         yield return new WaitForSecondsRealtime(1.0f);
-        gameController.GameResume();
         LoadScene.Load("StartScene");
     }
 
@@ -145,6 +158,7 @@ public class OptionView : ViewBase
         loginBtn.interactable = !(user.IsLogin);
         logoutBtn.interactable = user.IsLogin;
         sighinBtn.interactable = !(user.IsLogin);
+        rankBtn.interactable = user.IsLogin;
     }
 
     /// <summary>
@@ -163,10 +177,25 @@ public class OptionView : ViewBase
             ChangeLayout();
         }
     }
-       
 
     protected override void OnDisable()
     {
+    }
+
+    /// <summary>
+    /// ランキングシーンに渡すもの
+    /// </summary>
+    /// <param name="nextScene"></param>
+    /// <param name="mode"></param>
+    private void KeepScore(Scene nextScene, LoadSceneMode mode)
+    {
+        var rank = GameObject.Find("RankingSceneManager").GetComponent<RankingScene>();
+        rank.UserName = user.CurrentPlayer;
+        rank.Score = uiController.GetKillsNumber();
+        rank.Hiscore = uiController.GetHiScore();
+        rank.IsGameOver = false;
+        // イベントの削除
+        SceneManager.sceneLoaded -= KeepScore;
     }
 
 

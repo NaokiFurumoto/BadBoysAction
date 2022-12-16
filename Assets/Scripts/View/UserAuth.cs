@@ -4,7 +4,7 @@ using NCMB;
 using System.Collections.Generic;
 using System;
 
-public class UserAuth : MonoBehaviour
+public class UserAuth : Singleton<UserAuth>
 {
     /// <summary> ƒvƒŒƒCƒ„[–¼ <summary>
     [SerializeField]
