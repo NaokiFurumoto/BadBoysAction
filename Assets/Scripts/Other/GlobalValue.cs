@@ -10,6 +10,7 @@ public partial class GlobalValue
     public static string GAMESCENENAME = "GameScene";
     public static string STARTSCENENAME = "StartScene";
     public static string LOGOSCENENAME = "LogoScene";
+    public static string RANKSCENENAME = "Ranking";
 
     /// <summary>
     /// プレイヤーと敵の最小接近距離
@@ -104,7 +105,7 @@ public partial class GlobalValue
     /// <summary>
     /// 周回半径
     /// </summary>
-    public static readonly float EN_AROUND = 2.0f;
+    public static readonly float EN_AROUND = 3.0f;
 
     /// <summary>
     /// ノックバック移動差分
@@ -280,7 +281,12 @@ public partial class GlobalValue
     /// <summary>
     /// 無敵ドロップ確率
     /// </summary>
-    public readonly static int MUTEKI_DROPINDEX = 100;
+    public readonly static int MUTEKI_DROPINDEX = 1000;
+
+    /// <summary>
+    /// 無敵ドロップ当たり
+    /// </summary>
+    public readonly static int MUTEKI_DROPHITINDEX = 10;
 
     /// <summary>
     /// アイテム削除時間

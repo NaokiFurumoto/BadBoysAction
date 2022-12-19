@@ -20,11 +20,18 @@ public abstract class ViewBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         animator = GetComponent<Animator>();
-        animator?.SetTrigger("open");
+        if(animator != null)
+        {
+            animator?.SetTrigger("open");
+        }
+        
     }
 
     protected virtual void OnDisable()
     {
-        animator?.SetTrigger("close");
+        if (animator != null)
+        {
+            animator?.SetTrigger("close");
+        }
     }
 }

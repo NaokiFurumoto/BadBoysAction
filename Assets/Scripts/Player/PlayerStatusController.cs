@@ -141,6 +141,7 @@ public class PlayerStatusController : MonoBehaviour
         if (MUTEKI)
         {
             life = 1000;
+            lifesManager.SetLife(life);
         }
 #endif
 

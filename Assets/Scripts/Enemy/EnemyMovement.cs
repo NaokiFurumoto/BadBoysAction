@@ -187,6 +187,12 @@ public class EnemyMovement : MonoBehaviour
 
     protected virtual void BaseMoving(float x, float y)
     {
+        if (enemyStatusController.IsDead
+           || enemyStatusController.State == ENEMY_STATE.DAMAGE
+           || enemyStatusController.State == ENEMY_STATE.NOCKBACK)
+        {
+            return;
+        }
         moveDelta = new Vector2(x * xSpeed, y * ySpeed);
         transform.Translate(moveDelta.x * Time.deltaTime,
                             moveDelta.y * Time.deltaTime, 0);

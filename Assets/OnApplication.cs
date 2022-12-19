@@ -17,7 +17,7 @@ public class OnApplication : MonoBehaviour
 
     private void InitializeThis()
     {
-        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME || SceneManager.GetActiveScene().name == RANKSCENENAME)
         {
             if (gameController == null)
             {
@@ -35,7 +35,7 @@ public class OnApplication : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME || SceneManager.GetActiveScene().name == RANKSCENENAME)
         {
             InitializeThis();
 
@@ -63,7 +63,7 @@ public class OnApplication : MonoBehaviour
     /// <param name="pause"></param>
     private void OnApplicationQuit()
     {
-        if (SceneManager.GetActiveScene().name == GAMESCENENAME)
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME || SceneManager.GetActiveScene().name == RANKSCENENAME)
         {
             uiController.SetIsBreak(true);
             SaveManager.Instance.GamePlaingSave();

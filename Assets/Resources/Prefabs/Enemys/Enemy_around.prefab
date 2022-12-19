@@ -544,7 +544,7 @@ MonoBehaviour:
   direction: -1
   roundSpeed: 3
   followRate: 200
-  followTargetDistance: 3
+  followTargetDistance: 3.5
   aroundTime: 3
 --- !u!58 &8240340023201279396
 CircleCollider2D:

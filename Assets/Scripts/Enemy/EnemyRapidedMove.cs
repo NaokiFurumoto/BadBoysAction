@@ -80,7 +80,7 @@ public class EnemyRapidedMove : EnemyMovement
         if (state == SPEED_STATE.WALK)
         {
             movePos = (playerLastPos - enemyTrans.position).normalized * chaseSpeed;
-            if (Vector3.Distance(enemyTrans.position, playerLastPos) < 2.0f)
+            if (Vector3.Distance(enemyTrans.position, playerLastPos) < 3.0f)
             {
                 state = SPEED_STATE.ENERGY;
                 movePos = Vector3.zero;

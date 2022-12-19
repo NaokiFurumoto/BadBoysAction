@@ -285,6 +285,7 @@ public class EnemyStatusController : MonoBehaviour
     public void EnemyDead()
     {
         SetDeadStatus();
+        sprite.color = Color.white;
         animator.SetTrigger("Dead");
     }
 

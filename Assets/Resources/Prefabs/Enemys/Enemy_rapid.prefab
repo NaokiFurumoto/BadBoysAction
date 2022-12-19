@@ -321,8 +321,8 @@ MonoBehaviour:
   enemyMoveType: 4
   state: 0
   idleTime: 1
-  rapidTime: 3
-  rapidSpeed: 4
+  rapidTime: 2
+  rapidSpeed: 5
 --- !u!58 &5690990230411185151
 CircleCollider2D:
   m_ObjectHideFlags: 0
