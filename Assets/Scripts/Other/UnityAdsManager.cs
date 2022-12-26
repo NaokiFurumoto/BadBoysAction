@@ -10,14 +10,14 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
 
 #if UNITY_IOS
     public const string GameID = "4969449";
-    public const string BannerID = "Banner_iOS"
-    public const string InterstitialID = "Interstitial_iOS"
-    public const string RewardedID = "Rewarded_iOS"
+    public const string BannerID = "Banner_iOS";
+    public const string InterstitialID = "Interstitial_iOS";
+    public const string RewardedID = "Rewarded_iOS";
 #elif UNITY_ANDROID
     public const string GameID = "4969448";
-    public const string BannerID = "Banner_Android"
-    public const string InterstitialID = "Interstitial_Android"
-    public const string RewardedID = "Rewarded_Android"
+    public const string BannerID = "Banner_Android";
+    public const string InterstitialID = "Interstitial_Android";
+    public const string RewardedID = "Rewarded_Android";
 #elif UNITY_EDITOR
     public const string GameID = "4969449";
     public const string BannerID = "Banner_iOS";
