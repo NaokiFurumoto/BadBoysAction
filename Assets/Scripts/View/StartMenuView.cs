@@ -45,6 +45,12 @@ public class StartMenuView : ViewBase
     private CommonDialog dialog;
 
     /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
+    /// <summary>
     /// 画面有効時
     /// </summary>
     protected override void OnEnable()
@@ -55,6 +61,12 @@ public class StartMenuView : ViewBase
 
         saveDataClearCallback = SaveDataClearCallback;
         SetSliderVolume();
+    }
+
+    private void Start()
+    {
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
     }
 
     protected override void OnDisable()
@@ -104,6 +116,16 @@ public class StartMenuView : ViewBase
     /// </summary>
     public void OpenSaveDataDialog()
     {
+        AppSound.Instance.SE_MENU_OK.Play();
+        dialog = CommonDialog.ShowDialog(SAVEDATA_CLEAR_TITlE, SAVEDATA_CLEAR_DESC, YES, NO, saveDataClearCallback, null);
+    }
+
+    /// <summary>
+    /// 課金処理
+    /// </summary>
+    public void OnClickAds()
+    {
+        AppSound.Instance.SE_MENU_OK.Play();
         dialog = CommonDialog.ShowDialog(SAVEDATA_CLEAR_TITlE, SAVEDATA_CLEAR_DESC, YES, NO, saveDataClearCallback, null);
     }
 
@@ -119,6 +141,18 @@ public class StartMenuView : ViewBase
         slider_BGM.SetPosition(new Vector2(0.5f, 0.0f));
         slider_SE.SetPosition(new Vector2(0.5f, 0.0f));
         Destroy(dialog.gameObject);
+    }
+
+    /// <summary>
+    /// スライダーの更新時に呼ばれる
+    /// </summary>
+    public void SlidebarDrag()
+    {
+        //SE再生
+        //FM.PlayOneShot(appSound.SE_SLIDE_CHANGE);
+        //SE設定
+        FM.SetVolume("BGM", slider_BGM.CurosorPosition.x);
+        FM.SetVolume("SE", slider_SE.CurosorPosition.x);
     }
 
 }

@@ -66,6 +66,7 @@ public class LogOutMenu : LoginMenuBase
     {
         if (user == null)
             return;
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_MENU_OK);
         user.logOut(FailureCallback, SuccessCallback);
     }
 }

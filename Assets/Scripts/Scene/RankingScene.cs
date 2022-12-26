@@ -210,6 +210,7 @@ public class RankingScene : MonoBehaviour
 
     public void OnCloseButtonClick()
     {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_MENU_CANCEL);
         closeButton.interactable = false;
         IsGameOver = false;
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ranking");//ÉAÉìÉçÅ[Éh

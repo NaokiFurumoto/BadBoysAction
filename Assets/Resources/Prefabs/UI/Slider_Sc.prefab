@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bf4a1e79d3b3f4fb4b37ebfc756b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptObject: {fileID: 0}
+  scriptObject: {fileID: 8443713860460424127}
   label: BGM
   slideObject: {fileID: 8443713858659767856}
   anchorStart: {fileID: 8443713858751573848}

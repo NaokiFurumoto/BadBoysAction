@@ -24,12 +24,24 @@ public class LoginMenu : LoginMenuBase
     [SerializeField]
     private GameObject txt_Success;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
     private Action FailureCallback;
     private Action SuccessCallback;
     protected override void OnEnable()
     {
         FailureCallback = FailureSignUp;
         SuccessCallback = SuccessSignUp;
+    }
+
+    private void Start()
+    {
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
     }
 
     protected override void OnDisable()
@@ -57,8 +69,9 @@ public class LoginMenu : LoginMenuBase
     {
         if (user == null)
             return;
-        
-        if(string.IsNullOrEmpty(id) || string.IsNullOrEmpty(pass))
+
+        FM.PlayOneShot(appSound.SE_MENU_OK);
+        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(pass))
         {
             txt_Caution.SetActive(true);
             return;

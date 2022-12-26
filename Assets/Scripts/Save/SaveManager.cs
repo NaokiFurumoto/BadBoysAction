@@ -111,7 +111,7 @@ public class SaveManager : MonoBehaviour
         data.GemeLevel = 1;
         data.PlayTime = 0;
         data.BGM_Volume = 0.5f;
-        data.SE_Volume = 0.5f;
+        data.SE_Volume = 1.0f;
         data.IsBreak = false;
         data.IsShowAds = false;
         data.saveTime = TimeManager.Instance.GetDayTimeInteger();
@@ -171,6 +171,7 @@ public class SaveManager : MonoBehaviour
 
     /// <summary>
     /// ゲーム途中セーブ
+    /// ボリューム状態の保存
     /// </summary>
     public void GamePlaingSave()
     {
@@ -195,6 +196,8 @@ public class SaveManager : MonoBehaviour
             saveData.IsLogin = user.IsLogin;
             saveData.UserName = user.CurrentPlayer;
             saveData.Passward = user.CurrentPassward;
+            saveData.BGM_Volume = SoundManager.Instance.Bgm_SeVolume.Item1;
+            saveData.SE_Volume = SoundManager.Instance.Bgm_SeVolume.Item2;
         }
 
         SaveManager.Instance.Save(saveData);

@@ -8,7 +8,7 @@ using static GlobalValue;
 /// AudioSource : ラジカセ
 /// AudioClip：カセット
 /// </summary>
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField]
     private bool debugLog = false;
@@ -19,8 +19,19 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private string soundFolder = "";
 
+    [SerializeField]
+    private float bgmVolume;
+
+    [SerializeField]
+    private float seVolume;
+
     public string SoundFolder { get { return soundFolder; } set { soundFolder = value; } }
 
+    public (float, float) Bgm_SeVolume
+    {
+        get { return (bgmVolume, seVolume); }
+        set { bgmVolume = value.Item1; seVolume = value.Item2; }
+    }
     private void Awake()
     {
         if (dontDestroy)
@@ -354,7 +365,7 @@ public class SoundManager : MonoBehaviour
 
     public void FadeInVolume(AudioSource _audioSource, float _v, float _t, bool _init)
     {
-        if (_audioSource.volume < 1.0f && _audioSource.isPlaying)
+        if (_audioSource.volume <= 1.0f && _audioSource.isPlaying)
         {
             //if (fadeStackList.Count > 0)����Ȃ��H�H
             if (fadeStackList.Count <= 0)

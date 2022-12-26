@@ -11,10 +11,23 @@ public class FirstGameInfoView : ViewBase
 
     public UnityAction CallBack;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
     protected override void OnEnable() { }
+
+    private void Start()
+    {
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
+    }
 
     public void OnClickCloseBtn()
     {
+        FM.PlayOneShot(appSound.SE_MENU_CANCEL);
         //チェックボックスデータの保存
         var loadData = SaveManager.Instance.Load();
         gameController.IsOpenFirstview =

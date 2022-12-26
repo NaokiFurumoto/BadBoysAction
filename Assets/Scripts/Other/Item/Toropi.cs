@@ -16,6 +16,7 @@ public class Toropi : DropItem
         var status = collision.gameObject.GetComponent<PlayerStatusController>();
         if (status != null)
         {
+            SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_ITEM_MUTEKI);
             status.OnComplate = null;
             status.OnComplate += Destroy;
             status?.MutekiAttack();

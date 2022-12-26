@@ -40,6 +40,17 @@ public class WallEffect : MonoBehaviour
     private Vector2 effectPosition;
 
     /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
+    private void Start()
+    {
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
+    }
+    /// <summary>
     /// 初期設定
     /// </summary>
     private Vector2 SetEffectPosition(Vector2 pos)
@@ -85,6 +96,8 @@ public class WallEffect : MonoBehaviour
             {
                 var pos = SetEffectPosition(collisionObject.transform.position);
                 Instantiate(effect,pos,effect.transform.rotation);
+                //SE
+                FM.PlayOneShot(appSound.SE_EN_WALL);
             }
         }
     }

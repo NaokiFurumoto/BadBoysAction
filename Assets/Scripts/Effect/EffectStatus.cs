@@ -44,6 +44,11 @@ public class EffectStatus : MonoBehaviour,IPlayerEffect
     public PEFFECT_ROOT_TYPE RootType => rootType;
     public Vector3 Pos => pos;
     #endregion
+
+    public void PlayMutekiSE()
+    {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_PL_MUTEKI);
+    }
 }
 
 interface IPlayerEffect  { }

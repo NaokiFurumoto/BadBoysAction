@@ -6,22 +6,6 @@ using System.Linq;
 using static GlobalValue;
 using System.Threading;
 
-///// <summary>
-///// ìGê∂ê¨äÌÉNÉâÉX
-///// </summary>
-//public enum GENERATOR_INDEX
-//{
-//    NONE,
-//    FIRST,
-//    SECOND,
-//    THIRD,
-//    FOURTH,
-//    FIFTH,
-//    SIX,
-//    SEVENTH,
-//    EIGHT,
-//}
-
 /// <summary>
 /// ê∂ê¨èÛë‘èÛë‘
 /// </summary>

@@ -78,6 +78,7 @@ public class LoginView : ViewBase
     /// </summary>
     public void OnClickClose()
     {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_MENU_CANCEL);
         this.gameObject.SetActive(false);
         optionView.ChangeLayout();
     }

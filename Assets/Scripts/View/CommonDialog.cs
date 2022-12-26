@@ -75,7 +75,9 @@ public class CommonDialog : MonoBehaviour
         else
         {
             comDialog.okButton.GetComponentInChildren<TextMeshProUGUI>().text = ok;
-            comDialog.okButton.onClick.AddListener(okCallBack);
+            comDialog.okButton.onClick.AddListener(()=> { AppSound.Instance.SE_MENU_OK.Play(); 
+                                                          okCallBack(); 
+                                                        });
         }
 
         ///
@@ -89,16 +91,24 @@ public class CommonDialog : MonoBehaviour
             comDialog.closeButton.GetComponentInChildren<TextMeshProUGUI>().text = ng;
             if(ngCallBack == null)
             {
-                comDialog.closeButton.onClick.AddListener(() => Destroy(comDialog.gameObject));
+                comDialog.closeButton.onClick.AddListener(() => { AppSound.Instance.SE_MENU_CANCEL.Play(); 
+                                                                  Destroy(comDialog.gameObject);
+                                                                });
             }
             else
             {
-                comDialog.closeButton.onClick.AddListener(ngCallBack);
+                comDialog.closeButton.onClick.AddListener(()=> { AppSound.Instance.SE_MENU_CANCEL.Play(); 
+                                                                 ngCallBack(); 
+                                                               });
             }
         }
 
-       
-        okCallBack ??= () => Destroy(comDialog.gameObject);
+
+        okCallBack ??= () =>
+        {
+            AppSound.Instance.SE_MENU_OK.Play();
+            Destroy(comDialog.gameObject);
+        };
 
         return comDialog;
     }

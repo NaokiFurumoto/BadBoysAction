@@ -99,6 +99,11 @@ public class PlayerStatusController : MonoBehaviour
     [SerializeField]
     protected bool MUTEKI = false;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
 
     #region プロパティ
     public bool IsDead => isDead;
@@ -129,6 +134,8 @@ public class PlayerStatusController : MonoBehaviour
     private void Initialize()
     {
         InitializeComponent();
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
 
         spriteTransform = sprite?.transform;
         //sprite.color = Color.red;
@@ -229,12 +236,13 @@ public class PlayerStatusController : MonoBehaviour
 
         if ( life <= 0) //死亡処理
         {
-            
+            FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
             isCoolTimeCheck = false;
             Dead();
         }
         else//ダメージ処理
         {
+            FM.PlayOneShot(appSound.SE_PL_DAMAGE);
             //リアクション
             spriteTransform.DOPunchScale(
                 PLAYER_SHAKESTRENGTH,
@@ -283,6 +291,7 @@ public class PlayerStatusController : MonoBehaviour
     /// </summary>
     public void Dead()
     {
+        FM.PlayOneShot(appSound.SE_PL_DEATH);
         isDead = true;
         attackRoot.SetActive(false);
         animator.SetTrigger("Dead");

@@ -41,6 +41,12 @@ public class Attacker : MonoBehaviour
     /// </summary>
     private PlayerMovement playerMovement;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
     #region プロパティ
     /// <summary>
     /// 攻撃方向の取得
@@ -63,6 +69,10 @@ public class Attacker : MonoBehaviour
                                     GetComponent<PlayerMovement>();
 
         animator = sprite?.GetComponent<Animator>();
+
+        //キャッシュ
+        appSound = AppSound.Instance;
+        FM = SoundManager.Instance;
     }
 
     /// <summary>
@@ -81,6 +91,9 @@ public class Attacker : MonoBehaviour
 
             if(_enemyStatus.State == ENEMY_STATE.NOCKBACK || _enemyStatus.State == ENEMY_STATE.MOVE)
             {
+                //SE
+                FM.PlayOneShot(appSound.SE_PL_ATK);
+
                 //アイテムドロップ抽選
                 ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
 
@@ -98,9 +111,8 @@ public class Attacker : MonoBehaviour
     /// センサーに衝突中
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-    }
+    private void OnTriggerStay2D(Collider2D collision) { }
+
 
     /// <summary>
     /// センサーから抜けた

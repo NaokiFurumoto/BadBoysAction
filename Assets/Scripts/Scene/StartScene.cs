@@ -8,6 +8,7 @@ using static GlobalValue;
 using UnityEngine.Advertisements;
 using System;
 using System.Threading;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// スタート画面に関する対応
 /// </summary>
@@ -37,6 +38,9 @@ public class StartScene : MonoBehaviour
     [SerializeField]
     private Button rankBtn;
 
+    //ランキング表示用
+    private float score, hiscore;
+
     void Awake()
     {
         btnBG.interactable = false;
@@ -51,9 +55,6 @@ public class StartScene : MonoBehaviour
         var data = SaveManager.Instance.Load();
         if (data.IsBreak && data.StaminaNumber != 0)
         {
-            //戦闘中！！
-            //中断された戦闘データがあります。再開しますか？
-            //再開する、最初から
             //ダイアログを表示
             var dialog = CommonDialog.ShowDialog
                 (
@@ -92,6 +93,17 @@ public class StartScene : MonoBehaviour
             rankBtn.interactable = false;
         }
 
+        //BGM/SEボリューム設定
+        SoundManager.Instance.SetVolume("BGM", data.BGM_Volume);
+        SoundManager.Instance.SetVolume("SE", data.SE_Volume);
+        SoundManager.Instance.Bgm_SeVolume = (data.BGM_Volume, data.SE_Volume);
+
+        yield return new WaitForSeconds(0.5f);
+        AppSound.Instance.BGM_TITLE.Play();
+        AppSound.Instance.BGM_TITLE.loop = true;
+
+        score = 0;
+        hiscore = data.HiScoreNumber;
         StartCoroutine("EnableTap");
     }
 
@@ -102,9 +114,7 @@ public class StartScene : MonoBehaviour
     /// <returns></returns>
     private IEnumerator EnableTap()
     {
-        //yield return new WaitForSecondsRealtime(1.0f);
-        //FadeFilter.Instance.FadeIn(Color.black, 1.0f);
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return new WaitForSecondsRealtime(1.0f);
         menu.SetActive(true);
         yield return new WaitForSecondsRealtime(0.5f);
         btnBG.interactable = true;
@@ -119,9 +129,12 @@ public class StartScene : MonoBehaviour
         StartCoroutine("GoGameScene");
     }
 
-
+    [Obsolete]
     private IEnumerator GoGameScene()
     {
+        SoundManager.Instance.Stop("BGM");
+        AppSound.Instance.SE_TAPSTART.Play();
+
         FadeFilter.Instance.FadeOut(Color.black, 1.0f);
         yield return new WaitForSecondsRealtime(1.0f);
         LoadScene.Load("GameScene");
@@ -132,7 +145,9 @@ public class StartScene : MonoBehaviour
     /// </summary>
     public void OnClickRank()
     {
-        Debug.Log("開始");
+        AppSound.Instance.SE_MENU_OK.Play();
+        SceneManager.sceneLoaded += KeepScore;
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(hiscore);
     }
 
     /// <summary>
@@ -140,6 +155,7 @@ public class StartScene : MonoBehaviour
     /// </summary>
     public void OnClickMenu()
     {
+        AppSound.Instance.SE_MENU_OK.Play();
         StartMenuViewActivate(true);
     }
 
@@ -164,5 +180,21 @@ public class StartScene : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.0f);
         var dloadData = SaveManager.Instance.Load();
         LoadScene.Load("GameScene");
+    }
+
+    /// <summary>
+    /// ランキングシーンに渡すもの
+    /// </summary>
+    /// <param name="nextScene"></param>
+    /// <param name="mode"></param>
+    private void KeepScore(Scene nextScene, LoadSceneMode mode)
+    {
+        var rank = GameObject.Find("RankingSceneManager").GetComponent<RankingScene>();
+        rank.UserName = user.CurrentPlayer;
+        rank.Score = (int)score;
+        rank.Hiscore = (int)hiscore;
+        rank.IsGameOver = false;
+        // イベントの削除
+        SceneManager.sceneLoaded -= KeepScore;
     }
 }

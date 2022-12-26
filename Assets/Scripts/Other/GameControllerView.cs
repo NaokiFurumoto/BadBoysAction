@@ -74,6 +74,7 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void OnClickOptionButton()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         if (State == INGAME_STATE.STOP)
         {
             //閉じる
@@ -111,6 +112,7 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void OnClickRetryButtin()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         ///課金していたらそのままリトライ
         if (uiController.GetIsAds())
         {
@@ -160,12 +162,7 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GoTitle()
     {
-        //クリアデータの取得:リスタートデータの取得
-        //var loadingData = SaveManager.Instance.GetClearSaveData();
-        //if (loadingData == null)
-        //    return;
-
-        //SaveManager.Instance.Save(loadingData);
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         StartCoroutine("GoFadeTitle");
     }
 

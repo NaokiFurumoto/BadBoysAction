@@ -54,6 +54,11 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     private NewEnemyGenerator enemyGenerator;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
 
     /// <summary>
     /// 開始時Fadeinのコールバック
@@ -99,6 +104,8 @@ public partial class GameController : MonoBehaviour
 
         enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
                                       GetComponent<NewEnemyGenerator>();
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
     }
 
     /// <summary>
@@ -130,7 +137,7 @@ public partial class GameController : MonoBehaviour
             var changeData = SaveManager.Instance.ChangeRestartDate(loadData);
             SetStatus(changeData);
         }
-       
+
         //暗転解除後にゲーム開始:PlayInGame()
         FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
     }
@@ -202,7 +209,6 @@ public partial class GameController : MonoBehaviour
                             StartCoroutine("FadeTitle");
                         }
                     }
-
                  );
 
             //リストに追加
@@ -234,6 +240,7 @@ public partial class GameController : MonoBehaviour
         generatorManager.StartGenerate();
 
         state = INGAME_STATE.START;
+        FM.PlayOneShot(appSound.SE_GAMESTART);
         startView.gameObject.SetActive(true);
         Invoke("SetPlayGame", START_PLAYINGTIME);
     }
@@ -243,6 +250,12 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void SetPlayGame()
     {
+        //ロードVolumeに変更
+        //FM.SetVolume(appSound.BGM_STAGE, 1.0f);
+        appSound.BGM_STAGE.Play();
+        FM.FadeInVolume(appSound.BGM_STAGE, FM.GetVolume(appSound.BGM_STAGE), 2.0f,true);
+        appSound.BGM_STAGE.loop = true;
+        
         state = INGAME_STATE.PLAYING;
     }
 
@@ -260,6 +273,7 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void GameResult()
     {
+        //FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
         //プレイ回数追加
         uiController.AddPlayTime();
 
@@ -308,7 +322,6 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-        //SaveManager.Instance.GamePlaingSave();
         TimeManager.Instance.ResetSlow();
         GameStart();
     }
@@ -357,6 +370,11 @@ public partial class GameController : MonoBehaviour
         UserAuth.Instance.CurrentPassward = loadData.Passward;
         UserAuth.Instance.IsLogin = loadData.IsLogin;
         UserAuth.Instance.IsSignUp = loadData.IsSighin;
+
+        //BGM/SEボリューム設定
+        SoundManager.Instance.SetVolume("BGM", loadData.BGM_Volume);
+        SoundManager.Instance.SetVolume("SE", loadData.SE_Volume);
+        SoundManager.Instance.Bgm_SeVolume = (loadData.BGM_Volume, loadData.SE_Volume);
     }
 
 }

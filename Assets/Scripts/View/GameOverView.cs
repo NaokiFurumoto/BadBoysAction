@@ -49,10 +49,18 @@ public class GameOverView : ViewBase
     [SerializeField]
     private UserAuth user;
 
+    /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
 
     protected override  void OnEnable()
     {
         base.OnEnable();
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
 
         btn_Rank.interactable = false;
         HiScoreEffect(false);
@@ -62,6 +70,11 @@ public class GameOverView : ViewBase
                                      GetComponent<UserAuth>();
         //撃破数の表示
         text_Kills.text = uiController?.GetTextKillsNumber().ToString();
+    }
+
+    public void GameOverSE()
+    {
+        FM.PlayOneShot(appSound.SE_GAMEOVER);
     }
 
     protected override void OnDisable() { }
@@ -83,7 +96,7 @@ public class GameOverView : ViewBase
             //ハイスコア演出表示
             HiScoreEffect(true);
             uiController.SetHiScore(score);
-
+            FM.PlayOneShot(appSound.SE_HISCORE);
             btn_Rank.interactable = user.IsLogin ? true : false;
         }
 
@@ -109,6 +122,7 @@ public class GameOverView : ViewBase
     /// </summary>
     public void SnsShare()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         SnsManager.Instance?.Tweet();
     }
 
@@ -117,6 +131,7 @@ public class GameOverView : ViewBase
     /// </summary>
     public void OnClickRank()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         SceneManager.sceneLoaded += KeepScore;
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(uiController.GetKillsNumber());
     }

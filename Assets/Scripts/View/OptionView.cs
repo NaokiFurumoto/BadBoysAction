@@ -64,17 +64,24 @@ public class OptionView : ViewBase
     private UiController uiController;
 
     /// <summary>
+    /// キャッシュ用
+    /// </summary>
+    private AppSound appSound;
+    private SoundManager FM;
+
+    /// <summary>
     /// 初期化
     /// </summary>
     private IEnumerator Start()
     {
+        FM = SoundManager.Instance;
+        appSound = AppSound.Instance;
         uiController = GameObject.FindGameObjectWithTag("UI").
                                  GetComponent<UiController>();
         loginView = loginViewObj?.GetComponent<LoginView>();
         yield return new WaitForSecondsRealtime(1);
         OpenDialogCallBack();
     }
-
 
     private void OpenDialogCallBack()
     {
@@ -91,7 +98,7 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickTitleBtn()
     {
-        //現在のバトルを終了してタイトルに戻ります。よろしいでしょうか？
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         //スタミナ状態を保存
         CommonDialog.ShowDialog(OPTION_GOSTART_TITLE, OPTION_GOSTART_DESC, YES, NO, GoTitleCallback);
     }
@@ -101,6 +108,8 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickRankBtn()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
+        //FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
         SceneManager.sceneLoaded += KeepScore;
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(uiController.GetKillsNumber());
     }
@@ -110,6 +119,7 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickSignUpBtn()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         loginViewObj?.SetActive(true);
         loginView?.SwitchMenu(LoginView.LOGIN_TYPE.NEW);
     }
@@ -119,6 +129,7 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickLoginBtn()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         loginViewObj?.SetActive(true);
         loginView?.SwitchMenu(LoginView.LOGIN_TYPE.LOGIN);
     }
@@ -128,6 +139,7 @@ public class OptionView : ViewBase
     /// </summary>
     public void OnClickLogoutBtn()
     {
+        FM.PlayOneShot(appSound.SE_MENU_OK);
         loginViewObj?.SetActive(true);
         loginView?.SwitchMenu(LoginView.LOGIN_TYPE.LOGOUT);
     }
@@ -137,11 +149,13 @@ public class OptionView : ViewBase
     /// </summary>
     private void GoTitleCallback()
     {
+        FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 1.0f, false);
         StartCoroutine("FadeTitle");
     }
 
     private IEnumerator FadeTitle()
     {
+
         gameController.GameResume();
         FadeFilter.Instance.FadeOut(Color.black, 1.0f);
         yield return new WaitForSecondsRealtime(1.0f);
@@ -197,6 +211,4 @@ public class OptionView : ViewBase
         // イベントの削除
         SceneManager.sceneLoaded -= KeepScore;
     }
-
-
 }

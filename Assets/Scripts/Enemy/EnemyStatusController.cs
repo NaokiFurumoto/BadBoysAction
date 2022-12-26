@@ -136,11 +136,7 @@ public class EnemyStatusController : MonoBehaviour
         get { return isDead; }
         set { isDead = value; }
     }
-    //public bool IsDamage
-    //{
-    //    get { return isDamage; }
-    //    set { isDamage = value; }
-    //}
+  
     public bool HasPlayerTarget => hasPlayerTarget;
     public Rigidbody2D Rigid2D => rigid2D;
     public int Life => life;
@@ -284,6 +280,7 @@ public class EnemyStatusController : MonoBehaviour
     /// </summary>
     public void EnemyDead()
     {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_EN_DAMAGE);
         SetDeadStatus();
         sprite.color = Color.white;
         animator.SetTrigger("Dead");
@@ -331,14 +328,6 @@ public class EnemyStatusController : MonoBehaviour
 
         enemyLifeAc.ChangeActiveLifeImage(false);
         trail.enabled = false;
-    }
-
-    //生成時の体力設定
-    public void SetCreateLife()
-    {
-        //ライフは1から10まで
-        //タイプによってライフの変更
-        //ライフ割合ステータスクラスがいる
     }
     #endregion
 }
