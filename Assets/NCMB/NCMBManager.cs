@@ -137,6 +137,7 @@ namespace NCMB
 			ClearAfterOneFrame ();
 		}
 
+		[System.Obsolete]
 		void Update ()
 		{
 			string pushId = LoadOpenedPushId(); 
@@ -144,7 +145,7 @@ namespace NCMB
 				NCMBAnalytics.TrackAppOpened (pushId);
 				SaveOpenedPushId(null);
 			}
-
+			
 			if (UnityEngine.iOS.NotificationServices.remoteNotificationCount > 0) {
 				ProcessNotification ();
 				NCMBPush push = new NCMBPush ();
@@ -152,6 +153,7 @@ namespace NCMB
 			}
 		}
 
+		[System.Obsolete]
 		void ProcessNotification ()
 		{
 			// Payload data dictionary
