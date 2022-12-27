@@ -28,11 +28,6 @@ public class ItemController : MonoBehaviour
     private static List<DropItem> dropedItems = new List<DropItem>();
 
     /// <summary>
-    /// ドロップアイテムタイプ
-    /// </summary>
-    private DROPITEM_TYPE dropItemType;
-
-    /// <summary>
     /// 選択されたドロップアイテム
     /// </summary>
     private DropItem selectDropItem;
@@ -48,7 +43,6 @@ public class ItemController : MonoBehaviour
     private void InitializeThis()
     {
         Instance ??= this;
-        dropItemType = DROPITEM_TYPE.NONE;
         dropedItems.Clear();
     }
 

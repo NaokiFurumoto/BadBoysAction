@@ -27,10 +27,6 @@ public class LoginView : ViewBase
     [SerializeField]
     private string mail;
 
-    //ログイン状況
-    [SerializeField]
-    private LOGIN_TYPE loginType = LOGIN_TYPE.NONE;
-
     //切替
     [SerializeField]
     private List<LoginMenuBase> menuList = new List<LoginMenuBase>();

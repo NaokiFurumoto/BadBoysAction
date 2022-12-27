@@ -20,18 +20,6 @@ public class EnemyEscapeMove : EnemyMovement
     private ESCAPE_STATE state;
 
     /// <summary>
-    /// 待機時間
-    /// </summary>
-    [SerializeField]
-    private float idleTime = 1.0f;
-
-    /// <summary>
-    /// 逃げる時間
-    /// </summary>
-    [SerializeField]
-    private float EscapeTime = 10.0f;
-
-    /// <summary>
     /// 待機開始時間
     /// </summary>
     private float idleStartTime;

@@ -35,6 +35,7 @@ namespace  NCMB
 	[NCMBClassName ("analytics")]
 	internal class NCMBAnalytics
 	{
+		[System.Obsolete]
 		internal static void TrackAppOpened (string _pushId)	//(Android/iOS)-NCMBManager.onAnalyticsReceived-this.NCMBAnalytics
 		{
 			//ネイティブから取得したpushIdからリクエストヘッダを作成

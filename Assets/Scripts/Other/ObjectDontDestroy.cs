@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ObjectDontDestroy : MonoBehaviour
 {
-	public bool DontDestroyEnabled = true;
+	//public bool DontDestroyEnabled = true;
 
-	void Start()
-	{
-		if (DontDestroyEnabled)
-		{
-			DontDestroyOnLoad(this);
-		}
-	}
+	//void Start()
+	//{
+	//	if (DontDestroyEnabled)
+	//	{
+	//		DontDestroyOnLoad(this);
+	//	}
+	//}
 }

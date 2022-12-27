@@ -48,22 +48,22 @@ namespace naichilab
         {
             try
             {
-                switch (Type)
+                if (Type == ScoreType.Number)
                 {
-                    case ScoreType.Number:
-                        double d = double.Parse(scoreText);
-                        return new NumberScore(d, CustomFormat);
-                        break;
-                    case ScoreType.Time:
-                        long ticks = long.Parse(scoreText);
-                        TimeSpan t = new TimeSpan(ticks);
-                        return new TimeScore(t, CustomFormat);
-                        break;
+                    double d = double.Parse(scoreText);
+                    return new NumberScore(d, CustomFormat);
                 }
+                else if (Type == ScoreType.Time)
+                {
+                    long ticks = long.Parse(scoreText);
+                    TimeSpan t = new TimeSpan(ticks);
+                    return new TimeScore(t, CustomFormat);
+                }
+
             }
             catch (Exception ex)
             {
-                Debug.LogWarning("不正なデータが渡されました。[" + scoreText + "]");
+                Debug.LogWarning("不正なデータが渡されました。[" + scoreText + "]" + ex);
             }
 
             return null;

@@ -132,6 +132,7 @@ namespace NCMB
 		#region Process notification for iOS only
 
 		#if UNITY_IOS
+		[System.Obsolete]
 		void Start ()
 		{
 			ClearAfterOneFrame ();
@@ -199,6 +200,7 @@ namespace NCMB
 			}
 		}
 
+		[System.Obsolete]
 		void OnApplicationPause (bool pause)
 		{
 			if (!pause) {
@@ -206,11 +208,13 @@ namespace NCMB
 			}
 		}
 
+		[System.Obsolete]
 		void ClearAfterOneFrame ()
 		{
 			StartCoroutine (IEClearAfterAFrame ());
 		}
 
+		[System.Obsolete]
 		IEnumerator IEClearAfterAFrame ()
 		{
 			yield return 0;

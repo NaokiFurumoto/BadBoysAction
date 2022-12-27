@@ -11,9 +11,6 @@ using static GlobalValue;
 public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField]
-    private bool debugLog = false;
-
-    [SerializeField]
     private bool dontDestroy = true;
 
     [SerializeField]
@@ -414,6 +411,7 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
+    [System.Obsolete]
     public void FadeOutVolumeGroup(string groupName, string soundName, float v, float t, bool init)
     {
         AudioSource audioSource = FindAudioSource(groupName, soundName);

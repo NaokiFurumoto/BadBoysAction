@@ -1,4 +1,4 @@
-/*******
+﻿/*******
  Copyright 2017-2022 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -331,6 +331,7 @@ namespace NCMB
 
 		#if UNITY_IOS
 		// Clears all notifications.
+		[System.Obsolete]
 		public void ClearAll ()
 		{
 			#if UNITY_4_0 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
