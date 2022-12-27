@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
@@ -13,50 +13,50 @@ public class OptionView : ViewBase
     private GameObject BG;
 
     /// <summary>
-    /// ƒƒOƒCƒ“‰æ–Ê
+    /// ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢
     /// </summary>
     [SerializeField]
     private GameObject loginViewObj;
     private LoginView loginView;
 
     /// <summary>
-    /// ƒTƒCƒ“ƒAƒbƒvƒIƒuƒWƒFƒNƒg
+    /// ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private GameObject sighup;
 
     /// <summary>
-    /// ƒƒOƒCƒ“/ƒAƒEƒgƒIƒuƒWƒFƒNƒg
+    /// ãƒ­ã‚°ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private GameObject login;
 
     /// <summary>
-    /// ƒ†[ƒU[
+    /// ãƒ¦ãƒ¼ã‚¶ãƒ¼
     /// </summary>
     [SerializeField]
     private UserAuth user;
 
     /// <summary>
-    /// ƒƒOƒCƒ“ƒ{ƒ^ƒ“
+    /// ãƒ­ã‚°ã‚¤ãƒ³ãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button loginBtn;
 
     /// <summary>
-    /// ƒTƒCƒ“ƒCƒ“ƒ{ƒ^ƒ“
+    /// ã‚µã‚¤ãƒ³ã‚¤ãƒ³ãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button sighinBtn;
 
     /// <summary>
-    /// ƒƒOƒAƒEƒgƒ{ƒ^ƒ“
+    /// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button logoutBtn;
 
     /// <summary>
-    /// ƒ‰ƒ“ƒNƒ{ƒ^ƒ“
+    /// ãƒ©ãƒ³ã‚¯ãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button rankBtn;
@@ -64,13 +64,13 @@ public class OptionView : ViewBase
     private UiController uiController;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private IEnumerator Start()
     {
@@ -85,7 +85,7 @@ public class OptionView : ViewBase
 
     private void OpenDialogCallBack()
     {
-        ///ƒCƒxƒ“ƒg‚Ì“o˜^
+        ///ã‚¤ãƒ™ãƒ³ãƒˆã®ç™»éŒ²
         var eventTrigger = BG.gameObject.AddComponent<EventTrigger>();
         var entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
@@ -94,17 +94,17 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÉˆÚ“®
+    /// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«ç§»å‹•
     /// </summary>
     public void OnClickTitleBtn()
     {
         FM.PlayOneShot(appSound.SE_MENU_OK);
-        //ƒXƒ^ƒ~ƒió‘Ô‚ğ•Û‘¶
+        //ã‚¹ã‚¿ãƒŸãƒŠçŠ¶æ…‹ã‚’ä¿å­˜
         CommonDialog.ShowDialog(OPTION_GOSTART_TITLE, OPTION_GOSTART_DESC, YES, NO, GoTitleCallback);
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê‚Ì•\¦
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã®è¡¨ç¤º
     /// </summary>
     public void OnClickRankBtn()
     {
@@ -115,7 +115,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒAƒbƒv‰æ–Ê‚Ì•\¦
+    /// ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—ç”»é¢ã®è¡¨ç¤º
     /// </summary>
     public void OnClickSignUpBtn()
     {
@@ -125,7 +125,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒƒOƒCƒ“‰æ–Ê‚Ì•\¦
+    /// ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã®è¡¨ç¤º
     /// </summary>
     public void OnClickLoginBtn()
     {
@@ -135,7 +135,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒƒOƒAƒEƒg‰æ–Ê‚Ì•\¦
+    /// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆç”»é¢ã®è¡¨ç¤º
     /// </summary>
     public void OnClickLogoutBtn()
     {
@@ -145,7 +145,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÉˆÈ~
+    /// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«ä»¥é™
     /// </summary>
     private void GoTitleCallback()
     {
@@ -163,7 +163,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒŒƒCƒAƒEƒg‚Ì•ÏX
+    /// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®å¤‰æ›´
     /// </summary>
     public void ChangeLayout()
     {
@@ -176,11 +176,11 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// —LŒø
+    /// æœ‰åŠ¹æ™‚
     /// </summary>
     protected override void OnEnable()
     {
-        //ˆê“xƒ[ƒh
+        //ä¸€åº¦ãƒ­ãƒ¼ãƒ‰
         var loadData = SaveManager.Instance.Load();
         if(user != null && loadData != null)
         {
@@ -197,7 +197,7 @@ public class OptionView : ViewBase
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒV[ƒ“‚É“n‚·‚à‚Ì
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚·ãƒ¼ãƒ³ã«æ¸¡ã™ã‚‚ã®
     /// </summary>
     /// <param name="nextScene"></param>
     /// <param name="mode"></param>
@@ -208,7 +208,7 @@ public class OptionView : ViewBase
         rank.Score = uiController.GetKillsNumber();
         rank.Hiscore = uiController.GetHiScore();
         rank.IsGameOver = false;
-        // ƒCƒxƒ“ƒg‚Ìíœ
+        // ã‚¤ãƒ™ãƒ³ãƒˆã®å‰Šé™¤
         SceneManager.sceneLoaded -= KeepScore;
     }
 }

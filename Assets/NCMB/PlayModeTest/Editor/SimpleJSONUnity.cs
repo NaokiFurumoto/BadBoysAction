@@ -1,4 +1,4 @@
-#region License and information
+﻿#region License and information
 /* * * * *
  * 
  * Unity extension for the SimpleJSON framework. It does only work together with
@@ -15,7 +15,7 @@
  * 
  * The MIT License (MIT)
  * 
- * Copyright (c) 2012-2017 Markus Göbel (Bunny83)
+ * Copyright (c) 2012-2017 Markus Gﾃｶbel (Bunny83)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

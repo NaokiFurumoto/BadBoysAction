@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -7,7 +7,7 @@ using static GlobalValue;
 public class CameraAction : MonoBehaviour
 {
     /// <summary>
-    /// “G‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚½‚Æ‚«‚És‚¤‰‰o
+    /// æ•µã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆãŸã¨ãã«è¡Œã†æ¼”å‡º
     /// </summary>
     public static void EnemyDamage()
     {
@@ -21,7 +21,7 @@ public class CameraAction : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ªƒ_ƒ[ƒW‚ğó‚¯‚½‚Æ‚«‚És‚¤‰‰o
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸã¨ãã«è¡Œã†æ¼”å‡º
     /// </summary>
     public static void PlayerDamage()
     {

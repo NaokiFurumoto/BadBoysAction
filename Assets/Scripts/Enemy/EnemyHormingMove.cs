@@ -1,74 +1,74 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 
 /// <summary>
-/// ƒ~ƒTƒCƒ‹ƒ^ƒCƒv
+/// ãƒŸã‚µã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
 /// </summary>
 public enum HORMING_STATE
 {
-    HORMING,//ƒz[ƒ~ƒ“ƒO
-    IDLE,//‘Ò‹@
+    HORMING,//ãƒ›ãƒ¼ãƒŸãƒ³ã‚°
+    IDLE,//å¾…æ©Ÿ
 }
 public class EnemyHormingMove : EnemyMovement
 {
     /// <summary>
-    /// ó‘Ô
+    /// çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private HORMING_STATE state;
 
     /// <summary>
-    /// ’ÇŠÔ
+    /// è¿½éšæ™‚é–“
     /// </summary>
     [SerializeField]
     private float hormingTime = 15.0f;
 
     /// <summary>
-    /// ‘Ò‹@ŠÔ
+    /// å¾…æ©Ÿæ™‚é–“
     /// </summary>
     [SerializeField]
     private float idleTime = 2.0f;
 
     /// <summary>
-    /// ‘Ò‹@ŠJnŠÔ
+    /// å¾…æ©Ÿé–‹å§‹æ™‚é–“
     /// </summary>
     private float idleStartTime;
 
     /// <summary>
-    /// ’ÇŠJnŠÔ
+    /// è¿½éšé–‹å§‹æ™‚é–“
     /// </summary>
     private float hormingStartTime;
 
     /// <summary>
-    /// •ûŒü
+    /// æ–¹å‘
     /// </summary>
     private Vector2 moveDirection;
 
     /// <summary>
-    /// ƒxƒNƒgƒ‹
+    /// ãƒ™ã‚¯ãƒˆãƒ«
     /// </summary>
     private Vector2 moveVelocity;
 
     /// <summary>
-    ///  i‚Ş•ûŒü
+    ///  é€²ã‚€æ–¹å‘
     /// </summary>
     Vector2 move = new Vector2(1, 0);
 
     /// <summary>
-    /// ©•ª‚ÌŠp“x
+    /// è‡ªåˆ†ã®è§’åº¦
     /// </summary>
     float arot = 0;
 
     /// <summary>
-    /// ‹È‚ª‚éÅ‘åŠp“x
+    /// æ›²ãŒã‚‹æœ€å¤§è§’åº¦
     /// </summary>
     [SerializeField]
     float Maxkaku = 0.05f;
 
     /// <summary>
-    /// ‹È‚ª‚éŠp“x
+    /// æ›²ãŒã‚‹è§’åº¦
     /// </summary>
     private float rotation;
 
@@ -80,7 +80,7 @@ public class EnemyHormingMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected override void TypeMove()
     {
@@ -117,30 +117,30 @@ public class EnemyHormingMove : EnemyMovement
     }
 
     /// <summary>
-    /// ƒz[ƒ~ƒ“ƒO’†‚ÌXVˆ—
+    /// ãƒ›ãƒ¼ãƒŸãƒ³ã‚°ä¸­ã®æ›´æ–°å‡¦ç†
     /// </summary>
     void HormingUpdate()
     {
-        //ˆÚ“®•ûŒü
+        //ç§»å‹•æ–¹å‘
         moveDirection = new Vector2(move.x, move.y);
 
-        //ƒxƒNƒgƒ‹
+        //ãƒ™ã‚¯ãƒˆãƒ«
         moveVelocity = playerCenter.position - enemyTrans.position;
 
-        //“àÏ
+        //å†…ç©
         float dot = moveDirection.x * moveVelocity.x +
                     moveDirection.y * moveVelocity.y;
-        //Šp“x
+        //è§’åº¦
         float angle = Acosf(dot / ((float)length(moveDirection) *
                                    (float)length(moveVelocity)));
 
         if (moveDirection.x * moveVelocity.y - moveDirection.y * moveVelocity.x < 0)
             angle = -angle;
 
-        //ƒ‰ƒWƒAƒ“‚©‚çŠp“x‚É•ÏŠ·
+        //ãƒ©ã‚¸ã‚¢ãƒ³ã‹ã‚‰è§’åº¦ã«å¤‰æ›
         angle = angle * 180 / Mathf.PI;
 
-        // ‰ñ“]Šp“x§Œä
+        // å›è»¢è§’åº¦åˆ¶å¾¡
         if (angle > Maxkaku)
             angle = Maxkaku;
 
@@ -151,37 +151,37 @@ public class EnemyHormingMove : EnemyMovement
     }
 
     //-------------------------------------------------
-    // ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®ˆ—
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•å‡¦ç†
     //-------------------------------------------------
     void HormingMove()
     {
-        float rot = rotation; // ‹È‚ª‚éŠp“x
+        float rot = rotation; // æ›²ãŒã‚‹è§’åº¦
         float tx = move.x, ty = move.y;
 
         move.x = tx * Mathf.Cos(rot) - ty * Mathf.Sin(rot);
         move.y = tx * Mathf.Sin(rot) + ty * Mathf.Cos(rot);
 
-        // ˆÚ“®—Ê‚©‚çŠp“x‚ğ‹‚ß‚é
+        // ç§»å‹•é‡ã‹ã‚‰è§’åº¦ã‚’æ±‚ã‚ã‚‹
         arot = Mathf.Atan2(move.x, move.y);
-        // ƒ‰ƒWƒAƒ“‚©‚çŠp“x‚É
+        // ãƒ©ã‚¸ã‚¢ãƒ³ã‹ã‚‰è§’åº¦ã«
         float kaku = arot * 180.0f / Mathf.PI * -1 + 90;
         BaseMoving(move.x, move.y);
     }
 
     /// <summary>
-    /// ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ‹‚ß‚é
+    /// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
     /// </summary>
-    /// <param name="vec">2“_ŠÔ‚ÌƒxƒNƒgƒ‹</param>
-    /// <returns>ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ•Ô‚·</returns>
+    /// <param name="vec">2ç‚¹é–“ã®ãƒ™ã‚¯ãƒˆãƒ«</param>
+    /// <returns>ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’è¿”ã™</returns>
     public float length(Vector2 vec)
     {
         return Mathf.Sqrt(vec.x * vec.x + vec.y * vec.y);
     }
 
     /// <summary>
-    /// ’·‚³‚ª+-1‚ğ‰z‚¦‚½‚Æ‚«1‚É–ß‚·ˆ—
+    /// é•·ã•ãŒ+-1ã‚’è¶ŠãˆãŸã¨ã1ã«æˆ»ã™å‡¦ç†
     /// </summary>
-    /// <param name="a">“àÏ / ƒxƒNƒgƒ‹‚Ì’·‚³‚Ì“š</param>
+    /// <param name="a">å†…ç© / ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®ç­”</param>
     /// <returns></returns>
     public float Acosf(float a)
     {

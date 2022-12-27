@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Singleton‚æ‚è‚àg‚¢‚â‚·‚¢ƒT[ƒrƒX‚ğ’ñ‹Ÿ‚·‚éŠî’êƒNƒ‰ƒX
-/// Interface‚Æ‘g‚İ‡‚í‚¹‚é‚Æ‹­—Í
+/// Singletonã‚ˆã‚Šã‚‚ä½¿ã„ã‚„ã™ã„ã‚µãƒ¼ãƒ“ã‚¹ã‚’æä¾›ã™ã‚‹åŸºåº•ã‚¯ãƒ©ã‚¹
+/// Interfaceã¨çµ„ã¿åˆã‚ã›ã‚‹ã¨å¼·åŠ›
 /// </summary>
 
 public static class Locator<T> where T : class
@@ -11,15 +11,15 @@ public static class Locator<T> where T : class
     public static T Instance { get; private set; }
 
     /// <summary>
-    /// nullƒ`ƒFƒbƒN
+    /// nullãƒã‚§ãƒƒã‚¯
     /// </summary>
     /// <returns></returns>
     public static bool IsValid() => Instance != null;
 
     /// <summary>
-    /// ŠO•”‚©‚çİ’è‚·‚é
-    /// Locator<ƒNƒ‰ƒX–¼>.Bind(this)
-    /// Locator<ƒNƒ‰ƒX–¼>.Bind(new ƒNƒ‰ƒX–¼)
+    /// å¤–éƒ¨ã‹ã‚‰è¨­å®šã™ã‚‹
+    /// Locator<ã‚¯ãƒ©ã‚¹å>.Bind(this)
+    /// Locator<ã‚¯ãƒ©ã‚¹å>.Bind(new ã‚¯ãƒ©ã‚¹å)
     /// </summary>
     /// <param name="instance"></param>
     public static void Bind(T instance) 
@@ -28,7 +28,7 @@ public static class Locator<T> where T : class
     }
 
     /// <summary>
-    /// ƒNƒŠƒAF”»’è
+    /// ã‚¯ãƒªã‚¢ï¼šåˆ¤å®š
     /// </summary>
     /// <param name="instance"></param>
     public static void Unbind(T instance)
@@ -40,7 +40,7 @@ public static class Locator<T> where T : class
     }
 
     /// <summary>
-    /// ƒNƒŠƒA:‹­§
+    /// ã‚¯ãƒªã‚¢:å¼·åˆ¶
     /// </summary>
     public static void Clear()
     {

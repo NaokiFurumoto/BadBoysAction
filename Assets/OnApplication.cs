@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,25 +40,25 @@ public class OnApplication : MonoBehaviour
             InitializeThis();
 
             if (pause)
-            {   //ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚Ö
-                //¡‚Ìó‘Ô‚ğƒZ[ƒu‚·‚é
+            {   //ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã¸
+                //ä»Šã®çŠ¶æ…‹ã‚’ã‚»ãƒ¼ãƒ–ã™ã‚‹
                 uiController.SetIsBreak(true);
                 SaveManager.Instance.GamePlaingSave();
                 gameController.OnClickOptionButton();
-                Debug.Log("ˆê’â~");
+                Debug.Log("ä¸€æ™‚åœæ­¢");
             }
             else
             {
-                //•œ‹A
+                //å¾©å¸°
                 SaveManager.Instance.Load();
                 uiController.SetIsBreak(false);
-                Debug.Log("ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚©‚ç‚Ì•œ‹A");
+                Debug.Log("ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‹ã‚‰ã®å¾©å¸°");
             }
         }
     }
 
     /// <summary>
-    /// ƒAƒvƒŠ‚Ì’†’f
+    /// ã‚¢ãƒ—ãƒªã®ä¸­æ–­
     /// </summary>
     /// <param name="pause"></param>
     private void OnApplicationQuit()
@@ -67,7 +67,7 @@ public class OnApplication : MonoBehaviour
         {
             uiController.SetIsBreak(true);
             SaveManager.Instance.GamePlaingSave();
-            Debug.Log("’†’f");
+            Debug.Log("ä¸­æ–­");
         }
     }
 }

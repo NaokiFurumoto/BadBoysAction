@@ -1,43 +1,43 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 /// <summary>
-/// ƒvƒŒ[ƒ„[‚©‚çˆê’èŠÔ“¦‚°‚é
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‹ã‚‰ä¸€å®šæ™‚é–“é€ƒã’ã‚‹
 /// </summary>
 public enum ESCAPE_STATE
 {
-    WALK,//•à‚­
-    ESCAPE,//“¦‚°‚é
-    IDLE,//‘Ò‹@
+    WALK,//æ­©ã
+    ESCAPE,//é€ƒã’ã‚‹
+    IDLE,//å¾…æ©Ÿ
 }
 public class EnemyEscapeMove : EnemyMovement
 {
     /// <summary>
-    /// ó‘Ô
+    /// çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private ESCAPE_STATE state;
 
     /// <summary>
-    /// ‘Ò‹@ŠÔ
+    /// å¾…æ©Ÿæ™‚é–“
     /// </summary>
     [SerializeField]
     private float idleTime = 1.0f;
 
     /// <summary>
-    /// “¦‚°‚éŠÔ
+    /// é€ƒã’ã‚‹æ™‚é–“
     /// </summary>
     [SerializeField]
     private float EscapeTime = 10.0f;
 
     /// <summary>
-    /// ‘Ò‹@ŠJnŠÔ
+    /// å¾…æ©Ÿé–‹å§‹æ™‚é–“
     /// </summary>
     private float idleStartTime;
 
     /// <summary>
-    /// ’Ç‚¢‚©‚¯ŠJnŠÔ
+    /// è¿½ã„ã‹ã‘é–‹å§‹æ™‚é–“
     /// </summary>
     private float escapeStartTime;
 
@@ -47,14 +47,14 @@ public class EnemyEscapeMove : EnemyMovement
     /// //////////////////////////////////////////////////////////////////////////
     /// </summary>
     Vector2 A, C, AB, AC;
-    Vector2 move = new Vector2(1, 0); // i‚Ş•ûŒü
-    float speed = 5f; // “®‚­ƒXƒs[ƒh
-    float arot = 0; // ©•ª‚ÌŠp“x
+    Vector2 move = new Vector2(1, 0); // é€²ã‚€æ–¹å‘
+    float speed = 5f; // å‹•ãã‚¹ãƒ”ãƒ¼ãƒ‰
+    float arot = 0; // è‡ªåˆ†ã®è§’åº¦
 
-    float Maxkaku = 0.05f; // ‹È‚ª‚éÅ‘åŠp“x
-    public float rotation; // ‹È‚ª‚éŠp“x
+    float Maxkaku = 0.05f; // æ›²ãŒã‚‹æœ€å¤§è§’åº¦
+    public float rotation; // æ›²ãŒã‚‹è§’åº¦
 
-    private GameObject target; // —£‚ê‚é‘ÎÛ
+    private GameObject target; // é›¢ã‚Œã‚‹å¯¾è±¡
 
 
     protected override void Initialize()
@@ -68,37 +68,37 @@ public class EnemyEscapeMove : EnemyMovement
 
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected override void TypeMove()
     {
-        //©•ª‚ÌˆÊ’u
+        //è‡ªåˆ†ã®ä½ç½®
         A = new Vector2(enemyTrans.position.x, enemyTrans.position.y); 
-        //ƒvƒŒƒCƒ„[‚ÌˆÊ’u
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
         C = new Vector2(target.transform.position.x, target.transform.position.y); 
 
-        //ˆÚ“®•ûŒü
+        //ç§»å‹•æ–¹å‘
         AB = new Vector2(move.x,move.y);
-        //ƒ^[ƒQƒbƒg‚ÌƒxƒNƒgƒ‹
+        //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ãƒ™ã‚¯ãƒˆãƒ«
         AC = C - A;
 
-        //‚È‚·Šp‚ğ‹‚ß‚é
-        //“àÏ
+        //ãªã™è§’ã‚’æ±‚ã‚ã‚‹
+        //å†…ç©
         float dot = AB.x * AC.x + AB.y * AC.y;
 
-        // ƒA[ƒNƒRƒTƒCƒ“‚ğg‚Á‚Ä“àÏ‚ÆƒxƒNƒgƒ‹‚Ì’·‚³‚©‚çŠp“x‚ğ‹‚ß‚é
+        // ã‚¢ãƒ¼ã‚¯ã‚³ã‚µã‚¤ãƒ³ã‚’ä½¿ã£ã¦å†…ç©ã¨ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‹ã‚‰è§’åº¦ã‚’æ±‚ã‚ã‚‹
         float r = Acosf(dot / ((float)length(AB) * (float)length(AC)));
 
 
-        // ‹È‚ª‚é•ûŒü‚ğŒˆ‚ß‚é
+        // æ›²ãŒã‚‹æ–¹å‘ã‚’æ±ºã‚ã‚‹
         if (AB.x * AC.y - AB.y * AC.x < 0)
         {
             r = -r;
         }
 
-        r = r * 180 / Mathf.PI; // ƒ‰ƒWƒAƒ“‚©‚çŠp“x‚É
+        r = r * 180 / Mathf.PI; // ãƒ©ã‚¸ã‚¢ãƒ³ã‹ã‚‰è§’åº¦ã«
 
-        // ‰ñ“]Šp“x§Œä
+        // å›è»¢è§’åº¦åˆ¶å¾¡
         if (r > Maxkaku)
         {
             r = Maxkaku;
@@ -109,7 +109,7 @@ public class EnemyEscapeMove : EnemyMovement
         }
 
 
-        rotation = r; // ‹È‚ª‚éŠp“x‚ğ“ü‚ê‚é
+        rotation = r; // æ›²ãŒã‚‹è§’åº¦ã‚’å…¥ã‚Œã‚‹
 
 
         Move();
@@ -148,7 +148,7 @@ public class EnemyEscapeMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected  void TypeMoveer()
     {
@@ -184,39 +184,39 @@ public class EnemyEscapeMove : EnemyMovement
     }
 
     //-------------------------------------------------
-    // ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®ˆ—
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•å‡¦ç†
     //-------------------------------------------------
     void Move()
     {
-        float rot = rotation; // ‹È‚ª‚éŠp“x
+        float rot = rotation; // æ›²ãŒã‚‹è§’åº¦
 
         float tx = move.x, ty = move.y;
 
         move.x = tx * Mathf.Cos(rot) - ty * Mathf.Sin(rot);
         move.y = tx * Mathf.Sin(rot) + ty * Mathf.Cos(rot);
 
-        arot = Mathf.Atan2(move.x, move.y); // ˆÚ“®—Ê‚©‚çŠp“x‚ğ‹‚ß‚é
-        float kaku = arot * 180.0f / Mathf.PI *-1 + 90; // ƒ‰ƒWƒAƒ“‚©‚çŠp“x‚É
+        arot = Mathf.Atan2(move.x, move.y); // ç§»å‹•é‡ã‹ã‚‰è§’åº¦ã‚’æ±‚ã‚ã‚‹
+        float kaku = arot * 180.0f / Mathf.PI *-1 + 90; // ãƒ©ã‚¸ã‚¢ãƒ³ã‹ã‚‰è§’åº¦ã«
 
-        rigid.velocity = new Vector2(move.x, move.y) * speed; // ˆÚ“®(ÅŒã‚Ì[1‚ğ‚©‚¯‚Ä‚¢‚éŠ‚ğÁ‚·‚ÆƒvƒŒƒCƒ„[‚ğ’Ç‚¢‚©‚¯‚Ü‚·)
-        //transform.rotation = Quaternion.Euler(0, 0, kaku); // ‰ñ“]
+        rigid.velocity = new Vector2(move.x, move.y) * speed; // ç§»å‹•(æœ€å¾Œã®ãƒ¼1ã‚’ã‹ã‘ã¦ã„ã‚‹æ‰€ã‚’æ¶ˆã™ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¿½ã„ã‹ã‘ã¾ã™)
+        //transform.rotation = Quaternion.Euler(0, 0, kaku); // å›è»¢
 
     }
 
     /// <summary>
-    /// ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ‹‚ß‚é
+    /// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
     /// </summary>
-    /// <param name="vec">2“_ŠÔ‚ÌƒxƒNƒgƒ‹</param>
-    /// <returns>ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ•Ô‚·</returns>
+    /// <param name="vec">2ç‚¹é–“ã®ãƒ™ã‚¯ãƒˆãƒ«</param>
+    /// <returns>ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’è¿”ã™</returns>
     public float length(Vector2 vec)
     {
         return Mathf.Sqrt(vec.x * vec.x + vec.y * vec.y);
     }
 
     /// <summary>
-    /// ’·‚³‚ª+-1‚ğ‰z‚¦‚½‚Æ‚«1‚É–ß‚·ˆ—
+    /// é•·ã•ãŒ+-1ã‚’è¶ŠãˆãŸã¨ã1ã«æˆ»ã™å‡¦ç†
     /// </summary>
-    /// <param name="a">“àÏ / ƒxƒNƒgƒ‹‚Ì’·‚³‚Ì“š</param>
+    /// <param name="a">å†…ç© / ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®ç­”</param>
     /// <returns></returns>
     public float Acosf(float a)
     {

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,32 +8,32 @@ using static GlobalValue;
 public class StaminaStatus : MonoBehaviour
 {
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi”Ô†
+    /// ã‚¹ã‚¿ãƒŸãƒŠç•ªå·
     /// </summary>
     [SerializeField]
     private int number;
 
     /// <summary>
-    /// ‰ñ•œ”»’è
+    /// å›å¾©åˆ¤å®š
     /// </summary>
     [SerializeField]
     private bool isRecovery;
 
     /// <summary>
-    /// ONƒCƒ[ƒW
+    /// ONã‚¤ãƒ¡ãƒ¼ã‚¸
     /// </summary>
     [SerializeField]
     private GameObject image_On;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public int Number => number;
     public bool IsRecovery => isRecovery;
     #endregion
 
 
-    //¡ŠÖ”
-    //•\¦Ø‘Ö
-    //‰ñ•œŠÔŒv‘ªFÁ”ï‚³‚ê‚½ƒ^ƒCƒ~ƒ“ƒO‚Å
+    //â– é–¢æ•°
+    //è¡¨ç¤ºåˆ‡æ›¿
+    //å›å¾©æ™‚é–“è¨ˆæ¸¬ï¼šæ¶ˆè²»ã•ã‚ŒãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§
 
 
     private void Start()
@@ -42,7 +42,7 @@ public class StaminaStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
    private void Initialize()
     {
@@ -51,7 +51,7 @@ public class StaminaStatus : MonoBehaviour
 
 
     /// <summary>
-    /// ƒCƒ[ƒWØ‚è‘Ö‚¦
+    /// ã‚¤ãƒ¡ãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
     /// </summary>
     /// <param name="_have"></param>
     public void ChangeStaminaImage(bool _have)

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using TMPro;
 using static GlobalValue;
 using System.Linq;
 /// <summary>
-/// “G‚Ì‘Ì—Í‚ÉŠÖ‚·‚éƒNƒ‰ƒX
+/// æ•µã®ä½“åŠ›ã«é–¢ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class EnemyLifeAction : MonoBehaviour
 {
@@ -17,18 +17,18 @@ public class EnemyLifeAction : MonoBehaviour
     private List<int> encountLife = new List<int>();
   
     /// <summary>
-    /// ƒeƒLƒXƒg‚Ì•ÏX
+    /// ãƒ†ã‚­ã‚¹ãƒˆã®å¤‰æ›´
     /// </summary>
     /// <param name="damage"></param>
     public void SetLifeText(int _life)
     {
-        //’l‚Ì§ŒÀ
+        //å€¤ã®åˆ¶é™
         _life = Mathf.Clamp(_life, 0, ENMAX_LIFEPOINT);
         textMesh.text = _life.ToString();
     }
 
     /// <summary>
-    /// Š„‡‚Ì‡Œv
+    /// å‰²åˆã®åˆè¨ˆ
     /// </summary>
     /// <returns></returns>
     private int TotalRatio()
@@ -37,7 +37,7 @@ public class EnemyLifeAction : MonoBehaviour
     }
 
     /// <summary>
-    /// İ’è‚³‚ê‚½Š„‡‚©‚ç‘Ì—Í‚ğ‹‚ß‚é
+    /// è¨­å®šã•ã‚ŒãŸå‰²åˆã‹ã‚‰ä½“åŠ›ã‚’æ±‚ã‚ã‚‹
     /// </summary>
     /// <returns></returns>
     public int SetCreateLife()
@@ -54,12 +54,12 @@ public class EnemyLifeAction : MonoBehaviour
                 return i + 1;
             }
         }
-        //—áŠO
+        //ä¾‹å¤–
         return 1;
     }
 
     /// <summary>
-    /// •\¦Ø‘Ö
+    /// è¡¨ç¤ºåˆ‡æ›¿
     /// </summary>
     /// <param name="isActive"></param>
     public void ChangeActiveLifeImage(bool isActive)

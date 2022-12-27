@@ -1,27 +1,27 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using static GlobalValue;
 /// <summary>
-/// “G‚Ìó‘ÔŠÇ—ƒNƒ‰ƒX
+/// æ•µã®çŠ¶æ…‹ç®¡ç†ã‚¯ãƒ©ã‚¹
 /// </summary>
 
-///ó‘Ô
+///çŠ¶æ…‹
 public enum ENEMY_STATE
 {
-    NONE,//–¢İ’è
-    IDLE,//‘Ò‹@
-    MOVE,//ˆÚ“®’†
-    ATTACK,//UŒ‚’†
-    DAMAGE,//ƒ_ƒ[ƒW‚ğó‚¯‚Ä‚é
-    NOCKBACK,//ƒmƒbƒNƒoƒbƒN’†
-    DEATH,//€–S
+    NONE,//æœªè¨­å®š
+    IDLE,//å¾…æ©Ÿ
+    MOVE,//ç§»å‹•ä¸­
+    ATTACK,//æ”»æ’ƒä¸­
+    DAMAGE,//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã¦ã‚‹
+    NOCKBACK,//ãƒãƒƒã‚¯ãƒãƒƒã‚¯ä¸­
+    DEATH,//æ­»äº¡
 }
 public class EnemyStatusController : MonoBehaviour
 {
     /// <summary>
-    /// ‘Ì—Í
+    /// ä½“åŠ›
     /// </summary>
     [SerializeField]
     private int life = 1;
@@ -33,68 +33,68 @@ public class EnemyStatusController : MonoBehaviour
     private EnemyLifeAction enemyLifeAc;
 
     /// <summary>
-    /// •Ç‚É“–‚½‚Á‚½‰ñ”
+    /// å£ã«å½“ãŸã£ãŸå›æ•°
     /// </summary>
     [SerializeField]
     private int wallDamageTimes;
 
     /// <summary>
-    /// ƒ^[ƒQƒbƒg‚ğ”­Œ©‚µ‚Ä‚é‚©‚Ì”»’è
+    /// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ç™ºè¦‹ã—ã¦ã‚‹ã‹ã®åˆ¤å®š
     /// </summary>
     private bool hasPlayerTarget;
 
     /// <summary>
-    /// “G‚Ìó‘Ô
+    /// æ•µã®çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private ENEMY_STATE state;
 
     /// <summary>
-    /// ƒ_ƒ[ƒW”»’è
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸åˆ¤å®š
     /// </summary>
     //[SerializeField]
     //private bool isDamage;
 
     /// <summary>
-    /// –{‘Ì
+    /// æœ¬ä½“
     /// </summary>
     [SerializeField]
     private Transform body;
 
     /// <summary>
-    /// –{‘Ì
+    /// æœ¬ä½“
     /// </summary>
     [SerializeField]
     private GameObject spriteBody;
 
     /// <summary>
-    /// “G‚Ìƒ^ƒCƒv
+    /// æ•µã®ã‚¿ã‚¤ãƒ—
     /// </summary>
     [SerializeField]
     private ENEMY_MOVETYPE moveType;
 
     /// <summary>
-    /// ˆÚ“®ˆ—ƒNƒ‰ƒX
+    /// ç§»å‹•å‡¦ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     private EnemyMovement enemyMovement;
 
     /// <summary>
-    /// F•ÏX—p
+    /// è‰²å¤‰æ›´ç”¨
     /// </summary>
     private SpriteRenderer sprite;
 
     /// <summary>
-    /// F•ÏX—p
+    /// è‰²å¤‰æ›´ç”¨
     /// </summary>
     private TrailRenderer trail;
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
     private Animator animator;
 
     /// <summary>
-    /// €–S”»’è
+    /// æ­»äº¡åˆ¤å®š
     /// </summary>
     private bool isDead;
 
@@ -125,7 +125,7 @@ public class EnemyStatusController : MonoBehaviour
     [SerializeField]
     private GameObject shadow;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public ENEMY_STATE State
     {
         get { return state; }
@@ -148,7 +148,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -161,13 +161,13 @@ public class EnemyStatusController : MonoBehaviour
 
         trail.enabled = false;
 
-        //‘Ì—Íİ’è
+        //ä½“åŠ›è¨­å®š
         life = enemyLifeAc.SetCreateLife();
         enemyLifeAc.SetLifeText(life);
 
         wallDamageTimes = 0;
 
-        //”­Œ©”»’è
+        //ç™ºè¦‹åˆ¤å®š
         hasPlayerTarget = true;
     }
 
@@ -191,7 +191,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ó‘Ôİ’è
+    /// çŠ¶æ…‹è¨­å®š
     /// </summary>
     /// <param name="state"></param>
     public void SetEnemyState(ENEMY_STATE state)
@@ -200,7 +200,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚©‚çUŒ‚‚ğó‚¯‚½
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰æ”»æ’ƒã‚’å—ã‘ãŸæ™‚
     /// </summary>
     public void PlayerDamage(Vector2 direction, float power)
     {
@@ -221,7 +221,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// “G‚©‚çUŒ‚‚ğó‚¯‚½
+    /// æ•µã‹ã‚‰æ”»æ’ƒã‚’å—ã‘ãŸæ™‚
     /// </summary>
     public void EnemyDamage(int _damage)
     {
@@ -256,7 +256,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// •Ç‚ÆÕ“Ë
+    /// å£ã¨è¡çª
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -276,7 +276,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// €–Sˆ—
+    /// æ­»äº¡å‡¦ç†
     /// </summary>
     public void EnemyDead()
     {
@@ -287,17 +287,17 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// €–SƒAƒjƒ[ƒVƒ‡ƒ“Š®—¹Œã‚ÉŒÄ‚Î‚ê‚é
+    /// æ­»äº¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Œäº†å¾Œã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void DeadEndCallback()
     {
-        //íœFXV‚·‚é‚Ü‚Å‚Íc‚é
+        //å‰Šé™¤ï¼šæ›´æ–°ã™ã‚‹ã¾ã§ã¯æ®‹ã‚‹
         Destroy(this.gameObject);
         uiController?.SetPlayKillsNumber();
     }
 
     /// <summary>
-    /// ƒGƒtƒFƒNƒg•\¦
+    /// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤º
     /// </summary>
     public void PlayEffect()
     {
@@ -305,9 +305,9 @@ public class EnemyStatusController : MonoBehaviour
     }
 
 
-    #region ƒpƒ‰ƒ[ƒ^[•ÏX
+    #region ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å¤‰æ›´
     /// <summary>
-    /// ƒ_ƒ[ƒW’†‚ÌƒXƒe[ƒ^ƒX•ÏX
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸ä¸­ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¤‰æ›´
     /// </summary>
     public void SetDamageStatus()
     {
@@ -316,7 +316,7 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// €–S’†‚ÌƒXƒe[ƒ^ƒX•ÏX
+    /// æ­»äº¡ä¸­ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¤‰æ›´
     /// </summary>
     public void SetDeadStatus()
     {

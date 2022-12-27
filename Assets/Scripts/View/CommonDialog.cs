@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,7 @@ public class CommonDialog : MonoBehaviour
     [SerializeField]
     private Button okButton;
 
-    //’Pƒ‚Évoid delegate‚Ì–B‚Ps‚Å‚Å‚«‚éB
+    //å˜ç´”ã«void delegateã®äº‹ã€‚ï¼‘è¡Œã§ã§ãã‚‹ã€‚
     public UnityAction onDestroyed;
 
     private static GameObject prefab;
@@ -37,13 +37,13 @@ public class CommonDialog : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚ğì¬‚µ‚Ä•\¦
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ä½œæˆã—ã¦è¡¨ç¤º
     /// </summary>
-    /// <param name="title">ƒ^ƒCƒgƒ‹ƒeƒLƒXƒg</param>
-    /// <param name="desc">•¶Œ¾ƒeƒLƒXƒg</param>
-    /// <param name="ok">OKƒ{ƒ^ƒ“–¼</param>
-    /// <param name="ng">NGƒ{ƒ^ƒ“–¼</param>
-    /// <param name="okCallBack">ƒR[ƒ‹ƒoƒbƒN</param>
+    /// <param name="title">ã‚¿ã‚¤ãƒˆãƒ«ãƒ†ã‚­ã‚¹ãƒˆ</param>
+    /// <param name="desc">æ–‡è¨€ãƒ†ã‚­ã‚¹ãƒˆ</param>
+    /// <param name="ok">OKãƒœã‚¿ãƒ³å</param>
+    /// <param name="ng">NGãƒœã‚¿ãƒ³å</param>
+    /// <param name="okCallBack">ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯</param>
     /// <returns></returns>
     public static CommonDialog ShowDialog(
         string title,

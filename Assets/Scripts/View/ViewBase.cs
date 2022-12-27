@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// View‚ÌŠî’êƒNƒ‰ƒX
+/// Viewã®åŸºåº•ã‚¯ãƒ©ã‚¹
 /// </summary>
 public abstract class ViewBase : MonoBehaviour
 {
     /// <summary>
-    /// ƒQ[ƒ€ƒRƒ“ƒgƒ[ƒ‰[
+    /// ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
     /// </summary>
     [SerializeField]
     protected GameController gameController;

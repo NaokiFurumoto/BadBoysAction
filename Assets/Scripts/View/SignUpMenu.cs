@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ public class SignUpMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒAƒbƒv
+    /// ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—
     /// </summary>
     public void OnSignUp()
     {
@@ -63,7 +63,7 @@ public class SignUpMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒCƒ“¸”s‚ÌƒR[ƒ‹ƒoƒbƒN
+    /// ã‚µã‚¤ãƒ³ã‚¤ãƒ³å¤±æ•—æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     public void FailureSignUp()
     {
@@ -75,7 +75,7 @@ public class SignUpMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒAƒbƒv¬Œ÷‚ÌƒR[ƒ‹ƒoƒbƒN
+    /// ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—æˆåŠŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     public void SuccessSignUp()
     {

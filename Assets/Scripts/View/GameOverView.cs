@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,49 +8,49 @@ using UnityEngine.SceneManagement;
 public class GameOverView : ViewBase
 {
     /// <summary>
-    /// UIƒRƒ“ƒgƒ[ƒ‰[
+    /// UIã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
     /// </summary>
     [SerializeField]
     private UiController uiController;
 
     /// <summary>
-    /// Œ‚”j”
+    /// æ’ƒç ´æ•°
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI text_Kills;
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒA
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢
     /// </summary>
     [SerializeField]
     private GameObject hiScoreObject;
 
     /// <summary>
-    /// ƒNƒ‰ƒbƒJ[
+    /// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
     /// </summary>
     [SerializeField]
     private GameObject ClackerRightObject;
 
     /// <summary>
-    /// ƒNƒ‰ƒbƒJ[
+    /// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
     /// </summary>
     [SerializeField]
     private GameObject ClackerLeftObject;
 
     /// <summary>
-    /// ƒ‰ƒ“ƒNƒ{ƒ^ƒ“
+    /// ãƒ©ãƒ³ã‚¯ãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button btn_Rank;
 
     /// <summary>
-    /// ƒ†[ƒU[
+    /// ãƒ¦ãƒ¼ã‚¶ãƒ¼
     /// </summary>
     [SerializeField]
     private UserAuth user;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
@@ -68,7 +68,7 @@ public class GameOverView : ViewBase
                                      GetComponent<UiController>();
         user ??= GameObject.FindGameObjectWithTag("User").
                                      GetComponent<UserAuth>();
-        //Œ‚”j”‚Ì•\¦
+        //æ’ƒç ´æ•°ã®è¡¨ç¤º
         text_Kills.text = uiController?.GetTextKillsNumber().ToString();
     }
 
@@ -80,34 +80,34 @@ public class GameOverView : ViewBase
     protected override void OnDisable() { }
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“I—¹Œã‚ÉŒÄ‚Î‚ê‚é
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public override void OpenEndAnimation() 
     {
-        //’†’f•œ‹A‰ğœ
+        //ä¸­æ–­å¾©å¸°è§£é™¤
         uiController.SetIsBreak(false);
 
-        //ƒnƒCƒXƒRƒAXV‚³‚ê‚Ä‚¢‚ê‚Î
+        //ãƒã‚¤ã‚¹ã‚³ã‚¢æ›´æ–°ã•ã‚Œã¦ã„ã‚Œã°
         var score = uiController.GetKillsNumber();
         var hiScore = uiController.GetHiScore();
 
         if (score > hiScore)
         {
-            //ƒnƒCƒXƒRƒA‰‰o•\¦
+            //ãƒã‚¤ã‚¹ã‚³ã‚¢æ¼”å‡ºè¡¨ç¤º
             HiScoreEffect(true);
             uiController.SetHiScore(score);
             FM.PlayOneShot(appSound.SE_HISCORE);
             btn_Rank.interactable = user.IsLogin ? true : false;
         }
 
-        //XVŒã‚É•Û‘¶
+        //æ›´æ–°å¾Œã«ä¿å­˜
         var saveData = SaveManager.Instance.Load();
         saveData.HiScoreNumber = uiController.GetHiScore();
         SaveManager.Instance.Save(saveData);
     }
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒA‰‰oØ‘Ö
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢æ¼”å‡ºåˆ‡æ›¿
     /// </summary>
     /// <param name="enable"></param>
     public void HiScoreEffect(bool enable)
@@ -118,7 +118,7 @@ public class GameOverView : ViewBase
     }
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒA‚ğƒVƒFƒA‚·‚é
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢ã‚’ã‚·ã‚§ã‚¢ã™ã‚‹
     /// </summary>
     public void SnsShare()
     {
@@ -127,7 +127,7 @@ public class GameOverView : ViewBase
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒ{ƒ^ƒ“‚É‘JˆÚ
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒœã‚¿ãƒ³ã«é·ç§»
     /// </summary>
     public void OnClickRank()
     {
@@ -137,7 +137,7 @@ public class GameOverView : ViewBase
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒV[ƒ“‚É“n‚·‚à‚Ì
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚·ãƒ¼ãƒ³ã«æ¸¡ã™ã‚‚ã®
     /// </summary>
     /// <param name="nextScene"></param>
     /// <param name="mode"></param>
@@ -148,7 +148,7 @@ public class GameOverView : ViewBase
         rank.Score = uiController.GetKillsNumber();
         rank.Hiscore = uiController.GetHiScore();
         rank.IsGameOver = true;
-        // ƒCƒxƒ“ƒg‚Ìíœ
+        // ã‚¤ãƒ™ãƒ³ãƒˆã®å‰Šé™¤
         SceneManager.sceneLoaded -= KeepScore;
     }
 

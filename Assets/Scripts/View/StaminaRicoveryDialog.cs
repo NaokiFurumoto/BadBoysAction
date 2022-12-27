@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +10,8 @@ using static GlobalValue;
 using System;
 
 /// <summary>
-/// ƒXƒ^ƒ~ƒi‰ñ•œƒ_ƒCƒAƒƒO
-/// ì¬‚µ‚½prefab‚ğ“Ç‚İ‚ñ‚Å•\¦
+/// ã‚¹ã‚¿ãƒŸãƒŠå›å¾©ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
+/// ä½œæˆã—ãŸprefabã‚’èª­ã¿è¾¼ã‚“ã§è¡¨ç¤º
 /// </summary>
 public class StaminaRicoveryDialog : MonoBehaviour
 {
@@ -36,11 +36,11 @@ public class StaminaRicoveryDialog : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO‚ªŠJ‚¢‚½Œã‚ÉŒÄ‚Î‚ê‚éŠÖ”
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‹ã„ãŸå¾Œã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
     /// </summary>
     public void OpenDialogCallBack()
     {
-        //ƒoƒbƒNƒ{ƒ^ƒ“‚Ì—LŒø
+        //ãƒãƒƒã‚¯ãƒœã‚¿ãƒ³ã®æœ‰åŠ¹
         var eventTrigger = closeBackButton?.gameObject.AddComponent<EventTrigger>();
         var entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
@@ -68,7 +68,7 @@ public class StaminaRicoveryDialog : MonoBehaviour
         dialog.okButton.onClick.AddListener(() => 
                 UnityAdsManager.Instance.ShowRewarded( result => 
                 {
-                    //ƒXƒ^ƒ~ƒi‘S‰ñ•œ
+                    //ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©
                     if(result == ShowResult.Finished)
                     {
                         StaminasManager.Instance.FullRecovery( true );

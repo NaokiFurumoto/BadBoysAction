@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒGƒtƒFƒNƒg‚Ìí—Ş
+/// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç¨®é¡
 /// </summary>
 public enum EFFECT_TYPE
 {
@@ -22,24 +22,24 @@ public enum PEFFECT_ROOT_TYPE
 public class EffectStatus : MonoBehaviour,IPlayerEffect
 {
     /// <summary>
-    /// í—Ş
+    /// ç¨®é¡
     /// </summary>
     [SerializeField]
     private EFFECT_TYPE effectType = EFFECT_TYPE.NONE;
 
     /// <summary>
-    /// ¶¬ew’è
+    /// ç”Ÿæˆè¦ªæŒ‡å®š
     /// </summary>
     [SerializeField]
     private PEFFECT_ROOT_TYPE rootType = PEFFECT_ROOT_TYPE.NONE;
 
     /// <summary>
-    /// ¶¬ˆÊ’u
+    /// ç”Ÿæˆä½ç½®
     /// </summary>
     [SerializeField]
     private Vector3 pos = Vector3.zero;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public EFFECT_TYPE EffectType => effectType;
     public PEFFECT_ROOT_TYPE RootType => rootType;
     public Vector3 Pos => pos;

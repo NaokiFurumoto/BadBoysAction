@@ -1,32 +1,32 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 
 /// <summary>
-/// ‚Æ‚è‚ ‚¦‚¸ƒWƒOƒUƒO‚ÉˆÚ“®
+/// ã¨ã‚Šã‚ãˆãšã‚¸ã‚°ã‚¶ã‚°ã«ç§»å‹•
 /// </summary>
 public class EnemyZigZagMove : EnemyMovement
 {
     /// <summary>
-    /// ƒWƒOƒUƒO‰ÁZ’l
+    /// ã‚¸ã‚°ã‚¶ã‚°åŠ ç®—å€¤
     /// </summary>
     private float add_x;
     
     /// <summary>
-    /// zigzagˆÚ“®ƒXƒs[ƒh
+    /// zigzagç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
     /// </summary>
     [SerializeField]
     private float zigzagSpeed = 10.0f;
 
     /// <summary>
-    /// zigzag”¼Œa
+    /// zigzagåŠå¾„
     /// </summary>
     [SerializeField]
-    private float radius =@0.2f; 
+    private float radius =ã€€0.2f; 
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     protected override void Initialize()
     {
@@ -34,7 +34,7 @@ public class EnemyZigZagMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected override void TypeMove()
     {
@@ -47,7 +47,7 @@ public class EnemyZigZagMove : EnemyMovement
         {
             movePos = (playerLastPos - enemyTrans.position).normalized * chaseSpeed;
         }
-        else//\•ª‹ß‚Ã‚¢‚Ä‚é
+        else//ååˆ†è¿‘ã¥ã„ã¦ã‚‹
         {
             movePos = Vector3.zero;
         }

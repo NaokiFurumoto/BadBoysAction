@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static GlobalValue;
 /// <summary>
-/// ƒhƒƒbƒvƒAƒCƒeƒ€‚ÉŠÖ‚·‚é§Œä
+/// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã«é–¢ã™ã‚‹åˆ¶å¾¡
 /// </summary>
 public class ItemController : MonoBehaviour
 {
     public static ItemController Instance;
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€ƒŠƒXƒg
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
     /// </summary>
     [SerializeField]
     private List<DropItem> dropItemsList = new List<DropItem>();
@@ -23,17 +23,17 @@ public class ItemController : MonoBehaviour
     private Vector3 dropItemPos;
 
     /// <summary>
-    /// ƒQ[ƒ€ã‚É”z’u‚µ‚Ä‚ ‚éƒAƒCƒeƒ€ƒŠƒXƒg
+    /// ã‚²ãƒ¼ãƒ ä¸Šã«é…ç½®ã—ã¦ã‚ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
     /// </summary>
     private static List<DropItem> dropedItems = new List<DropItem>();
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€ƒ^ƒCƒv
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
     /// </summary>
     private DROPITEM_TYPE dropItemType;
 
     /// <summary>
-    /// ‘I‘ğ‚³‚ê‚½ƒhƒƒbƒvƒAƒCƒeƒ€
+    /// é¸æŠã•ã‚ŒãŸãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ 
     /// </summary>
     private DropItem selectDropItem;
 
@@ -43,7 +43,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void InitializeThis()
     {
@@ -53,7 +53,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€‚Ìİ’è
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã®è¨­å®š
     /// </summary>
     /// <param name="_itemType"></param>
     public void SetDropItem(DROPITEM_TYPE _itemType)
@@ -69,7 +69,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€‚Ì”z’uˆÊ’u‚Ìİ’è
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã®é…ç½®ä½ç½®ã®è¨­å®š
     /// </summary>
     private void SetDropPosition()
     {
@@ -80,15 +80,15 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€’Š‘I
+    /// ã‚¢ã‚¤ãƒ†ãƒ æŠ½é¸
     /// </summary>
     public void DropItemLottery(Vector2 pos)
     {
-        //ƒ‰ƒ“ƒ_ƒ€‚Å’Š‘I
+        //ãƒ©ãƒ³ãƒ€ãƒ ã§æŠ½é¸
         var hitValue = Random.Range(1, MUTEKI_DROPINDEX);
         if(MUTEKI_DROPHITINDEX >= hitValue)
         {
-            //“–‚½‚è
+            //å½“ãŸã‚Š
             SetDropItem(DROPITEM_TYPE.MUTEKI);
             dropItemPos = pos;
             CreateDropItem(false);
@@ -96,9 +96,9 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€”z’u
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ é…ç½®
     /// </summary>
-    /// <param name="isRandom">ƒ‰ƒ“ƒ_ƒ€”z’u‚©‚Ç‚¤‚©</param>
+    /// <param name="isRandom">ãƒ©ãƒ³ãƒ€ãƒ é…ç½®ã‹ã©ã†ã‹</param>
     public void CreateDropItem(bool isRandom)
     {
         if (selectDropItem == null)
@@ -117,7 +117,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€‚·‚×‚Äíœ
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã™ã¹ã¦å‰Šé™¤
     /// </summary>
     public void RemoveDropItems()
     {
@@ -128,7 +128,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Null—v‘f‚Ìíœ
+    /// Nullè¦ç´ ã®å‰Šé™¤
     /// </summary>
     public void RemoveNullItem()
     {
@@ -136,7 +136,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCˆ—
+    /// ãƒªãƒˆãƒ©ã‚¤å‡¦ç†
     /// </summary>
     public void Retry()
     {

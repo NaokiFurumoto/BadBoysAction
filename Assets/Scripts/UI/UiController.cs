@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,102 +6,102 @@ using TMPro;
 using System;
 using static GlobalValue;
 /// <summary>
-/// ƒCƒ“ƒQ[ƒ€UI‚ÉŠÖ‚·‚é‘€ì/XV‚È‚Ç
+/// ã‚¤ãƒ³ã‚²ãƒ¼ãƒ UIã«é–¢ã™ã‚‹æ“ä½œ/æ›´æ–°ãªã©
 /// </summary>
 public class UiController : MonoBehaviour
 {
     /// <summary>
-    /// ƒQ[ƒ€ƒŒƒxƒ‹•\¦
+    /// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI text_gameLevel;
 
     /// <summary>
-    /// ƒŒƒxƒ‹”
+    /// ãƒ¬ãƒ™ãƒ«æ•°
     /// </summary>
     [SerializeField]
     private int gameLevel;
 
     /// <summary>
-    /// ƒŒƒxƒ‹MAXƒIƒuƒWƒFƒNƒg
+    /// ãƒ¬ãƒ™ãƒ«MAXã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private GameObject levelMaxObject;
 
     /// <summary>
-    /// ƒ‰ƒCƒtŠÇ—
+    /// ãƒ©ã‚¤ãƒ•ç®¡ç†
     /// </summary>
     [SerializeField]
     private LifesManager lifesManager;
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒiŠÇ—
+    /// ã‚¹ã‚¿ãƒŸãƒŠç®¡ç†
     /// </summary>
     [SerializeField]
     private StaminasManager staminasManager;
 
     /// <summary>
-    /// Œ‚”j”ƒeƒLƒXƒg•\¦
+    /// æ’ƒç ´æ•°ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI text_Kills;
 
     /// <summary>
-    /// Œ‚”j”
+    /// æ’ƒç ´æ•°
     /// </summary>
     [SerializeField]
     private int killsNum;
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒA
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢
     /// </summary>
     private int hiScore;
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒAƒeƒLƒXƒg•\¦
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI text_HiScore;
 
     /// <summary>
-    /// ’ÊíƒXƒ^ƒ~ƒic‚è•\¦
+    /// é€šå¸¸ã‚¹ã‚¿ãƒŸãƒŠæ®‹ã‚Šè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private GameObject NormalStTimes;
 
     /// <summary>
-    /// ‰Û‹àƒXƒ^ƒ~ƒi•\¦
+    /// èª²é‡‘ã‚¹ã‚¿ãƒŸãƒŠè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private GameObject adsStTimes;
 
     /// <summary>
-    /// ƒvƒŒƒC‰ñ”
+    /// ãƒ—ãƒ¬ã‚¤å›æ•°
     /// </summary>
     [SerializeField]
     private int playTime;
 
     /// <summary>
-    /// ’†’f•œ‹A”»’è
+    /// ä¸­æ–­å¾©å¸°åˆ¤å®š
     /// </summary>
     private bool isBreak;
 
     /// <summary>
-    /// ‰Û‹à”»’è
+    /// èª²é‡‘åˆ¤å®š
     /// </summary>
     private bool isAds;
 
     /// <summary>
-    /// ¶¬ŠíeŠÇ—ƒNƒ‰ƒX
+    /// ç”Ÿæˆå™¨è¦ªç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     private NewGenerateManager generatorManager;
 
     /// <summary>
-    /// ©g‚Ì‰Šú‰»
+    /// è‡ªèº«ã®åˆæœŸåŒ–
     /// </summary>
     private void Awake() { }
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public LifesManager LifesManager => lifesManager;
     public StaminasManager StaminasManager => staminasManager;
     public int KillsNUM { get { return killsNum; } set { killsNum = value; } }
@@ -113,7 +113,7 @@ public class UiController : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// ŠO•”‰Šú‰»
+    /// å¤–éƒ¨åˆæœŸåŒ–
     /// </summary>
     private void Start()
     {
@@ -128,7 +128,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Û‹à‚µ‚Ä‚¢‚½‚çƒXƒ^ƒ~ƒi•\¦‚ğØ‚è‘Ö‚¦‚é
+    /// èª²é‡‘ã—ã¦ã„ãŸã‚‰ã‚¹ã‚¿ãƒŸãƒŠè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
     /// </summary>
     /// <param name="isAds"></param>
     public void SwitchAdsStamina(bool isAds)
@@ -138,7 +138,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// “G€–S‚ÌŒ‚”j”‚Ìİ’è
+    /// æ•µæ­»äº¡æ™‚ã®æ’ƒç ´æ•°ã®è¨­å®š
     /// </summary>
     /// <param name="_number"></param>
     public void SetPlayKillsNumber()
@@ -152,7 +152,7 @@ public class UiController : MonoBehaviour
 
 
     /// <summary>
-    /// Œ‚”j”‚Ìæ“¾
+    /// æ’ƒç ´æ•°ã®å–å¾—
     /// </summary>
     public int GetTextKillsNumber()
     {
@@ -164,7 +164,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒRƒA‚ÌƒNƒŠƒA
+    /// ã‚¹ã‚³ã‚¢ã®ã‚¯ãƒªã‚¢
     /// </summary>
     public void UpdateScore()
     {
@@ -176,7 +176,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒRƒA‚ÌƒNƒŠƒA
+    /// ã‚¹ã‚³ã‚¢ã®ã‚¯ãƒªã‚¢
     /// </summary>
     public void UpdateLoadedScore(SaveData data)
     {
@@ -187,10 +187,10 @@ public class UiController : MonoBehaviour
        // generatorManager.InitializeLoaded(data);
     }
 
-    //-------------------------------SaveELoad----------------------------------------//
-    #region LoadŠÖ˜A
+    //-------------------------------Saveãƒ»Load----------------------------------------//
+    #region Loadé–¢é€£
     ////// <summary>
-    /// ‰‰ñƒ[ƒhŒã‚ÌŒ‚”j”İ’è
+    /// åˆå›ãƒ­ãƒ¼ãƒ‰å¾Œã®æ’ƒç ´æ•°è¨­å®š
     /// </summary>
     /// <param name="_number"></param>
     public void SetLoadingKillsNumber(int num)
@@ -203,7 +203,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒA‚Ìİ’è
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢ã®è¨­å®š
     /// </summary>
     public void SetHiScore(int score)
     {
@@ -212,7 +212,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€ƒŒƒxƒ‹•ÏX
+    /// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«å¤‰æ›´
     /// </summary>
     public void SetGameLevel(int level)
     {
@@ -233,7 +233,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒC‰ñ”‚Ìİ’è
+    /// ãƒ—ãƒ¬ã‚¤å›æ•°ã®è¨­å®š
     /// </summary>
     /// <param name="playTime"></param>
     public void SetPlayTime(int playTime)
@@ -242,7 +242,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒC‰ñ”’Ç‰Á
+    /// ãƒ—ãƒ¬ã‚¤å›æ•°è¿½åŠ 
     /// </summary>
     /// <param name="playTime"></param>
     public void AddPlayTime()
@@ -251,14 +251,14 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒiİ’è
+    /// ã‚¹ã‚¿ãƒŸãƒŠè¨­å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetStamina(int num)
     {
         if (num <= 0)
         {
-            //ƒXƒ^ƒ~ƒi‚ğ‘S‚Äg—p•s‰Â‚Æ‚·‚é
+            //ã‚¹ã‚¿ãƒŸãƒŠã‚’å…¨ã¦ä½¿ç”¨ä¸å¯ã¨ã™ã‚‹
             staminasManager.SetAllDisable();
         }
         else
@@ -268,7 +268,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒiİ’è
+    /// ã‚¹ã‚¿ãƒŸãƒŠè¨­å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetLoadStamina(long loadedTimes)
@@ -277,7 +277,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ‰ƒCƒtİ’è
+    /// ãƒ©ã‚¤ãƒ•è¨­å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetLife(int num)
@@ -286,12 +286,12 @@ public class UiController : MonoBehaviour
         {
             num = START_LIFEPOINT;
         }
-        //ƒ‰ƒCƒt‚ğ”’l‚Å‰ñ•œ
+        //ãƒ©ã‚¤ãƒ•ã‚’æ•°å€¤ã§å›å¾©
         lifesManager.SetLife(num);
     }
 
     /// <summary>
-    /// ’†’f•œ‹A‚Ìİ’è
+    /// ä¸­æ–­å¾©å¸°ã®è¨­å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetIsBreak(bool judge)
@@ -300,7 +300,7 @@ public class UiController : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Û‹à”»’è
+    /// èª²é‡‘åˆ¤å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetIsAds(bool judge)
@@ -310,50 +310,50 @@ public class UiController : MonoBehaviour
     }
     #endregion
 
-    #region SaveŠÖ˜A
+    #region Saveé–¢é€£
     /// <summary>
-    /// c‚èƒXƒ^ƒ~ƒi”æ“¾
+    /// æ®‹ã‚Šã‚¹ã‚¿ãƒŸãƒŠæ•°å–å¾—
     /// </summary>
     /// <param name="num"></param>
     public int GetStamina() => staminasManager.GetUseStaminaNumber();
 
     /// <summary>
-    /// Œ‚”j”æ“¾
+    /// æ’ƒç ´æ•°å–å¾—
     /// </summary>
     /// <param name="num"></param>
     public int GetKillsNumber() => killsNum;
 
     /// <summary>
-    /// ƒnƒCƒXƒRƒAæ“¾
+    /// ãƒã‚¤ã‚¹ã‚³ã‚¢å–å¾—
     /// </summary>
     /// <returns></returns>
     public int GetHiScore() => hiScore;
 
     /// <summary>
-    /// ƒ‰ƒCƒt”æ“¾F“r’†—p
+    /// ãƒ©ã‚¤ãƒ•æ•°å–å¾—ï¼šé€”ä¸­ç”¨
     /// </summary>
     /// <returns></returns>
     public int GetLifeNum() => lifesManager.GetLifeNum();
 
     /// <summary>
-    /// ƒQ[ƒ€ƒŒƒxƒ‹‚Ìæ“¾
+    /// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«ã®å–å¾—
     /// </summary>
     /// <returns></returns>
     public int GetGameLevel() => gameLevel;
 
     /// <summary>
-    /// ƒvƒŒƒC‰ñ”‚Ìæ“¾
+    /// ãƒ—ãƒ¬ã‚¤å›æ•°ã®å–å¾—
     /// </summary>
     /// <returns></returns>
     public int GetPlayTime() => playTime;
 
     /// <summary>
-    ///  ’†’f•œ‹A”»’èæ“¾
+    ///  ä¸­æ–­å¾©å¸°åˆ¤å®šå–å¾—
     /// </summary>
     public bool GetIsBreak() => isBreak;
 
     /// <summary>
-    /// ‰Û‹à”»’èæ“¾
+    /// èª²é‡‘åˆ¤å®šå–å¾—
     /// </summary>
     public bool GetIsAds() => isAds;
     //public bool GetIsAds() => true;

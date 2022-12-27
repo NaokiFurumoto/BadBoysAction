@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 using System.Linq;
 
 /// <summary>
-/// ”Ä—pƒ_ƒCƒAƒƒO‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+/// æ±ç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class CommonDialogManager : MonoBehaviour
 {
@@ -21,9 +21,9 @@ public class CommonDialogManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒXƒg‚É’Ç‰Á
+    /// ãƒªã‚¹ãƒˆã«è¿½åŠ 
     /// </summary>
-    /// <param name="_dialog">•\¦ƒ_ƒCƒAƒƒO</param>
+    /// <param name="_dialog">è¡¨ç¤ºãƒ€ã‚¤ã‚¢ãƒ­ã‚°</param>
     public void AddList(CommonDialog _dialog)
     {
         if (_dialog == null || dialogs.Contains(_dialog))
@@ -33,7 +33,7 @@ public class CommonDialogManager : MonoBehaviour
     }
 
     /// <summary>
-    /// •\¦’†‚Ìƒ_ƒCƒAƒƒO‚ğ‘Síœ
+    /// è¡¨ç¤ºä¸­ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’å…¨å‰Šé™¤
     /// </summary>
     public void DeleteDialogAll()
     {
@@ -50,7 +50,7 @@ public class CommonDialogManager : MonoBehaviour
     }
 
     /// <summary>
-    /// •\¦’†‚Ìƒ_ƒCƒAƒƒO‚ğ1‚Âíœ
+    /// è¡¨ç¤ºä¸­ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’1ã¤å‰Šé™¤
     /// </summary>
     public void DeleteOneDialog()
     {
@@ -64,7 +64,7 @@ public class CommonDialogManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒXƒg‚ÌƒNƒŠƒAFíœ‚Í‚µ‚È‚¢
+    /// ãƒªã‚¹ãƒˆã®ã‚¯ãƒªã‚¢ï¼šå‰Šé™¤ã¯ã—ãªã„
     /// </summary>
     public void ListClear()
     {
@@ -75,7 +75,7 @@ public class CommonDialogManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İ•\¦’†‚Ìƒ_ƒCƒAƒƒO‚ğ‹­§æ“¾
+    /// ç¾åœ¨è¡¨ç¤ºä¸­ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’å¼·åˆ¶å–å¾—
     /// </summary>
     /// <returns></returns>
     public List<CommonDialog> GetDisplayDialogs()

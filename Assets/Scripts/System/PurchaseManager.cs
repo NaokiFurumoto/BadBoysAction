@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,13 +7,13 @@ using UnityEngine.Purchasing.Security;
 using UnityEngine.UI;
 
 /// <summary>
-/// ‰Û‹àŠÇ—FUnity IAPiƒAƒvƒŠ“à‰Û‹àƒVƒXƒeƒ€j
-/// ‚Æ‚è‚ ‚¦‚¸google‚Ì‚İ
+/// èª²é‡‘ç®¡ç†ï¼šUnity IAPï¼ˆã‚¢ãƒ—ãƒªå†…èª²é‡‘ã‚·ã‚¹ãƒ†ãƒ ï¼‰
+/// ã¨ã‚Šã‚ãˆãšgoogleã®ã¿
 /// 
-/// 1.ƒ†[ƒU[‚ª‰Û‹à
-/// 2D‰Û‹àƒR[ƒ‹ƒoƒbƒN‚ğó‚¯æ‚é
-/// 3.ƒŒƒV[ƒgŒŸØ‚Å¬Œ÷
-/// 4.ƒAƒCƒeƒ€’Ç‰Á
+/// 1.ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒèª²é‡‘
+/// 2ï¼èª²é‡‘ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å—ã‘å–ã‚‹
+/// 3.ãƒ¬ã‚·ãƒ¼ãƒˆæ¤œè¨¼ã§æˆåŠŸ
+/// 4.ã‚¢ã‚¤ãƒ†ãƒ è¿½åŠ 
 /// 
 /// </summary>
 public class PurchaseManager : MonoBehaviour//, IStoreListener
@@ -21,36 +21,36 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //    public static PurchaseManager InstanceGooglePlay;
 
 //    #region private static
-//    // Purchasing ƒVƒXƒeƒ€‚ÌQÆ
+//    // Purchasing ã‚·ã‚¹ãƒ†ãƒ ã®å‚ç…§
 //    private static IStoreController storeController;
 
-//    // Šg’£‚µ‚½ê‡‚ÌPurchasing ƒTƒuƒVƒXƒeƒ€‚ÌQÆ
+//    // æ‹¡å¼µã—ãŸå ´åˆã®Purchasing ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ ã®å‚ç…§
 //    private static IExtensionProvider storeExtensionProvider;
 
-//    //‚±‚ê‚ª¤•i‚ÌIDF‚ ‚Æ‚Åİ’èFL‰ğœ‚È‚çID‚ğhRemoveAdsh‚Æ‚©‚É‚·‚é
+//    //ã“ã‚ŒãŒå•†å“ã®IDï¼šã‚ã¨ã§è¨­å®šï¼šåºƒå‘Šè§£é™¤ãªã‚‰IDã‚’â€RemoveAdsâ€ã¨ã‹ã«ã™ã‚‹
 //    private static string productIDNonConsumable = "nonconsumable";
 
-//    // Google Play Console ƒXƒgƒA¯•ÊqF‚ ‚Æ‚Å“o˜^H
-//    private@static string productNameGooglePlayNonConsumable = "purchasing.nonconsumable";
+//    // Google Play Console ã‚¹ãƒˆã‚¢è­˜åˆ¥å­ï¼šã‚ã¨ã§ç™»éŒ²ï¼Ÿ
+//    privateã€€static string productNameGooglePlayNonConsumable = "purchasing.nonconsumable";
 //#endregion
 
 //    /// <summary>
-//    /// w“üó‘Ô
+//    /// è³¼å…¥çŠ¶æ…‹
 //    /// </summary>
 //    public enum PURCHASE_STATE
 //    {
-//        NOT_PURCHASED = 0,//–¢w“ü
-//        PURCHASED = 1,//w“üÏ‚İ
-//        PENDING = 2,//•Û—¯’†
+//        NOT_PURCHASED = 0,//æœªè³¼å…¥
+//        PURCHASED = 1,//è³¼å…¥æ¸ˆã¿
+//        PENDING = 2,//ä¿ç•™ä¸­
 //    }
 
 //    private PURCHASE_STATE purchaseState = 0;
 
-//    //<summary> ‰Šú‰»”»’è </summary>
+//    //<summary> åˆæœŸåŒ–åˆ¤å®š </summary>
 //    private bool isInitialized = false;
 
-//    #region ƒXƒgƒA‰Šú‰»
-//    //<summary> ƒXƒgƒA‰Šú‰» </summary>
+//    #region ã‚¹ãƒˆã‚¢åˆæœŸåŒ–
+//    //<summary> ã‚¹ãƒˆã‚¢åˆæœŸåŒ– </summary>
 //    void Awake() { InitializeThis(); }
 //    void InitializeThis()
 //    {
@@ -63,52 +63,52 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //    }
 
 //    /// <summary>
-//    /// ƒXƒgƒA‰Šú‰»
-//    /// Consumable = 0,Á–Õ•i
-//    //@NonConsumable = 1,‚P‰ñ‚Ì‚İw“ü‰Â”\
-//    //  Subscription = 2@ŒJ‚è•Ô‚µw“ü‚µ‚Ä•œŒ³o—ˆ‚éFƒTƒu‚·‚­
+//    /// ã‚¹ãƒˆã‚¢åˆæœŸåŒ–
+//    /// Consumable = 0,æ¶ˆè€—å“
+//    //ã€€NonConsumable = 1,ï¼‘å›ã®ã¿è³¼å…¥å¯èƒ½
+//    //  Subscription = 2ã€€ç¹°ã‚Šè¿”ã—è³¼å…¥ã—ã¦å¾©å…ƒå‡ºæ¥ã‚‹ï¼šã‚µãƒ–ã™ã
 //    /// </summary>
 //    public void InitializePurchasing()
 //    {
-//        //w“üˆ—‚ªŠ®—¹‚µ‚Ä‚¢‚ê‚Î
+//        //è³¼å…¥å‡¦ç†ãŒå®Œäº†ã—ã¦ã„ã‚Œã°
 //        if (IsInitialized())
 //            return;
 
-//        //w“ü‹@”\FApple/google
+//        //è³¼å…¥æ©Ÿèƒ½ï¼šApple/google
 //        var module = StandardPurchasingModule.Instance();
 
-//        //ƒ_ƒ~[ƒXƒgƒAUI‚ğ‚¾‚¹‚é
+//        //ãƒ€ãƒŸãƒ¼ã‚¹ãƒˆã‚¢UIã‚’ã ã›ã‚‹
 //        //module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
 
-//        //’l‚ğæ“¾‚µ‚â‚·‚­‚·‚é
+//        //å€¤ã‚’å–å¾—ã—ã‚„ã™ãã™ã‚‹
 //        var builder = ConfigurationBuilder.Instance(module);
 
-//        //IDAƒ^ƒCƒvA‚¨‚æ‚ÑƒXƒgƒAŒÅ—L‚Ì ID ‚ÌƒIƒvƒVƒ‡ƒ“‚ÌƒZƒbƒg‚ğg—p‚µ‚Ä»•i‚ğ’Ç‰ÁF•¡”‚Ìê‡‚Í‚Ç‚¤‚·‚éH
-//        //IAP Catalog (Window > Unity IAP > IAP Catalog) ‚©‚ç‚Å‚à“o˜^‚Å‚«‚é
+//        //IDã€ã‚¿ã‚¤ãƒ—ã€ãŠã‚ˆã³ã‚¹ãƒˆã‚¢å›ºæœ‰ã® ID ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚’ä½¿ç”¨ã—ã¦è£½å“ã‚’è¿½åŠ ï¼šè¤‡æ•°ã®å ´åˆã¯ã©ã†ã™ã‚‹ï¼Ÿ
+//        //IAP Catalog (Window > Unity IAP > IAP Catalog) ã‹ã‚‰ã§ã‚‚ç™»éŒ²ã§ãã‚‹
 //        builder.AddProduct(productIDNonConsumable, ProductType.NonConsumable,
 //                           new IDs()
-//                           {   /* ƒXƒgƒA‚²‚Æ‚ÉID‚ªˆÙ‚È‚éê‡*/
+//                           {   /* ã‚¹ãƒˆã‚¢ã”ã¨ã«IDãŒç•°ãªã‚‹å ´åˆ*/
 //                               //{"iOSProductID", AppleAppStore.Name },
 //                               //{"AndroidProductID,  GooglePlay.Name }
 
-//                               //‚Æ‚è‚ ‚¦‚¸ƒAƒ“ƒhƒƒCƒh‚Ì‚İ
+//                               //ã¨ã‚Šã‚ãˆãšã‚¢ãƒ³ãƒ‰ãƒ­ã‚¤ãƒ‰ã®ã¿
 //                               { productNameGooglePlayNonConsumable,  GooglePlay.Name }
 //                           });
 //#if false
-//        //ƒRƒƒ“ƒgƒAƒEƒg‚ğÜ‚è‚½‚½‚Ş‹@”\ #if false
-//        /*Android‚ÌÁ–Õ•i‚ğƒNƒŠƒA‚·‚é‚½‚ß
+//        //ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’æŠ˜ã‚ŠãŸãŸã‚€æ©Ÿèƒ½ #if false
+//        /*Androidã®æ¶ˆè€—å“ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ãŸã‚
 //        builder.AddProduct(productIDNonConsumable, ProductType.Consumable, new IDs()
 //			{
 //				{ productNameGooglePlayNonConsumable,  GooglePlay.Name }
 
 //			});
 //#endif
-//        //ƒXƒgƒA‚Ì‰Šú‰»ƒŠƒNƒGƒXƒg
+//        //ã‚¹ãƒˆã‚¢ã®åˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 //        UnityPurchasing.Initialize(this, builder);
 //    }
 
 //    /// <summary>
-//    /// ‰Šú‰»”»’è
+//    /// åˆæœŸåŒ–åˆ¤å®š
 //    /// </summary>
 //    /// <returns></returns>
 //    private bool IsInitialized()
@@ -117,39 +117,39 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //    }
 
 //    /// <summary>
-//    /// ƒXƒgƒA‚Ì‰Šú‰»¸”s
+//    /// ã‚¹ãƒˆã‚¢ã®åˆæœŸåŒ–å¤±æ•—
 //    /// </summary>
 //    /// <param name="error"></param>
 //    public void OnInitializeFailed(InitializationFailureReason error)
 //    {
-//        Debug.Log(" ‰Šú‰»¸”s‚Ì——R:" + error);
+//        Debug.Log(" åˆæœŸåŒ–å¤±æ•—ã®ç†ç”±:" + error);
 //    }
 
 //    /// <summary>
-//    /// ƒXƒgƒA‰Šú‰»¬Œ÷‚ÌƒR[ƒ‹ƒoƒbƒN
+//    /// ã‚¹ãƒˆã‚¢åˆæœŸåŒ–æˆåŠŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //    /// </summary>
-//    /// <param name="controller">ƒXƒgƒA‚Ì¤•iî•ñ</param>
+//    /// <param name="controller">ã‚¹ãƒˆã‚¢ã®å•†å“æƒ…å ±</param>
 //    /// <param name="extensions"></param>
 //    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
 //    {
-//        // ƒXƒgƒA‚Ì‰Šú‰»‚É¬Œ÷‚µ‚Ü‚µ‚½B
+//        // ã‚¹ãƒˆã‚¢ã®åˆæœŸåŒ–ã«æˆåŠŸã—ã¾ã—ãŸã€‚
 //        Debug.Log("OnInitialized: PASS");
 
-//        // w”ƒƒVƒXƒeƒ€‘S‘ÌB
+//        // è³¼è²·ã‚·ã‚¹ãƒ†ãƒ å…¨ä½“ã€‚
 //        storeController = controller;
 
-//        // ƒfƒoƒCƒXŒÅ—L‚ÌƒXƒgƒA‹@”\‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚ÌAƒXƒgƒAŒÅ—L‚ÌƒTƒuƒVƒXƒeƒ€B
+//        // ãƒ‡ãƒã‚¤ã‚¹å›ºæœ‰ã®ã‚¹ãƒˆã‚¢æ©Ÿèƒ½ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã®ã€ã‚¹ãƒˆã‚¢å›ºæœ‰ã®ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ ã€‚
 //        storeExtensionProvider = extensions;
 
-//        // ƒŒƒV[ƒg‚ÌŒŸØFw’è•û–@‚ÍŠô‚Â‚©B¡‰ñ‚Í‚Ğ‚Æ‚Â‚¾‚¯‚È‚Ì‚ÅAall‚Ì0”Ô–ÚB
+//        // ãƒ¬ã‚·ãƒ¼ãƒˆã®æ¤œè¨¼ï¼šæŒ‡å®šæ–¹æ³•ã¯å¹¾ã¤ã‹ã€‚ä»Šå›ã¯ã²ã¨ã¤ã ã‘ãªã®ã§ã€allã®0ç•ªç›®ã€‚
 //        if (storeController.products.all[0].hasReceipt)
 //        {
-//            //ƒŒƒV[ƒg‚ ‚è
+//            //ãƒ¬ã‚·ãƒ¼ãƒˆã‚ã‚Š
 //            purchaseState = checkGoogleReceipt(storeController.products.all[0].receipt);
 //        }
 //        else
 //        {
-//            // ƒŒƒV[ƒg‚È‚µ
+//            // ãƒ¬ã‚·ãƒ¼ãƒˆãªã—
 //            purchaseState = PURCHASE_STATE.NOT_PURCHASED;
 //        }
 //        isInitialized = true;
@@ -157,86 +157,86 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //    #endregion
 
 
-//    #region w“ü
+//    #region è³¼å…¥
 //    /// <summary>
-//    /// w“üˆ—FproductIDNonConsumable
+//    /// è³¼å…¥å‡¦ç†ï¼šproductIDNonConsumable
 //    /// </summary>
 //    public void BuyNonConsumable() { BuyProductID(productIDNonConsumable); }
-//    public void BuyProductID(string productId)///‚±‚ê‚ğŠO•”‚©‚çŒÄ‚Ô‚±‚Æ
+//    public void BuyProductID(string productId)///ã“ã‚Œã‚’å¤–éƒ¨ã‹ã‚‰å‘¼ã¶ã“ã¨
 //    {
 //        try
 //        {
 //            if (IsInitialized())
 //            {
-//                //ID‚©‚ç»•iæ“¾
+//                //IDã‹ã‚‰è£½å“å–å¾—
 //                Product product = storeController.products.WithID(productId);
-//                                      //w“ü‰Â”\‚È¤•i‚©
+//                                      //è³¼å…¥å¯èƒ½ãªå•†å“ã‹
 //                if(product != null && product.availableToPurchase)
 //                {
-//                    //Unity IAP »•i ID,ƒXƒgƒA—pID
+//                    //Unity IAP è£½å“ ID,ã‚¹ãƒˆã‚¢ç”¨ID
 //                    Debug.Log(string.Format("Purchasing product asychronously: '{0}' - '{1}'", 
 //                                             product.definition.id, product.definition.storeSpecificId));
 
-//                    //w“üŠJnII
+//                    //è³¼å…¥é–‹å§‹ï¼ï¼
 //                    storeController.InitiatePurchase(product);
 //                }
 //                else
 //                {   
-//                    Debug.Log("BuyProductID¸”sB»•i‚ğw“ü‚µ‚Ä‚¢‚Ü‚¹‚ñBŒ©‚Â‚©‚ç‚È‚¢‚©Aw“ü‚Å‚«‚Ü‚¹‚ñ");
+//                    Debug.Log("BuyProductIDå¤±æ•—ã€‚è£½å“ã‚’è³¼å…¥ã—ã¦ã„ã¾ã›ã‚“ã€‚è¦‹ã¤ã‹ã‚‰ãªã„ã‹ã€è³¼å…¥ã§ãã¾ã›ã‚“");
 //                }
 
 //            }
 //            else
 //            {   
-//                Debug.Log("BuyProductID ‰Šú‰»¸”s.");
+//                Debug.Log("BuyProductID åˆæœŸåŒ–å¤±æ•—.");
 //            }
             
 //        }catch(Exception e)
 //        {
-//            Debug.Log("w“ü‚Ì¸”sF—áŠO‚Ìí—Ş‚Í" + e);
+//            Debug.Log("è³¼å…¥æ™‚ã®å¤±æ•—ï¼šä¾‹å¤–ã®ç¨®é¡ã¯ï¼" + e);
 //        }
 //    }
 
 
 //    /// <summary>
-//    /// w“üŠ®—¹Œã‚ÉŒÄ‚Î‚ê‚é
+//    /// è³¼å…¥å®Œäº†å¾Œã«å‘¼ã°ã‚Œã‚‹
 //    /// </summary>
-//    /// <param name="args">w“ü‚µ‚½»•i‚Æ‚»‚Ìw“üƒŒƒV[ƒg‚ğŠÜ‚Ş</param>
-//    /// <returns>w“üó‘Ô@Š®—¹orˆ—’†</returns>
+//    /// <param name="args">è³¼å…¥ã—ãŸè£½å“ã¨ãã®è³¼å…¥ãƒ¬ã‚·ãƒ¼ãƒˆã‚’å«ã‚€</param>
+//    /// <returns>è³¼å…¥çŠ¶æ…‹ã€€å®Œäº†orå‡¦ç†ä¸­</returns>
 //    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
 //    {
-//        //•¶š—ñ”äŠr                                                                     //”äŠr•û–@
+//        //æ–‡å­—åˆ—æ¯”è¼ƒ                                                                     //æ¯”è¼ƒæ–¹æ³•
 //        if (String.Equals(args.purchasedProduct.definition.id, productIDNonConsumable, StringComparison.Ordinal))
 //        {
-//            Debug.Log(string.Format("w“ü: PASS.»•i‚ÌID: '{0}'", args.purchasedProduct.definition.id));
+//            Debug.Log(string.Format("è³¼å…¥: PASS.è£½å“ã®ID: '{0}'", args.purchasedProduct.definition.id));
 //            checkGoogleReceipt(args.purchasedProduct.receipt);
 
 //        }
 //        else
 //        {
-//            Debug.Log(string.Format("¸”sB”F¯‚³‚ê‚Ä‚¢‚È‚¢»•i: '{0}'", args.purchasedProduct.definition.id));
+//            Debug.Log(string.Format("å¤±æ•—ã€‚èªè­˜ã•ã‚Œã¦ã„ãªã„è£½å“: '{0}'", args.purchasedProduct.definition.id));
 //        }
 //        return PurchaseProcessingResult.Complete;
 //    }
 
 
 //    /// <summary>
-//    /// /w“ü¸”sƒR[ƒ‹ƒoƒbƒN
+//    /// /è³¼å…¥å¤±æ•—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //    /// </summary>
 //    /// <param name="product"></param>
 //    /// <param name="failureReason"></param>
 //    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
 //    {
-//        Debug.Log(string.Format("w“ü¸”s‚µ‚½¤•i: '{0}', ——R: {1}", product.definition.storeSpecificId, failureReason));
+//        Debug.Log(string.Format("è³¼å…¥å¤±æ•—ã—ãŸå•†å“: '{0}', ç†ç”±: {1}", product.definition.storeSpecificId, failureReason));
 //    }
 //    #endregion
 
-//    #region ƒŒƒV[ƒgŒŸØ
+//    #region ãƒ¬ã‚·ãƒ¼ãƒˆæ¤œè¨¼
 //    /// <summary>
-//    /// ƒŒƒV[ƒgŒŸØFƒ†[ƒU[‚ªw“ü‚µ‚Ä‚¢‚È‚¢ƒRƒ“ƒeƒ“ƒc‚ÉƒAƒNƒZƒX‚·‚é‚±‚Æ‚ğ–h‚®
-//    /// Android‚ÍƒRƒ“ƒrƒj•¥‚¢‚Åx•¥‚¢‚ª•Û—¯’†‚É‚È‚Á‚Ä‚¢‚éA
-//    /// ‚»‚Ìó‘Ô‚àƒŒƒV[ƒg‚ÅŠm”F‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-//    /// lastGoogleResult‚É’¼’l‚Å4‚Æ‚¢‚¤’l‚ª“ü‚Á‚Ä‚¢‚éA•Û—¯’†‚Ìó‘Ô‚Æ”»’f‚µ‚Ä‚¢‚Ü‚·B
+//    /// ãƒ¬ã‚·ãƒ¼ãƒˆæ¤œè¨¼ï¼šãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒè³¼å…¥ã—ã¦ã„ãªã„ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã“ã¨ã‚’é˜²ã
+//    /// Androidã¯ã‚³ãƒ³ãƒ“ãƒ‹æ‰•ã„ã§æ”¯æ‰•ã„ãŒä¿ç•™ä¸­ã«ãªã£ã¦ã„ã‚‹æ™‚ã€
+//    /// ãã®çŠ¶æ…‹ã‚‚ãƒ¬ã‚·ãƒ¼ãƒˆã§ç¢ºèªã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+//    /// lastGoogleResultã«ç›´å€¤ã§4ã¨ã„ã†å€¤ãŒå…¥ã£ã¦ã„ã‚‹æ™‚ã€ä¿ç•™ä¸­ã®çŠ¶æ…‹ã¨åˆ¤æ–­ã—ã¦ã„ã¾ã™ã€‚
 //    /// </summary>
 //    /// <param name="receipt"></param>
 //    /// <returns></returns>
@@ -246,18 +246,18 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //#if UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX
 
 //        PURCHASE_STATE resultstate;
-//        // ƒoƒŠƒf[ƒ^[‚ğ€”õ‚µ‚Ü‚·BGoogle Play ‚Æ Apple ƒXƒgƒA—¼•û‚ÌŒŸØ‚Ég—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-//        //@ƒGƒ‰[‰ñ”ğ‚É‚ÍAGoogle Play ŒöŠJƒL[‚© Apple ‚Ì root Ø–¾‘‚ª•K—v‚Å‚·
+//        // ãƒãƒªãƒ‡ãƒ¼ã‚¿ãƒ¼ã‚’æº–å‚™ã—ã¾ã™ã€‚Google Play ã¨ Apple ã‚¹ãƒˆã‚¢ä¸¡æ–¹ã®æ¤œè¨¼ã«ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+//        //ã€€ã‚¨ãƒ©ãƒ¼å›é¿ã«ã¯ã€Google Play å…¬é–‹ã‚­ãƒ¼ã‹ Apple ã® root è¨¼æ˜æ›¸ãŒå¿…è¦ã§ã™
 //        var validator = new CrossPlatformValidator(GooglePlayTangle.Data(),
 //                                                   AppleTangle.Data(), Application.identifier);
 
 //        try
 //        {
-//            // Google Play ‚ÅAresult ‚Í 1 ‚Â‚Ì product ID ‚ğæ“¾‚µ‚Ü‚·
-//            // Apple stores ‚ÅAreceipts ‚É‚Í•¡”‚Ìƒvƒƒ_ƒNƒg‚ªŠÜ‚Ü‚ê‚Ü‚·
+//            // Google Play ã§ã€result ã¯ 1 ã¤ã® product ID ã‚’å–å¾—ã—ã¾ã™
+//            // Apple stores ã§ã€receipts ã«ã¯è¤‡æ•°ã®ãƒ—ãƒ­ãƒ€ã‚¯ãƒˆãŒå«ã¾ã‚Œã¾ã™
 //            var result = validator.Validate(receipt);
-//            // î•ñ’ñ‹Ÿ‚Ì–Ú“I‚ÅA‚±‚±‚ÉƒŒƒV[ƒg‚ğƒŠƒXƒg‚µ‚Ü‚·
-//            Debug.Log("—Ìû‘‚Í—LŒø‚Å‚·");
+//            // æƒ…å ±æä¾›ã®ç›®çš„ã§ã€ã“ã“ã«ãƒ¬ã‚·ãƒ¼ãƒˆã‚’ãƒªã‚¹ãƒˆã—ã¾ã™
+//            Debug.Log("é ˜åæ›¸ã¯æœ‰åŠ¹ã§ã™");
 
 //            GooglePurchaseState lastGoogleResult = GooglePurchaseState.Cancelled;
 //            DateTime lastData = DateTime.Today;
@@ -269,7 +269,7 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //                Debug.Log(productReceipt.purchaseDate);
 //                Debug.Log(productReceipt.transactionID);
 
-//                //GooglePlay ‚Ìw“üƒŒƒV[ƒg
+//                //GooglePlay ã®è³¼å…¥ãƒ¬ã‚·ãƒ¼ãƒˆ
 //                GooglePlayReceipt google = productReceipt as GooglePlayReceipt;
 //                if (null != google)
 //                {
@@ -319,7 +319,7 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //    #endregion
 
 //    /// <summary>
-//    /// ‰¿Ši‚Ìæ“¾
+//    /// ä¾¡æ ¼ã®å–å¾—
 //    /// </summary>
 //    /// <returns></returns>
 //    public string GetlocalizedPriceString()
@@ -348,28 +348,28 @@ public class PurchaseManager : MonoBehaviour//, IStoreListener
 //        return retstr;
 //    }
 
-//    //Ql
-//    /*•¡”“o˜^
+//    //å‚è€ƒ
+//    /*è¤‡æ•°ç™»éŒ²
 //     * var products = new [] {
-//	new ProductDefinition ("jp.nyanta.tetr4lab.unityiaptest.item1", ƒXƒgƒAID, ProductType.Consumable),
+//	new ProductDefinition ("jp.nyanta.tetr4lab.unityiaptest.item1", ã‚¹ãƒˆã‚¢ID, ProductType.Consumable),
 //	new ProductDefinition ("jp.nyanta.tetr4lab.unityiaptest.item2", ProductType.NonConsumable),
 //	new ProductDefinition ("jp.nyanta.tetr4lab.unityiaptest.item3", ProductType.NonConsumable),
 //};
 //     */
 
-//    /*¡‚±‚ÌŒã‚Ì‘Î‰
-//     1DƒAƒvƒŠ“àƒAƒCƒeƒ€‚Ì’Ç‰Á
-//     Google Play Console ‚ÌƒAƒvƒŠŠÇ—‰æ–Ê‚©‚çƒAƒvƒŠ“àƒAƒCƒeƒ€‚ğ‘I‘ğ‚µA‰Û‹àƒAƒCƒeƒ€‚ğ’Ç‰Á‚µ‚Ü‚·B
-//     ¤•i–¼‚âƒAƒCƒeƒ€ID‚Í–{”Ô‚Åg—p‚·‚é‚à‚Ì‚Æ“¯‚¶‚à‚Ì‚ğg—p‚µ‚Ü‚·B
+//    /*â– ã“ã®å¾Œã®å¯¾å¿œ
+//     1ï¼ã‚¢ãƒ—ãƒªå†…ã‚¢ã‚¤ãƒ†ãƒ ã®è¿½åŠ 
+//     Google Play Console ã®ã‚¢ãƒ—ãƒªç®¡ç†ç”»é¢ã‹ã‚‰ã‚¢ãƒ—ãƒªå†…ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠã—ã€èª²é‡‘ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+//     å•†å“åã‚„ã‚¢ã‚¤ãƒ†ãƒ IDã¯æœ¬ç•ªã§ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã¨åŒã˜ã‚‚ã®ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
 
-//    ‚±‚±‚É‚Åİ’è‚·‚éƒAƒCƒeƒ€ID‚ÍÀ‘•‚µ‚½ƒR[ƒh‚É–„‚ß‚ñ‚Å‚¨‚©‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-//    ‚±‚¿‚ç‚ÅĞ‰î‚µ‚Ä‚¢‚éproductNameGooglePlayNonConsumable‚ÉƒAƒCƒeƒ€ID‚ğİ’è‚µ‚Ä‚¨‚«‚Ü‚·B
+//    ã“ã“ã«ã§è¨­å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ IDã¯å®Ÿè£…ã—ãŸã‚³ãƒ¼ãƒ‰ã«åŸ‹ã‚è¾¼ã‚“ã§ãŠã‹ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
+//    ã“ã¡ã‚‰ã§ç´¹ä»‹ã—ã¦ã„ã‚‹productNameGooglePlayNonConsumableã«ã‚¢ã‚¤ãƒ†ãƒ IDã‚’è¨­å®šã—ã¦ãŠãã¾ã™ã€‚
 
-//    2.ƒeƒXƒgFè‡ƒ`ƒFƒbƒN
+//    2.ãƒ†ã‚¹ãƒˆï¼šæ‰‹é †ãƒã‚§ãƒƒã‚¯
 //    https://hirokuma.blog/?p=4513
 
-//    3Dƒ†[ƒU[‚ÆŒ ŒÀ‚ÉƒAƒJƒEƒ“ƒg‚ğ’Ç‰Á
-//     ƒeƒXƒ^[‚ÌƒAƒJƒEƒ“ƒgigmailƒAƒhƒŒƒXj‚ğ’Ç‰Á‚µ‚Ü‚·B‚±‚ê‚ğ“ü—Í‚µ–Y‚ê‚½ƒAƒJƒEƒ“ƒg‚ÅƒeƒXƒg‚·‚é‚ÆÀÛ‚É‰Û‹à‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅA’ˆÓ‚ª•K—v‚Å‚·B
+//    3ï¼ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¨æ¨©é™ã«ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã‚’è¿½åŠ 
+//     ãƒ†ã‚¹ã‚¿ãƒ¼ã®ã‚¢ã‚«ã‚¦ãƒ³ãƒˆï¼ˆgmailã‚¢ãƒ‰ãƒ¬ã‚¹ï¼‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚ã“ã‚Œã‚’å…¥åŠ›ã—å¿˜ã‚ŒãŸã‚¢ã‚«ã‚¦ãƒ³ãƒˆã§ãƒ†ã‚¹ãƒˆã™ã‚‹ã¨å®Ÿéš›ã«èª²é‡‘ã•ã‚Œã¦ã—ã¾ã†ã®ã§ã€æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚
 //     */
 
 

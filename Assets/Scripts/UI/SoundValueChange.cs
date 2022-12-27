@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class SoundValueChange : MonoBehaviour
     private MenuObject_Sliderbar slider;
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒ_[‚ÌXV‚ÉŒÄ‚Î‚ê‚é
+    /// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®æ›´æ–°æ™‚ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void SlidebarDrag()
     {

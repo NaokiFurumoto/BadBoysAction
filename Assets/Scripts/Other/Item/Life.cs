@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Life : DropItem
 {
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÆÕ“Ë
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨è¡çª
     /// </summary>
     /// <param name="collision"></param>
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +24,7 @@ public class Life : DropItem
     }
 
     /// <summary>
-    /// íœ
+    /// å‰Šé™¤
     /// </summary>
     public override void Destroy()
     {

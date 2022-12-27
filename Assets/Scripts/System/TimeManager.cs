@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -19,7 +19,7 @@ public class TimeManager : MonoBehaviour
     public float FPS_30 = 1.0f / 30.0f;
     public float FPS_20 = 1.0f / 20.0f;
 
-    //“à•”ƒpƒ‰ƒ[ƒ^[
+    //å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
     [SerializeField] private bool m_Burdening = false;
     [SerializeField] private bool m_FixFrameRate = false;
     [SerializeField] private float m_SpeedRate = 1.0f;
@@ -44,10 +44,10 @@ public class TimeManager : MonoBehaviour
     private long m_FrameCount = 0;
     private long m_FrameStartCount = 0;
 
-    // ƒvƒƒpƒeƒB
-    #region ƒvƒƒpƒeƒB
+    // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
-    // ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg‚Ìæ“¾
+    // ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆã®å–å¾—
     public long FrameCount
     {
         get { return Instance.m_FrameCount; }
@@ -57,32 +57,32 @@ public class TimeManager : MonoBehaviour
         get { return Instance.m_FrameCount - Instance.m_FrameStartCount; }
     }
 
-    // ˆ——‚¿ƒŒ[ƒg‚Ìæ“¾
+    // å‡¦ç†è½ã¡ãƒ¬ãƒ¼ãƒˆã®å–å¾—
     public float DeltaFall
     {
         get { return Instance.m_DeltaTime * (float)Instance.m_FrameRate; }
     }
 
-    // ƒtƒŒ[ƒ€ƒŒ[ƒg‚Ìæ“¾
+    // ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã®å–å¾—
     public int FrameRate
     {
         get { return Instance.m_FrameRate == -1 ? 60 : Instance.m_FrameRate; }
         set { Instance.m_FrameRate = value; }
     }
 
-    // FPS‚Ìæ“¾
+    // FPSã®å–å¾—
     public float Fps
     {
         get { return Instance.m_Fps; }
     }
 
-    // ‰Â•ÏXVŠÔ‚Ìæ“¾(‘¬“xƒŒ[ƒg‚Ì‰e‹¿‚ğó‚¯‚È‚¢)
+    // å¯å¤‰æ›´æ–°æ™‚é–“ã®å–å¾—(é€Ÿåº¦ãƒ¬ãƒ¼ãƒˆã®å½±éŸ¿ã‚’å—ã‘ãªã„)
     public float DeltaTimeSystem
     {
         get { return Instance.m_DeltaTimeSystem; }
     }
 
-    // ‰Â•ÏXVŠÔ‚Ìæ“¾(‘¬“xƒŒ[ƒg‚Ì‰e‹¿‚ğó‚¯‚é)
+    // å¯å¤‰æ›´æ–°æ™‚é–“ã®å–å¾—(é€Ÿåº¦ãƒ¬ãƒ¼ãƒˆã®å½±éŸ¿ã‚’å—ã‘ã‚‹)
     public float DeltaTime
     {
         get { return Instance.m_DeltaTime; }
@@ -92,27 +92,27 @@ public class TimeManager : MonoBehaviour
         get { return Instance.m_UnscaledDeltaTime; }
     }
 
-    // ƒQ[ƒ€‹N“®‚©‚ç‚ÌŒo‰ßŠÔ
+    // ã‚²ãƒ¼ãƒ èµ·å‹•ã‹ã‚‰ã®çµŒéæ™‚é–“
     public float Time
     {
         get { return Instance.m_Time; }
     }
 
-    // ‘¬“xƒŒ[ƒg
+    // é€Ÿåº¦ãƒ¬ãƒ¼ãƒˆ
     public float SpeedRate
     {
         set { Instance.m_SpeedRate = value; }
         get { return Instance.m_SpeedRate; }
     }
 
-    // ƒ[ƒJƒ‹‘¬“xƒŒ[ƒg
+    // ãƒ­ãƒ¼ã‚«ãƒ«é€Ÿåº¦ãƒ¬ãƒ¼ãƒˆ
     public float LocalSpeedRate
     {
         set { Instance.m_LocalSpeedRate = value; }
         get { return Instance.m_LocalSpeedRate; }
     }
 
-    // ƒŒƒxƒ‹ƒ[ƒh‚©‚ç‚ÌŒo‰ßŠÔ
+    // ãƒ¬ãƒ™ãƒ«ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰ã®çµŒéæ™‚é–“
     public float SinceTime
     {
         get { return Instance.m_SinceTime; }
@@ -131,22 +131,22 @@ public class TimeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Start()
     {
         Application.targetFrameRate = -1;
     }
 
-    //XV
+    //æ›´æ–°
     private void Update()
     {
         float rate = 1.0f;
 
-        //ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg•Û‘¶
+        //ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆä¿å­˜
         m_FrameCount = UnityEngine.Time.frameCount;
 
-        // ƒtƒŒ[ƒ€ŠJnŠÔ
+        // ãƒ•ãƒ¬ãƒ¼ãƒ é–‹å§‹æ™‚é–“
         m_Time += m_DeltaTime;
 
         if (m_SlowTime > 0)
@@ -195,7 +195,7 @@ public class TimeManager : MonoBehaviour
 
         if (m_FixFrameRate == false)
         {
-            // ‰Â•ÏŠÔ
+            // å¯å¤‰æ™‚é–“
             m_DeltaTimeSystem =
             m_DeltaTime = UnityEngine.Time.deltaTime;
             m_UnscaledDeltaTime = UnityEngine.Time.timeScale == 0 ? UnityEngine.Time.fixedDeltaTime : UnityEngine.Time.deltaTime / UnityEngine.Time.timeScale;
@@ -203,35 +203,35 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            // ŒÅ’èŠÔ
+            // å›ºå®šæ™‚é–“
             m_DeltaTimeSystem =
             m_DeltaTime = m_Fps * m_SpeedRate * m_LocalSpeedRate * rate;
             m_UnscaledDeltaTime = m_Fps;
         }
 
-        // ‹[—ˆ—•‰‰×ƒ‚[ƒh
+        // æ“¬ä¼¼å‡¦ç†è² è·ãƒ¢ãƒ¼ãƒ‰
         if (m_Burdening && m_FrameRate > 0)
         {
             Application.targetFrameRate = (int)(m_FrameRate + (float)m_FrameRate * UnityEngine.Random.Range(-0.5f, 0.0f));
         }
 
-        // ‘¬“xƒŒ[ƒg‚ğŠ|‚¯‚é
+        // é€Ÿåº¦ãƒ¬ãƒ¼ãƒˆã‚’æ›ã‘ã‚‹
         UnityEngine.Time.timeScale = m_SpeedRate * m_LocalSpeedRate * rate;
     }
 
     //=========================================================================
-    //. ƒXƒ[
+    //. ã‚¹ãƒ­ãƒ¼
     //=========================================================================
-    #region ƒXƒ[
+    #region ã‚¹ãƒ­ãƒ¼
 
     /// ***********************************************************************
     /// <summary>
-    /// ƒXƒ[ŠJn
+    /// ã‚¹ãƒ­ãƒ¼é–‹å§‹
     /// </summary>
-    /// <param name="time">ƒXƒ[Å‘åŠÔ</param>
-    /// <param name="time_s">ƒXƒ[ŠJnŠÔ</param>
-    /// <param name="time_e">ƒXƒ[–ß‚èŠÔ</param>
-    /// <param name="rate">ƒXƒ[ƒŒ[ƒg</param>
+    /// <param name="time">ã‚¹ãƒ­ãƒ¼æœ€å¤§æ™‚é–“</param>
+    /// <param name="time_s">ã‚¹ãƒ­ãƒ¼é–‹å§‹æ™‚é–“</param>
+    /// <param name="time_e">ã‚¹ãƒ­ãƒ¼æˆ»ã‚Šæ™‚é–“</param>
+    /// <param name="rate">ã‚¹ãƒ­ãƒ¼ãƒ¬ãƒ¼ãƒˆ</param>
     /// <returns></returns>
     /// <remarks></remarks>
     /// ***********************************************************************
@@ -256,7 +256,7 @@ public class TimeManager : MonoBehaviour
 
     /// ***********************************************************************
     /// <summary>
-    /// ƒXƒ[‰ğœ
+    /// ã‚¹ãƒ­ãƒ¼è§£é™¤
     /// </summary>
     /// ***********************************************************************
     public void ResetSlow()
@@ -266,13 +266,13 @@ public class TimeManager : MonoBehaviour
     #endregion
 
     //=========================================================================
-    //. İ’è/æ“¾
+    //. è¨­å®š/å–å¾—
     //=========================================================================
-    #region İ’è/æ“¾
+    #region è¨­å®š/å–å¾—
 
     /// ***********************************************************************
     /// <summary>
-    /// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg‚Ì‰Šú’l‚ğİ’è
+    /// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆã®åˆæœŸå€¤ã‚’è¨­å®š
     /// </summary>
     /// ***********************************************************************
     public void SetFrameStartCount()
@@ -284,7 +284,7 @@ public class TimeManager : MonoBehaviour
 
     /// ***********************************************************************
     /// <summary>
-    /// ŒW”‚ğ‘¬“x”{—¦‚É‡‚í‚¹‚Ä•â³
+    /// ä¿‚æ•°ã‚’é€Ÿåº¦å€ç‡ã«åˆã‚ã›ã¦è£œæ­£
     /// </summary>
     /// ***********************************************************************
     public float CalcValueSpeedRate(ref float value, float rate)
@@ -309,7 +309,7 @@ public class TimeManager : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Œ»İ‚Ì“ú‚ğæ“¾
+    /// ç¾åœ¨ã®æ—¥æ™‚ã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     public DateTime GetDayTime()
@@ -318,7 +318,7 @@ public class TimeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İ‚Ì“ú•t‚ğLongŒ^‚Ì®”’l‚É•ÏŠ·
+    /// ç¾åœ¨ã®æ—¥ä»˜ã‚’Longå‹ã®æ•´æ•°å€¤ã«å¤‰æ›
     /// </summary>
     /// <returns></returns>
     public long GetDayTimeInteger()

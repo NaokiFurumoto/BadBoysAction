@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Šù‘¶‚ÌSlider‚Å‚Í‚È‚¢ƒpƒ^[ƒ“
+/// æ—¢å­˜ã®Sliderã§ã¯ãªã„ãƒ‘ã‚¿ãƒ¼ãƒ³
 /// </summary>
 public class MenuObject_Sliderbar : MonoBehaviour
 {
-    // === ŠO•”ƒpƒ‰ƒ[ƒ^iƒCƒ“ƒXƒyƒNƒ^•\¦j =====================
+    // === å¤–éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿è¡¨ç¤ºï¼‰ =====================
     public GameObject scriptObject;
     public string label;
 
@@ -28,7 +28,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
     public Button MaxButton;
     public Button MinButton;
 
-    // === ŠO•”ƒpƒ‰ƒ[ƒ^ ======================================
+    // === å¤–éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ======================================
 
     public bool Initialized { get; set; } = false;
     public Vector2 CurosorPosition
@@ -38,14 +38,14 @@ public class MenuObject_Sliderbar : MonoBehaviour
     }
 
 
-    // === “à•”ƒpƒ‰ƒ[ƒ^ ======================================
+    // === å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ======================================
     Vector3 movSt;
     Vector3 movNow;
     Vector2 slideSize;
     [SerializeField]
     Vector2 curosorPosition = Vector2.zero;
 
-    // === ƒR[ƒh =============================================
+    // === ã‚³ãƒ¼ãƒ‰ =============================================
 
 
     public void SetValue()
@@ -61,21 +61,21 @@ public class MenuObject_Sliderbar : MonoBehaviour
             anchorEnd.transform.position -= new Vector3(slideSize.x, slideSize.y, 0.0f);
         }
 
-        ///ƒ[ƒhŒã‚Ì‰Šú‰»‚ğs‚¤
+        ///ãƒ­ãƒ¼ãƒ‰å¾Œã®åˆæœŸåŒ–ã‚’è¡Œã†
         Init();
     }
 
     void Update()
     {
-        //‰Šú‰»Š®—¹Œã‚ÉÀs
+        //åˆæœŸåŒ–å®Œäº†å¾Œã«å®Ÿè¡Œ
         if (!Initialized)
             return;
 
-        // ƒ‚[ƒhƒ`ƒFƒbƒN
+        // ãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
         if (scorllMode)
         {
-            // --- ƒXƒNƒ[ƒ‹	 ------------------------------
-            // ƒ^ƒbƒ`ƒ`ƒFƒbƒN
+            // --- ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	 ------------------------------
+            // ã‚¿ãƒƒãƒãƒã‚§ãƒƒã‚¯
             if (Input.touchCount > 0)
             {
                 if (Physics2D.OverlapPoint(GetScreenPosition(Input.GetTouch(0).position)) != null)
@@ -95,7 +95,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
                 }
             }
             else
-            // ƒ}ƒEƒXƒ`ƒFƒbƒN
+            // ãƒã‚¦ã‚¹ãƒã‚§ãƒƒã‚¯
             if (Input.GetMouseButton(0))
             {
                 if (Physics2D.OverlapPoint(GetScreenPosition(Input.mousePosition)) != null)
@@ -121,8 +121,8 @@ public class MenuObject_Sliderbar : MonoBehaviour
         }
         else
         {
-            // --- ƒXƒ‰ƒCƒ_[ -------------------------------
-            // ƒ^ƒbƒ`ƒ`ƒFƒbƒN
+            // --- ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ -------------------------------
+            // ã‚¿ãƒƒãƒãƒã‚§ãƒƒã‚¯
             if (Input.touchCount > 0)
             {
                 switch (Input.GetTouch(0).phase)
@@ -134,7 +134,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
                 }
             }
             else
-            // ƒ}ƒEƒXƒ`ƒFƒbƒN
+            // ãƒã‚¦ã‚¹ãƒã‚§ãƒƒã‚¯
             if (Input.GetMouseButton(0))
             {
                 SetSlide(GetScreenPosition(Input.mousePosition));
@@ -189,7 +189,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
 
     void CheckSlide()
     {
-        // ˆÚ“®”ÍˆÍƒ`ƒFƒbƒN
+        // ç§»å‹•ç¯„å›²ãƒã‚§ãƒƒã‚¯
         if (slideObject.transform.position.x < anchorStart.transform.position.x)
         {
             slideObject.transform.position = new Vector3(anchorStart.transform.position.x, slideObject.transform.position.y, slideObject.transform.position.z);
@@ -206,7 +206,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
         {
             slideObject.transform.position = new Vector3(slideObject.transform.position.x, anchorEnd.transform.position.y, slideObject.transform.position.z);
         }
-        // Œ»İˆÊ’u‚ğ0.0f`1.0f‚É•ÏŠ·‚·‚é
+        // ç¾åœ¨ä½ç½®ã‚’0.0fï½1.0fã«å¤‰æ›ã™ã‚‹
         Vector3 ofsPos = slideObject.transform.position - anchorStart.transform.position;
         curosorPosition = Vector2.zero;
         if (slideSize.x != 0.0f)
@@ -227,7 +227,7 @@ public class MenuObject_Sliderbar : MonoBehaviour
 
     public void Init()
     {
-        //ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‚Ìİ’è
+        //ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã®è¨­å®š
         MaxButton.onClick.AddListener(() => { AppSound.Instance.SE_MENU_OK.Play(); SetPosition(new Vector2(1.0f, 0.0f)); });
         MinButton.onClick.AddListener(() => { AppSound.Instance.SE_MENU_OK.Play(); SetPosition(new Vector2(0.0f, 0.0f)); });
     }

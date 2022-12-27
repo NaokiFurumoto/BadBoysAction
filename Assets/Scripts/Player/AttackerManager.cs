@@ -1,25 +1,25 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// UŒ‚‚ÌŠÇ— / Ø‘Ö
+/// æ”»æ’ƒã®ç®¡ç† / åˆ‡æ›¿
 /// </summary>
 public class AttackerManager : MonoBehaviour
 {
     /// <summary>
-    /// ‚·‚×‚Ä‚ÌUŒ‚ƒNƒ‰ƒX
+    /// ã™ã¹ã¦ã®æ”»æ’ƒã‚¯ãƒ©ã‚¹
     /// </summary>
     [SerializeField]
     private Attacker[] attackers;
 
     /// <summary>
-    /// ‘I‘ğ’†‚ÌUŒ‚ƒNƒ‰ƒX
+    /// é¸æŠä¸­ã®æ”»æ’ƒã‚¯ãƒ©ã‚¹
     /// </summary>
     private Attacker currentAttacker;
 
     /// <summary>
-    /// UŒ‚FŠO•”QÆ—p
+    /// æ”»æ’ƒï¼šå¤–éƒ¨å‚ç…§ç”¨
     /// </summary>
     public Attacker CurrentAttacker => currentAttacker;
 
@@ -30,11 +30,11 @@ public class AttackerManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šúİ’è
+    /// åˆæœŸè¨­å®š
     /// </summary>
     private void Initialize()
     {
-        //İ’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
+        //è¨­å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°
         if(attackers.Length == 0)
         {
             int childCount = transform.childCount; 
@@ -45,13 +45,13 @@ public class AttackerManager : MonoBehaviour
             }
         }
 
-        //‰Šú‚ÍFront
+        //åˆæœŸã¯Front
         currentAttacker = attackers[0];
         currentAttacker.gameObject.SetActive(true);
     }
 
     /// <summary>
-    /// ‚·‚×‚Ä‚ÌUŒ‚ó‘Ô‚ğ”ñ•\¦‚É
+    /// ã™ã¹ã¦ã®æ”»æ’ƒçŠ¶æ…‹ã‚’éè¡¨ç¤ºã«
     /// </summary>
     public void DeActivateAllAttackers()
     {
@@ -62,7 +62,7 @@ public class AttackerManager : MonoBehaviour
     }
 
     /// <summary>
-    /// “Á’è‚ÌUŒ‚‚ğ•\¦‚·‚é
+    /// ç‰¹å®šã®æ”»æ’ƒã‚’è¡¨ç¤ºã™ã‚‹
     /// </summary>
     /// <param name="direction"></param>
     public void ActivateAttacker(ATTACK_DIRECTION direction)
@@ -83,7 +83,7 @@ public class AttackerManager : MonoBehaviour
 
     
     /// <summary>
-    /// ‘SAttack‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒŠƒZƒbƒg
+    /// å…¨Attackã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒªã‚»ãƒƒãƒˆ
     /// </summary>
     public void SetAllAnimatorIdle()
     {

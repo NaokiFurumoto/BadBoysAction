@@ -1,48 +1,48 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using static GlobalValue;
 /// <summary>
-/// “GUŒ‚ƒNƒ‰ƒX
+/// æ•µæ”»æ’ƒã‚¯ãƒ©ã‚¹
 /// </summary>
 public class EnemyAttack : MonoBehaviour
 {
     /// <summary>
-    /// UŒ‚—Í
+    /// æ”»æ’ƒåŠ›
     /// </summary>
     [SerializeField]
     private int damageAmount;
 
     /// <summary>
-    /// UŒ‚”»’è
+    /// æ”»æ’ƒåˆ¤å®š
     /// </summary>
     [SerializeField]
     private bool isAttacked;
 
     /// <summary>
-    /// ƒN[ƒ‹ƒ_ƒEƒ“ŠÔ
+    /// ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³æ™‚é–“
     /// </summary>
     [SerializeField]
     private float damageCoolDown;
 
     /// <summary>
-    /// ƒN[ƒ‹ƒ_ƒEƒ“Œv‘ª—p
+    /// ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³è¨ˆæ¸¬ç”¨
     /// </summary>
     private float damageCoolDownTimer;
 
     /// <summary>
-    /// ƒXƒe[ƒ^ƒX‘€ì
+    /// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ“ä½œ
     /// </summary>
     private EnemyStatusController enemyStatusController;
 
     /// <summary>
-    /// ˆÚ“®‘€ì
+    /// ç§»å‹•æ“ä½œ
     /// </summary>
     private EnemyMovement enemyMovement;
 
     /// <summary>
-    /// ©g‚ÌTransform
+    /// è‡ªèº«ã®Transform
     /// </summary>
     private Transform trans;
 
@@ -53,7 +53,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -64,33 +64,33 @@ public class EnemyAttack : MonoBehaviour
         trans                 = this.gameObject.transform;
     }
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public bool IsAttacked { get { return isAttacked; } 
                              set { isAttacked = value; } }
     /// <summary>
-    /// ƒN[ƒ‹ƒ_ƒEƒ“’†”»’è
+    /// ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ä¸­åˆ¤å®š
     /// </summary>
     public bool IsDamageCoolDown => Time.time < damageCoolDownTimer;
     #endregion
 
     /// <summary>
-    /// ÚG‚Ìˆ—
+    /// æ¥è§¦æ™‚ã®å‡¦ç†
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //ƒvƒŒ[ƒ„[‚Ìê‡
+        //ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®å ´åˆ
         if (collision.CompareTag("Player"))
         {
-            //ƒ_ƒ[ƒW’†
+            //ãƒ€ãƒ¡ãƒ¼ã‚¸ä¸­
             if (enemyStatusController.State == ENEMY_STATE.DAMAGE)
                 return;
 
-            //ƒN[ƒ‹ƒ_ƒEƒ“’†
+            //ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ä¸­
             if (IsDamageCoolDown)
                 return;
 
-            //ƒN[ƒ‹ƒ_ƒEƒ“Œo‰ß
+            //ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³çµŒé
             if (!IsDamageCoolDown)
             {
                 isAttacked = false;
@@ -98,16 +98,16 @@ public class EnemyAttack : MonoBehaviour
 
             if (!isAttacked)
             {
-                //ƒN[ƒ‹ƒ_ƒEƒ“’†‚ÍUŒ‚”»’èæ‚ê‚È‚¢
+                //ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ä¸­ã¯æ”»æ’ƒåˆ¤å®šå–ã‚Œãªã„
                 damageCoolDownTimer = Time.time + damageCoolDown;
                 isAttacked = true;
                 collision.GetComponent<PlayerStatusController>().Damage(damageAmount);
 
-                //ƒmƒbƒNƒoƒbƒN
+                //ãƒãƒƒã‚¯ãƒãƒƒã‚¯
                 NockBack();
                 return;
             }
-        }//“G‚Ìê‡
+        }//æ•µã®å ´åˆ
         else if (collision.CompareTag("Enemy"))
         {
             var enemyCtrl = collision.gameObject?.
@@ -124,7 +124,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒmƒbƒNƒoƒbƒN
+    /// ãƒãƒƒã‚¯ãƒãƒƒã‚¯
     /// </summary>
     private void NockBack()
     {

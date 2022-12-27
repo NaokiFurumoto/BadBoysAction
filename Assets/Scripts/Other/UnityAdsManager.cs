@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -27,7 +27,7 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
 
     public static UnityAdsManager Instance { get; private set; }
 
-    //L•\¦I—¹Œã‚ÌƒR[ƒ‹ƒoƒbƒN
+    //åºƒå‘Šè¡¨ç¤ºçµ‚äº†å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     private Action<ShowResult> finish;
 
     void Start()
@@ -40,25 +40,25 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
         uiController = GameObject.FindGameObjectWithTag("UI").
                                      GetComponent<UiController>();
         Advertisement.Initialize(GameID);
-        //LŠÖ˜A‚ÌƒCƒxƒ“ƒg‚ª”­¶‚·‚é‚æ‚¤‚É“o˜^(IUnityAdsListener—pj
+        //åºƒå‘Šé–¢é€£ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã™ã‚‹ã‚ˆã†ã«ç™»éŒ²(IUnityAdsListenerç”¨ï¼‰
         Advertisement.AddListener(this);
         StartCoroutine(ShowBannerWhenReady());
     }
 
     /// <summary>
-    /// ƒoƒi|•\¦
+    /// ãƒãƒŠï¼è¡¨ç¤º
     /// ver 3.7.5
     /// </summary>
     /// <returns></returns>
     private IEnumerator ShowBannerWhenReady()
     {
-        //ƒoƒi[L‚ª•\¦‚Å‚«‚éó‘Ô‚©‚Ç‚¤‚©‚Ì”»’è
+        //ãƒãƒŠãƒ¼åºƒå‘ŠãŒè¡¨ç¤ºã§ãã‚‹çŠ¶æ…‹ã‹ã©ã†ã‹ã®åˆ¤å®š
         while (!Advertisement.IsReady(BannerID))
         {
             yield return new WaitForSeconds(0.5f);
         }
 
-        //L‰Û‹à‚µ‚Ä‚¢‚È‚¢ê‡
+        //åºƒå‘Šèª²é‡‘ã—ã¦ã„ãªã„å ´åˆ
         if (!uiController.GetIsAds())
         {
             Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
@@ -67,11 +67,11 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     }
 
     /// <summary>
-    /// ƒCƒ“ƒ^[ƒXƒeƒCƒVƒƒƒ‹L‚Ì•\¦
+    /// ã‚¤ãƒ³ã‚¿ãƒ¼ã‚¹ãƒ†ã‚¤ã‚·ãƒ£ãƒ«åºƒå‘Šã®è¡¨ç¤º
     /// </summary>
     public void ShowInterstitial(Action<ShowResult> finish)
     {
-        //L‚ªÄ¶‚Å‚«‚éó‘Ô
+        //åºƒå‘ŠãŒå†ç”Ÿã§ãã‚‹çŠ¶æ…‹
         if (Advertisement.IsReady(InterstitialID))
         {
             Advertisement.Show(InterstitialID);
@@ -80,11 +80,11 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     }
 
     /// <summary>
-    /// ƒŠƒ[ƒhL‚Ì•\¦
+    /// ãƒªãƒ¯ãƒ¼ãƒ‰åºƒå‘Šã®è¡¨ç¤º
     /// </summary>
     public void ShowRewarded(Action<ShowResult> finish)
     {
-        //L‚ªÄ¶‚Å‚«‚éó‘Ô
+        //åºƒå‘ŠãŒå†ç”Ÿã§ãã‚‹çŠ¶æ…‹
         if (Advertisement.IsReady(RewardedID))
         {
             Advertisement.Show(RewardedID);
@@ -105,10 +105,10 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     }
 
     /// <summary>
-    /// “®‰æL‚ªI‚í‚Á‚½Œã‚ÉŒÄ‚Î‚ê‚éŠÖ”
+    /// å‹•ç”»åºƒå‘ŠãŒçµ‚ã‚ã£ãŸå¾Œã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
     /// </summary>
     /// <param name="placementId"></param>
-    /// <param name="showResult">ƒXƒLƒbƒv‚³‚ê‚½‚©AÅŒã‚Ü‚Å‹’®‚³‚ê‚½‚©‚Ìó‘Ô‚ª“ü‚é</param>
+    /// <param name="showResult">ã‚¹ã‚­ãƒƒãƒ—ã•ã‚ŒãŸã‹ã€æœ€å¾Œã¾ã§è¦–è´ã•ã‚ŒãŸã‹ã®çŠ¶æ…‹ãŒå…¥ã‚‹</param>
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
         this.finish?.Invoke(showResult);

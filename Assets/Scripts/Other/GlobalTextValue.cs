@@ -1,58 +1,58 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// å‚ÉƒeƒLƒXƒg‚Ì•\¦ƒNƒ‰ƒX
+/// ä¸»ã«ãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 /// </summary>
 public partial class GlobalValue
 {
 
-    public readonly static string YES = "‚Í‚¢";
-    public readonly static string NO = "‚¢‚¢‚¦";
+    public readonly static string YES = "ã¯ã„";
+    public readonly static string NO = "ã„ã„ãˆ";
     public readonly static string OK = "OK";
-    public readonly static string CLOSE = "•Â‚¶‚é";
-    public readonly static string MOVIECHECK = "‹’®";
-    public readonly static string LOADBATTLE_YES = "ÄŠJ‚·‚é";
-    public readonly static string LOADBATTLE_NO = "Å‰‚©‚ç";
+    public readonly static string CLOSE = "é–‰ã˜ã‚‹";
+    public readonly static string MOVIECHECK = "è¦–è´";
+    public readonly static string LOADBATTLE_YES = "å†é–‹ã™ã‚‹";
+    public readonly static string LOADBATTLE_NO = "æœ€åˆã‹ã‚‰";
    
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‘S‰ñ•œƒ_ƒCƒAƒƒOƒ^ƒCƒgƒ‹
+    /// ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¿ã‚¤ãƒˆãƒ«
     /// </summary>
-    public readonly static string STAMINA_FULLRECOVERY_TITLE = "ƒXƒ^ƒ~ƒi‘S‰ñ•œ";
+    public readonly static string STAMINA_FULLRECOVERY_TITLE = "ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©";
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‘S‰ñ•œƒ_ƒCƒAƒƒO•¶Œ¾
+    /// ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©ãƒ€ã‚¤ã‚¢ãƒ­ã‚°æ–‡è¨€
     /// </summary>
-    public readonly static string STAMINA_FULLRECOVERY_DESC = "ƒXƒ^ƒ~ƒi‚ª‘S‰ñ•œ‚³‚ê‚Ü‚µ‚½B";
+    public readonly static string STAMINA_FULLRECOVERY_DESC = "ã‚¹ã‚¿ãƒŸãƒŠãŒå…¨å›å¾©ã•ã‚Œã¾ã—ãŸã€‚";
 
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‚ª‘«‚ç‚È‚¢ƒ^ƒCƒgƒ‹
+    /// ã‚¹ã‚¿ãƒŸãƒŠãŒè¶³ã‚‰ãªã„ã‚¿ã‚¤ãƒˆãƒ«
     /// </summary>
-    public readonly static string STAMINA_LESS_TITLE = "ƒXƒ^ƒ~ƒi‚ª‘«‚è‚Ü‚¹‚ñ!!";
+    public readonly static string STAMINA_LESS_TITLE = "ã‚¹ã‚¿ãƒŸãƒŠãŒè¶³ã‚Šã¾ã›ã‚“!!";
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‚ª‘«‚ç‚È‚¢•¶Œ¾
+    /// ã‚¹ã‚¿ãƒŸãƒŠãŒè¶³ã‚‰ãªã„æ–‡è¨€
     /// </summary>
-    public readonly static string STAMINA_LESS_DESC = "“®‰æ‹’®‚·‚é‚±‚Æ‚Å<br>ƒXƒ^ƒ~ƒi‚ª‘S‰ñ•œ‚³‚ê‚Ü‚·B<br>‹’®‚µ‚Ü‚·‚©HB";
+    public readonly static string STAMINA_LESS_DESC = "å‹•ç”»è¦–è´ã™ã‚‹ã“ã¨ã§<br>ã‚¹ã‚¿ãƒŸãƒŠãŒå…¨å›å¾©ã•ã‚Œã¾ã™ã€‚<br>è¦–è´ã—ã¾ã™ã‹ï¼Ÿã€‚";
 
 
     /// <summary>
-    /// ƒZ[ƒuƒf[ƒ^ŠÖ˜A
+    /// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é–¢é€£
     /// </summary>
-    public readonly static string SAVEDATA_CLEAR_TITlE = "ƒf[ƒ^ƒNƒŠƒA";
-    public readonly static string SAVEDATA_CLEAR_DESC = "ƒZ[ƒuƒf[ƒ^‚ğ‰Šú‰»‚µ‚Ü‚·B<br>‚æ‚ë‚µ‚¢‚Å‚·‚©H";
+    public readonly static string SAVEDATA_CLEAR_TITlE = "ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢";
+    public readonly static string SAVEDATA_CLEAR_DESC = "ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚<br>ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ";
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹–ß‚é
+    /// ã‚¿ã‚¤ãƒˆãƒ«æˆ»ã‚‹
     /// </summary>
-    public readonly static string OPTION_GOSTART_TITLE = "ƒ^ƒCƒgƒ‹‚É–ß‚é";
-    public readonly static string OPTION_GOSTART_DESC = "Œ»İ‚Ìƒoƒgƒ‹‚ğI—¹‚µ‚Ä<br>ƒ^ƒCƒgƒ‹‚É–ß‚è‚Ü‚·B<br>‚æ‚ë‚µ‚¢‚Å‚µ‚å‚¤‚©H";
+    public readonly static string OPTION_GOSTART_TITLE = "ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹";
+    public readonly static string OPTION_GOSTART_DESC = "ç¾åœ¨ã®ãƒãƒˆãƒ«ã‚’çµ‚äº†ã—ã¦<br>ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚Šã¾ã™ã€‚<br>ã‚ˆã‚ã—ã„ã§ã—ã‚‡ã†ã‹ï¼Ÿ";
 
     /// <summary>
-    /// ’†’fƒf[ƒ^
+    /// ä¸­æ–­ãƒ‡ãƒ¼ã‚¿
     /// </summary>
-    public readonly static string LOADBATTLE_TITLE = "í“¬’†II";
-    public readonly static string LOADBATTLE_DESC = "’†’f‚³‚ê‚½í“¬ƒf[ƒ^‚ª‚ ‚è‚Ü‚·B<br>ÄŠJ‚µ‚Ü‚·‚©H";
+    public readonly static string LOADBATTLE_TITLE = "æˆ¦é—˜ä¸­ï¼ï¼";
+    public readonly static string LOADBATTLE_DESC = "ä¸­æ–­ã•ã‚ŒãŸæˆ¦é—˜ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã™ã€‚<br>å†é–‹ã—ã¾ã™ã‹ï¼Ÿ";
 
 
 }

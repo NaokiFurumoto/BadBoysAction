@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,16 +10,16 @@ public class LoginView : ViewBase
 {
     public enum LOGIN_TYPE
     {
-        NONE,//–¢İ’è
-        NEW,//V‹K‰ïˆõ“o˜^
-        LOGIN,//ƒƒOƒCƒ“
-        LOGOUT//ƒƒOƒAƒEƒg
+        NONE,//æœªè¨­å®š
+        NEW,//æ–°è¦ä¼šå“¡ç™»éŒ²
+        LOGIN,//ãƒ­ã‚°ã‚¤ãƒ³
+        LOGOUT//ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
     }
 
     [SerializeField]
     private OptionView optionView;
 
-    //ƒ†[ƒU[î•ñ
+    //ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±
     [SerializeField]
     private string id;
     [SerializeField]
@@ -27,11 +27,11 @@ public class LoginView : ViewBase
     [SerializeField]
     private string mail;
 
-    //ƒƒOƒCƒ“ó‹µ
+    //ãƒ­ã‚°ã‚¤ãƒ³çŠ¶æ³
     [SerializeField]
     private LOGIN_TYPE loginType = LOGIN_TYPE.NONE;
 
-    //Ø‘Ö
+    //åˆ‡æ›¿
     [SerializeField]
     private List<LoginMenuBase> menuList = new List<LoginMenuBase>();
 
@@ -62,7 +62,7 @@ public class LoginView : ViewBase
     }
 
     /// <summary>
-    /// ƒƒjƒ…[Ø‚è‘Ö‚¦
+    /// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆ‡ã‚Šæ›¿ãˆ
     /// </summary>
     /// <param name="type"></param>
     public void SwitchMenu(LOGIN_TYPE type)
@@ -74,7 +74,7 @@ public class LoginView : ViewBase
     }
 
      /// <summary>
-    /// •Â‚¶‚éƒ{ƒ^ƒ“
+    /// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
     /// </summary>
     public void OnClickClose()
     {
@@ -85,7 +85,7 @@ public class LoginView : ViewBase
 }
 
 /// <summary>
-/// ƒƒOƒCƒ“ƒƒjƒ…[
+/// ãƒ­ã‚°ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 /// </summary>
 public abstract class LoginMenuBase : MonoBehaviour
 {
@@ -111,7 +111,7 @@ public abstract class LoginMenuBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        //e‚ÌGOæ“¾HH
+        //è¦ªã®GOå–å¾—ï¼Ÿï¼Ÿ
     }
 
     protected virtual void OnDisable()

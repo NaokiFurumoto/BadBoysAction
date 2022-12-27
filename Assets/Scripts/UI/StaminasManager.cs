@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 using System;
@@ -10,26 +10,26 @@ public class StaminasManager : MonoBehaviour
     public static StaminasManager Instance;
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒiƒŠƒXƒg
+    /// ã‚¹ã‚¿ãƒŸãƒŠãƒªã‚¹ãƒˆ
     /// </summary>
     [SerializeField]
     private List<StaminaStatus> staminaStatus = new List<StaminaStatus>();
 
     /// <summary>
-    /// c‚èg—pƒXƒ^ƒ~ƒi”
+    /// æ®‹ã‚Šä½¿ç”¨ã‚¹ã‚¿ãƒŸãƒŠæ•°
     /// </summary>
     [SerializeField]
     private int useStaminaNumber;
 
     /// <summary>
-    /// Œv‘ªŠÔ
+    /// è¨ˆæ¸¬æ™‚é–“
     /// </summary>
     private float progressTime;
 
     private GameController gameController;
 
     /// <summary>
-    /// c‚è‰ñ•œŠÔƒeƒLƒXƒg•\¦
+    /// æ®‹ã‚Šå›å¾©æ™‚é–“ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI text_RecoveryTime;
@@ -40,11 +40,11 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
-        //QÆ‚ªŠO‚ê‚Ä‚é‚Ì‚Å‰Šú‰»F
+        //å‚ç…§ãŒå¤–ã‚Œã¦ã‚‹ã®ã§åˆæœŸåŒ–F
         Instance ??= this;
 
         if (Instance == null)
@@ -59,28 +59,28 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€’†‚Ì‰ñ•œXV
-    /// 1ŠÔ‚É‚P‚Â‰ñ•œ
+    /// ã‚²ãƒ¼ãƒ ä¸­ã®å›å¾©æ›´æ–°
+    /// 1æ™‚é–“ã«ï¼‘ã¤å›å¾©
     /// </summary>
     void Update()
     {
-        //1‚Â‚Å‚àg—p‚³‚ê‚Ä‚¢‚ê‚ÎXV
+        //1ã¤ã§ã‚‚ä½¿ç”¨ã•ã‚Œã¦ã„ã‚Œã°æ›´æ–°
         if (!IsCheckUsedStamina())
             return;
 
-        //ŠÔƒ`ƒFƒbƒNFŠÔŒo‰ß‚·‚ê‚Î1‚Â‰ñ•œ
+        //æ™‚é–“ãƒã‚§ãƒƒã‚¯ï¼šæ™‚é–“çµŒéã™ã‚Œã°1ã¤å›å¾©
         //var kesstime = STAMINA_RECOVERY_TIME - Time.deltaTime;
 
         progressTime += Time.deltaTime;
 
-        //UIXV
+        //UIæ›´æ–°
         SetRecoveryTime(progressTime);
 
         if (progressTime >= STAMINA_RECOVERY_TIME)
         {
             RecoveryOneStamina();
 
-            //‰ñ•œŒã‚ÌƒXƒ^ƒ~ƒi”‚ª–ƒ^ƒ“‚È‚çƒeƒLƒXƒg”ñ•\¦
+            //å›å¾©å¾Œã®ã‚¹ã‚¿ãƒŸãƒŠæ•°ãŒæº€ã‚¿ãƒ³ãªã‚‰ãƒ†ã‚­ã‚¹ãƒˆéè¡¨ç¤º
             var isMax = GetUseStaminaNumber() == STAMINA_MAXNUMBER ? false : true;
             ActiveTextRecovery(isMax);
 
@@ -89,9 +89,9 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‘S‰ñ•œ
+    /// å…¨å›å¾©
     /// </summary>
-    /// <param name="isDialog">‰ñ•œŒã‚Éƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é‚©H</param>
+    /// <param name="isDialog">å›å¾©å¾Œã«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹ã‹ï¼Ÿ</param>
     public void FullRecovery(bool isDialog, Action callback = null)
     {
         if (staminaStatus == null) return;
@@ -105,7 +105,7 @@ public class StaminasManager : MonoBehaviour
 
         if (isDialog)
         {
-            ///‘S‰ñ•œ‚¨’m‚ç‚¹ƒ_ƒCƒAƒƒO
+            ///å…¨å›å¾©ãŠçŸ¥ã‚‰ã›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
             var dialog =
                 CommonDialog.ShowDialog
                 (
@@ -122,11 +122,11 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒig—p
+    /// ã‚¹ã‚¿ãƒŸãƒŠä½¿ç”¨
     /// </summary>
     public void UseStamina()
     {
-        //ƒXƒ^ƒ~ƒi‚ğ1‚Âg—pFá‚¢‡
+        //ã‚¹ã‚¿ãƒŸãƒŠã‚’1ã¤ä½¿ç”¨ï¼šè‹¥ã„é †
         foreach (var stamina in staminaStatus)
         {
             if (stamina.IsRecovery)
@@ -138,11 +138,11 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‚ğ‚P‚Â‰ñ•œ
+    /// ã‚¹ã‚¿ãƒŸãƒŠã‚’ï¼‘ã¤å›å¾©
     /// </summary>
     public void RecoveryOneStamina()
     {
-        //ÅŒã‚©‚çƒ`ƒFƒbƒN
+        //æœ€å¾Œã‹ã‚‰ãƒã‚§ãƒƒã‚¯
         for(var i = staminaStatus.Count()-1; i >= 0; i--)
         {
             if (!staminaStatus[i].IsRecovery)
@@ -154,8 +154,8 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰ñ•œƒ`ƒFƒbƒN
-    /// g—p‚Å‚«‚éƒXƒ^ƒ~ƒi‚ª‚ ‚é‚©‚Ç‚¤‚©
+    /// å›å¾©ãƒã‚§ãƒƒã‚¯
+    /// ä½¿ç”¨ã§ãã‚‹ã‚¹ã‚¿ãƒŸãƒŠãŒã‚ã‚‹ã‹ã©ã†ã‹
     /// </summary>
     /// <returns></returns>
     public bool IsCheckRecovery()
@@ -169,14 +169,14 @@ public class StaminasManager : MonoBehaviour
             }
         }
 
-        //true:‰ñ•œ‚³‚ê‚Ä‚¢‚é
+        //true:å›å¾©ã•ã‚Œã¦ã„ã‚‹
         return useStaminaNumber > 0;
     }
 
 
     /// <summary>
-    ///ƒvƒŒƒC’†‚É1‚Â‚Å‚àƒXƒ^ƒ~ƒi‚ªÁ”ï‚³‚ê‚Ä‚é‚©‚Ç‚¤‚©
-    ///ƒvƒŒƒC’†ˆÈŠO‚ÅŒÄ‚Ô‚ÈII
+    ///ãƒ—ãƒ¬ã‚¤ä¸­ã«1ã¤ã§ã‚‚ã‚¹ã‚¿ãƒŸãƒŠãŒæ¶ˆè²»ã•ã‚Œã¦ã‚‹ã‹ã©ã†ã‹
+    ///ãƒ—ãƒ¬ã‚¤ä¸­ä»¥å¤–ã§å‘¼ã¶ãªï¼ï¼
     /// </summary>
     /// <returns></returns>
     public bool IsCheckUsedStamina()
@@ -193,8 +193,8 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// c‚èƒXƒ^ƒ~ƒi”‚ğæ“¾
-    /// ƒvƒŒƒC’†ˆÈŠO‚ÅŒÄ‚Ô‚ÈII
+    /// æ®‹ã‚Šã‚¹ã‚¿ãƒŸãƒŠæ•°ã‚’å–å¾—
+    /// ãƒ—ãƒ¬ã‚¤ä¸­ä»¥å¤–ã§å‘¼ã¶ãªï¼ï¼
     /// </summary>
     /// <returns></returns>
     public int GetUseStaminaNumber()
@@ -212,12 +212,12 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‚ğŒÂ”‚Åİ’è
+    /// ã‚¹ã‚¿ãƒŸãƒŠã‚’å€‹æ•°ã§è¨­å®š
     /// </summary>
     /// <param name="num"></param>
     public void SetStaminaNumber(int num)
     {
-        //ˆê“x‘S•”false‚Éİ’è‚·‚é
+        //ä¸€åº¦å…¨éƒ¨falseã«è¨­å®šã™ã‚‹
         staminaStatus.ForEach(status => status.ChangeStaminaImage(false));
         if (num == 0) return;
         //0/1/2 = 1/2 1 =2
@@ -229,7 +229,7 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‚ğ‘S‚Äg—p•s‰Â‚Æ‚·‚é
+    /// ã‚¹ã‚¿ãƒŸãƒŠã‚’å…¨ã¦ä½¿ç”¨ä¸å¯ã¨ã™ã‚‹
     /// </summary>
     public void SetAllDisable()
     {
@@ -238,7 +238,7 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İ‚Ì“ú‚ğæ“¾‚·‚é
+    /// ç¾åœ¨ã®æ—¥æ™‚ã‚’å–å¾—ã™ã‚‹
     /// </summary>
     /// <returns></returns>
     private DateTime GetTimeNow()
@@ -247,7 +247,7 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// c‚èƒXƒ^ƒ~ƒi‰ñ•œŠÔ‚Ì•\¦
+    /// æ®‹ã‚Šã‚¹ã‚¿ãƒŸãƒŠå›å¾©æ™‚é–“ã®è¡¨ç¤º
     /// </summary>
     /// <param name="progress"></param>
     private void SetRecoveryTime(float progress)
@@ -259,7 +259,7 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰ñ•œŠÔ‚Ì•\¦Ø‘Ö
+    /// å›å¾©æ™‚é–“ã®è¡¨ç¤ºåˆ‡æ›¿
     /// </summary>
     /// <param name="ismax"></param>
     public void ActiveTextRecovery(bool ismax)
@@ -268,12 +268,12 @@ public class StaminasManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒhŒã‚ÌƒXƒ^ƒ~ƒi‰ñ•œˆ—
+    /// ãƒ­ãƒ¼ãƒ‰å¾Œã®ã‚¹ã‚¿ãƒŸãƒŠå›å¾©å‡¦ç†
     /// </summary>
-    /// <param name="loadingTime">ÅŒã‚ÉƒZ[ƒu‚³‚ê‚½ŠÔ</param>
+    /// <param name="loadingTime">æœ€å¾Œã«ã‚»ãƒ¼ãƒ–ã•ã‚ŒãŸæ™‚é–“</param>
     public void loadRecoveryStaminas(long loadingTime)
     {
-        // ƒXƒ^ƒ~ƒi‚ª‘S‰ñ‚È‚çÀs‚µ‚È‚¢
+        // ã‚¹ã‚¿ãƒŸãƒŠãŒå…¨å›ãªã‚‰å®Ÿè¡Œã—ãªã„
         if (!IsCheckUsedStamina())
             return;
 
@@ -282,7 +282,7 @@ public class StaminasManager : MonoBehaviour
 
         if (diffTime >= STAMINA_RECOVERY_LONGTIME)
         {
-            //‘SŠJ
+            //å…¨é–‹
             FullRecovery(true, () =>
             {
                 CommonDialogManager.Instance.DeleteDialogAll();

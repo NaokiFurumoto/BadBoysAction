@@ -1,82 +1,82 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 
 public enum AROUND_STATE
 {
-    NONE,//–¢İ’è
-    CHASE,//‚Ü‚Á‚·‚®i‚Ş
-    AROUND,//ü‰ñ
+    NONE,//æœªè¨­å®š
+    CHASE,//ã¾ã£ã™ãé€²ã‚€
+    AROUND,//å‘¨å›
 }
 /// <summary>
-/// ‚Ü‚Á‚·‚®i‚Şƒ^ƒCƒv‚Ì“G‚ÉƒAƒ^ƒbƒ`FENEMY_MOVETYPE.CHASE
+/// ã¾ã£ã™ãé€²ã‚€ã‚¿ã‚¤ãƒ—ã®æ•µã«ã‚¢ã‚¿ãƒƒãƒï¼šENEMY_MOVETYPE.CHASE
 /// </summary>
 public class EnemyAroundMove : EnemyMovement
 {
     /// <summary>
-    /// ˆÚ“®ó‘Ô
+    /// ç§»å‹•çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private AROUND_STATE state = AROUND_STATE.NONE;
 
     /// <summary>
-    /// ‰ñ“]‰Šú‰»”»’è
+    /// å›è»¢åˆæœŸåŒ–åˆ¤å®š
     /// </summary>
     private bool isInitializeAround;
 
     /// <summary>
-    /// i‚Ş‰Šú‰»”»’è
+    /// é€²ã‚€åˆæœŸåŒ–åˆ¤å®š
     /// </summary>
     private bool isInitializeChase;
 
     /// <summary>
-    /// -1.0f‚ÅŒv‰ñ‚èA1.0f‚Å”½Œv‰ñ‚è
+    /// -1.0fã§æ™‚è¨ˆå›ã‚Šã€1.0fã§åæ™‚è¨ˆå›ã‚Š
     /// </summary>
     [SerializeField]
     private float direction = -1.0f;
 
     /// <summary>
-    /// ‰ñ“]ƒXƒs[ƒh
+    /// å›è»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
     /// </summary>
     [SerializeField]
     private float roundSpeed = 3.0f;
 
     /// <summary>
-    /// ’Ç”ö«”\
+    /// è¿½å°¾æ€§èƒ½
     /// </summary>
     [SerializeField]
     private float followRate = 0.1f;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã®è·é›¢
     /// </summary>
     [SerializeField]
     private float followTargetDistance = 2.0f;
 
     /// <summary>
-    /// ¶Œü‚«‚Ì‰ñ“]
+    /// å·¦å‘ãæ™‚ã®å›è»¢
     /// </summary>
     private Quaternion leftRotation = Quaternion.Euler(0, 180, 0);
 
     /// <summary>
-    /// ‰EŒü‚«‚ÌRotationB
+    /// å³å‘ãæ™‚ã®Rotationã€‚
     /// </summary>
     private Quaternion rightRotation = Quaternion.Euler(0, 0, 0);
 
     /// <summary>
-    /// ü‰ñŠÔ
+    /// å‘¨å›æ™‚é–“
     /// </summary>
     [SerializeField]
     private float aroundTime = 5.0f;
 
     /// <summary>
-    /// ü‰ñŠJnŠÔ
+    /// å‘¨å›é–‹å§‹æ™‚é–“
     /// </summary>
     private float aroundStartTime;
 
     /// <summary>
-    /// ü‰ñ’†”»’è
+    /// å‘¨å›ä¸­åˆ¤å®š
     /// </summary>
     //private bool isArouding;
 
@@ -90,7 +90,7 @@ public class EnemyAroundMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—@TypeMove()‚ÌŒã‚ÉEnemyMove(x,y)‚ªÀs
+    /// ç§»å‹•å‡¦ç†ã€€TypeMove()ã®å¾Œã«EnemyMove(x,y)ãŒå®Ÿè¡Œ
     /// </summary>
     protected override void TypeMove()
     {
@@ -105,7 +105,7 @@ public class EnemyAroundMove : EnemyMovement
         {
             Chase();
         }
-        else//‰ñ“]ˆ—
+        else//å›è»¢å‡¦ç†
         {
             if (!isInitializeAround)
             {
@@ -114,14 +114,14 @@ public class EnemyAroundMove : EnemyMovement
                 isInitializeAround = true;
             }
 
-            //ü‰ñŠÔŒo‰ß
+            //å‘¨å›æ™‚é–“çµŒé
             if (Time.time - aroundStartTime < aroundTime)
             {
                 Around();
             }
             else
             {
-                //ˆê“x‚¾‚¯Às
+                //ä¸€åº¦ã ã‘å®Ÿè¡Œ
                 if (!isInitializeChase)
                 {
                     playerLastPos = playerCenter.position;
@@ -141,7 +141,7 @@ public class EnemyAroundMove : EnemyMovement
     }
 
     /// <summary>
-    /// ‚Ü‚Á‚·‚®i‚Şˆ—@:‰Šú‰»‚ª‚¢‚é
+    /// ã¾ã£ã™ãé€²ã‚€å‡¦ç†ã€€:åˆæœŸåŒ–ãŒã„ã‚‹
     /// </summary>
     private void Chase()
     {
@@ -154,13 +154,13 @@ public class EnemyAroundMove : EnemyMovement
             lastFollowTime = Time.time;
         }
 
-        //ƒvƒŒƒCƒ„[‚ÉŒü‚©‚¤ˆÚ“®’l
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‘ã‹ã†ç§»å‹•å€¤
         movePos = (playerLastPos - enemyTrans.position).normalized * chaseSpeed;
         BaseMoving(movePos.x, movePos.y);
     }
 
     /// <summary>
-    /// ü‰ñ
+    /// å‘¨å›
     /// </summary>
     private void Around()
     {
@@ -183,7 +183,7 @@ public class EnemyAroundMove : EnemyMovement
     }
 
     /// <summary>
-    /// Šî–{ˆÚ“®ˆ—
+    /// åŸºæœ¬ç§»å‹•å‡¦ç†
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>

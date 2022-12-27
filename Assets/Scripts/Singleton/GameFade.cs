@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameFade : MonoBehaviour
 {
     /// <summary>
-    /// ƒ‚[ƒh
+    /// ãƒ¢ãƒ¼ãƒ‰
     /// </summary>
     public enum Mode
     {
@@ -16,12 +16,12 @@ public class GameFade : MonoBehaviour
     }
 
     /// <summary>
-    /// Fade‰æ‘œ
+    /// Fadeç”»åƒ
     /// </summary>
     private Image fadeImage;
 
     /// <summary>
-    /// ŠÔ
+    /// æ™‚é–“
     /// </summary>
     private float time;
 
@@ -31,22 +31,22 @@ public class GameFade : MonoBehaviour
     private float elaps;
 
     /// <summary>
-    /// •Ï‰»‘O‚ÌColor
+    /// å¤‰åŒ–å‰ã®Color
     /// </summary>
     private Color toColor;
 
     /// <summary>
-    /// •Ï‰»Œã‚ÌColor
+    /// å¤‰åŒ–å¾Œã®Color
     /// </summary>
     private Color fromColor;
 
     /// <summary>
-    /// ƒR[ƒ‹ƒoƒbƒN
+    /// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     private System.Action action;
 
     /// <summary>
-    /// •\¦ƒ‚[ƒh
+    /// è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
     /// </summary>
     private Mode mode = Mode.IDLE;
 
@@ -64,7 +64,7 @@ public class GameFade : MonoBehaviour
     }
 
     /// <summary>
-    /// Œ»İF‚©‚çToColor‚ÉƒtƒF[ƒh
+    /// ç¾åœ¨è‰²ã‹ã‚‰ToColorã«ãƒ•ã‚§ãƒ¼ãƒ‰
     /// </summary>
     /// <param name="_mode"></param>
     /// <param name="_toColor"></param>
@@ -83,13 +83,13 @@ public class GameFade : MonoBehaviour
     }
 
     /// <summary>
-    /// fromColor‚©‚çtoColor‚ÖƒtƒF[ƒh
+    /// fromColorã‹ã‚‰toColorã¸ãƒ•ã‚§ãƒ¼ãƒ‰
     /// </summary>
     /// <param name="mode"></param>
     /// <param name="toColor"></param>
     /// <param name="fromColor"></param>
-    /// <param name="time">•bw’è</param>
-    /// <param name="action">ƒtƒF[ƒhI—¹‚ÌƒR[ƒ‹ƒoƒbƒN</param>
+    /// <param name="time">ç§’æŒ‡å®š</param>
+    /// <param name="action">ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯</param>
     public void Play(Mode _mode, Color _toColor, Color _fromColor, float _time = 1.0f, System.Action _action = null)
     {
         mode = _mode;
@@ -104,7 +104,7 @@ public class GameFade : MonoBehaviour
 
 
     /// <summary>
-    /// ƒtƒF[ƒh”»’è
+    /// ãƒ•ã‚§ãƒ¼ãƒ‰åˆ¤å®š
     /// </summary>
     /// <returns></returns>
     public bool IsFading()

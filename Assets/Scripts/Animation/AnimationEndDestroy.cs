@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// ƒAƒjƒ[ƒVƒ‡ƒ“I—¹Œã‚Éíœ‚·‚é
+/// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾Œã«å‰Šé™¤ã™ã‚‹
 /// </summary>
 public class AnimationEndDestroy : StateMachineBehaviour
 {
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“I—¹
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚
     /// </summary>
     /// <param name="animator"></param>
     /// <param name="stateInfo"></param>

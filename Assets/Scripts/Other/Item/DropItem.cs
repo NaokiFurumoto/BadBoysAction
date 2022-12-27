@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
@@ -12,13 +12,13 @@ public enum DROPITEM_TYPE
 public abstract class DropItem : MonoBehaviour
 {
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€ƒ^ƒCƒv
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
     /// </summary>
     [SerializeField]
     private DROPITEM_TYPE type;
 
     /// <summary>
-    /// ’PˆÊ
+    /// å˜ä½
     /// </summary>
     [SerializeField]
     private int amount;
@@ -36,7 +36,7 @@ public abstract class DropItem : MonoBehaviour
     public abstract void OnTriggerEnter2D(Collider2D collision);
     
     /// <summary>
-    /// íœ
+    /// å‰Šé™¤
     /// </summary>
     public virtual void Destroy()
     {

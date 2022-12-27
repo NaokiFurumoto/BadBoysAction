@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 /// <summary>
-/// ƒGƒtƒFƒNƒg•\¦ŠÇ—ƒNƒ‰ƒX
+/// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤ºç®¡ç†ã‚¯ãƒ©ã‚¹
 /// </summary>
 
 public class PlayerEffectManager : MonoBehaviour
 {
     /// <summary>
-    /// ƒCƒ“ƒXƒ^ƒ“ƒX
+    /// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
     /// </summary>
     public static PlayerEffectManager Instance;
 
@@ -26,7 +26,7 @@ public class PlayerEffectManager : MonoBehaviour
     private List<EffectStatus> effectObjects = new List<EffectStatus>();
 
     /// <summary>
-    /// ƒCƒ“ƒXƒ^ƒ“ƒX‚³‚ê‚½ƒGƒtƒFƒNƒg
+    /// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã•ã‚ŒãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
     /// </summary>
     private List<GameObject> effectPlacedObjects = new List<GameObject>();
 
@@ -40,7 +40,7 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ä¶F‚ ‚Æ‚ÅSE‚àˆø‚«”‚É“n‚·‚æ‚¤‚É
+    /// å†ç”Ÿï¼šã‚ã¨ã§SEã‚‚å¼•ãæ•°ã«æ¸¡ã™ã‚ˆã†ã«
     /// </summary>
     /// <param name="effect"></param>
     public GameObject EffectPlay(EFFECT_TYPE type)
@@ -70,7 +70,7 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒGƒtƒFƒNƒgíœ
+    /// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
     /// </summary>
     /// <param name="effect"></param>
     public void DeleteEffect(GameObject effect)
@@ -79,7 +79,7 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚Ìíœ
+    /// å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‰Šé™¤
     /// </summary>
     public void DeleteAllEffects()
     {
@@ -87,7 +87,7 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// w’è‚µ‚½ƒGƒtƒFƒNƒgíœ
+    /// æŒ‡å®šã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
     /// </summary>
     public void DeleteSelectEffects(EFFECT_TYPE type)
     {
@@ -105,7 +105,7 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCˆ—
+    /// ãƒªãƒˆãƒ©ã‚¤å‡¦ç†
     /// </summary>
     public void Retry()
     {

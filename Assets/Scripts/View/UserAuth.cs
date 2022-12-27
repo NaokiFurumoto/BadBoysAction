@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using NCMB;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System;
 
 public class UserAuth : Singleton<UserAuth>
 {
-    /// <summary> ƒvƒŒƒCƒ„[–¼ <summary>
+    /// <summary> ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å <summary>
     [SerializeField]
     private string currentPlayerName;
 
-    /// <summary> ƒpƒXƒ[ƒh <summary>
+    /// <summary> ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ <summary>
     [SerializeField]
     private string currentPassward;
 
@@ -22,7 +22,7 @@ public class UserAuth : Singleton<UserAuth>
 
     public bool IsSignUp { get { return isSighUp; } set { isSighUp = value; } }
     public bool IsLogin { get { return isLogin; } set { isLogin = value; } }
-    // Œ»İ‚ÌƒvƒŒƒCƒ„[–¼‚ğ•Ô‚· --------------------
+    // ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¿”ã™ --------------------
     public string CurrentPlayer
     {
         get { return currentPlayerName; }
@@ -35,13 +35,13 @@ public class UserAuth : Singleton<UserAuth>
         set { currentPassward = value; }
     }
 
-    // mobile backend‚ÉÚ‘±‚µ‚ÄƒƒOƒCƒ“ ------------------------
+    // mobile backendã«æ¥ç¶šã—ã¦ãƒ­ã‚°ã‚¤ãƒ³ ------------------------
     public void logIn(string id, string pw, Action failCallback = null, Action successCallback = null)
     {
         var loadData = SaveManager.Instance.Load();
         NCMBUser.LogInAsync(id, pw, (NCMBException e) =>
         {
-            // Ú‘±¬Œ÷‚µ‚½‚ç
+            // æ¥ç¶šæˆåŠŸã—ãŸã‚‰
             if (e == null)
             {
                 currentPlayerName = id;
@@ -59,7 +59,7 @@ public class UserAuth : Singleton<UserAuth>
             }
             else
             {
-                //ƒƒOƒCƒ“¸”sƒR[ƒ‹ƒoƒbƒN
+                //ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
                 if (failCallback != null)
                 {
                     failCallback();
@@ -68,7 +68,7 @@ public class UserAuth : Singleton<UserAuth>
         });
     }
 
-    // mobile backend‚ÉÚ‘±‚µ‚ÄV‹K‰ïˆõ“o˜^ ------------------------
+    // mobile backendã«æ¥ç¶šã—ã¦æ–°è¦ä¼šå“¡ç™»éŒ² ------------------------
     public void signUp(string id, string pw, Action failCallback = null, Action successCallback = null)
     {
         NCMBUser user = new NCMBUser();
@@ -79,7 +79,7 @@ public class UserAuth : Singleton<UserAuth>
             var loadData = SaveManager.Instance.Load();
             if (e == null)
             {
-                //ƒTƒCƒ“ƒAƒbƒvŠ®—¹‚µ‚Ä‚¢‚é
+                //ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—å®Œäº†ã—ã¦ã„ã‚‹
                 isSighUp = true;
                 if (successCallback != null)
                 {
@@ -98,7 +98,7 @@ public class UserAuth : Singleton<UserAuth>
         });
     }
 
-    // mobile backend‚ÉÚ‘±‚µ‚ÄƒƒOƒAƒEƒg ------------------------
+    // mobile backendã«æ¥ç¶šã—ã¦ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ ------------------------
     public void logOut(Action failCallback = null, Action successCallback = null)
     {
         NCMBUser.LogOutAsync((NCMBException e) =>

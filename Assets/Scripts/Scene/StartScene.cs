@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,12 +10,12 @@ using System;
 using System.Threading;
 using UnityEngine.SceneManagement;
 /// <summary>
-/// ƒXƒ^[ƒg‰æ–Ê‚ÉŠÖ‚·‚é‘Î‰
+/// ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã«é–¢ã™ã‚‹å¯¾å¿œ
 /// </summary>
 public class StartScene : MonoBehaviour
 {
     /// <summary>
-    /// ƒ^ƒbƒvƒIƒuƒWƒFƒNƒg
+    /// ã‚¿ãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private GameObject menu;
@@ -38,7 +38,7 @@ public class StartScene : MonoBehaviour
     [SerializeField]
     private Button rankBtn;
 
-    //ƒ‰ƒ“ƒLƒ“ƒO•\¦—p
+    //ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤ºç”¨
     private float score, hiscore;
 
     void Awake()
@@ -51,11 +51,11 @@ public class StartScene : MonoBehaviour
     IEnumerator Start()
     {
         FadeFilter.Instance.FadeIn(Color.black, 0.5f);
-        //‚±‚±‚Åƒf[ƒ^‚Ìƒ[ƒh
+        //ã“ã“ã§ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
         var data = SaveManager.Instance.Load();
         if (data.IsBreak && data.StaminaNumber != 0)
         {
-            //ƒ_ƒCƒAƒƒO‚ğ•\¦
+            //ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
             var dialog = CommonDialog.ShowDialog
                 (
                     LOADBATTLE_TITLE,
@@ -68,7 +68,7 @@ public class StartScene : MonoBehaviour
             yield break;
         }
         
-        //ƒƒOƒCƒ“‚µ‚Ä‚¢‚½‚çAƒƒOƒCƒ“î•ñ‚Ì•\¦‚µ‚ÄƒƒOƒCƒ“
+        //ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãŸã‚‰ã€ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ±ã®è¡¨ç¤ºã—ã¦ãƒ­ã‚°ã‚¤ãƒ³
         var isLogin = data.IsLogin;
         if (isLogin)
         {
@@ -93,7 +93,7 @@ public class StartScene : MonoBehaviour
             rankBtn.interactable = false;
         }
 
-        //BGM/SEƒ{ƒŠƒ…[ƒ€İ’è
+        //BGM/SEãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
         SoundManager.Instance.SetVolume("BGM", data.BGM_Volume);
         SoundManager.Instance.SetVolume("SE", data.SE_Volume);
         SoundManager.Instance.Bgm_SeVolume = (data.BGM_Volume, data.SE_Volume);
@@ -109,7 +109,7 @@ public class StartScene : MonoBehaviour
 
 
     /// <summary>
-    /// ƒ^ƒbƒvƒ{ƒ^ƒ“‚Ì—LŒø
+    /// ã‚¿ãƒƒãƒ—ãƒœã‚¿ãƒ³ã®æœ‰åŠ¹
     /// </summary>
     /// <returns></returns>
     private IEnumerator EnableTap()
@@ -122,7 +122,7 @@ public class StartScene : MonoBehaviour
 
    
     /// <summary>
-    /// GameScene‚É‘JˆÚ‚·‚é
+    /// GameSceneã«é·ç§»ã™ã‚‹
     /// </summary>
     public void OnClickTapBG()
     {
@@ -141,7 +141,7 @@ public class StartScene : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒO•\¦
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤º
     /// </summary>
     public void OnClickRank()
     {
@@ -151,7 +151,7 @@ public class StartScene : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒƒjƒ…|•\¦
+    /// ãƒ¡ãƒ‹ãƒ¥ï¼è¡¨ç¤º
     /// </summary>
     public void OnClickMenu()
     {
@@ -160,7 +160,7 @@ public class StartScene : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒƒjƒ…[‰æ–Ê‚ÌŠJ•Â
+    /// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã®é–‹é–‰
     /// </summary>
     /// <param name="isActive"></param>
     public void StartMenuViewActivate(bool isActive)
@@ -168,7 +168,7 @@ public class StartScene : MonoBehaviour
         startMenuView?.SetActive(isActive);
     }
 
-    //‰Šúƒf[ƒ^‚ÅXV
+    //åˆæœŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°
     private IEnumerator InitDataStart()
     {
         var loadData = SaveManager.Instance.Load();
@@ -183,7 +183,7 @@ public class StartScene : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒV[ƒ“‚É“n‚·‚à‚Ì
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚·ãƒ¼ãƒ³ã«æ¸¡ã™ã‚‚ã®
     /// </summary>
     /// <param name="nextScene"></param>
     /// <param name="mode"></param>
@@ -194,7 +194,7 @@ public class StartScene : MonoBehaviour
         rank.Score = (int)score;
         rank.Hiscore = (int)hiscore;
         rank.IsGameOver = false;
-        // ƒCƒxƒ“ƒg‚Ìíœ
+        // ã‚¤ãƒ™ãƒ³ãƒˆã®å‰Šé™¤
         SceneManager.sceneLoaded -= KeepScore;
     }
 }

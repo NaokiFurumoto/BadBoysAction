@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public partial class GlobalValue
 {
     /// <summary>
-    /// ƒV[ƒ“–¼
+    /// ã‚·ãƒ¼ãƒ³å
     /// </summary>
     public static string GAMESCENENAME = "GameScene";
     public static string STARTSCENENAME = "StartScene";
@@ -13,202 +13,202 @@ public partial class GlobalValue
     public static string RANKSCENENAME = "Ranking";
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚Æ“G‚ÌÅ¬Ú‹ß‹——£
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ•µã®æœ€å°æ¥è¿‘è·é›¢
     /// </summary>
     public readonly static float PL_EN_DISTANCE = 0.2f;
 
     /// <summary>
-    /// “G‚ª”ò‚Î‚³‚ê‚½‚Ì•Ç‚ÌÚG‰ñ”
+    /// æ•µãŒé£›ã°ã•ã‚ŒãŸæ™‚ã®å£ã®æ¥è§¦å›æ•°
     /// </summary>
     public readonly static int WALL_DAMAGETIMES = 4;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌUŒ‚—Í
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒåŠ›
     /// </summary>
     public readonly static float ATTACK_POWER = 30.0f;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌÅ‘åƒ‰ƒCƒt’l
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€å¤§ãƒ©ã‚¤ãƒ•å€¤
     /// </summary>
     public readonly static int MAX_LIFEPOINT = 10;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌÅ¬ƒ‰ƒCƒt’l
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€å°ãƒ©ã‚¤ãƒ•å€¤
     /// </summary>
     public readonly static int START_LIFEPOINT = 1;
 
     /// <summary>
-    /// “G‚ÌÅ‘åƒ‰ƒCƒt’l
+    /// æ•µã®æœ€å¤§ãƒ©ã‚¤ãƒ•å€¤
     /// </summary>
     public readonly static int ENMAX_LIFEPOINT = 100;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ªó‚¯‚éƒ_ƒ[ƒW
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå—ã‘ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸
     /// </summary>
     public static readonly int PLAYER_DAMAGE = 1;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[ˆÚ“®”ÍˆÍÅ‘åX
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ç¯„å›²æœ€å¤§X
     /// </summary>
     public static readonly float PL_MAXMOVE_X = 4;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[ˆÚ“®”ÍˆÍÅ¬X
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ç¯„å›²æœ€å°X
     /// </summary>
     public static readonly float PL_MINMOVE_X = -4;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[ˆÚ“®”ÍˆÍÅ‘åY
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ç¯„å›²æœ€å¤§Y
     /// </summary>
     public static readonly float PL_MAXMOVE_Y = 7;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[ˆÚ“®”ÍˆÍÅ¬Y
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ç¯„å›²æœ€å°Y
     /// </summary>
     public static readonly float PL_MINMOVE_Y = -8;
 
     /// <summary>
-    /// ƒ‰ƒCƒt‰ñ•œ’l
+    /// ãƒ©ã‚¤ãƒ•å›å¾©å€¤
     /// </summary>
     public readonly static int RECOVERY_LIFEPOINT = 1;
 
     /// <summary>
-    /// “GƒVƒFƒCƒNŠÔ
+    /// æ•µã‚·ã‚§ã‚¤ã‚¯æ™‚é–“
     /// </summary>
     public static readonly float SHAKETIME = 0.5f;
 
     /// <summary>
-    /// “GƒVƒFƒCƒN‚Ì‹­‚³
+    /// æ•µã‚·ã‚§ã‚¤ã‚¯ã®å¼·ã•
     /// </summary>
     public static readonly Vector3 SHAKESTRENGTH = new Vector3(0.8f, 0.8f, 0.0f);
 
     /// <summary>
-    /// PlayerƒVƒFƒCƒNŠÔ
+    /// Playerã‚·ã‚§ã‚¤ã‚¯æ™‚é–“
     /// </summary>
     public static readonly float PLAYER_SHAKETIME = 1.0f;
 
     /// <summary>
-    /// PlayerƒVƒFƒCƒN‚Ì‹­‚³
+    /// Playerã‚·ã‚§ã‚¤ã‚¯ã®å¼·ã•
     /// </summary>
     public static readonly Vector3 PLAYER_SHAKESTRENGTH = new Vector3(0.5f, 0.5f, 0.0f);
 
     /// <summary>
-    /// StayƒVƒFƒCƒNŠÔ
+    /// Stayã‚·ã‚§ã‚¤ã‚¯æ™‚é–“
     /// </summary>
     public static readonly float STAY_SHAKETIME = 2.0f;
 
     /// <summary>
-    /// Stay_ƒVƒFƒCƒN‚Ì‹­‚³
+    /// Stay_ã‚·ã‚§ã‚¤ã‚¯ã®å¼·ã•
     /// </summary>
     public static readonly Vector3 STAY_SHAKESTRENGTH = new Vector3(0.0f, 0.2f, 0.0f);
 
     /// <summary>
-    /// ü‰ñ”¼Œa
+    /// å‘¨å›åŠå¾„
     /// </summary>
     public static readonly float EN_AROUND = 3.0f;
 
     /// <summary>
-    /// ƒmƒbƒNƒoƒbƒNˆÚ“®·•ª
+    /// ãƒãƒƒã‚¯ãƒãƒƒã‚¯ç§»å‹•å·®åˆ†
     /// </summary>
     public static readonly float NOCKBACK_DIFF = 1.0f;
 
     /// <summary>
-    /// ƒmƒbƒNƒoƒbƒNˆÚ“®ŠÔ
+    /// ãƒãƒƒã‚¯ãƒãƒƒã‚¯ç§»å‹•æ™‚é–“
     /// </summary>
     public static readonly float NOCKBACK_TIME = 0.3f;
 
     /// <summary>
-    /// “G¶¬”¼Œa
+    /// æ•µç”ŸæˆåŠå¾„
     /// </summary>
     public static readonly float EN_CREATEPOS_RADIUS = 4.0f;
 
     /// <summary>
-    /// “G¶¬·•ªX
+    /// æ•µç”Ÿæˆå·®åˆ†X
     /// </summary>
     public static readonly float CREATE_DIFFX = 0.4f;
 
     /// <summary>
-    /// “G¶¬·•ªY
+    /// æ•µç”Ÿæˆå·®åˆ†Y
     /// </summary>
     public static readonly float CREATE_DIFFY = 0.5f;
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€”z’uˆÊ’uÅ¬X
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ä½ç½®æœ€å°X
     /// </summary>
     public static readonly float DROPITEM_POSX_MIN = -3.5f;
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€”z’uˆÊ’uÅ‘åX
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ä½ç½®æœ€å¤§X
     /// </summary>
     public static readonly float DROPITEM_POSX_MAX = 3.5f;
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€”z’uˆÊ’uÅ¬Y
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ä½ç½®æœ€å°Y
     /// </summary>
     public static readonly float DROPITEM_POSY_MIN = -4.5f;
 
     /// <summary>
-    /// ƒhƒƒbƒvƒAƒCƒeƒ€”z’uˆÊ’uÅ‘åY
+    /// ãƒ‰ãƒ­ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ä½ç½®æœ€å¤§Y
     /// </summary>
     public static readonly float DROPITEM_POSY_MAX = 4.5f;
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‰ñ•œŠÔF•b
+    /// ã‚¹ã‚¿ãƒŸãƒŠå›å¾©æ™‚é–“ï¼šç§’
     /// </summary>
     public static float STAMINA_RECOVERY_TIME = 3600.0f;
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‰ñ•œŠÔ
+    /// ã‚¹ã‚¿ãƒŸãƒŠå›å¾©æ™‚é–“
     /// </summary>
     public static int STAMINA_RECOVERY_ONE_LONGTIME = 6000;
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‰ñ•œŠÔ
+    /// ã‚¹ã‚¿ãƒŸãƒŠå›å¾©æ™‚é–“
     /// </summary>
     public static int STAMINA_RECOVERY_LONGTIME = 18000;
 
     /// <summary>
-    /// Å‘åƒXƒ^ƒ~ƒi”
+    /// æœ€å¤§ã‚¹ã‚¿ãƒŸãƒŠæ•°
     /// </summary>
     public static int STAMINA_MAXNUMBER = 3;
 
     /// <summary>
-    /// ƒXƒ^[ƒgŠJnŠÔ
+    /// ã‚¹ã‚¿ãƒ¼ãƒˆé–‹å§‹æ™‚é–“
     /// </summary>
     public static float START_PLAYINGTIME = 2.0f;
 
     /// <summary>
-    /// FadeŠÔ
+    /// Fadeæ™‚é–“
     /// </summary>
     public static float FADETIME = 2.0f;
 
     /// <summary>
-    /// ‰ŠúScale
+    /// åˆæœŸScale
     /// </summary>
     public static Vector3 INIT_SCALE = new Vector3(1.0f,1.0f,1.0f);
 
     /// <summary>
-    /// ƒTƒEƒ“ƒhƒOƒ‹[ƒv
+    /// ã‚µã‚¦ãƒ³ãƒ‰ã‚°ãƒ«ãƒ¼ãƒ—
     /// </summary>
     public static string SOUNDGROUP_NID = "SoundGroup_";
 
     /// <summary>
-    /// ƒJƒƒ‰‰ŠúƒTƒCƒY
+    /// ã‚«ãƒ¡ãƒ©åˆæœŸã‚µã‚¤ã‚º
     /// </summary>
     public static float CAMERA_INITSIZE = 8.5f;
 
     /// <summary>
-    /// ƒJƒƒ‰‰ŠúˆÊ’u
+    /// ã‚«ãƒ¡ãƒ©åˆæœŸä½ç½®
     /// </summary>
     public static Vector3 CAMERA_INITPOS = new Vector3(0.0f, 0.0f, -10.0f);
 
     /// <summary>
-    /// ”Ä—pƒ_ƒCƒAƒƒO‚ÌƒpƒX
+    /// æ±ç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ãƒ‘ã‚¹
     /// </summary>
     public static string COMMONDIALOG_PREFAB_NAME = "Prefabs/Common/CommonDialog";
 
     /// <summary>
-    /// ƒXƒ^ƒ~ƒi‰ñ•œƒ_ƒCƒAƒƒO‚ÌƒpƒX
+    /// ã‚¹ã‚¿ãƒŸãƒŠå›å¾©ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ãƒ‘ã‚¹
     /// </summary>
     public static string STAMINADIALOG_PREFAB_NAME = "Prefabs/Common/StaminaRecoveryDialog";
 
@@ -217,79 +217,79 @@ public partial class GlobalValue
     public readonly static float STOP_TIME     = Mathf.Infinity;
 
     /// <summary>
-    /// “G‚Ì¶¬ˆÊ’u‚Ì·•ª
+    /// æ•µã®ç”Ÿæˆä½ç½®ã®å·®åˆ†
     /// </summary>
     public readonly static float ENEMY_CREATE_DIFF_MAX = 5.0f;
     public readonly static float ENEMY_CREATE_DIFF_MIN = 1.0f;
 
     /// <summary>
-    /// ŠJn‚Ì“G¶¬’x‰„ŠÔ
+    /// é–‹å§‹æ™‚ã®æ•µç”Ÿæˆé…å»¶æ™‚é–“
     /// </summary>
     public readonly static int START_CREATE_DIFF = 1000;
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv‚Ì¶¬‘Ò‹@ŠÔ
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã®ç”Ÿæˆå¾…æ©Ÿæ™‚é–“
     /// </summary>
     public readonly static int LEVELUP_INTERVAL = 1000;
 
     /// <summary>
-    /// ‰æ–Ê‚É•\¦‚³‚¹‚éÅ‘å”
+    /// ç”»é¢ã«è¡¨ç¤ºã•ã›ã‚‹æœ€å¤§æ•°
     /// </summary>
     public readonly static int ENEMY_SCREEN_MAXCOUNT = 10;
 
     /// <summary>
-    /// ‰æ–Ê‚É•\¦‚³‚¹‚é‰ÁZ’l
+    /// ç”»é¢ã«è¡¨ç¤ºã•ã›ã‚‹åŠ ç®—å€¤
     /// </summary>
     /// </summary>
     public readonly static int ENEMY_SCREEN_ADDCOUNT = 2;
 
     /// <summary>
-    /// ‰ŠúŒoŒ±’l
+    /// åˆæœŸçµŒé¨“å€¤
     /// </summary>
     public readonly static int LEVELUP_COUNT = 10;
 
     /// <summary>
-    /// ‰ÁZŒoŒ±’l
+    /// åŠ ç®—çµŒé¨“å€¤
     /// </summary>
     public readonly static int ADDLEVELUP_COUNT = 10;
 
     /// <summary>
-    /// Å‘åƒQ[ƒ€ƒŒƒxƒ‹
+    /// æœ€å¤§ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«
     /// </summary>
     public readonly static int MAX_GAMELEVEL = 100;
 
     /// <summary>
-    /// ŠJn‚Ì¶¬ŠÔ
+    /// é–‹å§‹æ™‚ã®ç”Ÿæˆæ™‚é–“
     /// </summary>
     public readonly static float FIRST_CREATETIME = 0.5f;
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv‚Ì¶¬ŠÔŒ¸Z’l
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã®ç”Ÿæˆæ™‚é–“æ¸›ç®—å€¤
     /// </summary>
     public readonly static float CREATE_TIMEDIFF = 0.01f;
 
     /// <summary>
-    /// “G‚Ì¶¬ŠÔÅI’l
+    /// æ•µã®ç”Ÿæˆæ™‚é–“æœ€çµ‚å€¤
     /// </summary>
     public readonly static float LAST_CREATETIME = 0.005f;
 
     /// <summary>
-    /// –³“GŠÔ
+    /// ç„¡æ•µæ™‚é–“
     /// </summary>
     public readonly static float MUTEKI_TIMES = 5.0f;
 
     /// <summary>
-    /// –³“GƒhƒƒbƒvŠm—¦
+    /// ç„¡æ•µãƒ‰ãƒ­ãƒƒãƒ—ç¢ºç‡
     /// </summary>
     public readonly static int MUTEKI_DROPINDEX = 700;
 
     /// <summary>
-    /// –³“Gƒhƒƒbƒv“–‚½‚è
+    /// ç„¡æ•µãƒ‰ãƒ­ãƒƒãƒ—å½“ãŸã‚Š
     /// </summary>
     public readonly static int MUTEKI_DROPHITINDEX = 10;
 
     /// <summary>
-    /// ƒAƒCƒeƒ€íœŠÔ
+    /// ã‚¢ã‚¤ãƒ†ãƒ å‰Šé™¤æ™‚é–“
     /// </summary>
     public readonly static float DROPITEM_DELETE_TIMES = 30.0f;
 }

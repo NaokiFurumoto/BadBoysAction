@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class ViewAnim : StateMachineBehaviour
     //}
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“I—¹
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚
     /// </summary>
     /// <param name="animator"></param>
     /// <param name="stateInfo"></param>

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,63 +9,63 @@ using System;
 using NCMB;
 
 /// <summary>
-/// ƒCƒ“ƒQ[ƒ€‚Ìó‘ÔŠÇ—
+/// ã‚¤ãƒ³ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹ç®¡ç†
 /// </summary>
-//ƒQ[ƒ€ó‘Ô
+//ã‚²ãƒ¼ãƒ çŠ¶æ…‹
 public enum INGAME_STATE
 {
-    NONE = 0,//–¢İ’è
-    START = 1,//ŠJn
-    PLAYING = 2,//ƒQ[ƒ€’†
-    STOP = 3,//ƒXƒgƒbƒv
-    RESULT = 4,//Œ‹‰Ê
+    NONE = 0,//æœªè¨­å®š
+    START = 1,//é–‹å§‹
+    PLAYING = 2,//ã‚²ãƒ¼ãƒ ä¸­
+    STOP = 3,//ã‚¹ãƒˆãƒƒãƒ—
+    RESULT = 4,//çµæœ
 }
 public partial class GameController : MonoBehaviour
 {
     /// <summary>
-    /// UnityƒfƒoƒbƒO—p
+    /// Unityãƒ‡ãƒãƒƒã‚°ç”¨
     /// </summary>
     [SerializeField]
     private bool IsUseSaveSystem = true;
 
     /// <summary>
-    /// ƒQ[ƒ€’†‚Ìó‘Ô
+    /// ã‚²ãƒ¼ãƒ ä¸­ã®çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private INGAME_STATE state;
 
     /// <summary>
-    /// UIŠÇ—ƒNƒ‰ƒX
+    /// UIç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     private UiController uiController;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚Ì§Œä
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆ¶å¾¡
     /// </summary>
     private PlayerStatusController playerStatusController;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚Ì§Œä
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆ¶å¾¡
     /// </summary>
     private NewGenerateManager generatorManager;
 
     /// <summary>
-    /// “G‚Ì§Œä
+    /// æ•µã®åˆ¶å¾¡
     /// </summary>
     private NewEnemyGenerator enemyGenerator;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
 
     /// <summary>
-    /// ŠJnFadein‚ÌƒR[ƒ‹ƒoƒbƒN
+    /// é–‹å§‹æ™‚Fadeinã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     private UnityAction startFadeinCallBack;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public INGAME_STATE State
     {
         get { return state; }
@@ -79,13 +79,13 @@ public partial class GameController : MonoBehaviour
         InitializeView();
         SaveManager.Instance?.InitializeThis();
 
-        //ƒ[ƒhˆ—
+        //ãƒ­ãƒ¼ãƒ‰å‡¦ç†
         StartCoroutine("LoadingGameInfo");
     }
 
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -109,11 +109,11 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒhˆ—
+    /// ãƒ­ãƒ¼ãƒ‰å‡¦ç†
     /// </summary>
     private IEnumerator LoadingGameInfo()
     {
-        //ƒZ[ƒuƒVƒXƒeƒ€g‚¤‚©F‚ÅƒoƒbƒN—p
+        //ã‚»ãƒ¼ãƒ–ã‚·ã‚¹ãƒ†ãƒ ä½¿ã†ã‹ï¼šã§ãƒãƒƒã‚¯ç”¨
         if (!IsUseSaveSystem)
             yield break;
 
@@ -126,30 +126,30 @@ public partial class GameController : MonoBehaviour
         }
         while (loadData == null);
         
-        //’†’f•œ‹A‚©‚ÂAƒŠƒUƒ‹ƒg•\¦‚¶‚á‚È‚¢A‘Ì—Í‚ª0‚Å‚Í‚È‚¢
+        //ä¸­æ–­å¾©å¸°ã‹ã¤ã€ãƒªã‚¶ãƒ«ãƒˆè¡¨ç¤ºã˜ã‚ƒãªã„ã€ä½“åŠ›ãŒ0ã§ã¯ãªã„
         if (loadData.IsBreak && loadData.gameState != INGAME_STATE.RESULT && loadData.LifeNumber != 0 )
         {
             SetStatus(loadData);
         }
         else
         {
-            //ƒŠƒXƒ^[ƒgƒf[ƒ^‚Ì”½‰f
+            //ãƒªã‚¹ã‚¿ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã®åæ˜ 
             var changeData = SaveManager.Instance.ChangeRestartDate(loadData);
             SetStatus(changeData);
         }
 
-        //ˆÃ“]‰ğœŒã‚ÉƒQ[ƒ€ŠJn:PlayInGame()
+        //æš—è»¢è§£é™¤å¾Œã«ã‚²ãƒ¼ãƒ é–‹å§‹:PlayInGame()
         FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
     }
 
    
 
     /// <summary>
-    /// ƒCƒ“ƒQ[ƒ€ŠJn
+    /// ã‚¤ãƒ³ã‚²ãƒ¼ãƒ é–‹å§‹
     /// </summary>
     public void PlayInGame()
     {
-        ///‰Û‹à‚µ‚Ä‚¢‚½‚çƒXƒ^ƒ~ƒi‚ğƒtƒ‹‰ñ•œ‚µ‚ÄAƒXƒ^[ƒg
+        ///èª²é‡‘ã—ã¦ã„ãŸã‚‰ã‚¹ã‚¿ãƒŸãƒŠã‚’ãƒ•ãƒ«å›å¾©ã—ã¦ã€ã‚¹ã‚¿ãƒ¼ãƒˆ
         if (uiController.GetIsAds())
         {
             StaminasManager.Instance.FullRecovery(false);
@@ -157,13 +157,13 @@ public partial class GameController : MonoBehaviour
             return;
         }
 
-        //ƒXƒ^ƒ~ƒiƒ`ƒFƒbƒN
+        //ã‚¹ã‚¿ãƒŸãƒŠãƒã‚§ãƒƒã‚¯
         if (StaminasManager.Instance.IsCheckRecovery())
         {
             var aa = uiController.GetIsBreak();
             if (!uiController.GetIsBreak())
             {
-                //’†’f•œ‹A‚¶‚á‚È‚¢ê‡‚ÍƒXƒ^ƒ~ƒi‚ğg—p‚·‚é
+                //ä¸­æ–­å¾©å¸°ã˜ã‚ƒãªã„å ´åˆã¯ã‚¹ã‚¿ãƒŸãƒŠã‚’ä½¿ç”¨ã™ã‚‹
                 StaminasManager.Instance.UseStamina();
             }
 
@@ -171,7 +171,7 @@ public partial class GameController : MonoBehaviour
         }
         else
         {
-            //ƒXƒ^ƒ~ƒiŠm”Fƒ_ƒCƒAƒƒO•\¦
+            //ã‚¹ã‚¿ãƒŸãƒŠç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º
             var dialog =
                 CommonDialog.ShowDialog
                 (
@@ -182,7 +182,7 @@ public partial class GameController : MonoBehaviour
 
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
-                        //ƒXƒ^ƒ~ƒi‘S‰ñ•œ
+                        //ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©
                         if (result == ShowResult.Finished)
                         {
                             StaminasManager.Instance.FullRecovery(true, () =>
@@ -195,7 +195,7 @@ public partial class GameController : MonoBehaviour
                     }
                     ),
 
-                    () =>//ƒXƒ^ƒ~ƒi‚ª‰ñ•œ‚µ‚½‚çg—p‚µ‚ÄƒQ[ƒ€ŠJnB‰ñ•œ‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒ^ƒCƒgƒ‹‚É–ß‚é
+                    () =>//ã‚¹ã‚¿ãƒŸãƒŠãŒå›å¾©ã—ãŸã‚‰ä½¿ç”¨ã—ã¦ã‚²ãƒ¼ãƒ é–‹å§‹ã€‚å›å¾©ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
                     {
                         if (StaminasManager.Instance.IsCheckRecovery())
                         {
@@ -205,19 +205,19 @@ public partial class GameController : MonoBehaviour
                         }
                         else
                         {
-                            //ƒ^ƒCƒgƒ‹‰æ–Ê‚É‘JˆÚ
+                            //ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«é·ç§»
                             StartCoroutine("FadeTitle");
                         }
                     }
                  );
 
-            //ƒŠƒXƒg‚É’Ç‰Á
+            //ãƒªã‚¹ãƒˆã«è¿½åŠ 
             CommonDialogManager.Instance.AddList(dialog);
         }
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹‰æ–Ê‚É‘JˆÚ
+    /// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«é·ç§»
     /// </summary>
     /// <returns></returns>
     private IEnumerator FadeTitle()
@@ -229,14 +229,14 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€ŠJn
+    /// ã‚²ãƒ¼ãƒ é–‹å§‹
     /// </summary>
     public void GameStart()
     {
-        //ƒXƒ^ƒ~ƒi‚ğ•K‚¸g—p‚µ‚Ä‚éó‘Ô‚È‚Ì‚ÅƒeƒLƒXƒg‚Í•\¦‚³‚¹‚é:‚»‚ñ‚È‚±‚Æ‚È‚¢
+        //ã‚¹ã‚¿ãƒŸãƒŠã‚’å¿…ãšä½¿ç”¨ã—ã¦ã‚‹çŠ¶æ…‹ãªã®ã§ãƒ†ã‚­ã‚¹ãƒˆã¯è¡¨ç¤ºã•ã›ã‚‹:ãã‚“ãªã“ã¨ãªã„
         StaminasManager.Instance.ActiveTextRecovery(true);
 
-        //“G¶¬
+        //æ•µç”Ÿæˆ
         generatorManager.StartGenerate();
 
         state = INGAME_STATE.START;
@@ -246,11 +246,11 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒC’†İ’è
+    /// ãƒ—ãƒ¬ã‚¤ä¸­è¨­å®š
     /// </summary>
     public void SetPlayGame()
     {
-        //ƒ[ƒhVolume‚É•ÏX
+        //ãƒ­ãƒ¼ãƒ‰Volumeã«å¤‰æ›´
         //FM.SetVolume(appSound.BGM_STAGE, 1.0f);
         appSound.BGM_STAGE.Play();
         FM.FadeInVolume(appSound.BGM_STAGE, FM.GetVolume(appSound.BGM_STAGE), 2.0f,true);
@@ -260,7 +260,7 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ˆê’â~
+    /// ä¸€æ™‚åœæ­¢
     /// </summary>
     public void GameStop()
     {
@@ -269,28 +269,28 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€ƒI[ƒo[
+    /// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
     /// </summary>
     public void GameResult()
     {
         //FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
-        //ƒvƒŒƒC‰ñ”’Ç‰Á
+        //ãƒ—ãƒ¬ã‚¤å›æ•°è¿½åŠ 
         uiController.AddPlayTime();
 
-        //’â~ˆ—
+        //åœæ­¢å‡¦ç†
         TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
         state = INGAME_STATE.RESULT;
 
-        //ƒZ[ƒu‚·‚é:
+        //ã‚»ãƒ¼ãƒ–ã™ã‚‹:
         SaveManager.Instance.GamePlaingSave();
 
-        //‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅL•\¦B‚Q‰ñ‚É‚P‰ñL•\¦F
+        //ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§åºƒå‘Šè¡¨ç¤ºã€‚ï¼’å›ã«ï¼‘å›åºƒå‘Šè¡¨ç¤ºï¼š
         if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
         {
-            //LI—¹Œã‚ÌƒR[ƒ‹ƒoƒbƒN
+            //åºƒå‘Šçµ‚äº†å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
             Action<ShowResult> call = (result) =>
             {
-                //ƒQ[ƒ€ƒŠƒUƒ‹ƒg‰æ–Ê‚ğ•\¦
+                //ã‚²ãƒ¼ãƒ ãƒªã‚¶ãƒ«ãƒˆç”»é¢ã‚’è¡¨ç¤º
                 uiController.SetIsBreak(false);
                 gameOverView.gameObject.SetActive(true);
             };
@@ -300,7 +300,7 @@ public partial class GameController : MonoBehaviour
         }
         else
         {
-            //ƒQ[ƒ€ƒŠƒUƒ‹ƒg‰æ–Ê‚ğ•\¦
+            //ã‚²ãƒ¼ãƒ ãƒªã‚¶ãƒ«ãƒˆç”»é¢ã‚’è¡¨ç¤º
             uiController.SetIsBreak(false);
             gameOverView.gameObject.SetActive(true);
         }
@@ -308,7 +308,7 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ÄŠJ
+    /// å†é–‹
     /// </summary>
     public void GameResume()
     {
@@ -317,17 +317,17 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒC
+    /// ãƒªãƒˆãƒ©ã‚¤
     /// </summary>
     public void RetryGame()
     {
-        //ƒZ[ƒuˆ—
+        //ã‚»ãƒ¼ãƒ–å‡¦ç†
         TimeManager.Instance.ResetSlow();
         GameStart();
     }
 
     /// <summary>
-    /// ƒXƒe[ƒ^ƒX‚ÌXV
+    /// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®æ›´æ–°
     /// </summary>
     private void RetryStatus()
     {
@@ -341,7 +341,7 @@ public partial class GameController : MonoBehaviour
     
 
     /// <summary>
-    /// ƒXƒe[ƒ^ƒXİ’è
+    /// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
     /// </summary>
     /// <param name="loadData"></param>
     private void SetStatus(SaveData loadData)
@@ -371,7 +371,7 @@ public partial class GameController : MonoBehaviour
         UserAuth.Instance.IsLogin = loadData.IsLogin;
         UserAuth.Instance.IsSignUp = loadData.IsSighin;
 
-        //BGM/SEƒ{ƒŠƒ…[ƒ€İ’è
+        //BGM/SEãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
         SoundManager.Instance.SetVolume("BGM", loadData.BGM_Volume);
         SoundManager.Instance.SetVolume("SE", loadData.SE_Volume);
         SoundManager.Instance.Bgm_SeVolume = (loadData.BGM_Volume, loadData.SE_Volume);

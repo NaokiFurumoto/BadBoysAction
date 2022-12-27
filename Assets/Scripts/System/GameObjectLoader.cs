@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìó‘Ô‚ğŠÇ—‚·‚éB
-/// ‘S‚Ä‚ÌƒV[ƒ“‚Éİ’u‚µ‚ÄA•K—v‚ÈGO‚ğŒŸõ‚µ‚Ä©“®“I‚Éƒ[ƒh‚·‚éd‘g‚İ
+/// ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çŠ¶æ…‹ã‚’ç®¡ç†ã™ã‚‹ã€‚
+/// å…¨ã¦ã®ã‚·ãƒ¼ãƒ³ã«è¨­ç½®ã—ã¦ã€å¿…è¦ãªGOã‚’æ¤œç´¢ã—ã¦è‡ªå‹•çš„ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ä»•çµ„ã¿
 /// </summary>
 public class GameObjectLoader : MonoBehaviour
 {
-    //ŠO•”ƒpƒ‰ƒ[ƒ^[
+    //å¤–éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
     public GameObject[] LoadGameObjectList_Awake;
     public GameObject[] LoadGameObjectList_Start;
     public GameObject[] LoadGameObjectList_Update;
@@ -39,7 +39,7 @@ public class GameObjectLoader : MonoBehaviour
     [System.NonSerialized]
     public bool loaded_FixedUpdate = false;
 
-    //“à•”Fƒ[ƒhŠ®—¹”»’è
+    //å†…éƒ¨ï¼šãƒ­ãƒ¼ãƒ‰å®Œäº†åˆ¤å®š
     private bool loaded = false;
 
     private void Awake()
@@ -60,7 +60,7 @@ public class GameObjectLoader : MonoBehaviour
             }
         }
 
-        //ˆê‚ÂˆÈã‘¶İ‚µ‚È‚¢‚æ‚¤‚È‘Î‰
+        //ä¸€ã¤ä»¥ä¸Šå­˜åœ¨ã—ãªã„ã‚ˆã†ãªå¯¾å¿œ
         if (loadedAll)
         {
             Destroy(gameObject);
@@ -111,20 +111,20 @@ public class GameObjectLoader : MonoBehaviour
     private void LoadGameObject(GameObject[] loadgameObjectList, 
                                 Dictionary<string,GameObject> loadedGameObjectList)
     {
-        //ƒRƒ“ƒ|[ƒlƒ“ƒg‚Å‘ã—p
+        //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§ä»£ç”¨
         //DontDestroyOnLoad(this);
 
         foreach(GameObject go in loadgameObjectList)
         {
             if (go)
-            {   //‘¶İ‚µ‚Ä‚¢‚ê‚Î
+            {   //å­˜åœ¨ã—ã¦ã„ã‚Œã°
                 if (loadedGameObjectList.ContainsKey(go.name))
                 {
-                    //ƒ[ƒhÏ‚İ
+                    //ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿
                 }
                 else
                 {
-                    //ƒ[ƒh‚·‚é
+                    //ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
                     GameObject Instance = Instantiate(go) as GameObject;
                     Instance.name = go.name;
                     Instance.transform.parent = this.gameObject.transform;

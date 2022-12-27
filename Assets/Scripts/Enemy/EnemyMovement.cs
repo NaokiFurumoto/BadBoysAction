@@ -1,111 +1,111 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 /// <summary>
-/// “GˆÚ“®ƒNƒ‰ƒX
+/// æ•µç§»å‹•ã‚¯ãƒ©ã‚¹
 /// </summary>
 
-///ˆÚ“®ƒ^ƒCƒv
+///ç§»å‹•ã‚¿ã‚¤ãƒ—
 public enum ENEMY_MOVETYPE
 {
-    NONE,   //–¢İ’è
-    CHASE,  //‚Ü‚Á‚·‚®Œü‚©‚¤
-    AROUND, //ü‰ñ
-    ZIGZAG,//ƒWƒOƒUƒO
-    RAPIDED,//‹}Ú‹ß
+    NONE,   //æœªè¨­å®š
+    CHASE,  //ã¾ã£ã™ãå‘ã‹ã†
+    AROUND, //å‘¨å›
+    ZIGZAG,//ã‚¸ã‚°ã‚¶ã‚°
+    RAPIDED,//æ€¥æ¥è¿‘
     //ESCAPE,
-    HORMING,//ƒz[ƒ~ƒ“ƒO
+    HORMING,//ãƒ›ãƒ¼ãƒŸãƒ³ã‚°
 }
 public class EnemyMovement : MonoBehaviour
 {
-    #region •Ï”
+    #region å¤‰æ•°
     /// <summary>
-    /// ˆÚ“®ƒXƒs[ƒh
+    /// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
     /// </summary>
     [SerializeField]
     protected float xSpeed = 1.5f, ySpeed = 1.5f;
 
     /// <summary>
-    /// ˆÚ“®—Ê
+    /// ç§»å‹•é‡
     /// </summary>
     protected Vector2 moveDelta;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[î•ñ
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±
     /// </summary>
     protected GameObject player;
     protected Transform playerCenter;
     protected Vector3 playerLastPos;
         
     /// <summary>
-    /// ©g‚Ìî•ñ
+    /// è‡ªèº«ã®æƒ…å ±
     /// </summary>
     protected Vector3 startPos, movePos;
 
     /// <summary>
-    /// ’Ç‚¢‚©‚¯‚éƒXƒs[ƒh
+    /// è¿½ã„ã‹ã‘ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
     /// </summary>
     [SerializeField]
     protected float chaseSpeed = 0.8f;
 
     /// <summary>
-    /// ‰ñ“]‚Ì’x‰„
+    /// å›è»¢ã®é…å»¶
     /// </summary>
     [SerializeField]
     protected float turningDelay = 1;
 
     /// <summary>
-    /// Ÿ‚É•ûŒü“]Š·‰Â”\‚ÈŠÔ
+    /// æ¬¡ã«æ–¹å‘è»¢æ›å¯èƒ½ãªæ™‚é–“
     /// </summary>
     [SerializeField]
     protected float turningTimeDelay = 1f;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğÅŒã‚É”cˆ¬‚µ‚½ŠÔ
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’æœ€å¾Œã«æŠŠæ¡ã—ãŸæ™‚é–“
     /// </summary>
     protected float lastFollowTime;
 
     /// <summary>
-    /// Œü‚«•Û‘¶—p
+    /// å‘ãä¿å­˜ç”¨
     /// </summary>
     protected Vector3 tempScale;
 
     /// <summary>
-    /// “G‚ÌƒAƒjƒ[ƒ^[
+    /// æ•µã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼
     /// </summary>
     [SerializeField]
     protected  Animator animator;
 
     /// <summary>
-    /// –{‘ÌFŒü‚«•ÏX—p
+    /// æœ¬ä½“ï¼šå‘ãå¤‰æ›´ç”¨
     /// </summary>
     [SerializeField]
     protected  Transform body;
 
     /// <summary>
-    /// “G‚ÌƒXƒe[ƒ^ƒXŠÇ—ƒNƒ‰ƒX
+    /// æ•µã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     protected  EnemyStatusController enemyStatusController;
 
     /// <summary>
-    /// “G‚ÌUŒ‚ƒNƒ‰ƒX
+    /// æ•µã®æ”»æ’ƒã‚¯ãƒ©ã‚¹
     /// </summary>
     protected  EnemyAttack enemyAttack;
 
     /// <summary>
-    /// “G‚ÌUŒ‚ƒNƒ‰ƒX
+    /// æ•µã®æ”»æ’ƒã‚¯ãƒ©ã‚¹
     /// </summary>
     protected Transform enemyTrans;
 
     /// <summary>
-    /// ˆÚ“®ƒ^ƒCƒv
+    /// ç§»å‹•ã‚¿ã‚¤ãƒ—
     /// </summary>
     [SerializeField]
     protected  ENEMY_MOVETYPE enemyMoveType;
     #endregion
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public Vector2 MoveDelta => moveDelta;
     public ENEMY_MOVETYPE MoveType => enemyMoveType;
     #endregion
@@ -116,7 +116,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     protected virtual void Initialize()
     {
@@ -138,11 +138,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ˆÚ“®XV
+    /// ç§»å‹•æ›´æ–°
     /// </summary>
     protected void FixedUpdate()
     {
-        //©g‚ª€–Só‘Ô‚©Aƒ_ƒ[ƒW‚ğó‚¯‚Ä‚½‚çÀs‚µ‚È‚¢
+        //è‡ªèº«ãŒæ­»äº¡çŠ¶æ…‹ã‹ã€ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã¦ãŸã‚‰å®Ÿè¡Œã—ãªã„
         if (enemyStatusController.IsDead
             || enemyStatusController.State == ENEMY_STATE.DAMAGE
             || enemyStatusController.State == ENEMY_STATE.NOCKBACK)
@@ -153,31 +153,31 @@ public class EnemyMovement : MonoBehaviour
         MoveAnimation();
         TurnAround();
 
-        //‹¤’Êˆ—
+        //å…±é€šå‡¦ç†
         if(enemyStatusController.HasPlayerTarget)
         {
             if (!enemyAttack.IsAttacked)
             {
-                //ƒNƒ‰ƒXæ‚ÅÀs
+                //ã‚¯ãƒ©ã‚¹å…ˆã§å®Ÿè¡Œ
                 TypeMove();
             }
-            else//UŒ‚‚µ‚½ê‡
+            else//æ”»æ’ƒã—ãŸå ´åˆ
             {
-                //ƒN[ƒ‹ƒ_ƒEƒ“’†
+                //ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ä¸­
                 if (enemyAttack.IsDamageCoolDown)
                 {
-                    //‰½‚ç‚©‚Ìˆ—
+                    //ä½•ã‚‰ã‹ã®å‡¦ç†
                 }
-                else//ƒN[ƒ‹ƒ_ƒEƒ“‚ªŒo‰ß‚µ‚½
+                else//ã‚¯ãƒ¼ãƒ«ãƒ€ã‚¦ãƒ³ãŒçµŒéã—ãŸ
                 {
-                    //UŒ‚‚µ‚Ä‚¢‚È‚¢‚à‚Ì‚Æ‚·‚é
+                    //æ”»æ’ƒã—ã¦ã„ãªã„ã‚‚ã®ã¨ã™ã‚‹
                     enemyAttack.IsAttacked = false;
                 }
             }
         }
         else
         {
-            //”­Œ©‚µ‚Ä‚¢‚È‚¢ê‡‚Ìˆ—
+            //ç™ºè¦‹ã—ã¦ã„ãªã„å ´åˆã®å‡¦ç†
         }
     }
 
@@ -199,7 +199,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Œü‚«‚Ì•ÏX
+    /// å‘ãã®å¤‰æ›´
     /// </summary>
     protected void TurnAround()
     {
@@ -215,7 +215,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 tempScale.x = -Mathf.Abs(tempScale.x);
             }
-            else//’T’m‚Å‚«‚Ä‚¢‚È‚¢ê‡‚Í¶¬‚³‚ê‚½ˆÊ’u‚É‚æ‚Á‚ÄŒü‚«‚ğ•ÏX
+            else//æ¢çŸ¥ã§ãã¦ã„ãªã„å ´åˆã¯ç”Ÿæˆã•ã‚ŒãŸä½ç½®ã«ã‚ˆã£ã¦å‘ãã‚’å¤‰æ›´
             {
                 if (startPos.x > enemyTrans.position.x)
                 {
@@ -228,16 +228,16 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
-        //ã‹Lİ’èŒã‚É”½‰f
+        //ä¸Šè¨˜è¨­å®šå¾Œã«åæ˜ 
         body.localScale = tempScale;
     }
 
     /// <summary>
-    /// ˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌØ‘Ö:‘Ò‹@‚©•à‚«
+    /// ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆ‡æ›¿:å¾…æ©Ÿã‹æ­©ã
     /// </summary>
     protected void MoveAnimation()
     {
-        //ˆÚ“®’†‚È‚ç‚ÎŒÄ‚Î‚È‚¢—p‚É‚·‚é
+        //ç§»å‹•ä¸­ãªã‚‰ã°å‘¼ã°ãªã„ç”¨ã«ã™ã‚‹
         if (enemyStatusController?.State == ENEMY_STATE.MOVE)
             return;
        

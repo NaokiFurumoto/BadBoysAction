@@ -1,20 +1,20 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 /// <summary>
-/// ƒLƒƒƒ‰ƒNƒ^[‚ÌUŒ‚‚ÉŠÖ‚·‚éƒNƒ‰ƒX
+/// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æ”»æ’ƒã«é–¢ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 
-//UŒ‚•ûŒü
+//æ”»æ’ƒæ–¹å‘
 public enum ATTACK_DIRECTION
 {
     NONE,
-    FRONT,      //³–Ê
-    UP,         //ã
-    SIDE,       //‰¡
-    SIDEUP,     //Î‚ßã
-    SIDEDOWN    //Î‚ß‰º
+    FRONT,      //æ­£é¢
+    UP,         //ä¸Š
+    SIDE,       //æ¨ª
+    SIDEUP,     //æ–œã‚ä¸Š
+    SIDEDOWN    //æ–œã‚ä¸‹
 }
 
 public class Attacker : MonoBehaviour
@@ -26,30 +26,30 @@ public class Attacker : MonoBehaviour
     private GameObject sprite;
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
     private Animator animator;
 
     /// <summary>
-    /// UŒ‚‚Ì•ûŒü
+    /// æ”»æ’ƒã®æ–¹å‘
     /// </summary>
     [SerializeField]
     private ATTACK_DIRECTION attackType;
 
     /// <summary>
-    /// ˆÚ“®ƒNƒ‰ƒX
+    /// ç§»å‹•ã‚¯ãƒ©ã‚¹
     /// </summary>
     private PlayerMovement playerMovement;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     /// <summary>
-    /// UŒ‚•ûŒü‚Ìæ“¾
+    /// æ”»æ’ƒæ–¹å‘ã®å–å¾—
     /// </summary>
     public ATTACK_DIRECTION AttackType => attackType;
     public Animator AttackAnimator => animator;
@@ -61,7 +61,7 @@ public class Attacker : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -70,13 +70,13 @@ public class Attacker : MonoBehaviour
 
         animator = sprite?.GetComponent<Animator>();
 
-        //ƒLƒƒƒbƒVƒ…
+        //ã‚­ãƒ£ãƒƒã‚·ãƒ¥
         appSound = AppSound.Instance;
         FM = SoundManager.Instance;
     }
 
     /// <summary>
-    /// ƒZƒ“ƒT[‚ÉÕ“Ë
+    /// ã‚»ãƒ³ã‚µãƒ¼ã«è¡çª
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -94,7 +94,7 @@ public class Attacker : MonoBehaviour
                 //SE
                 FM.PlayOneShot(appSound.SE_PL_ATK);
 
-                //ƒAƒCƒeƒ€ƒhƒƒbƒv’Š‘I
+                //ã‚¢ã‚¤ãƒ†ãƒ ãƒ‰ãƒ­ãƒƒãƒ—æŠ½é¸
                 ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
 
                 animator.SetTrigger("Attack");
@@ -108,27 +108,27 @@ public class Attacker : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒZƒ“ƒT[‚ÉÕ“Ë’†
+    /// ã‚»ãƒ³ã‚µãƒ¼ã«è¡çªä¸­
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerStay2D(Collider2D collision) { }
 
 
     /// <summary>
-    /// ƒZƒ“ƒT[‚©‚ç”²‚¯‚½
+    /// ã‚»ãƒ³ã‚µãƒ¼ã‹ã‚‰æŠœã‘ãŸ
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            //UŒ‚‚µ‚½ƒLƒƒƒ‰‚ª”²‚¯‚½‚ç
+            //æ”»æ’ƒã—ãŸã‚­ãƒ£ãƒ©ãŒæŠœã‘ãŸã‚‰
         }
     }
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰Šú‰»İ’è
-    /// ‰ŠúƒXƒe[ƒg‚É–ß‚·
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–è¨­å®š
+    /// åˆæœŸã‚¹ãƒ†ãƒ¼ãƒˆã«æˆ»ã™
     /// </summary>
     public void SetAnimationIdle()
     {

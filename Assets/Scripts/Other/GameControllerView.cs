@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,45 +8,45 @@ using UnityEngine.Advertisements;
 using System;
 
 /// <summary>
-/// View‚ÉŠÖ‚·‚é§ŒäƒNƒ‰ƒX
+/// Viewã«é–¢ã™ã‚‹åˆ¶å¾¡ã‚¯ãƒ©ã‚¹
 /// </summary>
 public partial class GameController : MonoBehaviour
 {
     /// <summary>
-    /// ƒXƒ^[ƒg‰æ–Ê
+    /// ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢
     /// </summary>
     [SerializeField]
     private ViewBase FirstGameInfoView;
 
 
     /// <summary>
-    /// ƒXƒ^[ƒg‰æ–Ê
+    /// ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢
     /// </summary>
     [SerializeField]
     private GameObject startView;
 
     /// <summary>
-    /// ƒIƒvƒVƒ‡ƒ“‰æ–Ê
+    /// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç”»é¢
     /// </summary>
     [SerializeField]
     private GameObject optionView;
 
     /// <summary>
-    /// ƒQ[ƒ€ƒI[ƒo[‰æ–Ê
+    /// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ç”»é¢
     /// </summary>
     [SerializeField]
     private GameObject gameOverView;
 
-    //ƒR[ƒ‹ƒoƒbƒN
+    //ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     private UnityAction RetryAction;
 
     /// <summary>
-    /// ƒQ[ƒ€à–¾‰æ–Ê‚ğ•\¦‚³‚¹‚é‚©‚Ç‚¤‚©
+    /// ã‚²ãƒ¼ãƒ èª¬æ˜ç”»é¢ã‚’è¡¨ç¤ºã•ã›ã‚‹ã‹ã©ã†ã‹
     /// </summary>
     public bool IsOpenFirstview;
 
     /// <summary>
-    /// View‰Šú‰»
+    /// ViewåˆæœŸåŒ–
     /// </summary>
     private void InitializeView()
     {
@@ -54,7 +54,7 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// View‚Ì”ñ•\¦
+    /// Viewã®éè¡¨ç¤º
     /// </summary>
     public void DisableView(ViewBase _view)
     {
@@ -62,7 +62,7 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// View‚Ì•\¦
+    /// Viewã®è¡¨ç¤º
     /// </summary>
     public void EnableView(ViewBase _view)
     {
@@ -70,27 +70,27 @@ public partial class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒIƒvƒVƒ‡ƒ“ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ô
+    /// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã«å‘¼ã¶
     /// </summary>
     public void OnClickOptionButton()
     {
         FM.PlayOneShot(appSound.SE_MENU_OK);
         if (State == INGAME_STATE.STOP)
         {
-            //•Â‚¶‚é
+            //é–‰ã˜ã‚‹
             GameResume();
             optionView.SetActive(false);
         }
         else if (State == INGAME_STATE.PLAYING)
         {
-            //ŠJ‚­
+            //é–‹ã
             GameStop();
             optionView.SetActive(true);
         }
     }
 
     /// <summary>
-    /// ƒQ[ƒ€à–¾‰æ–Ê‚Ì•\¦
+    /// ã‚²ãƒ¼ãƒ èª¬æ˜ç”»é¢ã®è¡¨ç¤º
     /// </summary>
     public void OpenFirstView()
     {
@@ -108,12 +108,12 @@ public partial class GameController : MonoBehaviour
 
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+    /// ãƒªãƒˆãƒ©ã‚¤ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ã
     /// </summary>
     public void OnClickRetryButtin()
     {
         FM.PlayOneShot(appSound.SE_MENU_OK);
-        ///‰Û‹à‚µ‚Ä‚¢‚½‚ç‚»‚Ì‚Ü‚ÜƒŠƒgƒ‰ƒC
+        ///èª²é‡‘ã—ã¦ã„ãŸã‚‰ãã®ã¾ã¾ãƒªãƒˆãƒ©ã‚¤
         if (uiController.GetIsAds())
         {
             FadeFilter.Instance.FadeIn(Color.black, FADETIME, RetryAction);
@@ -124,7 +124,7 @@ public partial class GameController : MonoBehaviour
 
         if (uiController.StaminasManager.IsCheckRecovery())
         {
-            //ƒXƒ^ƒ~ƒi‚ğg—p‚µ‚ÄÄŠJ
+            //ã‚¹ã‚¿ãƒŸãƒŠã‚’ä½¿ç”¨ã—ã¦å†é–‹
             uiController.StaminasManager.UseStamina();
 
             FadeFilter.Instance.FadeIn(Color.black, FADETIME, RetryAction);
@@ -133,7 +133,7 @@ public partial class GameController : MonoBehaviour
         }
         else
         {
-            //ƒXƒ^ƒ~ƒiŠm”Fƒ_ƒCƒAƒƒO•\¦
+            //ã‚¹ã‚¿ãƒŸãƒŠç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º
             var dialog =
                 CommonDialog.ShowDialog
                 (
@@ -143,7 +143,7 @@ public partial class GameController : MonoBehaviour
                     CLOSE,
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
-                        //ƒXƒ^ƒ~ƒi‘S‰ñ•œ
+                        //ã‚¹ã‚¿ãƒŸãƒŠå…¨å›å¾©
                         if (result == ShowResult.Finished)
                         {
                             StaminasManager.Instance.FullRecovery
@@ -152,13 +152,13 @@ public partial class GameController : MonoBehaviour
                     }
                 ));
 
-            //ƒŠƒXƒg‚É’Ç‰Á
+            //ãƒªã‚¹ãƒˆã«è¿½åŠ 
             CommonDialogManager.Instance.AddList(dialog);
         }
     }
 
     /// <summary>
-    /// ƒ^ƒCƒgƒ‹‰æ–Ê‚ÉˆÈ~
+    /// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã«ä»¥é™
     /// </summary>
     public void GoTitle()
     {

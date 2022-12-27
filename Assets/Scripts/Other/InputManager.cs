@@ -1,45 +1,45 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
-    #region •Ï”
+    #region å¤‰æ•°
     /// <summary>
-    /// ƒƒCƒ“ƒJƒƒ‰
+    /// ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©
     /// </summary>
     private Camera mainCamera;
 
     /// <summary>
-    /// ƒ^ƒbƒ`‚Ì”»’è
+    /// ã‚¿ãƒƒãƒã®åˆ¤å®š
     /// </summary>
     private bool touchFlag;
 
     /// <summary>
-    /// ƒ^ƒbƒ`ˆÊ’u
+    /// ã‚¿ãƒƒãƒä½ç½®
     /// </summary>
     [SerializeField]
     private Vector2 touchBeginPos, touchingPos, touchLastPos;
 
     /// <summary>
-    /// ƒ^ƒbƒ`ó‘Ô
+    /// ã‚¿ãƒƒãƒçŠ¶æ…‹
     /// </summary>
     private TouchPhase touchPhase;
 
     /// <summary>
-    /// ƒQ[ƒ€‚Ìó‘Ô
+    /// ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private GameController gameController;
 
     /// <summary>
-    /// ƒ|ƒCƒ“ƒgƒf[ƒ^
+    /// ãƒã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
     /// </summary>
     private PointerEventData pointerEventData;
     #endregion
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public bool TouchFlag           => touchFlag;
     public Vector2 TouchBeginPos    => touchBeginPos;
     public Vector2 TouchingPos      => touchingPos;
@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -75,11 +75,11 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        //ƒQ[ƒ€ƒvƒŒƒC’†‚ÉÀs‚³‚¹‚é
+        //ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ã«å®Ÿè¡Œã•ã›ã‚‹
         //Editor
         if (Application.isEditor)
         {
-            //‰Ÿ‚µ‚½uŠÔ
+            //æŠ¼ã—ãŸç¬é–“
             if (Input.GetMouseButtonDown(0))
             {
                 var hitobjects = GetObjectAll();
@@ -100,7 +100,7 @@ public class InputManager : MonoBehaviour
                 touchBeginPos   = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             }
 
-            //—£‚µ‚½uŠÔ
+            //é›¢ã—ãŸç¬é–“
             if (Input.GetMouseButtonUp(0))
             {
                 touchFlag       = false;
@@ -110,16 +110,16 @@ public class InputManager : MonoBehaviour
                                 = Vector2.zero;
             }
 
-            //‰Ÿ‚µ‚Á‚Ï‚È‚µ
+            //æŠ¼ã—ã£ã±ãªã—
             if (Input.GetMouseButton(0))
             {
                 touchPhase    = TouchPhase.Moved;
                 touchingPos   = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             }
         }
-        //else//’[––
+        //else//ç«¯æœ«
         //{
-        //    //TODO:’Ç‰Á‚Å•K—v‚»‚¤
+        //    //TODO:è¿½åŠ ã§å¿…è¦ãã†
         //    if(Input.touchCount > 0)
         //    {
         //        Touch touch = Input.GetTouch(0);
@@ -131,18 +131,18 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒqƒbƒg‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğ‘S‚Äæ“¾
+    /// ãƒ’ãƒƒãƒˆã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å…¨ã¦å–å¾—
     /// </summary>
     /// <returns></returns>
     public List<RaycastResult> GetObjectAll()
     {
-        //RaycastAll‚ÌŒ‹‰ÊŠi”[—pList
+        //RaycastAllã®çµæœæ ¼ç´ç”¨List
         List<RaycastResult> RayResult = new List<RaycastResult>();
 
-        //PointerEventData‚Éƒ}ƒEƒX‚ÌˆÊ’u‚ğƒZƒbƒg
+        //PointerEventDataã«ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
         pointerEventData.position = Input.mousePosition;
 
-        //RayCastiƒXƒNƒŠ[ƒ“À•Wj
+        //RayCastï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ï¼‰
         EventSystem.current.RaycastAll(pointerEventData, RayResult);
 
         return RayResult;

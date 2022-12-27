@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +20,7 @@ class JumpCommand : Command
     public override void Execute() { Jump(); }
 
     /// <summary>
-    /// ƒWƒƒƒ“ƒvˆ—
+    /// ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
     /// </summary>
     private void Jump()
     {
@@ -33,7 +33,7 @@ class FireCommand : Command
     public override void Execute() { Fire(); }
 
     /// <summary>
-    /// ƒWƒƒƒ“ƒvˆ—
+    /// ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
     /// </summary>
     private void Fire()
     {

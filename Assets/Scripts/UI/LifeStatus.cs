@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,35 +6,35 @@ using TMPro;
 using static GlobalValue;
 
 /// <summary>
-/// ƒ‰ƒCƒt‚ÌƒXƒe[ƒ^ƒX‚ÉŠÖ‚·‚éƒNƒ‰ƒX
+/// ãƒ©ã‚¤ãƒ•ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«é–¢ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class LifeStatus : MonoBehaviour
 {
     /// <summary>
-    /// ƒ‰ƒCƒt”Ô†F1-10
+    /// ãƒ©ã‚¤ãƒ•ç•ªå·ï¼š1-10
     /// </summary>
     [SerializeField]
     private int number;
 
     /// <summary>
-    /// ONƒCƒ[ƒW
+    /// ONã‚¤ãƒ¡ãƒ¼ã‚¸
     /// </summary>
     [SerializeField]
     private GameObject image_On;
 
     /// <summary>
-    /// æ“¾‚³‚ê‚Ä‚é”»’è
+    /// å–å¾—ã•ã‚Œã¦ã‚‹åˆ¤å®š
     /// </summary>
     [SerializeField]
     private bool isHave;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public int Number => number;
     public bool IsHave => isHave;   
     #endregion
 
     /// <summary>
-    /// ONƒCƒ[ƒWØ‚è‘Ö‚¦
+    /// ONã‚¤ãƒ¡ãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
     /// </summary>
     /// <param name="_have"></param>
     public void ChangeLifeImage(bool _have)
@@ -49,7 +49,7 @@ public class LifeStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {

@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-///@“G‚ªÕ“Ë‚µ‚½Û‚ÉƒGƒtƒFƒNƒg‚ğ•\¦‚³‚¹‚é
+///ã€€æ•µãŒè¡çªã—ãŸéš›ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã•ã›ã‚‹
 /// </summary>
 
 public class WallEffect : MonoBehaviour
@@ -17,30 +17,30 @@ public class WallEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// •\¦ƒGƒtƒFƒNƒg
+    /// è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private GameObject effect;
 
     /// <summary>
-    /// •\¦ƒGƒtƒFƒNƒg
+    /// è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
     /// </summary>
     [SerializeField]
     private EFFECT_TYPE type;
 
     /// <summary>
-    /// ·•ª
+    /// å·®åˆ†
     /// </summary>
     [SerializeField]
     private float diff;
 
     /// <summary>
-    /// •\¦ˆÊ’u
+    /// è¡¨ç¤ºä½ç½®
     /// </summary>
     private Vector2 effectPosition;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
@@ -51,7 +51,7 @@ public class WallEffect : MonoBehaviour
         appSound = AppSound.Instance;
     }
     /// <summary>
-    /// ‰Šúİ’è
+    /// åˆæœŸè¨­å®š
     /// </summary>
     private Vector2 SetEffectPosition(Vector2 pos)
     {
@@ -79,7 +79,7 @@ public class WallEffect : MonoBehaviour
 
 
     /// <summary>
-    /// “G‚ÆÕ“Ë
+    /// æ•µã¨è¡çª
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,7 +92,7 @@ public class WallEffect : MonoBehaviour
             if (controller == null || !(controller.State == ENEMY_STATE.DAMAGE))
                 return;
 
-            //“G‚ªƒ_ƒ[ƒW’†‚Ì‘Î‰
+            //æ•µãŒãƒ€ãƒ¡ãƒ¼ã‚¸ä¸­ã®å¯¾å¿œ
             {
                 var pos = SetEffectPosition(collisionObject.transform.position);
                 Instantiate(effect,pos,effect.transform.rotation);

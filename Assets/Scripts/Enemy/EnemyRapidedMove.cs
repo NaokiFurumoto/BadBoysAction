@@ -1,57 +1,57 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 using DG.Tweening;
 /// <summary>
-/// ˆê’èŠÔŠu‚Ü‚Åi‚ñ‚Å‹}Ú‹ß‚·‚é
+/// ä¸€å®šé–“éš”ã¾ã§é€²ã‚“ã§æ€¥æ¥è¿‘ã™ã‚‹
 /// </summary>
 public enum SPEED_STATE
 {
-    WALK,//•à‚­
-    ENERGY,//—Í‚ğ‚½‚ß‚é
-    ENERGYEND,//—Í‚ğ‚½‚ß‚éI—¹
-    RAPID,//‹}Ú‹ß
-    IDLE,//‘Ò‹@
+    WALK,//æ­©ã
+    ENERGY,//åŠ›ã‚’ãŸã‚ã‚‹
+    ENERGYEND,//åŠ›ã‚’ãŸã‚ã‚‹çµ‚äº†
+    RAPID,//æ€¥æ¥è¿‘
+    IDLE,//å¾…æ©Ÿ
 }
 public class EnemyRapidedMove : EnemyMovement
 {
     /// <summary>
-    /// ó‘Ô
+    /// çŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private SPEED_STATE state;
 
     /// <summary>
-    /// ‘Ò‹@ŠÔ
+    /// å¾…æ©Ÿæ™‚é–“
     /// </summary>
     [SerializeField]
     private float idleTime = 5.0f;
 
     /// <summary>
-    /// ’Ç‚¢‚©‚¯‚éŠÔ
+    /// è¿½ã„ã‹ã‘ã‚‹æ™‚é–“
     /// </summary>
     [SerializeField]
     private float rapidTime = 3.0f;
 
     /// <summary>
-    /// ’Ç‚¢‚©‚¯‚éŠÔ
+    /// è¿½ã„ã‹ã‘ã‚‹æ™‚é–“
     /// </summary>
     [SerializeField]
     private float rapidSpeed = 10.0f;
 
     /// <summary>
-    /// ‘Ò‹@ŠJnŠÔ
+    /// å¾…æ©Ÿé–‹å§‹æ™‚é–“
     /// </summary>
     private float idleStartTime;
 
     /// <summary>
-    /// ’Ç‚¢‚©‚¯ŠJnŠÔ
+    /// è¿½ã„ã‹ã‘é–‹å§‹æ™‚é–“
     /// </summary>
     private float rapidStartTime;
 
     /// <summary>
-    /// ƒmƒbƒNƒoƒbƒN‹——£
+    /// ãƒãƒƒã‚¯ãƒãƒƒã‚¯è·é›¢
     /// </summary>
     private float add_X = 2.0f;
     private float add_Y = 2.0f;
@@ -64,7 +64,7 @@ public class EnemyRapidedMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected override void TypeMove()
     {
@@ -89,7 +89,7 @@ public class EnemyRapidedMove : EnemyMovement
 
         if (state == SPEED_STATE.ENERGY)
         {
-            //Œü‚¢‚Ä‚é•ûŒü‚Æ”½‘Î•ûŒü‚ÉˆÚ“®
+            //å‘ã„ã¦ã‚‹æ–¹å‘ã¨åå¯¾æ–¹å‘ã«ç§»å‹•
             var direction = new Vector2(playerLastPos.x - enemyTrans.position.x,
                                   playerLastPos.y - enemyTrans.position.y).normalized;
             var x = Mathf.Sign(direction.x);
@@ -122,7 +122,7 @@ public class EnemyRapidedMove : EnemyMovement
 
         if (state == SPEED_STATE.IDLE)
         {
-            //ŠÔŒo‰ß
+            //æ™‚é–“çµŒé
             if (Time.time - idleStartTime >= idleTime)
             {
                 state = SPEED_STATE.RAPID;

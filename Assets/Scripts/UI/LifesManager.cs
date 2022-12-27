@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +7,18 @@ using static GlobalValue;
 using System.Linq;
 
 /// <summary>
-/// ‘Ì—Í‚ÌŠÇ—
+/// ä½“åŠ›ã®ç®¡ç†
 /// </summary>
 public class LifesManager : MonoBehaviour
 {
     /// <summary>
-    /// ‘Ì—ÍƒXƒe[ƒ^ƒX
+    /// ä½“åŠ›ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     /// </summary>
     [SerializeField]
     private List<LifeStatus> lifeStatuses = new List<LifeStatus>();
 
     /// <summary>
-    /// ‘Ì—ÍŠ”
+    /// ä½“åŠ›æ‰€æŒæ•°
     /// </summary>
     [SerializeField]
     private int haveLifeNumber;
@@ -31,7 +31,7 @@ public class LifesManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -46,7 +46,7 @@ public class LifesManager : MonoBehaviour
     }
    
     /// <summary>
-    /// ‘Ì—Í•\¦İ’è
+    /// ä½“åŠ›è¡¨ç¤ºè¨­å®š
     /// </summary>
     /// <param name="_lifePoint"></param>
     public void SetLife(int _lifePoint)
@@ -64,12 +64,12 @@ public class LifesManager : MonoBehaviour
                 life.ChangeLifeImage(false);
             }
         }
-        //ƒvƒŒƒCƒ„[‚Ìƒ‰ƒCƒtXV
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ©ã‚¤ãƒ•æ›´æ–°
         playerStatusController.PlayerSetLife(_lifePoint);
     }
 
     /// <summary>
-    /// ƒ‰ƒCƒt”‚Ìæ“¾
+    /// ãƒ©ã‚¤ãƒ•æ•°ã®å–å¾—
     /// </summary>
     /// <returns></returns>
     public int GetLifeNum()

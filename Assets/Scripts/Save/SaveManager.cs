@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.IO;
 using static GlobalValue;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ƒZ[ƒuEƒ[ƒhˆ—‚ğs‚¤ƒNƒ‰ƒX
+/// ã‚»ãƒ¼ãƒ–ãƒ»ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class SaveManager : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class SaveManager : MonoBehaviour
     private void InitializeAwake()
     {
         Instance ??= this;
-        //ƒAƒvƒŠ‚ªÀs’†‚É•Û‚·‚éƒf[ƒ^‚ğŠi”[‚Å‚«‚éƒfƒBƒŒƒNƒgƒŠƒpƒX
+        //ã‚¢ãƒ—ãƒªãŒå®Ÿè¡Œä¸­ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã§ãã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
         filePath = Application.persistentDataPath + "/" + ".savedata.json";
     }
 
@@ -56,13 +56,13 @@ public class SaveManager : MonoBehaviour
 
 
     /// <summary>
-    /// ƒZ[ƒu
+    /// ã‚»ãƒ¼ãƒ–
     /// </summary>
     public void Save(SaveData savedata)
     {
         string json = JsonUtility.ToJson(savedata);
 
-        //ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‘‚«‚Ş‚±‚Æ‚ª‚Å‚«‚é
+        //ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã“ã¨ãŒã§ãã‚‹
         using (StreamWriter streamWriter = new StreamWriter(filePath))
         {
             streamWriter.Write(json);
@@ -71,17 +71,17 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒh:
+    /// ãƒ­ãƒ¼ãƒ‰:
     //while (true)
     //{
-    //    while‚ÅŒJ‚è•Ô‚µ‘Ò‹@ˆ—
+    //    whileã§ç¹°ã‚Šè¿”ã—å¾…æ©Ÿå‡¦ç†
     //    if (File.Exists(Path)) break;
     //    yield return null;
     //}
     /// </summary>
     public SaveData Load()
     {
-        //File‚ª‘¶İ‚·‚é‚©
+        //FileãŒå­˜åœ¨ã™ã‚‹ã‹
         if (File.Exists(filePath))
         {
             StreamReader reader;
@@ -93,12 +93,12 @@ public class SaveManager : MonoBehaviour
 
         }
 
-        //‰‰ñ‚Ífile‚ª‘¶İ‚µ‚È‚¢‚Ì‚Å‚±‚¿‚ç
+        //åˆå›ã¯fileãŒå­˜åœ¨ã—ãªã„ã®ã§ã“ã¡ã‚‰
         return GetInitSaveData();
     }
 
     /// <summary>
-    /// ‰‰ñ‚ÌƒZ[ƒuƒf[ƒ^‚ğæ“¾
+    /// åˆå›æ™‚ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     public SaveData GetInitSaveData()
@@ -128,7 +128,7 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒhƒf[ƒ^‚ğƒNƒŠƒAƒf[ƒ^‚É•ÏX
+    /// ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›´
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
@@ -152,7 +152,7 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒhƒf[ƒ^‚ğƒŠƒXƒ^[ƒgƒf[ƒ^‚É•ÏX
+    /// ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚¹ã‚¿ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›´
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
@@ -170,8 +170,8 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒQ[ƒ€“r’†ƒZ[ƒu
-    /// ƒ{ƒŠƒ…[ƒ€ó‘Ô‚Ì•Û‘¶
+    /// ã‚²ãƒ¼ãƒ é€”ä¸­ã‚»ãƒ¼ãƒ–
+    /// ãƒœãƒªãƒ¥ãƒ¼ãƒ çŠ¶æ…‹ã®ä¿å­˜
     /// </summary>
     public void GamePlaingSave()
     {

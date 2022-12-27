@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
@@ -6,7 +6,7 @@ using static GlobalValue;
 public class PlayerMutekiAttacker : MonoBehaviour
 {
     /// <summary>
-    /// ˆÚ“®ƒNƒ‰ƒX
+    /// ç§»å‹•ã‚¯ãƒ©ã‚¹
     /// </summary>
     private PlayerMovement playerMovement;
 
@@ -16,7 +16,7 @@ public class PlayerMutekiAttacker : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -25,7 +25,7 @@ public class PlayerMutekiAttacker : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒZƒ“ƒT[‚ÉÕ“Ë
+    /// ã‚»ãƒ³ã‚µãƒ¼ã«è¡çª
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +40,7 @@ public class PlayerMutekiAttacker : MonoBehaviour
 
             if (_enemyStatus.State == ENEMY_STATE.NOCKBACK || _enemyStatus.State == ENEMY_STATE.MOVE)
             {
-                //ƒAƒCƒeƒ€’Š‘I
+                //ã‚¢ã‚¤ãƒ†ãƒ æŠ½é¸
                 ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
 
                 _enemyStatus.SetDamageStatus();

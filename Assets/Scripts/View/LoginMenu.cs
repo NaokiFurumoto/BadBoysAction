@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ public class LoginMenu : LoginMenuBase
     private GameObject txt_Success;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
@@ -63,7 +63,7 @@ public class LoginMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒƒOƒCƒ“
+    /// ãƒ­ã‚°ã‚¤ãƒ³
     /// </summary>
     public void OnClickLogin()
     {
@@ -82,7 +82,7 @@ public class LoginMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒCƒ“¸”s‚ÌƒR[ƒ‹ƒoƒbƒN
+    /// ã‚µã‚¤ãƒ³ã‚¤ãƒ³å¤±æ•—æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     public void FailureSignUp()
     {
@@ -94,7 +94,7 @@ public class LoginMenu : LoginMenuBase
     }
 
     /// <summary>
-    /// ƒTƒCƒ“ƒAƒbƒv¬Œ÷‚ÌƒR[ƒ‹ƒoƒbƒN
+    /// ã‚µã‚¤ãƒ³ã‚¢ãƒƒãƒ—æˆåŠŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     public void SuccessSignUp()
     {

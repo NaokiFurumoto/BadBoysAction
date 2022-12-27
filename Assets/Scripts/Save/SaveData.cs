@@ -1,77 +1,77 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 /// <summary>
-/// ƒZ[ƒuƒf[ƒ^—pƒNƒ‰ƒX
+/// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç”¨ã‚¯ãƒ©ã‚¹
 /// </summary>
 [Serializable]
 public class SaveData 
 {
-    //g—p‚Å‚«‚éƒXƒ^ƒ~ƒi”
+    //ä½¿ç”¨ã§ãã‚‹ã‚¹ã‚¿ãƒŸãƒŠæ•°
     public int StaminaNumber;
 
-    //Œ‚”j”
+    //æ’ƒç ´æ•°
     public int KillsNumber;
 
-    //ƒnƒCƒXƒRƒA
+    //ãƒã‚¤ã‚¹ã‚³ã‚¢
     public int HiScoreNumber;
 
-    //ƒ‰ƒCƒt”
+    //ãƒ©ã‚¤ãƒ•æ•°
     public int LifeNumber;
 
-    //ƒXƒe[ƒWƒŒƒxƒ‹
+    //ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«
     public int GemeLevel;
 
-    //ƒvƒŒƒC‰ñ”
+    //ãƒ—ãƒ¬ã‚¤å›æ•°
     public int PlayTime;
 
-    //BGM‰¹—Ê
+    //BGMéŸ³é‡
     public float BGM_Volume;
 
-    //SE‰¹—Ê
+    //SEéŸ³é‡
     public float SE_Volume;
 
-    //L•\¦”»’èF‰Û‹à‹@”\
+    //åºƒå‘Šè¡¨ç¤ºåˆ¤å®šï¼šèª²é‡‘æ©Ÿèƒ½
     public bool IsShowAds;
 
-    //’†’fó‘Ô‚Ì”»’è
+    //ä¸­æ–­çŠ¶æ…‹ã®åˆ¤å®š
     public bool IsBreak;
 
-    //ƒZ[ƒu‚µ‚½ŠÔ
+    //ã‚»ãƒ¼ãƒ–ã—ãŸæ™‚é–“
     public long saveTime;
 
-    //ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    //ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     public int changeKillCount;
 
-    //•K—vŒoŒ±’l
+    //å¿…è¦çµŒé¨“å€¤
     public int levelupNeedCount;
 
-    //¶¬ŠÔŠuŠÔ
+    //ç”Ÿæˆé–“éš”æ™‚é–“
     public float createDelayTime;
 
-    //“G‰æ–Ê•\¦”
+    //æ•µç”»é¢è¡¨ç¤ºæ•°
     public int enemyScreenDisplayIndex;
 
-    //ƒQ[ƒ€‚Ìó‘Ô
+    //ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
     public INGAME_STATE gameState;
 
-    //‰‰ñà–¾‰æ–Ê•\¦
+    //åˆå›èª¬æ˜ç”»é¢è¡¨ç¤º
     public bool IsFirstViewOpen;
 
-    //ƒTƒCƒ“ƒCƒ“”»’è
+    //ã‚µã‚¤ãƒ³ã‚¤ãƒ³åˆ¤å®š
     public bool IsSighin;
 
-    //ƒƒOƒCƒ“”»’è
+    //ãƒ­ã‚°ã‚¤ãƒ³åˆ¤å®š
     public bool IsLogin;
 
-    //ƒ†[ƒU[–¼
+    //ãƒ¦ãƒ¼ã‚¶ãƒ¼å
     public string UserName;
 
-    //ƒpƒXƒ[ƒh
+    //ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
     public string Passward;
 
-    //C—…ƒ‚[ƒhŠJ•úFLV99“’B‚©A‰Û‹àAƒXƒ^ƒ~ƒi–³ŒÀ
+    //ä¿®ç¾…ãƒ¢ãƒ¼ãƒ‰é–‹æ”¾ï¼šLV99åˆ°é”ã‹ã€èª²é‡‘ã€ã‚¹ã‚¿ãƒŸãƒŠç„¡é™
 
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
@@ -6,59 +6,59 @@ using System.Linq;
 using static GlobalValue;
 
 /// <summary>
-/// ¶¬Šíe
-/// ¶¬Ší‚Ì§Œä
+/// ç”Ÿæˆå™¨è¦ª
+/// ç”Ÿæˆå™¨ã®åˆ¶å¾¡
 /// </summary>
 public class NewGenerateManager : MonoBehaviour
 {
     /// <summary>
-    /// ¶¬ŠíƒNƒ‰ƒX
+    /// ç”Ÿæˆå™¨ã‚¯ãƒ©ã‚¹
     /// </summary>
     [SerializeField]
     private NewEnemyGenerator enemyGenerator;
 
     /// <summary>
-    /// ƒQ[ƒ€ƒŒƒxƒ‹
-    /// 1 - 100 Å‘åMAX•\¦
+    /// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«
+    /// 1 - 100 æœ€å¤§MAXè¡¨ç¤º
     /// </summary>
     [SerializeField]
     private int gameLevel;
 
     /// <summary>
-    /// ’â~’†”»’è
+    /// åœæ­¢ä¸­åˆ¤å®š
     /// </summary>
     private bool isInterval;
 
     /// <summary>
-    /// UI‘€ì
+    /// UIæ“ä½œ
     /// </summary>
     private UiController uiController;
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‘€ìƒNƒ‰ƒX
+    /// ã‚¢ã‚¤ãƒ†ãƒ æ“ä½œã‚¯ãƒ©ã‚¹
     /// </summary>
     private ItemController itemController;
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     [SerializeField]
     private int changeKillCount;
 
     /// <summary>
-    /// •K—vŒoŒ±’lF•Ï“®‚³‚¹‚é
+    /// å¿…è¦çµŒé¨“å€¤ï¼šå¤‰å‹•ã•ã›ã‚‹
     /// </summary>
     [SerializeField]
     private int levelupNeedCount;
 
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public int GameLevel { get { return gameLevel; } set { gameLevel = value; } }
     public bool IsInterval { get { return isInterval; } set { isInterval = value; } }
     #endregion
 
     /// <summary>
-    /// ƒQ[ƒ€ŠJn‚Ì‰Šú‰»
+    /// ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®åˆæœŸåŒ–
     /// </summary>
     public void InitializeThis()
     {
@@ -66,12 +66,12 @@ public class NewGenerateManager : MonoBehaviour
         changeKillCount = 0;
         isInterval = false;
         levelupNeedCount = LEVELUP_COUNT;
-        //“G¶¬‰Šú‰»
+        //æ•µç”ŸæˆåˆæœŸåŒ–
         enemyGenerator.InitializeData();
     }
 
     /// <summary>
-    /// ƒ[ƒh‚Ì‰Šú‰»
+    /// ãƒ­ãƒ¼ãƒ‰æ™‚ã®åˆæœŸåŒ–
     /// </summary>
     public void InitializeLoaded( SaveData data )
     {
@@ -79,59 +79,59 @@ public class NewGenerateManager : MonoBehaviour
         //changeKillCount = GetChangeKillCount();
         //sInterval = false;
         //levelupNeedCount = GetLevelupNeedCount();
-        //“G¶¬‰Šú‰»
+        //æ•µç”ŸæˆåˆæœŸåŒ–
         //enemyGenerator.InitializeLoadedData(data);
     }
 
     /// <summary>
-    /// ŠO•”‰Šú‰Šú‰»
+    /// å¤–éƒ¨åˆæœŸåˆæœŸåŒ–
     /// </summary>
     private void Start() { InitializeOther().Forget(); }
     private async UniTask InitializeOther()
     {
-        //1ƒtƒŒ[ƒ€‘Ò‚¿
+        //1ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
         await UniTask.Yield();
         uiController = GameObject.FindGameObjectWithTag("UI").
                                  GetComponent<UiController>();
         itemController = ItemController.Instance;
 
-        //ŠJn‚ÉƒXƒgƒbƒv
+        //é–‹å§‹æ™‚ã«ã‚¹ãƒˆãƒƒãƒ—
         ChangeGeneratorState(GENERATOR_STATE.STOP);
     }
 
     /// <summary>
-    /// ŠJn‚Ì‘Î‰
+    /// é–‹å§‹æ™‚ã®å¯¾å¿œ
     /// </summary>
     public void StartGenerate()
     {
-        //“G¶¬ŠJn
+        //æ•µç”Ÿæˆé–‹å§‹
         enemyGenerator.StartCallGenerator().Forget();
     }
 
     /// <summary>
-    /// Œ‚”j”‚É‰‚¶‚ÄAƒŒƒxƒ‹‚Ì•ÏX
+    /// æ’ƒç ´æ•°ã«å¿œã˜ã¦ã€ãƒ¬ãƒ™ãƒ«ã®å¤‰æ›´
     /// </summary>
     public void ChangeUpdateGenerator()
     {
         changeKillCount++;
         if (changeKillCount >= levelupNeedCount)
         {
-            //ƒŒƒxƒ‹ƒAƒbƒv
+            //ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
             gameLevel++;
             uiController.SetGameLevel(gameLevel);
             enemyGenerator.LevelUpdate();
 
             levelupNeedCount += ADDLEVELUP_COUNT;
 
-            //ƒCƒ“ƒ^[ƒoƒ‹‚ğİ‚¯‚é
+            //ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚’è¨­ã‘ã‚‹
             ChangeGeneratorState(GENERATOR_STATE.STOP);
 
-            //‘Ì—Íƒhƒƒbƒv
+            //ä½“åŠ›ãƒ‰ãƒ­ãƒƒãƒ—
             itemController.SetDropItem(DROPITEM_TYPE.LIFE);
             itemController.CreateDropItem(true);
             changeKillCount = 0;
 
-            //ƒCƒ“ƒ^[ƒoƒ‹’†‚ÍÀs‚³‚¹‚È‚¢
+            //ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ä¸­ã¯å®Ÿè¡Œã•ã›ãªã„
             if (!isInterval)
             {
                 isInterval = true;
@@ -141,7 +141,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶¬Ší‚Ìó‘Ô‚ğ•ÏX
+    /// ç”Ÿæˆå™¨ã®çŠ¶æ…‹ã‚’å¤‰æ›´
     /// </summary>
     public void ChangeGeneratorState(GENERATOR_STATE _state)
     {
@@ -149,7 +149,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶¬ƒŒƒxƒ‹ƒAƒbƒv‚ÌXVˆ—
+    /// ç”Ÿæˆãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã®æ›´æ–°å‡¦ç†
     /// </summary>
     /// <returns></returns>
     private async UniTask GenerateStandBy()
@@ -160,7 +160,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ‘S‚Ä‚Ì“G‚Ìíœ
+    /// å…¨ã¦ã®æ•µã®å‰Šé™¤
     /// </summary>
     private void DeleteEnemys()
     {
@@ -168,7 +168,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCˆ—
+    /// ãƒªãƒˆãƒ©ã‚¤å‡¦ç†
     /// </summary>
     public void RetryGenerator()
     {
@@ -179,7 +179,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     /// <returns></returns>
     public int GetChangeKillCount()
@@ -188,7 +188,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// •K—vŒoŒ±’l
+    /// å¿…è¦çµŒé¨“å€¤
     /// </summary>
     /// <returns></returns>
     public int GetLevelupNeedCount()
@@ -197,7 +197,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     /// <returns></returns>
     public void SetChangeKillCount(int count)
@@ -206,7 +206,7 @@ public class NewGenerateManager : MonoBehaviour
     }
 
     /// <summary>
-    /// •K—vŒoŒ±’l
+    /// å¿…è¦çµŒé¨“å€¤
     /// </summary>
     /// <returns></returns>
     public void SetLevelupNeedCount(int count)

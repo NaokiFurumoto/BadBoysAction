@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 
 /// <summary>
-/// ‚Ü‚Á‚·‚®i‚Şƒ^ƒCƒv‚Ì“G‚ÉƒAƒ^ƒbƒ`FENEMY_MOVETYPE.CHASE
+/// ã¾ã£ã™ãé€²ã‚€ã‚¿ã‚¤ãƒ—ã®æ•µã«ã‚¢ã‚¿ãƒƒãƒï¼šENEMY_MOVETYPE.CHASE
 /// </summary>
 public class EnemyChaseMove : EnemyMovement
 {
@@ -14,14 +14,14 @@ public class EnemyChaseMove : EnemyMovement
     }
 
     /// <summary>
-    /// ˆÚ“®ˆ—
+    /// ç§»å‹•å‡¦ç†
     /// </summary>
     protected override void TypeMove()
     {
         if (enemyMoveType != ENEMY_MOVETYPE.CHASE)
             return;
        
-        //‚Ü‚Á‚·‚®i‚ñ‚¾”»’è
+        //ã¾ã£ã™ãé€²ã‚“ã åˆ¤å®š
         if (Time.time - lastFollowTime > turningTimeDelay)
         {
             playerLastPos = playerCenter.position;
@@ -32,7 +32,7 @@ public class EnemyChaseMove : EnemyMovement
         {
             movePos = (playerLastPos - enemyTrans.position).normalized * chaseSpeed;
         }
-        else//\•ª‹ß‚Ã‚¢‚Ä‚é
+        else//ååˆ†è¿‘ã¥ã„ã¦ã‚‹
         {
             movePos = Vector3.zero;
         }
@@ -42,7 +42,7 @@ public class EnemyChaseMove : EnemyMovement
 
 
     /// <summary>
-    /// Šî–{ˆÚ“®ˆ—
+    /// åŸºæœ¬ç§»å‹•å‡¦ç†
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>

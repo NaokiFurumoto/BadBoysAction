@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class RankingManager : MonoBehaviour
     void Start()
     {
         
-        //‚±‚ê‚Åƒ‰ƒ“ƒLƒ“ƒOƒXƒRƒA‚ğ‘—‚é
+        //ã“ã‚Œã§ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¹ã‚³ã‚¢ã‚’é€ã‚‹
         //naichilab.RankingLoader.Instance.SendScoreAndShowRanking(100);
 
     }

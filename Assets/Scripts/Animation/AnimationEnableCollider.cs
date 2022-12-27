@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒJƒvƒZƒ‹ƒRƒ‰ƒCƒ_[‚ğ—LŒø‚É‚·‚é
+/// ã‚«ãƒ—ã‚»ãƒ«ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 /// </summary>
 public class AnimationEnableCollider : StateMachineBehaviour
 {
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“I—¹
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚
     /// </summary>
     /// <param name="animator"></param>
     /// <param name="stateInfo"></param>

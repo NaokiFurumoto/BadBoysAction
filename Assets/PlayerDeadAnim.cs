@@ -1,18 +1,18 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDeadAnim : StateMachineBehaviour
 {
     /// <summary>
-    /// €–SƒAƒjƒ[ƒVƒ‡ƒ“I—¹
+    /// æ­»äº¡ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚
     /// </summary>
     /// <param name="animator"></param>
     /// <param name="stateInfo"></param>
     /// <param name="layerIndex"></param>
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //€–SI—¹’Ê’mÀs
+        //æ­»äº¡çµ‚äº†é€šçŸ¥å®Ÿè¡Œ
         var gameController = GameObject.FindGameObjectWithTag("GameController").
                                         GetComponent<GameController>();
 

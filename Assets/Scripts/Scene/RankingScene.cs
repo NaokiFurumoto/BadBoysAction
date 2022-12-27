@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -30,7 +30,7 @@ public class RankingScene : MonoBehaviour
     private IScore lastScore;
     private NCMBObject ncmbRecord;
 
-    //‘¼‚ÌƒV[ƒ“‚©‚ç‘ã“ü‚³‚ê‚é’lFScoreˆÈŠO
+    //ä»–ã®ã‚·ãƒ¼ãƒ³ã‹ã‚‰ä»£å…¥ã•ã‚Œã‚‹å€¤ï¼šScoreä»¥å¤–
     public string UserName;
     public int Score;
     public int Hiscore;
@@ -66,9 +66,9 @@ public class RankingScene : MonoBehaviour
         //txt_Score.text = score.ToString();
         txt_UserName.text = UserName;
 
-        //ƒnƒCƒXƒRƒAæ“¾
+        //ãƒã‚¤ã‚¹ã‚³ã‚¢å–å¾—
         {
-            txt_HiScore.text = "æ“¾’†...";
+            txt_HiScore.text = "å–å¾—ä¸­...";
 
             var hiScoreCheck = new YieldableNcmbQuery<NCMBObject>(board.ClassName);
             hiScoreCheck.WhereEqualTo(OBJECT_ID, ObjectID);
@@ -76,25 +76,25 @@ public class RankingScene : MonoBehaviour
 
             if (hiScoreCheck.Count > 0)
             {
-                //Šù‚ÉƒnƒCƒXƒRƒA‚Í“o˜^‚³‚ê‚Ä‚¢‚é
+                //æ—¢ã«ãƒã‚¤ã‚¹ã‚³ã‚¢ã¯ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
                 ncmbRecord = hiScoreCheck.Result.First();
 
                 var s = board.BuildScore(ncmbRecord[COLUMN_SCORE].ToString());
-                txt_HiScore.text = s != null ? s.TextForDisplay : "ƒGƒ‰[";
+                txt_HiScore.text = s != null ? s.TextForDisplay : "ã‚¨ãƒ©ãƒ¼";
 
             }
             else
             {
-                //“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+                //ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
                 txt_HiScore.text = "-----";
             }
         }
 
-        //ƒ‰ƒ“ƒLƒ“ƒOæ“¾
+        //ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—
         yield return StartCoroutine(LoadRankingBoard());
 
         //var highScore = board.BuildScore(ncmbRecord[COLUMN_SCORE].ToString());
-        //Debug.Log(string.Format("“o˜^Ï‚İƒXƒRƒA:{0} ¡‰ñƒXƒRƒA:{1} ƒnƒCƒXƒRƒAXV:{2}", highScore.Value, lastScore.Value));
+        //Debug.Log(string.Format("ç™»éŒ²æ¸ˆã¿ã‚¹ã‚³ã‚¢:{0} ä»Šå›ã‚¹ã‚³ã‚¢:{1} ãƒã‚¤ã‚¹ã‚³ã‚¢æ›´æ–°:{2}", highScore.Value, lastScore.Value));
     }
     public void SendScores()
     {
@@ -110,16 +110,16 @@ public class RankingScene : MonoBehaviour
     private IEnumerator SendScoreEnumerator()
     {
         //sendScoreButton.interactable = false;
-        txt_HiScore.text = "‘—M’†...";
+        txt_HiScore.text = "é€ä¿¡ä¸­...";
 
-        //ƒnƒCƒXƒRƒA‘—M
+        //ãƒã‚¤ã‚¹ã‚³ã‚¢é€ä¿¡
         if (ncmbRecord == null)
         {
             ncmbRecord = new NCMBObject(board.ClassName);
             ncmbRecord.ObjectId = ObjectID;
         }
 
-        //Œã‚Å•ÏX
+        //å¾Œã§å¤‰æ›´
         ncmbRecord[COLUMN_NAME] = UserName;
         ncmbRecord[COLUMN_SCORE] = lastScore.Value;
         NCMBException errorResult = null;
@@ -128,12 +128,12 @@ public class RankingScene : MonoBehaviour
 
         if (errorResult != null)
         {
-            //NCMB‚ÌƒRƒ“ƒ\[ƒ‹‚©‚ç’¼Úíœ‚µ‚½ê‡‚ÉAŠY“–‚ÌobjectId‚ª–³‚¢‚Ì‚Å”­¶‚·‚éi‚ç‚µ‚¢j
+            //NCMBã®ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‹ã‚‰ç›´æ¥å‰Šé™¤ã—ãŸå ´åˆã«ã€è©²å½“ã®objectIdãŒç„¡ã„ã®ã§ç™ºç”Ÿã™ã‚‹ï¼ˆã‚‰ã—ã„ï¼‰
             ncmbRecord.ObjectId = null;
-            yield return ncmbRecord.YieldableSaveAsync(error => errorResult = error); //V‹K‚Æ‚µ‚Ä‘—M
+            yield return ncmbRecord.YieldableSaveAsync(error => errorResult = error); //æ–°è¦ã¨ã—ã¦é€ä¿¡
         }
 
-        //ObjectID‚ğ•Û‘¶‚µ‚ÄŸ‚É”õ‚¦‚é
+        //ObjectIDã‚’ä¿å­˜ã—ã¦æ¬¡ã«å‚™ãˆã‚‹
         ObjectID = ncmbRecord.ObjectId;
 
         txt_HiScore.text = lastScore.TextForDisplay;
@@ -144,7 +144,7 @@ public class RankingScene : MonoBehaviour
 
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOæ“¾••\¦
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—ï¼†è¡¨ç¤º
     /// </summary>
     /// <returns>The ranking board.</returns>
     private IEnumerator LoadRankingBoard()
@@ -157,7 +157,7 @@ public class RankingScene : MonoBehaviour
 
         var msg = Instantiate(readingNodePrefab, scrollViewContent);
 
-        //2017.2.0b3‚Ì•`‰æ‚³‚ê‚È‚¢ƒoƒOb’è‘Î‰
+        //2017.2.0b3ã®æç”»ã•ã‚Œãªã„ãƒã‚°æš«å®šå¯¾å¿œ
         MaskOffOn();
 
         var so = new YieldableNcmbQuery<NCMBObject>(board.ClassName);
@@ -173,7 +173,7 @@ public class RankingScene : MonoBehaviour
 
         yield return so.FindAsync();
 
-        Debug.Log("ƒf[ƒ^æ“¾ : " + so.Count.ToString() + "Œ");
+        Debug.Log("ãƒ‡ãƒ¼ã‚¿å–å¾— : " + so.Count.ToString() + "ä»¶");
         Destroy(msg);
 
         if (so.Error != null)
@@ -191,7 +191,7 @@ public class RankingScene : MonoBehaviour
                 rankNode.NameText.text = r[COLUMN_NAME].ToString();
 
                 var s = board.BuildScore(r[COLUMN_SCORE].ToString());
-                rankNode.ScoreText.text = s != null ? s.TextForDisplay : "ƒGƒ‰[";
+                rankNode.ScoreText.text = s != null ? s.TextForDisplay : "ã‚¨ãƒ©ãƒ¼";
             }
         }
         else
@@ -199,7 +199,7 @@ public class RankingScene : MonoBehaviour
             Instantiate(notFoundNodePrefab, scrollViewNotContent);
         }
 
-        //‚±‚±‚Å
+        //ã“ã“ã§
         if (IsGameOver)
         {
            //yield return new WaitForSeconds(0.5f);
@@ -213,13 +213,13 @@ public class RankingScene : MonoBehaviour
         SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_MENU_CANCEL);
         closeButton.interactable = false;
         IsGameOver = false;
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ranking");//ƒAƒ“ƒ[ƒh
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ranking");//ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
     }
 
     private void MaskOffOn()
     {
-        //2017.2.0b3‚Å‚È‚º‚©ScrollViewContent‚ğ’Ç‰Á‚µ‚Ä‚à•`‰æ‚³‚ê‚È‚¢ê‡‚ª‚ ‚éB
-        //emask‚ğOFF/ON‚·‚é‚Æ’¼‚é‚Ì‚Å–³—‚â‚èEEE
+        //2017.2.0b3ã§ãªãœã‹ScrollViewContentã‚’è¿½åŠ ã—ã¦ã‚‚æç”»ã•ã‚Œãªã„å ´åˆãŒã‚ã‚‹ã€‚
+        //è¦ªmaskã‚’OFF/ONã™ã‚‹ã¨ç›´ã‚‹ã®ã§ç„¡ç†ã‚„ã‚Šãƒ»ãƒ»ãƒ»
         var m = scrollViewContent.parent.GetComponent<Mask>();
         m.enabled = false;
         m.enabled = true;

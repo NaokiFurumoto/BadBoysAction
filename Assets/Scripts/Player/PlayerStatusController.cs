@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
@@ -6,18 +6,18 @@ using DG.Tweening;
 using System;
 
 /// <summary>
-/// ƒvƒŒ[ƒ„[‚ÌƒXƒe[ƒ^ƒXŠÇ—
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç®¡ç†
 /// </summary>
 public class PlayerStatusController : MonoBehaviour
 {
     /// <summary>
-    /// Œ»İ‚Ìƒ‰ƒCƒt
+    /// ç¾åœ¨ã®ãƒ©ã‚¤ãƒ•
     /// </summary>
     [SerializeField]
     private int life;
 
     /// <summary>
-    /// ‰Šúƒ‰ƒCƒt
+    /// åˆæœŸãƒ©ã‚¤ãƒ•
     /// </summary>
     [SerializeField]
     private int startLife;
@@ -26,86 +26,86 @@ public class PlayerStatusController : MonoBehaviour
     private Transform playerCenter;
 
     /// <summary>
-    /// –{‘Ì
+    /// æœ¬ä½“
     /// </summary>
     [SerializeField]
     private Transform body;
 
     /// <summary>
-    /// UŒ‚Root
+    /// æ”»æ’ƒRoot
     /// </summary>
     [SerializeField]
     private GameObject attackRoot;
 
     /// <summary>
-    /// –³“GRoot
+    /// ç„¡æ•µRoot
     /// </summary>
     [SerializeField]
     private GameObject mutekiRoot;
 
     /// <summary>
-    /// F•ÏX—p
+    /// è‰²å¤‰æ›´ç”¨
     /// </summary>
     private SpriteRenderer sprite;
 
     /// <summary>
-    /// F•ÏX—p
+    /// è‰²å¤‰æ›´ç”¨
     /// </summary>
     private Transform spriteTransform;
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
     private Animator animator;
 
     /// <summary>
-    /// UŒ‚ƒNƒ‰ƒX
+    /// æ”»æ’ƒã‚¯ãƒ©ã‚¹
     /// </summary>
     private AttackerManager  attackerManager;
 
     /// <summary>
-    /// €–S”»’è
+    /// æ­»äº¡åˆ¤å®š
     /// </summary>
     private bool isDead;
 
     /// <summary>
-    /// ƒN[ƒ‹ƒ^ƒCƒ€”»’è
+    /// ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ åˆ¤å®š
     /// </summary>
     private bool isCoolTimeCheck;
 
     /// <summary>
-    /// LifeŠÇ—
+    /// Lifeç®¡ç†
     /// </summary>
     private LifesManager lifesManager;
 
     /// <summary>
-    /// ƒQ[ƒ€ŠÇ—
+    /// ã‚²ãƒ¼ãƒ ç®¡ç†
     /// </summary>
     private GameController gameController;
 
     /// <summary>
-    /// ƒQ[ƒ€ŠJnˆÊ’u
+    /// ã‚²ãƒ¼ãƒ é–‹å§‹ä½ç½®
     /// </summary>
     private Vector2 startPosition;
 
     /// <summary>
-    /// ƒgƒƒtƒB[–³“Gƒ‚[ƒh
+    /// ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ç„¡æ•µãƒ¢ãƒ¼ãƒ‰
     /// </summary>
     private bool isMuteki;
 
     /// <summary>
-    /// –³“Gƒ‚[ƒh
+    /// ç„¡æ•µãƒ¢ãƒ¼ãƒ‰
     /// </summary>
     [SerializeField]
     protected bool MUTEKI = false;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public bool IsDead => isDead;
     public bool IsMuteki => isMuteki;
 
@@ -119,7 +119,7 @@ public class PlayerStatusController : MonoBehaviour
 
     #endregion
 
-    #region ƒR[ƒ‹ƒoƒbƒN
+    #region ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     public Action OnComplate;
     #endregion
 
@@ -129,7 +129,7 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -144,7 +144,7 @@ public class PlayerStatusController : MonoBehaviour
         isMuteki = false;
 
 #if UNITY_EDITOR
-        //–³“G‚È‚ç‚Î
+        //ç„¡æ•µãªã‚‰ã°
         if (MUTEKI)
         {
             life = 1000;
@@ -170,13 +170,13 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// –³“GŠJnˆ—
-    /// ƒAƒCƒeƒ€æ“¾ŒãŒÄ‚Î‚ê‚é
+    /// ç„¡æ•µé–‹å§‹å‡¦ç†
+    /// ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¾Œå‘¼ã°ã‚Œã‚‹
     /// </summary>
-    /// <param name="isMuteki">–³“G”»’è</param>
+    /// <param name="isMuteki">ç„¡æ•µåˆ¤å®š</param>
     public void MutekiAttack()
     {
-        //æ“¾ƒAƒCƒeƒ€íœ
+        //å–å¾—ã‚¢ã‚¤ãƒ†ãƒ å‰Šé™¤
         OnComplate();
 
         if (isMuteki)
@@ -192,7 +192,7 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// –³“GƒAƒNƒVƒ‡ƒ“’†
+    /// ç„¡æ•µã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä¸­
     /// </summary>
     /// <returns></returns>
     private IEnumerator MutekiActions(GameObject effect)
@@ -205,12 +205,12 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// UŒ‚•û–@Ø‘Ö
+    /// æ”»æ’ƒæ–¹æ³•åˆ‡æ›¿
     /// </summary>
-    /// <param name="isMuteki">–³“G”»’è</param>
+    /// <param name="isMuteki">ç„¡æ•µåˆ¤å®š</param>
     private void SwitchAttackType(bool isMuteki)
     {
-        //UŒ‚ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰Šú‰»
+        //æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
         attackerManager.SetAllAnimatorIdle();
 
         attackRoot.SetActive(!isMuteki);
@@ -218,7 +218,7 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ_ƒ[ƒW‚ğó‚¯‚é
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹
     /// </summary>
     /// <param name="damage"></param>
     public void Damage(int damage)
@@ -230,20 +230,20 @@ public class PlayerStatusController : MonoBehaviour
         life -= damage;
         lifesManager.SetLife(life);
 
-        //ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+        //ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
         CameraAction.PlayerDamage();
         animator.SetTrigger("Damage");
 
-        if ( life <= 0) //€–Sˆ—
+        if ( life <= 0) //æ­»äº¡å‡¦ç†
         {
             FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
             isCoolTimeCheck = false;
             Dead();
         }
-        else//ƒ_ƒ[ƒWˆ—
+        else//ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
         {
             FM.PlayOneShot(appSound.SE_PL_DAMAGE);
-            //ƒŠƒAƒNƒVƒ‡ƒ“
+            //ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
             spriteTransform.DOPunchScale(
                 PLAYER_SHAKESTRENGTH,
                 PLAYER_SHAKETIME).OnComplete(() =>
@@ -255,7 +255,7 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚Ìƒ‰ƒCƒtİ’è
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ©ã‚¤ãƒ•è¨­å®š
     /// </summary>
     /// <param name="lifeNum"></param>
     public void PlayerSetLife(int lifeNum)
@@ -264,13 +264,13 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ‰ƒCƒt‰ñ•œ
+    /// ãƒ©ã‚¤ãƒ•å›å¾©
     /// </summary>
     public void RecoveryLife()
     {
         PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.LIFE_RECOVERY);
 
-        //Å‘å’lˆÈã‚Í‰ñ•œ‚µ‚È‚¢
+        //æœ€å¤§å€¤ä»¥ä¸Šã¯å›å¾©ã—ãªã„
         if (life >= MAX_LIFEPOINT)
         {
             OnComplate();
@@ -279,15 +279,15 @@ public class PlayerStatusController : MonoBehaviour
 
         life += RECOVERY_LIFEPOINT;
 
-        //ƒ‰ƒCƒtƒAƒCƒRƒ““_“”
+        //ãƒ©ã‚¤ãƒ•ã‚¢ã‚¤ã‚³ãƒ³ç‚¹ç¯
         lifesManager?.SetLife(life);
 
-        //ƒ‰ƒCƒtƒAƒCƒRƒ“íœ
+        //ãƒ©ã‚¤ãƒ•ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
         OnComplate();
     }
 
     /// <summary>
-    /// €–Sˆ—
+    /// æ­»äº¡å‡¦ç†
     /// </summary>
     public void Dead()
     {
@@ -298,7 +298,7 @@ public class PlayerStatusController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCˆ—
+    /// ãƒªãƒˆãƒ©ã‚¤å‡¦ç†
     /// </summary>
     public void RetryPlayer()
     {

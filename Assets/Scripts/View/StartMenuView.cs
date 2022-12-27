@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,52 +6,52 @@ using UnityEngine.Events;
 
 using static GlobalValue;
 /// <summary>
-/// ƒXƒ^[ƒgƒV[ƒ“‚Ìƒƒjƒ…[‰æ–Ê‚ÉŠÖ‚·‚éˆ—
+/// ã‚¹ã‚¿ãƒ¼ãƒˆã‚·ãƒ¼ãƒ³ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã«é–¢ã™ã‚‹å‡¦ç†
 /// </summary>
 public class StartMenuView : ViewBase
 {
     /// <summary>
-    /// BGMƒXƒ‰ƒCƒ_[
+    /// BGMã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
     /// </summary>
     [SerializeField]
     private MenuObject_Sliderbar slider_BGM;
 
     /// <summary>
-    /// SEƒXƒ‰ƒCƒ_[
+    /// SEã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
     /// </summary>
     [SerializeField]
     private MenuObject_Sliderbar slider_SE;
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒOƒ{ƒ^ƒ“
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒœã‚¿ãƒ³
     /// </summary>
     [SerializeField]
     private Button rankBtn;
 
 
     /// <summary>
-    /// ƒ[ƒhƒf[ƒ^
+    /// ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
     /// </summary>
     private SaveData loadingData;
 
     /// <summary>
-    /// ƒZ[ƒuƒNƒŠƒAƒR[ƒ‹ƒoƒbƒN
+    /// ã‚»ãƒ¼ãƒ–ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     /// </summary>
     private UnityAction saveDataClearCallback;
 
     /// <summary>
-    /// ƒ_ƒCƒAƒƒO
+    /// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
     /// </summary>
     private CommonDialog dialog;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
 
     /// <summary>
-    /// ‰æ–Ê—LŒø
+    /// ç”»é¢æœ‰åŠ¹æ™‚
     /// </summary>
     protected override void OnEnable()
     {
@@ -71,19 +71,19 @@ public class StartMenuView : ViewBase
 
     protected override void OnDisable()
     {
-        //ƒf[ƒ^‚Ì¬Œ`
+        //ãƒ‡ãƒ¼ã‚¿ã®æˆå½¢
         loadingData.BGM_Volume = slider_BGM.CurosorPosition.x;
         loadingData.SE_Volume = slider_SE.CurosorPosition.x;
 
-        //ƒZ[ƒu‚·‚é
+        //ã‚»ãƒ¼ãƒ–ã™ã‚‹
         SaveManager.Instance.Save(loadingData);
 
         SetInitialize(false);
     }
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒhƒo[‚Ì‰Šú‰»
-    /// ƒ[ƒh‚µ‚½’l‚ğƒZƒbƒg‚·‚é
+    /// ã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼ã®åˆæœŸåŒ–
+    /// ãƒ­ãƒ¼ãƒ‰ã—ãŸå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
     /// </summary>
     void SetSliderVolume()
     {
@@ -94,7 +94,7 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒ_[‚Ì‰Šú‰»ó‘Ôİ’è
+    /// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®åˆæœŸåŒ–çŠ¶æ…‹è¨­å®š
     /// </summary>
     /// <param name="isInit"></param>
     private void SetInitialize(bool isInit)
@@ -104,7 +104,7 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// •Â‚¶‚é
+    /// é–‰ã˜ã‚‹
     /// </summary>
     public void Close()
     {
@@ -112,7 +112,7 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// ƒZ[ƒuƒf[ƒ^ƒ_ƒCƒAƒƒO‚Ì•\¦
+    /// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
     /// </summary>
     public void OpenSaveDataDialog()
     {
@@ -121,7 +121,7 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// ‰Û‹àˆ—
+    /// èª²é‡‘å‡¦ç†
     /// </summary>
     public void OnClickAds()
     {
@@ -130,7 +130,7 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// ƒZ[ƒuƒf[ƒ^ƒNƒŠƒA
+    /// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
     /// </summary>
     private void SaveDataClearCallback()
     {
@@ -144,13 +144,13 @@ public class StartMenuView : ViewBase
     }
 
     /// <summary>
-    /// ƒXƒ‰ƒCƒ_[‚ÌXV‚ÉŒÄ‚Î‚ê‚é
+    /// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®æ›´æ–°æ™‚ã«å‘¼ã°ã‚Œã‚‹
     /// </summary>
     public void SlidebarDrag()
     {
-        //SEÄ¶
+        //SEå†ç”Ÿ
         //FM.PlayOneShot(appSound.SE_SLIDE_CHANGE);
-        //SEİ’è
+        //SEè¨­å®š
         FM.SetVolume("BGM", slider_BGM.CurosorPosition.x);
         FM.SetVolume("SE", slider_SE.CurosorPosition.x);
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ public class FirstGameInfoView : ViewBase
     public UnityAction CallBack;
 
     /// <summary>
-    /// ƒLƒƒƒbƒVƒ…—p
+    /// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨
     /// </summary>
     private AppSound appSound;
     private SoundManager FM;
@@ -28,12 +28,12 @@ public class FirstGameInfoView : ViewBase
     public void OnClickCloseBtn()
     {
         FM.PlayOneShot(appSound.SE_MENU_CANCEL);
-        //ƒ`ƒFƒbƒNƒ{ƒbƒNƒXƒf[ƒ^‚Ì•Û‘¶
+        //ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
         var loadData = SaveManager.Instance.Load();
         gameController.IsOpenFirstview =
         loadData.IsFirstViewOpen = toggle.isOn;
 
-        //ƒZ[ƒu‚·‚é
+        //ã‚»ãƒ¼ãƒ–ã™ã‚‹
         SaveManager.Instance.Save(loadData);
         CallBack?.Invoke();
 

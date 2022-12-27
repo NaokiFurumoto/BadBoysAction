@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GlobalValue;
 /// <summary>
-/// ƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®‚ÉŠÖ‚·‚éƒNƒ‰ƒX
+/// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ç§»å‹•ã«é–¢ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public partial class PlayerMovement : MonoBehaviour
 {
     /// <summary>
-    /// ƒ^ƒbƒ`ƒNƒ‰ƒX
+    /// ã‚¿ãƒƒãƒã‚¯ãƒ©ã‚¹
     /// </summary>
     private InputManager inputManager;
 
@@ -16,29 +16,29 @@ public partial class PlayerMovement : MonoBehaviour
     private float moveSpeed;
 
     /// <summary>
-    /// ƒ^ƒbƒv‚µ‚½ˆÊ’u
+    /// ã‚¿ãƒƒãƒ—ã—ãŸä½ç½®
     /// </summary>
     private Vector2 tapPos;
 
     /// <summary>
-    /// Œü‚­‚×‚«•ûŒü
+    /// å‘ãã¹ãæ–¹å‘
     /// </summary>
     [SerializeField]
     private Vector2 direction;
 
     /// <summary>
-    /// ƒvƒŒ[ƒ„[‚ÌŒü‚«‚Ìˆê“I‚È‘Ş”ğ
+    /// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®å‘ãã®ä¸€æ™‚çš„ãªé€€é¿
     /// </summary>
     private Vector3 tempScale;
 
     /// <summary>
-    /// ƒAƒjƒ[ƒVƒ‡ƒ“
+    /// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
     /// </summary>
     [SerializeField]
     private Animator playerAnim;
 
     /// <summary>
-    /// ƒJƒƒ‰‚Ìæ“¾
+    /// ã‚«ãƒ¡ãƒ©ã®å–å¾—
     /// </summary>
     private Camera mainCamera;
 
@@ -47,7 +47,7 @@ public partial class PlayerMovement : MonoBehaviour
 
     private PlayerStatusController playerStatusController;
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public Vector2 Direction => direction;
     #endregion
 
@@ -57,18 +57,18 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ğˆÚ“®‚³‚¹‚é
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç§»å‹•ã•ã›ã‚‹
     /// </summary>
     private void Update()
     {
         if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
-        //€–S‚µ‚Ä‚¢‚½‚çˆÚ“®‚³‚¹‚È‚¢
+        //æ­»äº¡ã—ã¦ã„ãŸã‚‰ç§»å‹•ã•ã›ãªã„
         if (playerStatusController.IsDead)
             return;
 
-        ////‰æ–Êƒ^ƒbƒv‚³‚ê‚½‚ç•ûŒü‚ğŒü‚­
+        ////ç”»é¢ã‚¿ãƒƒãƒ—ã•ã‚ŒãŸã‚‰æ–¹å‘ã‚’å‘ã
         if (!inputManager.TouchFlag)
             return;
 
@@ -77,7 +77,7 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰Šú‰»
+    /// åˆæœŸåŒ–
     /// </summary>
     private void Initialize()
     {
@@ -101,7 +101,7 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ^ƒbƒv‚µ‚½êŠ‚É•ûŒü“]Š·
+    /// ã‚¿ãƒƒãƒ—ã—ãŸå ´æ‰€ã«æ–¹å‘è»¢æ›
     /// </summary>
     private void PlayerTurning()
     {
@@ -114,13 +114,13 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Œü‚«‚É‡‚í‚¹‚½ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌØ‚è‘Ö‚¦
+    /// å‘ãã«åˆã‚ã›ãŸã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆ‡ã‚Šæ›¿ãˆ
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
     private (float, float) PlayerAnimation(float x, float y)
     {
-        //0.5‚Ì”‚ğ‹ô”‚É‡‚í‚¹‚é
+        //0.5ã®æ•°ã‚’å¶æ•°ã«åˆã‚ã›ã‚‹
         x = Mathf.RoundToInt(x);
         y = Mathf.RoundToInt(y);
 
@@ -128,7 +128,7 @@ public partial class PlayerMovement : MonoBehaviour
         tempScale.x = x > 0 ? Mathf.Abs(tempScale.x) : -Mathf.Abs(tempScale.x);
         transform.localScale = tempScale;
 
-        //ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‚½‚ß‚É‰Šú‰»‚³‚¹‚é
+        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãŸã‚ã«åˆæœŸåŒ–ã•ã›ã‚‹
         x = Mathf.Abs(x);
         playerAnim.SetFloat("FaceX", x);
         playerAnim.SetFloat("FaceY", y);
@@ -136,7 +136,7 @@ public partial class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÌˆÚ“®
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>

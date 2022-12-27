@@ -1,24 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// UŒ‚‚ğØ‚è‘Ö‚¦‚é
+/// æ”»æ’ƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 /// </summary>
 public partial class PlayerMovement : MonoBehaviour
 {
     /// <summary>
-    /// UŒ‚ŠÇ—ƒNƒ‰ƒX
+    /// æ”»æ’ƒç®¡ç†ã‚¯ãƒ©ã‚¹
     /// </summary>
     [SerializeField]
     private AttackerManager attackerManager;
 
     /// <summary>
-    /// Œü‚«‚Ìˆê‘Ş”ğ
+    /// å‘ãã®ä¸€æ™‚é€€é¿
     /// </summary>
     private (float, float) tempDirection = (0,0);
 
     /// <summary>
-    /// UŒ‚•ûŒü‚ğØ‚è‘Ö‚¦‚é
+    /// æ”»æ’ƒæ–¹å‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>

@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ƒQ[ƒ€‹N“®‚Ìˆ—
+/// ã‚²ãƒ¼ãƒ èµ·å‹•æ™‚ã®å‡¦ç†
 /// </summary>
 public class ApplicationStartup : MonoBehaviour
 {

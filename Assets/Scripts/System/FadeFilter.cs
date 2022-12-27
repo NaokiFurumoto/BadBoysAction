@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// Fadeó‘Ô
+/// FadeçŠ¶æ…‹
 /// </summary>
 public enum FADE_STATE
 {
     NON,
-    IN,//–¾‚é‚­‚È‚é
-    OUT//ˆÃ‚­‚È‚é
+    IN,//æ˜ã‚‹ããªã‚‹
+    OUT//æš—ããªã‚‹
 }
 public class FadeFilter : Singleton<FadeFilter>
 {
@@ -20,7 +20,7 @@ public class FadeFilter : Singleton<FadeFilter>
     [SerializeField]
     private FADE_STATE fadeState;
 
-    // === “à•”ƒpƒ‰ƒ[ƒ^[ ================================
+    // === å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ ================================
     private float startTime;
     private float fadeTime;
     private Color fadeColor;
@@ -29,7 +29,7 @@ public class FadeFilter : Singleton<FadeFilter>
     private UnityAction fadeOutCallback;
 
     /// <summary>
-    /// ©g‰Šú‰»
+    /// è‡ªèº«åˆæœŸåŒ–
     /// </summary>
     private void Awake()
     {
@@ -39,11 +39,11 @@ public class FadeFilter : Singleton<FadeFilter>
     }
 
     /// <summary>
-    /// •Ï”ƒZƒbƒg
+    /// å¤‰æ•°ã‚»ãƒƒãƒˆ
     /// </summary>
-    /// <param name="state">ó‘Ô</param>
-    /// <param name="color">F</param>
-    /// <param name="time">‘JˆÚŠÔ</param>
+    /// <param name="state">çŠ¶æ…‹</param>
+    /// <param name="color">è‰²</param>
+    /// <param name="time">é·ç§»æ™‚é–“</param>
     private void SetFadeAction(FADE_STATE state, Color color, float time, UnityAction callback = null)
     {
         fadeState = state;
@@ -54,7 +54,7 @@ public class FadeFilter : Singleton<FadeFilter>
     }
 
     /// <summary>
-    /// –¾‚é‚­‚·‚é
+    /// æ˜ã‚‹ãã™ã‚‹
     /// </summary>
     /// <param name="color"></param>
     /// <param name="time"></param>
@@ -65,7 +65,7 @@ public class FadeFilter : Singleton<FadeFilter>
     }
 
     /// <summary>
-    /// ˆÃ‚­‚·‚é
+    /// æš—ãã™ã‚‹
     /// </summary>
     /// <param name="color"></param>
     /// <param name="time"></param>
@@ -76,7 +76,7 @@ public class FadeFilter : Singleton<FadeFilter>
     }
 
     /// <summary>
-    /// Filter‚Ìİ’è
+    /// Filterã®è¨­å®š
     /// </summary>
     /// <param name="eneble"></param>
     /// <param name="color"></param>

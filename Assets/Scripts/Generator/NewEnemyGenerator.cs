@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
@@ -7,32 +7,32 @@ using static GlobalValue;
 using System.Threading;
 
 /// <summary>
-/// ¶¬ó‘Ôó‘Ô
+/// ç”ŸæˆçŠ¶æ…‹çŠ¶æ…‹
 /// </summary>
 public enum GENERATOR_STATE
 {
     NONE,
-    GENERATE,//¶¬’†
-    STOP,//’â~’†
-    RESUME,//ÄŠJ
+    GENERATE,//ç”Ÿæˆä¸­
+    STOP,//åœæ­¢ä¸­
+    RESUME,//å†é–‹
 }
 public class NewEnemyGenerator : MonoBehaviour
 {
-    #region “G‚ÉŠÖ‚µ‚Ä
+    #region æ•µã«é–¢ã—ã¦
     /// <summary>
-    /// ¶¬‚·‚é“G‚ÌƒIƒuƒWƒFƒNƒgƒŠƒXƒg
+    /// ç”Ÿæˆã™ã‚‹æ•µã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
     /// </summary>
     [SerializeField]
     private List<GameObject> enemyObjects = new List<GameObject>();
 
     /// <summary>
-    /// ¶¬Š„‡:ƒŒƒxƒ‹‚É‚æ‚Á‚Ä•Ï‰»‚·‚é’l
+    /// ç”Ÿæˆå‰²åˆ:ãƒ¬ãƒ™ãƒ«ã«ã‚ˆã£ã¦å¤‰åŒ–ã™ã‚‹å€¤
     /// </summary>
     [SerializeField]
     private List<int> enemyEncounts = new List<int>();
 
     /// <summary>
-    /// “G¶¬e
+    /// æ•µç”Ÿæˆè¦ª
     /// </summary>
     [SerializeField]
     private Transform enemysParent;
@@ -44,79 +44,79 @@ public class NewEnemyGenerator : MonoBehaviour
     private UiController uiController;
 
     /// <summary>
-    /// “G¶¬”
+    /// æ•µç”Ÿæˆæ•°
     /// </summary>
     private int enemyCreateCount;
 
     /// <summary>
-    /// “Gí—Ş”
+    /// æ•µç¨®é¡æ•°
     /// </summary>
     private int enemyTypeCount;
 
     /// <summary>
-    /// ¶¬ˆÊ’u
+    /// ç”Ÿæˆä½ç½®
     /// </summary>
     private Vector3 createEnemyPos;
 
     /// <summary>
-    /// “¯‚¶ˆÊ’u‚É¶¬‚µ‚È‚¢‘Î‰
+    /// åŒã˜ä½ç½®ã«ç”Ÿæˆã—ãªã„å¯¾å¿œ
     /// </summary>
     private float tempPos_x, tempPos_y = 0.0f;
 
     /// <summary>
-    /// ¶¬‚·‚é“G
+    /// ç”Ÿæˆã™ã‚‹æ•µ
     /// </summary>
     private GameObject createEnemyObj;
 
     /// <summary>
-    /// ƒXƒNƒŠ[ƒ“ƒTƒCƒY
+    /// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
     /// </summary>
     private Vector3 rightTopScreen;
     private Vector3 leftBottomScreen;
 
     /// <summary>
-    /// ¶¬’†‚Ì‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg
+    /// ç”Ÿæˆä¸­ã®å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     private List<GameObject> enemyAllObjects = new List<GameObject>();
     #endregion
 
 
-    #region ¶¬‹@‚ÉŠÖ‚µ‚Ä
+    #region ç”Ÿæˆæ©Ÿã«é–¢ã—ã¦
     /// <summary>
-    /// ¶¬ó‘Ô
+    /// ç”ŸæˆçŠ¶æ…‹
     /// </summary>
     [SerializeField]
     private GENERATOR_STATE state;
 
     /// <summary>
-    /// ¶¬ŠÔŠuŠÔFƒŒƒxƒ‹‚É‚æ‚Á‚Ä•Ï‰»‚³‚¹‚é
+    /// ç”Ÿæˆé–“éš”æ™‚é–“ï¼šãƒ¬ãƒ™ãƒ«ã«ã‚ˆã£ã¦å¤‰åŒ–ã•ã›ã‚‹
     /// </summary>
     [SerializeField]
     private float createDelayTime;
 
     /// <summary>
-    /// “G‰æ–Ê•\¦”FƒŒƒxƒ‹‚É‚æ‚Á‚Ä•Ï‰»‚³‚¹‚é
+    /// æ•µç”»é¢è¡¨ç¤ºæ•°ï¼šãƒ¬ãƒ™ãƒ«ã«ã‚ˆã£ã¦å¤‰åŒ–ã•ã›ã‚‹
     /// </summary>
     [SerializeField]
     private int enemyScreenDisplayIndex;
 
     /// <summary>
-    /// ¶¬’x‰„ŠJnŠÔ
+    /// ç”Ÿæˆé…å»¶é–‹å§‹æ™‚é–“
     /// </summary>
     private int startDelayTaskTime;
 
     /// <summary>
-    /// “GƒGƒ“ƒJƒEƒ“ƒg—¦‰Šú’l
+    /// æ•µã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡åˆæœŸå€¤
     /// </summary>
     private List<int> EncountClearList = new List<int>();
 
     /// <summary>
-    /// Œv‘ªŠÔFTime.deltaTime‚Å‰ÁZ‚µ‚Ä‚¢‚­
+    /// è¨ˆæ¸¬æ™‚é–“ï¼šTime.deltaTimeã§åŠ ç®—ã—ã¦ã„ã
     /// </summary>
     private float progressTime;
     #endregion
 
-    #region ƒvƒƒpƒeƒB
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     public GENERATOR_STATE State { get { return state; } set { state = value; } }
     public List<GameObject> EnemyAllObjects => enemyAllObjects;
     public float CreateDelayTime { get { return createDelayTime; } set { createDelayTime = value; } }
@@ -125,20 +125,20 @@ public class NewEnemyGenerator : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// ©g‚Ì‰Šú‰»
+    /// è‡ªèº«ã®åˆæœŸåŒ–
     /// </summary>
     private void Awake() { InitializeThis(); }
     private void InitializeThis()
     {
-        //ƒXƒNƒŠ[ƒ“”ÍˆÍ
+        //ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç¯„å›²
         rightTopScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
         leftBottomScreen = Camera.main.ScreenToWorldPoint(Vector3.zero);
 
-        //“G
+        //æ•µ
         enemyCreateCount = 0;
         enemyTypeCount = enemyObjects.Count;
 
-        //¶¬‹@
+        //ç”Ÿæˆæ©Ÿ
         state = GENERATOR_STATE.STOP;
         progressTime = 0.0f;
         startDelayTaskTime = START_CREATE_DIFF;
@@ -146,7 +146,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ŠJn‚Ì•Ï‰»‚³‚¹‚é’l
+    /// é–‹å§‹æ™‚ã®å¤‰åŒ–ã•ã›ã‚‹å€¤
     /// </summary>
     public void InitializeData()
     {
@@ -156,7 +156,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ[ƒh‚Ì•Ï‰»‚³‚¹‚é’l
+    /// ãƒ­ãƒ¼ãƒ‰æ™‚ã®å¤‰åŒ–ã•ã›ã‚‹å€¤
     /// </summary>
     //public void InitializeLoadedData(SaveData data)
     //{
@@ -166,7 +166,7 @@ public class NewEnemyGenerator : MonoBehaviour
     //}
 
     /// <summary>
-    /// ŠO•”‰Šú‰Šú‰»
+    /// å¤–éƒ¨åˆæœŸåˆæœŸåŒ–
     /// </summary>
     private void Start() { InitializeOther(); }
     private void InitializeOther() 
@@ -186,7 +186,7 @@ public class NewEnemyGenerator : MonoBehaviour
 
     #region UniTask
     /// <summary>
-    /// ƒQ[ƒ€ŠJn‚ÉŒÄ‚Î‚ê‚éˆ—
+    /// ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«å‘¼ã°ã‚Œã‚‹å‡¦ç†
     /// </summary>
     public async UniTask StartCallGenerator()
     {
@@ -195,25 +195,25 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// XV
+    /// æ›´æ–°
     /// </summary>
     private void Update()
     {
-        //ƒQ[ƒ€ŠJn‚µ‚Ä‚¢‚È‚¯‚ê‚Î“®‚©‚³‚È‚¢
+        //ã‚²ãƒ¼ãƒ é–‹å§‹ã—ã¦ã„ãªã‘ã‚Œã°å‹•ã‹ã•ãªã„
         if (gameController.State != INGAME_STATE.PLAYING)
             return;
 
-        //¶¬’†
+        //ç”Ÿæˆä¸­
         if (state == GENERATOR_STATE.GENERATE)
         {
-            //Œo‰ßŠÔ
+            //çµŒéæ™‚é–“
             progressTime += Time.deltaTime;
 
             if (progressTime > createDelayTime)
             {
                 if (IsCheckOver()) return;
 
-                //“G‚ÌƒZƒbƒg
+                //æ•µã®ã‚»ãƒƒãƒˆ
                 createEnemyObj = SetEnemy();
                 CreateEnemy();
                 progressTime = 0;
@@ -223,8 +223,8 @@ public class NewEnemyGenerator : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// “G¶¬
-    /// w’è‚ÌˆÊ’u‚Éw’èObj‚ğ¶¬
+    /// æ•µç”Ÿæˆ
+    /// æŒ‡å®šã®ä½ç½®ã«æŒ‡å®šObjã‚’ç”Ÿæˆ
     /// </summary>
     private void CreateEnemy()
     {
@@ -241,7 +241,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶¬ˆÊ’u‚Ìİ’è
+    /// ç”Ÿæˆä½ç½®ã®è¨­å®š
     /// </summary>
     private void SetEnemyPos()
     {
@@ -270,7 +270,7 @@ public class NewEnemyGenerator : MonoBehaviour
 
 
     /// <summary>
-    /// ¶¬‚·‚é“GƒLƒƒƒ‰‚ğİ’è
+    /// ç”Ÿæˆã™ã‚‹æ•µã‚­ãƒ£ãƒ©ã‚’è¨­å®š
     /// </summary>
     private GameObject SetEnemy()
     {
@@ -290,7 +290,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ‡ŒvƒGƒ“ƒJƒEƒ“ƒg”
+    /// åˆè¨ˆã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     /// <returns></returns>
     private int TotalRatio()
@@ -299,7 +299,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶¬ŠÔŠu‚Ì•ÏX
+    /// ç”Ÿæˆé–“éš”ã®å¤‰æ›´
     /// </summary>
     private void AddEnemyEncount()
     {
@@ -308,7 +308,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ‰æ–Ê‚É•\¦‚³‚¹‚éÅ‘å¶¬”ƒ`ƒFƒbƒN
+    /// ç”»é¢ã«è¡¨ç¤ºã•ã›ã‚‹æœ€å¤§ç”Ÿæˆæ•°ãƒã‚§ãƒƒã‚¯
     /// </summary>
     public bool IsCheckOver()
     {
@@ -316,7 +316,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// •\¦‚³‚ê‚Ä‚é“G‚Ìíœ
+    /// è¡¨ç¤ºã•ã‚Œã¦ã‚‹æ•µã®å‰Šé™¤
     /// </summary>
     public void DeleteEnemys()
     {
@@ -332,10 +332,10 @@ public class NewEnemyGenerator : MonoBehaviour
         enemyCreateCount = 0;
     }
 
-    //ƒŒƒxƒ‹ƒAƒbƒv‚ÌXVˆ—
+    //ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã®æ›´æ–°å‡¦ç†
     public void LevelUpdate()
     {
-        //¶¬ŠÔŠuXV
+        //ç”Ÿæˆé–“éš”æ›´æ–°
         createDelayTime -= CREATE_TIMEDIFF;
 
         if(createDelayTime <= 0.01f)
@@ -348,7 +348,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŠƒgƒ‰ƒCŒã‚ÌXVˆ—
+    /// ãƒªãƒˆãƒ©ã‚¤å¾Œã®æ›´æ–°å‡¦ç†
     /// </summary>
     public void RetryInitialize()
     {
@@ -359,7 +359,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒGƒ“ƒJƒEƒ“ƒg—¦ƒZƒbƒg
+    /// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã‚»ãƒƒãƒˆ
     /// </summary>
     /// <param name="level"></param>
     public void SetLoadedEnemyEncounts(int level)
@@ -368,7 +368,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒGƒ“ƒJƒEƒ“ƒg—¦ƒNƒŠƒA
+    /// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã‚¯ãƒªã‚¢
     /// </summary>
     public void ClearEnemyEncounts()
     {
@@ -377,7 +377,7 @@ public class NewEnemyGenerator : MonoBehaviour
 
     #region get/Set
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     /// <returns></returns>
     public float GetCreateDelayTime()
@@ -386,7 +386,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// •K—vŒoŒ±’l
+    /// å¿…è¦çµŒé¨“å€¤
     /// </summary>
     /// <returns></returns>
     public int GetEnemyScreenDisplayIndex()
@@ -395,7 +395,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒŒƒxƒ‹ƒAƒbƒv—pƒJƒEƒ“ƒg”
+    /// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ç”¨ã‚«ã‚¦ãƒ³ãƒˆæ•°
     /// </summary>
     /// <returns></returns>
     public void SetCreateDelayTime(float count)
@@ -404,7 +404,7 @@ public class NewEnemyGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// •K—vŒoŒ±’l
+    /// å¿…è¦çµŒé¨“å€¤
     /// </summary>
     /// <returns></returns>
     public void SetEnemyScreenDisplayIndex(int count)
