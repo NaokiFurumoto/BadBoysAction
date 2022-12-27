@@ -45,6 +45,10 @@ public class InputManager : MonoBehaviour
     public Vector2 TouchingPos      => touchingPos;
     public Vector2 TouchingLastPos  => touchLastPos;
     public TouchPhase TouchPhase    => touchPhase;
+
+    public Vector2 DeltaPos => new Vector2(touchingPos.x - (touchBeginPos.x),
+                                           touchingPos.y - (touchBeginPos.y));
+  
     #endregion
 
     public static InputManager Instance;
@@ -113,17 +117,17 @@ public class InputManager : MonoBehaviour
                 touchingPos   = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             }
         }
-        else//端末
-        {
-            //TODO:追加で必要そう
-            if(Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-                touchingPos = touch.position;
-                touchPhase  = touch.phase;
-                touchFlag   = true;
-            }
-        }
+        //else//端末
+        //{
+        //    //TODO:追加で必要そう
+        //    if(Input.touchCount > 0)
+        //    {
+        //        Touch touch = Input.GetTouch(0);
+        //        touchingPos = touch.position;
+        //        touchPhase  = touch.phase;
+        //        touchFlag   = true;
+        //    }
+        //}
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ public partial class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
-    private float moveSpeed = 2.0f;
+    private float moveSpeed;
 
     /// <summary>
     /// タップした位置

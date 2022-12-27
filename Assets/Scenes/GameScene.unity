@@ -16299,7 +16299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackerManager: {fileID: 116056188}
-  moveSpeed: 2
+  moveSpeed: 3
   direction: {x: 0, y: 0}
   playerAnim: {fileID: 1250786664}
   gameController: {fileID: 60235308}
@@ -16315,7 +16315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa13baaa5d4f35146b7bd7d554aa6dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2
+  life: 1
   startLife: 1
   playerCenter: {fileID: 8716750767623181514}
   body: {fileID: 1250786662}
