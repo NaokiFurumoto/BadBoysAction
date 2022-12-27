@@ -19,6 +19,7 @@ public class UpdateXcodeProject
 		UpdateXcode(pathToBuiltProject);
 	}
 
+	[System.Obsolete]
 	static void UpdateXcode(string pathToBuiltProject) 
 	{
 		var projectPath = pathToBuiltProject + "/Unity-iPhone.xcodeproj/project.pbxproj";
@@ -33,7 +34,8 @@ public class UpdateXcodeProject
 		pbxProject.ReadFromFile(projectPath);
 
 		//string targetGuid = pbxProject.TargetGuidByName("Unity-iPhone");
-		string targetGuid = pbxProject.GetUnityFrameworkTargetGuid();
+		string targetGuid = pbxProject.GetUnityMainTargetGuid();
+		//string targetGuid = pbxProject.GetUnityFrameworkTargetGuid();
 
 		// Adding required framework
 		pbxProject.AddFrameworkToProject(targetGuid, "UserNotifications.framework", false);
