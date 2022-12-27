@@ -10,7 +10,7 @@ using System.Collections;
 public class UpdateXcodeProject
 {
 
-	[PostProcessBuildAttribute (0)]
+	[PostProcessBuildAttribute (0)][System.Obsolete]
 	public static void OnPostprocessBuild (BuildTarget buildTarget, string pathToBuiltProject)
 	{
 		// Stop processing if targe is NOT iOS

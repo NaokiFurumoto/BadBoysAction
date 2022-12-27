@@ -129,7 +129,6 @@ public class GameObjectLoader : MonoBehaviour
                     Instance.name = go.name;
                     Instance.transform.parent = this.gameObject.transform;
                     loadedGameObjectList.Add(go.name, Instance);
-                    Debug.Log(string.Format("Loaded GameObject {0}", go.name));
                 }
             }
         }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using NCMB;
+using UnityEngine.SceneManagement;
 
 //private InputField UserName;
 //private InputField PassWord;
@@ -24,6 +25,7 @@ public class Loginsignin : MonoBehaviour
 	
 	}
 
+	
 	public void Login ()
 	{
 		print (UserName.text);
@@ -43,8 +45,8 @@ public class Loginsignin : MonoBehaviour
 				UnityEngine.Debug.Log ("ログインに成功！");
                 // テキストの表示を入れ替える
                 debug_text.text = "ログインに成功";
-                //LogOutの部分は移動d先のScene名
-                Application.LoadLevel ("LogOut");
+				//LogOutの部分は移動d先のScene名
+				SceneManager.LoadScene("LogOut");
 			}
 		});
 

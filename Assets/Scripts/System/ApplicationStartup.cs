@@ -10,9 +10,7 @@ public class ApplicationStartup : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log("==========喧嘩上等StartUp==========");
-        //オプションデータのロード
-        //SaveData_Load?
+        
     }
 
     // Update is called once per frame

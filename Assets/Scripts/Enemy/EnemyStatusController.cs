@@ -106,7 +106,7 @@ public class EnemyStatusController : MonoBehaviour
     /// <summary>
     /// Collider2D
     /// </summary>
-    private CircleCollider2D collider;
+    private new CircleCollider2D collider;
 
     /// <summary>
     /// UIController
