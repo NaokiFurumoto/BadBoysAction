@@ -322,7 +322,7 @@ MonoBehaviour:
   state: 0
   idleTime: 1
   rapidTime: 2
-  rapidSpeed: 5
+  rapidSpeed: 3
 --- !u!58 &5690990230411185151
 CircleCollider2D:
   m_ObjectHideFlags: 0

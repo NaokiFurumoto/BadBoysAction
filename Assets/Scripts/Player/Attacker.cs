@@ -84,7 +84,6 @@ public class Attacker : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             var _enemyStatus = collision.GetComponent<EnemyStatusController>();
-            var _rigid2D = _enemyStatus.Rigid2D;
 
             if (_enemyStatus.State == ENEMY_STATE.DAMAGE)
                 return;

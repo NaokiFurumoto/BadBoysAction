@@ -205,6 +205,7 @@ public class EnemyStatusController : MonoBehaviour
     public void PlayerDamage(Vector2 direction, float power)
     {
         sprite.color = Color.red;
+        enemyMovement.enabled = false;
         body.DOPunchScale(
             SHAKESTRENGTH,
             SHAKETIME

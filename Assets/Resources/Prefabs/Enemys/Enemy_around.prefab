@@ -534,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: 1.5
   ySpeed: 1.5
-  chaseSpeed: 4
+  chaseSpeed: 2
   turningDelay: 0
   turningTimeDelay: 0
   animator: {fileID: 8229138143233047066}
@@ -542,7 +542,7 @@ MonoBehaviour:
   enemyMoveType: 2
   state: 0
   direction: -1
-  roundSpeed: 3
+  roundSpeed: 2
   followRate: 200
   followTargetDistance: 3.5
   aroundTime: 3
