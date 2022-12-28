@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: OK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 216159762394550778, guid: bb924694557ede249b09843ee8253f30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -201,8 +201,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9589\u3058\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 216159762394550778, guid: bb924694557ede249b09843ee8253f30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -398,10 +398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt_Title: {fileID: 9047266423566043489}
   txt_Desc: {fileID: 6752485202598328180}
-  closeBackButton: {fileID: 0}
   closeButton: {fileID: 9110415878087753778}
   okButton: {fileID: 5362365023830770155}
-  backGround: {fileID: 1479002337132953647}
 --- !u!1 &6225025946812123274
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +588,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u6587\u8A00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 216159762394550778, guid: bb924694557ede249b09843ee8253f30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -724,8 +722,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30BF\u30A4\u30C8\u30EB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 216159762394550778, guid: bb924694557ede249b09843ee8253f30, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

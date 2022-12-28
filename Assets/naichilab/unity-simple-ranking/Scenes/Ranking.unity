@@ -309,8 +309,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Naoki162685
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: af9ad2445db4d9145a78172ffd7b3345, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1165,8 +1165,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 123456
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: af9ad2445db4d9145a78172ffd7b3345, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1376,8 +1376,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 123456
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bb924694557ede249b09843ee8253f30, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: af9ad2445db4d9145a78172ffd7b3345, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
+  m_sharedMaterial: {fileID: 216159762394550778, guid: 577eabfd9514e4f4bba81b6654dbb6c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
