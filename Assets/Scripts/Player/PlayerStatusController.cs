@@ -226,6 +226,7 @@ public class PlayerStatusController : MonoBehaviour
         if (life <= 0 || isDead || isCoolTimeCheck || isMuteki)
             return;
 
+        VibrationManager.ShortVibration();
         isCoolTimeCheck = true;
         life -= damage;
         lifesManager.SetLife(life);
