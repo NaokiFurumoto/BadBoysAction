@@ -155,17 +155,17 @@ public partial class GlobalValue
     /// <summary>
     /// スタミナ回復時間：秒
     /// </summary>
-    public static float STAMINA_RECOVERY_TIME = 3600.0f;
+    public static float STAMINA_RECOVERY_TIME = 1800.0f;
 
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static int STAMINA_RECOVERY_ONE_LONGTIME = 6000;
+    public static int STAMINA_RECOVERY_ONE_LONGTIME = 3000;
 
     /// <summary>
     /// スタミナ回復時間
     /// </summary>
-    public static int STAMINA_RECOVERY_LONGTIME = 18000;
+    public static int STAMINA_RECOVERY_LONGTIME = 9000;
 
     /// <summary>
     /// 最大スタミナ数

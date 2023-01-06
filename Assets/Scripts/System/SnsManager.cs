@@ -25,13 +25,26 @@ public class SnsManager : MonoBehaviour
     public IEnumerator _Tweet()
     {
         const string fileName = "image.png";
-        string imgPath = Path.Combine(Application.persistentDataPath, fileName);
+        const string folderName = "images";
+
+#if UNITY_EDITOR
+        string path = Application.dataPath + "/" + folderName + "/";
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        string imgPath = path + fileName;
+#elif UNITY_IOS || UNITY_ANDROID
+     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, folderName));
+     string imgPath = Path.Combine(Application.persistentDataPath, fileName);
+      
+#endif
 
         // 前回のデータを削除
         if (File.Exists(imgPath)) File.Delete(imgPath);
 
         //スクリーンショットを撮影
-        ScreenCapture.CaptureScreenshot(fileName);
+        ScreenCapture.CaptureScreenshot(imgPath);
 
         // スクショ撮影画像の保存が完了するまで待機する
         while (true)

@@ -73,12 +73,14 @@ public partial class GameController : MonoBehaviour
     }
     #endregion
 
+   
     void Start()
     {
         Initialize();
         InitializeView();
         SaveManager.Instance?.InitializeThis();
 
+        FadeFilter.Instance.FadeIn(Color.black, 2.0f);
         //ロード処理
         StartCoroutine("LoadingGameInfo");
     }
@@ -139,7 +141,7 @@ public partial class GameController : MonoBehaviour
         }
 
         //暗転解除後にゲーム開始:PlayInGame()
-        FadeFilter.Instance.FadeIn(Color.black, FADETIME, startFadeinCallBack);
+        OpenFirstView();
     }
 
    
@@ -284,7 +286,7 @@ public partial class GameController : MonoBehaviour
         //セーブする:
         SaveManager.Instance.GamePlaingSave();
 
-        //このタイミングで広告表示。２回に１回広告表示：
+        //このタイミングで広告表示。3回に１回広告表示：
         if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
         {
             //広告終了後のコールバック

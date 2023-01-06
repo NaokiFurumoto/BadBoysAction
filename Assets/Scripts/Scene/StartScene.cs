@@ -50,7 +50,7 @@ public class StartScene : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        FadeFilter.Instance.FadeIn(Color.black, 0.5f);
+        FadeFilter.Instance.FadeIn(Color.black, 1.0f);
         //ここでデータのロード
         var data = SaveManager.Instance.Load();
         if (data.IsBreak && data.StaminaNumber != 0)
@@ -123,6 +123,7 @@ public class StartScene : MonoBehaviour
    
     /// <summary>
     /// GameSceneに遷移する
+    /// 
     /// </summary>
     public void OnClickTapBG()
     {
@@ -134,7 +135,6 @@ public class StartScene : MonoBehaviour
     {
         SoundManager.Instance.Stop("BGM");
         AppSound.Instance.SE_TAPSTART.Play();
-
         FadeFilter.Instance.FadeOut(Color.black, 1.0f);
         yield return new WaitForSecondsRealtime(1.0f);
         LoadScene.Load("GameScene");
