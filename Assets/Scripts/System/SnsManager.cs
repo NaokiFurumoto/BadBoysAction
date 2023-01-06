@@ -24,39 +24,25 @@ public class SnsManager : MonoBehaviour
 
     public IEnumerator _Tweet()
     {
-        const string fileName = "image.png";
-        const string folderName = "images";
-
-#if UNITY_EDITOR
-        string path = Application.dataPath + "/" + folderName + "/";
-        if (!Directory.Exists(path))
-        {
-            Directory.CreateDirectory(path);
-        }
-        string imgPath = path + fileName;
-#elif UNITY_IOS || UNITY_ANDROID
-     Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, folderName));
-     string imgPath = Path.Combine(Application.persistentDataPath, fileName);
-      
-#endif
+        string imgPath = Application.persistentDataPath + "/image.png";
 
         // 前回のデータを削除
-        if (File.Exists(imgPath)) File.Delete(imgPath);
+        File.Delete(imgPath);
 
         //スクリーンショットを撮影
-        ScreenCapture.CaptureScreenshot(imgPath);
+        ScreenCapture.CaptureScreenshot("image.png");
 
-        // スクショ撮影画像の保存が完了するまで待機する
+        // 撮影画像の保存が完了するまで待機
         while (true)
         {
-            //whileで繰り返し待機処理
             if (File.Exists(imgPath)) break;
             yield return null;
         }
 
         // 投稿する
         string tweetText = "ハイスコア獲得！！";
-        string tweetURL = "ゲームアプリURL";
+        //デベロッパーから取得　Android /Iosで分ける？
+        string tweetURL = "twitter://post?message=";
 
         try
         {
