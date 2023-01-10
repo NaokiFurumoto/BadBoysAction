@@ -141,6 +141,7 @@ public class TimeManager : MonoBehaviour
     //更新
     private void Update()
     {
+        return;
         float rate = 1.0f;
 
         //フレームカウント保存

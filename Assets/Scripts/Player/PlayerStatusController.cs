@@ -237,6 +237,9 @@ public class PlayerStatusController : MonoBehaviour
 
         if ( life <= 0) //死亡処理
         {
+            //中断復帰処理の状態でここからResultにする
+            gameController.State = INGAME_STATE.RESULT;
+
             FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 0.5f, false);
             isCoolTimeCheck = false;
             Dead();

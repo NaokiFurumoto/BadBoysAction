@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SocialConnector;
 using System;
 using System.IO;
 /// <summary>
@@ -19,7 +18,8 @@ public class SnsManager : MonoBehaviour
     //シェア 
     public void Tweet()
     {
-        StartCoroutine(_Tweet());
+        //StartCoroutine(_Tweet());
+        StartCoroutine(_Tweets());
     }
 
     public IEnumerator _Tweet()
@@ -46,11 +46,31 @@ public class SnsManager : MonoBehaviour
 
         try
         {
-            SocialConnector.SocialConnector.Share(tweetText, tweetURL, imgPath);
+            //SocialConnector.SocialConnector.Share(tweetText, tweetURL, imgPath);
         }
         catch (System.Exception e)
         {
             Debug.LogError(e.Message);
         }
+    }
+
+    public IEnumerator _Tweets()
+    {
+        string imagePass = Application.persistentDataPath + "/image.png";
+        //前回の画像を消す
+        File.Delete(imagePass);
+        //新しいスクリーンショット撮影
+        ScreenCapture.CaptureScreenshot("image.png");
+
+        //なんかスクショ撮影のラグがあるから終わるまで待機
+        while (true)
+        {
+            if (File.Exists(imagePass))
+                break; yield return null;
+        }
+        //投稿
+        string tweetText = "ハイスコア獲得！";
+        string tweetURL = "アプリのURL";
+        SocialConnector.PostMessage(SocialConnector.ServiceType.Twitter, tweetText, tweetURL, imagePass);
     }
 }

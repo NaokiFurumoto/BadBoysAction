@@ -12,10 +12,8 @@ public class LogoScene : MonoBehaviour
         LogoWork().Forget();
     }
 
-   private async UniTask LogoWork()
+    private async UniTask LogoWork()
     {
-        await UniTask.Delay(1000);
-        FadeFilter.Instance.FadeIn(Color.black, 1.0f);
         await UniTask.Delay(2000);
         FadeFilter.Instance.FadeOut(Color.black, 2.0f);
         await UniTask.Delay(2000);

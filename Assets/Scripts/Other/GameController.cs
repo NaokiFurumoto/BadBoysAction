@@ -267,7 +267,8 @@ public partial class GameController : MonoBehaviour
     public void GameStop()
     {
         state = INGAME_STATE.STOP;
-        TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
+        // TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
+        Time.timeScale = 0;
     }
 
     /// <summary>
@@ -280,7 +281,7 @@ public partial class GameController : MonoBehaviour
         uiController.AddPlayTime();
 
         //停止処理
-        TimeManager.Instance.SetSlow(STOP_TIME, 0.0f);
+        Time.timeScale = 0;
         state = INGAME_STATE.RESULT;
 
         //セーブする:
@@ -315,7 +316,7 @@ public partial class GameController : MonoBehaviour
     public void GameResume()
     {
         state = INGAME_STATE.PLAYING;
-        TimeManager.Instance.ResetSlow();
+        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -324,7 +325,7 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-        TimeManager.Instance.ResetSlow();
+        Time.timeScale = 1;
         GameStart();
     }
 
