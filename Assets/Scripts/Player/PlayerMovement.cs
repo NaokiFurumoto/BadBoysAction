@@ -105,13 +105,13 @@ public partial class PlayerMovement : MonoBehaviour
     /// </summary>
     private void PlayerTurning()
     {
-        //tapPos = inputManager.TouchingPos;
-        //direction = new Vector2(tapPos.x - transform.position.x,
-        //                          (tapPos.y+1.0f) - transform.position.y).normalized;
-
-        tapPos = inputManager.TouchingPos;
+        tapPos = new Vector2(inputManager.TouchingPos.x - 1.0f, inputManager.TouchingPos.y + 1.0f);
         direction = new Vector2(tapPos.x - transform.position.x,
                                 tapPos.y - transform.position.y).normalized;
+
+        //tapPos = inputManager.TouchingPos;
+        //direction = new Vector2(tapPos.x - transform.position.x,
+        //                        tapPos.y - transform.position.y).normalized;
 
         var playerDirection = PlayerAnimation(direction.x, direction.y);
         ChangeAttacker(playerDirection.Item1, playerDirection.Item2);
@@ -146,13 +146,13 @@ public partial class PlayerMovement : MonoBehaviour
     /// <param name="y"></param>
     private void CharacterMovement()
     {
-        //var tapPos = new Vector2(inputManager.TouchingPos.x, inputManager.TouchingPos.y + 1.0f);
-        //var pos = Vector2.Lerp(transform.position,
-        //                       tapPos,
-        //                       moveSpeed * Time.deltaTime);
+        var tapPos = new Vector2(inputManager.TouchingPos.x - 1.0f, inputManager.TouchingPos.y + 1.0f);
         var pos = Vector2.Lerp(transform.position,
-                               inputManager.TouchingPos,
+                               tapPos,
                                moveSpeed * Time.deltaTime);
+        //var pos = Vector2.Lerp(transform.position,
+        //                       inputManager.TouchingPos,
+        //                       moveSpeed * Time.deltaTime);
 
         //var pos = new Vector2(inputManager.TouchingPos.x, inputManager.TouchingPos.y + 1.0f);
 

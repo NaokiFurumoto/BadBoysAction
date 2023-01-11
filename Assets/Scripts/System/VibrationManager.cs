@@ -11,8 +11,7 @@ public static class VibrationManager
         if (SystemInfo.supportsVibration)
         {
             PlaySystemSound(1519);
-            Vibrate(3000);
-            //Vibrate(3);
+            Vibrate(200);
         }
     }
 

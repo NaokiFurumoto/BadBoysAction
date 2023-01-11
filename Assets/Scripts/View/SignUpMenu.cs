@@ -59,6 +59,7 @@ public class SignUpMenu : LoginMenuBase
     {
         if (user == null)
             return;
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_MENU_OK);
         user.signUp(id, pass, FailureCallback, SuccessCallback);
     }
 

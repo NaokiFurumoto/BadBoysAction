@@ -217,6 +217,7 @@ public class EnemyStatusController : MonoBehaviour
             animator.SetTrigger("Damage");
             shadow.SetActive(false);
 
+            StartCoroutine(DeleteObj());
             rigid2D.AddForce(direction * power, ForceMode2D.Impulse);
         });
     }
@@ -293,8 +294,8 @@ public class EnemyStatusController : MonoBehaviour
     public void DeadEndCallback()
     {
         //削除：更新するまでは残る
-        Destroy(this.gameObject);
         uiController?.SetPlayKillsNumber();
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -303,6 +304,20 @@ public class EnemyStatusController : MonoBehaviour
     public void PlayEffect()
     {
         effect?.SetActive(true);
+    }
+
+    /// <summary>
+    /// 強制削除
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator DeleteObj()
+    {
+        yield return new WaitForSeconds(10.0f);
+        if (this.gameObject == null)
+            yield break;
+
+        Destroy(this.gameObject);
+        uiController?.SetPlayKillsNumber();
     }
 
 

@@ -82,6 +82,12 @@ public class UiController : MonoBehaviour
     private int playTime;
 
     /// <summary>
+    /// レベルアップ演出
+    /// </summary>
+    [SerializeField]
+    private GameObject levelUp;
+
+    /// <summary>
     /// 中断復帰判定
     /// </summary>
     private bool isBreak;
@@ -230,6 +236,15 @@ public class UiController : MonoBehaviour
             text_gameLevel.gameObject.SetActive(true);
             levelMaxObject.gameObject.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// レベルアップ演出表示
+    /// </summary>
+    public void LevelUpEffect()
+    {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_LEVELUP);
+        levelUp.SetActive(true);
     }
 
     /// <summary>

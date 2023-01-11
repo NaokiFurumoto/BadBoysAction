@@ -73,7 +73,7 @@ public partial class GameController : MonoBehaviour
     }
     #endregion
 
-   
+
     void Start()
     {
         Initialize();
@@ -127,9 +127,9 @@ public partial class GameController : MonoBehaviour
 
         }
         while (loadData == null);
-        
+
         //中断復帰かつ、リザルト表示じゃない、体力が0ではない
-        if (loadData.IsBreak && loadData.gameState != INGAME_STATE.RESULT && loadData.LifeNumber != 0 )
+        if (loadData.IsBreak && loadData.gameState != INGAME_STATE.RESULT && loadData.LifeNumber != 0)
         {
             SetStatus(loadData);
         }
@@ -144,7 +144,7 @@ public partial class GameController : MonoBehaviour
         OpenFirstView();
     }
 
-   
+
 
     /// <summary>
     /// インゲーム開始
@@ -184,16 +184,13 @@ public partial class GameController : MonoBehaviour
 
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
-                        //スタミナ全回復
-                        if (result == ShowResult.Finished)
+
+                        StaminasManager.Instance.FullRecovery(true, () =>
                         {
-                            StaminasManager.Instance.FullRecovery(true, () =>
-                            {
-                                CommonDialogManager.Instance.DeleteDialogAll();
-                                GameResume();
-                                GameStart();
-                            });
-                        }
+                            CommonDialogManager.Instance.DeleteDialogAll();
+                            GameResume();
+                            GameStart();
+                        });
                     }
                     ),
 
@@ -255,9 +252,9 @@ public partial class GameController : MonoBehaviour
         //ロードVolumeに変更
         //FM.SetVolume(appSound.BGM_STAGE, 1.0f);
         appSound.BGM_STAGE.Play();
-        FM.FadeInVolume(appSound.BGM_STAGE, FM.GetVolume(appSound.BGM_STAGE), 2.0f,true);
+        FM.FadeInVolume(appSound.BGM_STAGE, FM.GetVolume(appSound.BGM_STAGE), 2.0f, true);
         appSound.BGM_STAGE.loop = true;
-        
+
         state = INGAME_STATE.PLAYING;
     }
 
@@ -325,7 +322,7 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-        Time.timeScale = 1;
+
         GameStart();
     }
 
@@ -341,7 +338,7 @@ public partial class GameController : MonoBehaviour
         PlayerEffectManager.Instance.Retry();
     }
 
-    
+
 
     /// <summary>
     /// ステータス設定

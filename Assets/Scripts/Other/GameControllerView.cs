@@ -74,6 +74,9 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void OnClickOptionButton()
     {
+        if (FM == null || appSound == null)
+            return;
+
         FM.PlayOneShot(appSound.SE_MENU_OK);
         if (State == INGAME_STATE.STOP)
         {
@@ -143,12 +146,8 @@ public partial class GameController : MonoBehaviour
                     CLOSE,
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
-                        //スタミナ全回復
-                        if (result == ShowResult.Finished)
-                        {
-                            StaminasManager.Instance.FullRecovery
-                            (true, CommonDialogManager.Instance.DeleteDialogAll);
-                        }
+                        StaminasManager.Instance.FullRecovery
+                        (true, CommonDialogManager.Instance.DeleteDialogAll);
                     }
                 ));
 

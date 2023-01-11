@@ -41,7 +41,7 @@ public class SnsManager : MonoBehaviour
 
         // 投稿する
         string tweetText = "ハイスコア獲得！！";
-        //デベロッパーから取得　Android /Iosで分ける？
+        //ゲームのURL　Android/IOSで分ける？
         string tweetURL = "twitter://post?message=";
 
         try

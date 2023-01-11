@@ -149,6 +149,10 @@ public class OptionView : ViewBase
     /// </summary>
     private void GoTitleCallback()
     {
+        //セーブする。初期状態
+        uiController.SetIsBreak(false);
+        SaveManager.Instance.GamePlaingSave();
+
         FM.FadeOutVolume(appSound.BGM_STAGE, 0.0f, 1.0f, false);
         StartCoroutine("FadeTitle");
     }

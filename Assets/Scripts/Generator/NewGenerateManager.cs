@@ -116,6 +116,11 @@ public class NewGenerateManager : MonoBehaviour
         changeKillCount++;
         if (changeKillCount >= levelupNeedCount)
         {
+            if(gameLevel < 100)
+            {
+                uiController.LevelUpEffect();
+            }
+
             //レベルアップ
             gameLevel++;
             uiController.SetGameLevel(gameLevel);
@@ -127,8 +132,12 @@ public class NewGenerateManager : MonoBehaviour
             ChangeGeneratorState(GENERATOR_STATE.STOP);
 
             //体力ドロップ
-            itemController.SetDropItem(DROPITEM_TYPE.LIFE);
-            itemController.CreateDropItem(true);
+            if(gameLevel % 2 == 0)
+            {
+                itemController.SetDropItem(DROPITEM_TYPE.LIFE);
+                itemController.CreateDropItem(true);
+            }
+            
             changeKillCount = 0;
 
             //インターバル中は実行させない

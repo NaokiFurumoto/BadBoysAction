@@ -48,7 +48,7 @@ public class OnApplication : MonoBehaviour
             {   //バックグラウンドへ
                 //今の状態をセーブする
                 //uiController.SetIsBreak(true);
-                //SaveManager.Instance.GamePlaingSave();
+                SaveManager.Instance.GamePlaingSave();
                 gameController.State = INGAME_STATE.PLAYING;
                 gameController.OnClickOptionButton();
                 Debug.Log("一時停止");
@@ -56,8 +56,8 @@ public class OnApplication : MonoBehaviour
             else
             {
                 //復帰
-                // SaveManager.Instance.Load();
-                //uiController.SetIsBreak(false);
+                SaveManager.Instance.Load();
+                uiController.SetIsBreak(false);
                 gameController.State = INGAME_STATE.STOP;
                 gameController.OnClickOptionButton();
                 Debug.Log("バックグラウンドからの復帰");

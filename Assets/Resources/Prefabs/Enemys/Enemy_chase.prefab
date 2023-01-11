@@ -534,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: 1.5
   ySpeed: 1.5
-  chaseSpeed: 1
+  chaseSpeed: 1.2
   turningDelay: 1
   turningTimeDelay: 1
   animator: {fileID: 8229138143233047066}

@@ -40,6 +40,15 @@ public class PlayerEffectManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void Start()
+    {
+        under_root  ??= transform.Find("Under").transform;
+        center_root ??= transform.Find("Center").transform;
+        top_root    ??= transform.Find("Top").transform;
+    }
+    /// <summary>
     /// 再生：あとでSEも引き数に渡すように
     /// </summary>
     /// <param name="effect"></param>

@@ -235,7 +235,7 @@ public partial class GlobalValue
     /// <summary>
     /// 画面に表示させる最大数
     /// </summary>
-    public readonly static int ENEMY_SCREEN_MAXCOUNT = 10;
+    public readonly static int ENEMY_SCREEN_MAXCOUNT = 20;
 
     /// <summary>
     /// 画面に表示させる加算値
@@ -251,7 +251,7 @@ public partial class GlobalValue
     /// <summary>
     /// 加算経験値
     /// </summary>
-    public readonly static int ADDLEVELUP_COUNT = 10;
+    public readonly static int ADDLEVELUP_COUNT = 4;
 
     /// <summary>
     /// 最大ゲームレベル
@@ -266,12 +266,12 @@ public partial class GlobalValue
     /// <summary>
     /// レベルアップ時の生成時間減算値
     /// </summary>
-    public readonly static float CREATE_TIMEDIFF = 0.01f;
+    public readonly static float CREATE_TIMEDIFF = 0.015f;
 
     /// <summary>
     /// 敵の生成時間最終値
     /// </summary>
-    public readonly static float LAST_CREATETIME = 0.005f;
+    public readonly static float LAST_CREATETIME = 0.001f;
 
     /// <summary>
     /// 無敵時間

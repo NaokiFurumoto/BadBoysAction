@@ -22,6 +22,7 @@ public class AppSound : Singleton<AppSound>
     [System.NonSerialized] public AudioSource SE_TAPSTART;
     [System.NonSerialized] public AudioSource SE_GAMEOVER;
     [System.NonSerialized] public AudioSource SE_HISCORE;
+    [System.NonSerialized] public AudioSource SE_LEVELUP;
 
     [System.NonSerialized] public AudioSource SE_PL_ATK;
     [System.NonSerialized] public AudioSource SE_PL_MUTEKI;
@@ -67,6 +68,7 @@ public class AppSound : Singleton<AppSound>
         SE_TAPSTART = FM.LoadResourcesSound("SE", "SE_TapStart");
         SE_GAMEOVER = FM.LoadResourcesSound("SE", "SE_GameOver");
         SE_HISCORE = FM.LoadResourcesSound("SE", "SE_HiScore");
+        SE_LEVELUP = FM.LoadResourcesSound("SE", "SE_LevelUp");
 
         SE_PL_ATK = FM.LoadResourcesSound("SE", "SE_Pl_Atk");
         SE_PL_MUTEKI = FM.LoadResourcesSound("SE", "SE_Pl_Muteki_Atk");
