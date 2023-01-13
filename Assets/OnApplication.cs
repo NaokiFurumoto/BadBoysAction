@@ -35,31 +35,29 @@ public class OnApplication : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
+        //広告再生中は中断復帰させない
         if (SceneManager.GetActiveScene().name == GAMESCENENAME || SceneManager.GetActiveScene().name == RANKSCENENAME)
         {
             InitializeThis();
 
-            if(gameController.State == INGAME_STATE.RESULT)
+            if (gameController.State == INGAME_STATE.RESULT || gameController.State == INGAME_STATE.ADS)
             {
                 return;
             }
 
             if (pause)
             {   //バックグラウンドへ
-                //今の状態をセーブする
-                //uiController.SetIsBreak(true);
-                SaveManager.Instance.GamePlaingSave();
-                gameController.State = INGAME_STATE.PLAYING;
+                uiController.SetIsBreak(true);
+                //gameController.State = INGAME_STATE.PLAYING;
                 gameController.OnClickOptionButton();
                 Debug.Log("一時停止");
             }
             else
             {
                 //復帰
-                SaveManager.Instance.Load();
                 uiController.SetIsBreak(false);
-                gameController.State = INGAME_STATE.STOP;
-                gameController.OnClickOptionButton();
+                //gameController.State = INGAME_STATE.STOP;
+                //gameController.OnClickOptionButton();
                 Debug.Log("バックグラウンドからの復帰");
             }
         }
@@ -71,7 +69,7 @@ public class OnApplication : MonoBehaviour
     /// <param name="pause"></param>
     private void OnApplicationQuit()
     {
-        if (gameController.State == INGAME_STATE.RESULT)
+        if (gameController.State == INGAME_STATE.RESULT )
         {
             return;
         }

@@ -18,59 +18,28 @@ public class SnsManager : MonoBehaviour
     //シェア 
     public void Tweet()
     {
-        //StartCoroutine(_Tweet());
-        StartCoroutine(_Tweets());
+        StartCoroutine(Tweets());
     }
 
-    public IEnumerator _Tweet()
+    public IEnumerator Tweets()
     {
-        string imgPath = Application.persistentDataPath + "/image.png";
+        yield return new WaitForEndOfFrame();
 
-        // 前回のデータを削除
-        File.Delete(imgPath);
+        Texture2D ss = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        ss.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        ss.Apply();
 
-        //スクリーンショットを撮影
-        ScreenCapture.CaptureScreenshot("image.png");
+        string TimeNum = DateTime.Now.ToString("yyyyMMddHHmmss");
+        string filePath = Path.Combine(Application.temporaryCachePath, "shared_img" + TimeNum + ".png");
+        File.WriteAllBytes(filePath, ss.EncodeToPNG());
 
-        // 撮影画像の保存が完了するまで待機
-        while (true)
-        {
-            if (File.Exists(imgPath)) break;
-            yield return null;
-        }
+        // To avoid memory leaks
+        Destroy(ss);
 
-        // 投稿する
-        string tweetText = "ハイスコア獲得！！";
-        //ゲームのURL　Android/IOSで分ける？
-        string tweetURL = "twitter://post?message=";
-
-        try
-        {
-            //SocialConnector.SocialConnector.Share(tweetText, tweetURL, imgPath);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
-    }
-
-    public IEnumerator _Tweets()
-    {
-        string imagePass = Application.persistentDataPath + "/image.png";
-        //前回の画像を消す
-        File.Delete(imagePass);
-        //新しいスクリーンショット撮影
-        ScreenCapture.CaptureScreenshot("image.png");
-
-        //なんかスクショ撮影のラグがあるから終わるまで待機
-        while (true)
-        {
-            if (File.Exists(imagePass))
-                break; yield return null;
-        }
-        //投稿
-        string tweetText = "ハイスコア獲得！";
-        string tweetURL = "アプリのURL";
-        SocialConnector.PostMessage(SocialConnector.ServiceType.Twitter, tweetText, tweetURL, imagePass);
+        //後でURLなど更新
+        new NativeShare().AddFile(filePath)
+            .SetSubject("Subject goes here").SetText("バンチョ　ハイスコア更新!!!").SetUrl("https://github.com/yasirkula/UnityNativeShare")
+            .SetCallback((result, shareTarget) => Debug.Log("Share result: " + result + ", selected app: " + shareTarget))
+            .Share();
     }
 }

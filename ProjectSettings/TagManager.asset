@@ -26,6 +26,9 @@ TagManager:
   - EnemyGenerator
   - OptionView
   - User
+  - Pl_Under
+  - Pl_Center
+  - Pl_Top
   layers:
   - Default
   - TransparentFX

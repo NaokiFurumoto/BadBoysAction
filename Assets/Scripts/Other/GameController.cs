@@ -19,6 +19,7 @@ public enum INGAME_STATE
     PLAYING = 2,//ゲーム中
     STOP = 3,//ストップ
     RESULT = 4,//結果
+    ADS=5,
 }
 public partial class GameController : MonoBehaviour
 {
@@ -184,7 +185,7 @@ public partial class GameController : MonoBehaviour
 
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
-
+                        state = INGAME_STATE.ADS;
                         StaminasManager.Instance.FullRecovery(true, () =>
                         {
                             CommonDialogManager.Instance.DeleteDialogAll();
@@ -284,7 +285,7 @@ public partial class GameController : MonoBehaviour
         //セーブする:
         SaveManager.Instance.GamePlaingSave();
 
-        //このタイミングで広告表示。3回に１回広告表示：
+        //このタイミングで広告表示。2回に１回広告表示：
         if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
         {
             //広告終了後のコールバック
@@ -292,6 +293,10 @@ public partial class GameController : MonoBehaviour
             {
                 //ゲームリザルト画面を表示
                 uiController.SetIsBreak(false);
+                if(gameOverView == null)
+                {
+                   gameOverView = FindObjectOfType<GameOverView>().gameObject;
+                }
                 gameOverView.gameObject.SetActive(true);
             };
 
@@ -322,7 +327,7 @@ public partial class GameController : MonoBehaviour
     public void RetryGame()
     {
         //セーブ処理
-
+        Time.timeScale = 1;
         GameStart();
     }
 

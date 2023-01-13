@@ -4,9 +4,10 @@ using UnityEngine;
 using System;
 using UnityEngine.Advertisements;
 
-public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
+public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
 {
     private UiController uiController;
+    private GameController gameController;
 
 #if UNITY_IOS
     public const string GameID = "4969449";
@@ -27,18 +28,27 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
 
     public static UnityAdsManager Instance { get; private set; }
 
-    //広告表示終了後のコールバック
-    private Action<ShowResult> finish;
+    //リワード広告表示終了後のコールバック
+    private Action<ShowResult> finishReward;
+
+    //インターステイシャル広告表示終了後のコールバック
+    private Action<ShowResult> finishInter;
 
     void Start()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
 
+        finishReward = null;
+        finishInter = null;
         uiController = GameObject.FindGameObjectWithTag("UI").
                                      GetComponent<UiController>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").
+                                     GetComponent<GameController>();
+
         Advertisement.Initialize(GameID);
         //広告関連のイベントが発生するように登録(IUnityAdsListener用）
         Advertisement.AddListener(this);
@@ -52,6 +62,11 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     /// <returns></returns>
     private IEnumerator ShowBannerWhenReady()
     {
+        if(uiController == null)
+        {
+            uiController = FindObjectOfType<UiController>();
+        }
+
         //バナー広告が表示できる状態かどうかの判定
         while (!Advertisement.IsReady(BannerID))
         {
@@ -71,11 +86,13 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     /// </summary>
     public void ShowInterstitial(Action<ShowResult> finish)
     {
+        gameController.State = INGAME_STATE.ADS;
+        finishInter = null;
         //広告が再生できる状態
         if (Advertisement.IsReady(InterstitialID))
         {
             Advertisement.Show(InterstitialID);
-            this.finish = finish;
+            finishInter = finish;
         }
     }
 
@@ -84,11 +101,13 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     /// </summary>
     public void ShowRewarded(Action<ShowResult> finish)
     {
+        gameController.State = INGAME_STATE.ADS;
+        finishReward = null;
         //広告が再生できる状態
         if (Advertisement.IsReady(RewardedID))
         {
             Advertisement.Show(RewardedID);
-            this.finish = finish;
+            finishReward = finish;
         }
     }
 
@@ -111,6 +130,32 @@ public class UnityAdsManager : MonoBehaviour,IUnityAdsListener
     /// <param name="showResult">スキップされたか、最後まで視聴されたかの状態が入る</param>
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
-        this.finish?.Invoke(showResult);
+        if (placementId == RewardedID)
+        {
+            if (finishReward == null)
+            {
+                //回復してタイトルに遷移
+                if(StaminasManager.Instance == null)
+                {
+                    StaminasManager.Instance = FindObjectOfType<StaminasManager>();
+                }
+                StaminasManager.Instance.FullRecovery(false);
+                LoadScene.Load("StartScene");
+                return;
+            }
+                
+            finishReward(showResult);
+        }
+        else if (placementId == InterstitialID)
+        {
+            if (finishInter == null)
+            {
+                //タイトルに移行
+                LoadScene.Load("StartScene");
+                return;
+            }
+               
+            finishInter(showResult);
+        }
     }
 }

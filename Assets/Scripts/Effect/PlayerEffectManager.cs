@@ -44,16 +44,29 @@ public class PlayerEffectManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        under_root  ??= transform.Find("Under").transform;
-        center_root ??= transform.Find("Center").transform;
-        top_root    ??= transform.Find("Top").transform;
+        SetPositionObj();
     }
+
+    /// <summary>
+    /// 参照が切れる場合があるので、切れてたら再取得
+    /// </summary>
+    private void SetPositionObj()
+    {
+        if (under_root != null)
+            return;
+
+        under_root = GameObject.FindWithTag("Pl_Under").gameObject.transform;
+        center_root = GameObject.FindWithTag("Pl_Center").gameObject.transform;
+        top_root = GameObject.FindWithTag("Pl_Top").gameObject.transform;
+    }
+
     /// <summary>
     /// 再生：あとでSEも引き数に渡すように
     /// </summary>
     /// <param name="effect"></param>
     public GameObject EffectPlay(EFFECT_TYPE type)
     {
+        SetPositionObj();
         var effect = effectObjects.Single(list => list.EffectType == type);
         if (effect == null)
             return null;

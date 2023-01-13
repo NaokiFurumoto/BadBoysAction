@@ -146,6 +146,11 @@ public partial class GameController : MonoBehaviour
                     CLOSE,
                     () => UnityAdsManager.Instance.ShowRewarded(result =>
                     {
+                        if(StaminasManager.Instance == null)
+                        {
+                            StaminasManager.Instance = FindObjectOfType<StaminasManager>();
+                        }
+
                         StaminasManager.Instance.FullRecovery
                         (true, CommonDialogManager.Instance.DeleteDialogAll);
                     }
@@ -162,6 +167,7 @@ public partial class GameController : MonoBehaviour
     public void GoTitle()
     {
         FM.PlayOneShot(appSound.SE_MENU_OK);
+        SaveManager.Instance.GamePlaingSave();
         StartCoroutine("GoFadeTitle");
     }
 

@@ -3792,7 +3792,7 @@ GameObject:
   - component: {fileID: 421786187}
   m_Layer: 6
   m_Name: Center
-  m_TagString: Untagged
+  m_TagString: Pl_Center
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4442,7 +4442,7 @@ GameObject:
   - component: {fileID: 463377599}
   m_Layer: 6
   m_Name: Under
-  m_TagString: Untagged
+  m_TagString: Pl_Under
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7252,6 +7252,14 @@ PrefabInstance:
       propertyPath: LoadGameObjectList_Start.Array.data[0]
       value: 
       objectReference: {fileID: 706064612896863955, guid: 8d0a0b330c3e19045a618cbb666d1a70, type: 3}
+    - target: {fileID: 1978977366388557930, guid: 939d0e09c798eb440a4addb244a75aff, type: 3}
+      propertyPath: LoadGameObjectList_Start.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978977366388557930, guid: 939d0e09c798eb440a4addb244a75aff, type: 3}
+      propertyPath: LoadGameObjectList_Start.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1978977366388557940, guid: 939d0e09c798eb440a4addb244a75aff, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -9847,7 +9855,7 @@ GameObject:
   - component: {fileID: 1172354704}
   m_Layer: 6
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Pl_Top
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
