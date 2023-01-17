@@ -54,5 +54,9 @@ public partial class GlobalValue
     public readonly static string LOADBATTLE_TITLE = "戦闘中！！";
     public readonly static string LOADBATTLE_DESC = "中断された戦闘データがあります。<br>再開しますか？";
 
-
+    /// <summary>
+    /// 広告購入関連
+    /// </summary>
+    public readonly static string ADS_BUY_TITLE = "購入";
+    public readonly static string ADS_BUY_DESC = "広告非表示と<br>スタミナ利用制限が<br>無くなります。<br>450円で購入しますか？";
 }

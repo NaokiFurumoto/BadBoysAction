@@ -121,7 +121,7 @@ public partial class GameController : MonoBehaviour
         gameOverView = GameObject.Find("Views").transform.Find("GameOverView").gameObject;
 
         adsRewardCallBack = AdsRewardCallback;
-        adsInterCallBack = AdsInterCallBack;
+        adsInterCallBack = RetryAdsCallBack;
 
         FM = SoundManager.Instance;
         appSound = AppSound.Instance;
@@ -289,19 +289,10 @@ public partial class GameController : MonoBehaviour
 
         //セーブする:
         SaveManager.Instance.GamePlaingSave();
-
-        //このタイミングで広告表示。2回に１回広告表示：
-        if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
-        {
-            UnityAdsManager.Instance.ShowInterstitial(adsInterCallBack);
-        }
-        else
-        {
-            //ゲームリザルト画面を表示
-            uiController.SetIsBreak(false);
-            gameOverView.gameObject.SetActive(true);
-        }
-
+        
+        //ゲームリザルト画面を表示
+        uiController.SetIsBreak(false);
+        gameOverView.gameObject.SetActive(true);
     }
 
     /// <summary>

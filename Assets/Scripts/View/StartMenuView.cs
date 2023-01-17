@@ -40,6 +40,11 @@ public class StartMenuView : ViewBase
     private UnityAction saveDataClearCallback;
 
     /// <summary>
+    /// ADS購入コールバック
+    /// </summary>
+    private UnityAction adsBuyCallback;
+
+    /// <summary>
     /// ダイアログ
     /// </summary>
     private CommonDialog dialog;
@@ -60,6 +65,7 @@ public class StartMenuView : ViewBase
         slider_SE.SetValue();
 
         saveDataClearCallback = SaveDataClearCallback;
+        adsBuyCallback = OnClickAds;
         SetSliderVolume();
     }
 
@@ -126,7 +132,7 @@ public class StartMenuView : ViewBase
     public void OnClickAds()
     {
         AppSound.Instance.SE_MENU_OK.Play();
-        dialog = CommonDialog.ShowDialog(SAVEDATA_CLEAR_TITlE, SAVEDATA_CLEAR_DESC, YES, NO, saveDataClearCallback, null);
+        dialog = CommonDialog.ShowDialog(ADS_BUY_TITLE, ADS_BUY_DESC, YES, NO, adsBuyCallback, null);
     }
 
     /// <summary>
