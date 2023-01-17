@@ -170,7 +170,7 @@ public partial class GlobalValue
     /// <summary>
     /// 最大スタミナ数
     /// </summary>
-    public static int STAMINA_MAXNUMBER = 3;
+    public static int STAMINA_MAXNUMBER = 4;
 
     /// <summary>
     /// スタート開始時間

@@ -66,6 +66,12 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     private UnityAction startFadeinCallBack;
 
+    /// <summary>
+    /// ADS
+    /// </summary>
+    private Action<ShowResult> adsInterCallBack;
+    private Action<ShowResult> adsRewardCallBack;
+
     #region プロパティ
     public INGAME_STATE State
     {
@@ -73,7 +79,11 @@ public partial class GameController : MonoBehaviour
         set { state = value; }
     }
     #endregion
-
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 30;
+    }
 
     void Start()
     {
@@ -107,6 +117,12 @@ public partial class GameController : MonoBehaviour
 
         enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
                                       GetComponent<NewEnemyGenerator>();
+
+        gameOverView = GameObject.Find("Views").transform.Find("GameOverView").gameObject;
+
+        adsRewardCallBack = AdsRewardCallback;
+        adsInterCallBack = AdsInterCallBack;
+
         FM = SoundManager.Instance;
         appSound = AppSound.Instance;
     }
@@ -182,19 +198,7 @@ public partial class GameController : MonoBehaviour
                     STAMINA_LESS_DESC,
                     MOVIECHECK,
                     CLOSE,
-
-                    () => UnityAdsManager.Instance.ShowRewarded(result =>
-                    {
-                        state = INGAME_STATE.ADS;
-                        StaminasManager.Instance.FullRecovery(true, () =>
-                        {
-                            CommonDialogManager.Instance.DeleteDialogAll();
-                            GameResume();
-                            GameStart();
-                        });
-                    }
-                    ),
-
+                    () => UnityAdsManager.Instance.ShowRewarded(adsRewardCallBack),
                     () =>//スタミナが回復したら使用してゲーム開始。回復していなかったらタイトルに戻る
                     {
                         if (StaminasManager.Instance.IsCheckRecovery())
@@ -250,10 +254,11 @@ public partial class GameController : MonoBehaviour
     /// </summary>
     public void SetPlayGame()
     {
+        ///BGMに不具合が出るので再ロード
+        var loadData = SaveManager.Instance.Load();
         //ロードVolumeに変更
-        //FM.SetVolume(appSound.BGM_STAGE, 1.0f);
         appSound.BGM_STAGE.Play();
-        FM.FadeInVolume(appSound.BGM_STAGE, FM.GetVolume(appSound.BGM_STAGE), 2.0f, true);
+        FM.FadeInVolume(appSound.BGM_STAGE, loadData.BGM_Volume, 2.0f, true);
         appSound.BGM_STAGE.loop = true;
 
         state = INGAME_STATE.PLAYING;
@@ -288,20 +293,7 @@ public partial class GameController : MonoBehaviour
         //このタイミングで広告表示。2回に１回広告表示：
         if (uiController.PlayTime % 2 == 0 && !uiController.GetIsAds())
         {
-            //広告終了後のコールバック
-            Action<ShowResult> call = (result) =>
-            {
-                //ゲームリザルト画面を表示
-                uiController.SetIsBreak(false);
-                if(gameOverView == null)
-                {
-                   gameOverView = FindObjectOfType<GameOverView>().gameObject;
-                }
-                gameOverView.gameObject.SetActive(true);
-            };
-
-            UnityAdsManager.Instance.ShowInterstitial(call);
-
+            UnityAdsManager.Instance.ShowInterstitial(adsInterCallBack);
         }
         else
         {
@@ -343,8 +335,6 @@ public partial class GameController : MonoBehaviour
         PlayerEffectManager.Instance.Retry();
     }
 
-
-
     /// <summary>
     /// ステータス設定
     /// </summary>
@@ -382,5 +372,31 @@ public partial class GameController : MonoBehaviour
         SoundManager.Instance.Bgm_SeVolume = (loadData.BGM_Volume, loadData.SE_Volume);
     }
 
+    //コールバック
+    public void AdsRewardCallback(ShowResult result) 
+    {
+        state = INGAME_STATE.ADS;
+        if (StaminasManager.Instance == null)
+        {
+            StaminasManager.Instance = FindObjectOfType<StaminasManager>();
+        }
+        StaminasManager.Instance.FullRecovery(true, () =>
+        {
+            CommonDialogManager.Instance.DeleteDialogAll();
+            GameResume();
+            GameStart();
+        });
+    }
+
+    public void AdsInterCallBack(ShowResult result)
+    {
+        //ゲームリザルト画面を表示
+        uiController.SetIsBreak(false);
+        if (gameOverView == null)
+        {
+            gameOverView = GameObject.Find("Views").transform.Find("GameOverView").gameObject;
+        }
+        gameOverView.gameObject.SetActive(true);
+    }
 }
 

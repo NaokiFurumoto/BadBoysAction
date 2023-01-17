@@ -72,6 +72,10 @@ SpriteAtlas:
   - {fileID: -8058292479074913618, guid: 42149712310ecaf4ca4391032f2173a6, type: 3}
   - {fileID: -4053432970177109010, guid: 42149712310ecaf4ca4391032f2173a6, type: 3}
   - {fileID: 21300000, guid: 28125b82deec5d1468c0b56bca293b89, type: 3}
+  - {fileID: 6959658796205943102, guid: c881647313d68fc4084f1f267daf6b0e, type: 3}
+  - {fileID: -7219476683841144275, guid: c881647313d68fc4084f1f267daf6b0e, type: 3}
+  - {fileID: -768103102066781757, guid: c881647313d68fc4084f1f267daf6b0e, type: 3}
+  - {fileID: 353834903862337347, guid: c881647313d68fc4084f1f267daf6b0e, type: 3}
   - {fileID: 21300000, guid: 5f9551a39f52efa4697663a5b5c53ead, type: 3}
   - {fileID: 8363382755959186832, guid: 7b5258a312bc1094ca14931e0adac487, type: 3}
   - {fileID: -7849158158271061384, guid: 7b5258a312bc1094ca14931e0adac487, type: 3}
@@ -169,6 +173,7 @@ SpriteAtlas:
   - {fileID: 8186482895003537430, guid: d5df114db4c03064d9054592f0e64a72, type: 3}
   - {fileID: -1921252550937280183, guid: d5df114db4c03064d9054592f0e64a72, type: 3}
   - {fileID: -3386566805745200247, guid: d5df114db4c03064d9054592f0e64a72, type: 3}
+  - {fileID: 21300000, guid: 23c9734d2c441c042ba6dbbfca12a016, type: 3}
   - {fileID: 21300000, guid: c440d0ded7d34ef4a916663229e15daf, type: 3}
   - {fileID: 21300000, guid: afe8640f56dbd234e9feb4c6d68fa01f, type: 3}
   - {fileID: 21300000, guid: eaba3e6f6604938419a5d4afc163e07a, type: 3}
@@ -207,6 +212,10 @@ SpriteAtlas:
   - LifeEffec_1
   - LifeEffec_0
   - enemy_horming_damage
+  - front_player_punch_High_1
+  - front_player_punch_High_0
+  - front_player_punch_High_3
+  - front_player_punch_High_2
   - trail01
   - enemy_rapidnew_1
   - enemy_rapidnew_0
@@ -304,6 +313,7 @@ SpriteAtlas:
   - right_walk_1
   - right_walk_2
   - right_walk_3
+  - front_player_punchHigh
   - damage_front
   - trail03
   - trail

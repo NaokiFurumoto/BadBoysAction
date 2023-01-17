@@ -13,6 +13,8 @@ public class OnApplication : MonoBehaviour
     [SerializeField]
     private GameController gameController;
 
+    private NewGenerateManager generatorRoot;
+
     private void Start() { InitializeThis(); }
 
     private void InitializeThis()
@@ -30,35 +32,59 @@ public class OnApplication : MonoBehaviour
                 uiController = GameObject.FindGameObjectWithTag("UI")
                                        .GetComponent<UiController>();
             }
+
+            if (generatorRoot == null)
+            {
+                generatorRoot = GameObject.FindGameObjectWithTag("GeneratorRoot")
+                                       .GetComponent<NewGenerateManager>();
+            }
         }
     }
 
     private void OnApplicationPause(bool pause)
     {
         //広告再生中は中断復帰させない
-        if (SceneManager.GetActiveScene().name == GAMESCENENAME || SceneManager.GetActiveScene().name == RANKSCENENAME)
+        if (SceneManager.GetActiveScene().name == GAMESCENENAME || 
+            SceneManager.GetActiveScene().name == RANKSCENENAME)
         {
             InitializeThis();
-
             if (gameController.State == INGAME_STATE.RESULT || gameController.State == INGAME_STATE.ADS)
             {
                 return;
             }
 
             if (pause)
-            {   //バックグラウンドへ
+            {   
+                //バックグラウンドへ
                 uiController.SetIsBreak(true);
-                //gameController.State = INGAME_STATE.PLAYING;
-                gameController.OnClickOptionButton();
                 Debug.Log("一時停止");
+                //停止中ならば何もしない
+                if (gameController.State == INGAME_STATE.STOP)
+                    return;
+
+                //敵の生成を停止
+                generatorRoot?.ChangeGeneratorState(GENERATOR_STATE.STOP);
+                gameController?.OnClickOptionButton();
             }
             else
             {
                 //復帰
                 uiController.SetIsBreak(false);
                 //gameController.State = INGAME_STATE.STOP;
-                //gameController.OnClickOptionButton();
-                Debug.Log("バックグラウンドからの復帰");
+                if (gameController.State == INGAME_STATE.PLAYING)
+                {
+                    gameController.OnClickOptionButton();
+                }
+
+                //敵の生成を再開
+                if(generatorRoot == null)
+                {
+                    generatorRoot = generatorRoot = GameObject.FindGameObjectWithTag("GeneratorRoot")
+                                       .GetComponent<NewGenerateManager>();
+                }
+
+                generatorRoot?.ChangeGeneratorState(GENERATOR_STATE.GENERATE);
+
             }
         }
     }

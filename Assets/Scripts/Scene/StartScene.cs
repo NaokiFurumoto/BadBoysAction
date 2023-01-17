@@ -38,6 +38,9 @@ public class StartScene : MonoBehaviour
     [SerializeField]
     private Button rankBtn;
 
+    [SerializeField]
+    private Animator playerAnim;
+
     //ランキング表示用
     private float score, hiscore;
 
@@ -127,6 +130,12 @@ public class StartScene : MonoBehaviour
     /// </summary>
     public void OnClickTapBG()
     {
+        if(playerAnim == null)
+        {
+            playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        }
+
+        playerAnim.SetTrigger("Punch");
         StartCoroutine("GoGameScene");
     }
 

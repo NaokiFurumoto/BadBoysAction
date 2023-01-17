@@ -46,11 +46,17 @@ public partial class GameController : MonoBehaviour
     public bool IsOpenFirstview;
 
     /// <summary>
+    /// ADS
+    /// </summary>
+    private Action<ShowResult> adsRewardViewCallBack;
+
+    /// <summary>
     /// View初期化
     /// </summary>
     private void InitializeView()
     {
         RetryAction = RetryGame;
+        adsRewardViewCallBack = AdsRewardViewCallBack;
     }
 
     /// <summary>
@@ -144,16 +150,7 @@ public partial class GameController : MonoBehaviour
                     STAMINA_LESS_DESC,
                     MOVIECHECK,
                     CLOSE,
-                    () => UnityAdsManager.Instance.ShowRewarded(result =>
-                    {
-                        if(StaminasManager.Instance == null)
-                        {
-                            StaminasManager.Instance = FindObjectOfType<StaminasManager>();
-                        }
-
-                        StaminasManager.Instance.FullRecovery
-                        (true, CommonDialogManager.Instance.DeleteDialogAll);
-                    }
+                    () => UnityAdsManager.Instance.ShowRewarded(adsRewardViewCallBack
                 ));
 
             //リストに追加
@@ -179,4 +176,15 @@ public partial class GameController : MonoBehaviour
         LoadScene.Load("StartScene");
     }
 
+    //広告コールバック
+    public void AdsRewardViewCallBack(ShowResult result)
+    {
+        if (StaminasManager.Instance == null)
+        {
+            StaminasManager.Instance = FindObjectOfType<StaminasManager>();
+        }
+
+        StaminasManager.Instance.FullRecovery
+        (true, CommonDialogManager.Instance.DeleteDialogAll);
+    }
 }

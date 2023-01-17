@@ -29,6 +29,7 @@ TagManager:
   - Pl_Under
   - Pl_Center
   - Pl_Top
+  - GameOver
   layers:
   - Default
   - TransparentFX

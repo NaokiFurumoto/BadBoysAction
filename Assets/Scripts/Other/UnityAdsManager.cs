@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Advertisements;
+using static GlobalValue;
 
 public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
 {
@@ -62,7 +63,7 @@ public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
     /// <returns></returns>
     private IEnumerator ShowBannerWhenReady()
     {
-        if(uiController == null)
+        if (uiController == null)
         {
             uiController = FindObjectOfType<UiController>();
         }
@@ -87,7 +88,6 @@ public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
     public void ShowInterstitial(Action<ShowResult> finish)
     {
         gameController.State = INGAME_STATE.ADS;
-        finishInter = null;
         //広告が再生できる状態
         if (Advertisement.IsReady(InterstitialID))
         {
@@ -102,7 +102,6 @@ public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
     public void ShowRewarded(Action<ShowResult> finish)
     {
         gameController.State = INGAME_STATE.ADS;
-        finishReward = null;
         //広告が再生できる状態
         if (Advertisement.IsReady(RewardedID))
         {
@@ -132,29 +131,48 @@ public class UnityAdsManager : MonoBehaviour, IUnityAdsListener
     {
         if (placementId == RewardedID)
         {
+            //回復してタイトルに遷移
             if (finishReward == null)
             {
-                //回復してタイトルに遷移
-                if(StaminasManager.Instance == null)
+                //全回復
+                if (StaminasManager.Instance == null)
                 {
                     StaminasManager.Instance = FindObjectOfType<StaminasManager>();
                 }
                 StaminasManager.Instance.FullRecovery(false);
+
+                try
+                {
+                    //スタミナ保存
+                    var loadData = SaveManager.Instance.Load();
+                    loadData.StaminaNumber = STAMINA_MAXNUMBER;
+                    SaveManager.Instance.Save(loadData);
+                }
+                catch (System.NullReferenceException e)
+                {
+                    Debug.Log("InstanceがNull！！！！！！！！！");
+                }
+
                 LoadScene.Load("StartScene");
                 return;
             }
-                
+
             finishReward(showResult);
         }
         else if (placementId == InterstitialID)
         {
             if (finishInter == null)
             {
+                finishInter = gameController.AdsInterCallBack;
+            }
+
+            if (finishInter == null)
+            {
                 //タイトルに移行
                 LoadScene.Load("StartScene");
                 return;
             }
-               
+
             finishInter(showResult);
         }
     }
