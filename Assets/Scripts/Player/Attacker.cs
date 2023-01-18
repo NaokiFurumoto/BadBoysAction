@@ -93,8 +93,13 @@ public class Attacker : MonoBehaviour
                 //SE
                 FM.PlayOneShot(appSound.SE_PL_ATK);
 
+                //位置補正
+                var itemSetPos = _enemyStatus.transform.position;
+                itemSetPos.x = Mathf.Clamp(itemSetPos.x, -4.0f, 4.0f);
+                itemSetPos.y = Mathf.Clamp(itemSetPos.y, -6.5f, 8.0f);
+
                 //アイテムドロップ抽選
-                ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
+                ItemController.Instance.DropItemLottery(itemSetPos);
 
                 animator.SetTrigger("Attack");
                 _enemyStatus.SetDamageStatus();

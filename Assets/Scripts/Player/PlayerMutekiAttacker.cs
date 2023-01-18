@@ -40,8 +40,13 @@ public class PlayerMutekiAttacker : MonoBehaviour
 
             if (_enemyStatus.State == ENEMY_STATE.NOCKBACK || _enemyStatus.State == ENEMY_STATE.MOVE)
             {
+                //位置補正
+                var itemSetPos = _enemyStatus.transform.position;
+                itemSetPos.x = Mathf.Clamp(itemSetPos.x,-4.0f, 4.0f);
+                itemSetPos.y = Mathf.Clamp(itemSetPos.y,-6.5f, 8.0f);
+
                 //アイテム抽選
-                ItemController.Instance.DropItemLottery(_enemyStatus.transform.position);
+                ItemController.Instance.DropItemLottery(itemSetPos);
 
                 _enemyStatus.SetDamageStatus();
                 _enemyStatus.PlayEffect();

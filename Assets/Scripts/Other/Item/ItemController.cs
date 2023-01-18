@@ -98,6 +98,7 @@ public class ItemController : MonoBehaviour
         if (selectDropItem == null)
             return;
 
+        //ランダム配置の場合
         if (isRandom)
         {
             SetDropPosition();
