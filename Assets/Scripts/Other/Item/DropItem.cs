@@ -7,7 +7,8 @@ public enum DROPITEM_TYPE
 {
     NONE,
     LIFE,
-    MUTEKI
+    MUTEKI,
+    HAOU
 }
 public abstract class DropItem : MonoBehaviour
 {

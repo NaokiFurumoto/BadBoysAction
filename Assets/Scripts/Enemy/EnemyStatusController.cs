@@ -289,6 +289,22 @@ public class EnemyStatusController : MonoBehaviour
     }
 
     /// <summary>
+    /// 覇王で死亡
+    /// </summary>
+    public void EnemyHaouDamage()
+    {
+        sprite.color = Color.red;
+        enemyMovement.enabled = false;
+        body.DOPunchScale(
+            SHAKESTRENGTH,
+            SHAKETIME
+        ).OnComplete(() =>
+        {
+            EnemyDead();
+        });
+    }
+
+    /// <summary>
     /// 死亡アニメーション完了後に呼ばれる
     /// </summary>
     public void DeadEndCallback()

@@ -10,6 +10,7 @@ public enum EFFECT_TYPE
     NONE,
     LIFE_RECOVERY,
     MUTEKI,
+    HAOU
 }
 
 public enum PEFFECT_ROOT_TYPE
@@ -46,6 +47,11 @@ public class EffectStatus : MonoBehaviour,IPlayerEffect
     #endregion
 
     public void PlayMutekiSE()
+    {
+        SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_PL_MUTEKI);
+    }
+
+    public void PlayHaouSE()
     {
         SoundManager.Instance.PlayOneShot(AppSound.Instance.SE_PL_MUTEKI);
     }

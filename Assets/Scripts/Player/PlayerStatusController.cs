@@ -4,6 +4,7 @@ using UnityEngine;
 using static GlobalValue;
 using DG.Tweening;
 using System;
+using System.Linq;
 
 /// <summary>
 /// プレーヤーのステータス管理
@@ -82,6 +83,11 @@ public class PlayerStatusController : MonoBehaviour
     /// ゲーム管理
     /// </summary>
     private GameController gameController;
+
+    /// <summary>
+    /// 敵生成器
+    /// </summary>
+    private NewEnemyGenerator enemyGenerator;
 
     /// <summary>
     /// ゲーム開始位置
@@ -167,6 +173,8 @@ public class PlayerStatusController : MonoBehaviour
                                     GetComponent<GameController>();
         attackerManager = GameObject.FindGameObjectWithTag("PlayerAttack").
                                     GetComponent<AttackerManager>();
+        enemyGenerator = GameObject.FindGameObjectWithTag("EnemyGenerator").
+                                          GetComponent<NewEnemyGenerator>();
     }
 
     /// <summary>
@@ -202,6 +210,40 @@ public class PlayerStatusController : MonoBehaviour
         SwitchAttackType(false);
         PlayerEffectManager.Instance.DeleteEffect(effect);
         isMuteki = false;
+    }
+
+    /// <summary>
+    /// 覇王開始処理
+    /// アイテム取得後呼ばれる
+    /// </summary>
+    /// <param name="isMuteki">無敵判定</param>
+    public void HaouAttack()
+    {
+        //取得アイテム削除
+        OnComplate();
+        var effect = PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.HAOU);
+        StartCoroutine("HaouActions", effect);
+    }
+
+    /// <summary>
+    /// 覇王アクション中
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator HaouActions(GameObject effect)
+    {
+        yield return new WaitForSeconds(0.75f);
+        //表示されてる敵の死亡
+        var allEnemies = enemyGenerator.EnemyAllObjects.Where(x => x != null).ToList();
+        if (!(allEnemies?.Count > 0))
+            yield break;
+
+        foreach(var enemy in allEnemies)
+        {
+            var status = enemy.GetComponent<EnemyStatusController>();
+            if (status == null) continue;
+            status.EnemyHaouDamage();
+        }
+        PlayerEffectManager.Instance.DeleteEffect(effect);
     }
 
     /// <summary>

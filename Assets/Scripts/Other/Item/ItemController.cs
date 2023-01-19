@@ -82,8 +82,19 @@ public class ItemController : MonoBehaviour
         var hitValue = Random.Range(1, MUTEKI_DROPINDEX);
         if(MUTEKI_DROPHITINDEX >= hitValue)
         {
+            var choice = Random.Range(0, 2);
+            var item = DROPITEM_TYPE.NONE;
+            if(choice == 0)
+            {
+                item = DROPITEM_TYPE.HAOU;
+            }
+            else
+            {
+                item = DROPITEM_TYPE.HAOU;
+            }
+
             //当たり
-            SetDropItem(DROPITEM_TYPE.MUTEKI);
+            SetDropItem(item);
             dropItemPos = pos;
             CreateDropItem(false);
         }

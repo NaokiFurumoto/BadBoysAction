@@ -167,6 +167,8 @@ SpriteAtlas:
   - {fileID: 8664916988849888024, guid: 41f1299b1b8876841b4824880051994f, type: 3}
   - {fileID: 1321528724302633243, guid: 41f1299b1b8876841b4824880051994f, type: 3}
   - {fileID: 4266758639407762639, guid: 41f1299b1b8876841b4824880051994f, type: 3}
+  - {fileID: 21300000, guid: 8329c9ab2361b1449b7c7fb026678e28, type: 3}
+  - {fileID: 21300000, guid: 516f97eca5079434f9526bdebc5e0130, type: 3}
   - {fileID: 21300000, guid: 00182aec9019cfd478610d6468378eff, type: 3}
   - {fileID: 21300000, guid: 2d657c2db46fb754591ed573c03c56ac, type: 3}
   - {fileID: 556052574796523437, guid: d5df114db4c03064d9054592f0e64a72, type: 3}
@@ -307,6 +309,8 @@ SpriteAtlas:
   - front_walk_0
   - front_walk_3
   - front_walk_2
+  - haouBG
+  - haouFront
   - damage_right
   - dokuro
   - right_walk_0

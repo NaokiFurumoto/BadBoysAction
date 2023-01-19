@@ -5267,6 +5267,7 @@ MonoBehaviour:
   dropItemsList:
   - {fileID: 3246250174507400132, guid: 7ed08b1eed9cef64f821cdb8bc2a5ce3, type: 3}
   - {fileID: 5474787805735957224, guid: 7d711b687c3bd6d45bc74957e146df2f, type: 3}
+  - {fileID: 3259847891130104606, guid: ac518128b2688ae419875ac58d8d09b7, type: 3}
   dropRoot: {fileID: 395332328}
   dropItemPos: {x: 0, y: 0, z: 0}
 --- !u!1 &588013637
@@ -17742,6 +17743,7 @@ MonoBehaviour:
   effectObjects:
   - {fileID: 9192740121170960579, guid: 703b42ca10e4c214bb4af7693d1bf129, type: 3}
   - {fileID: 4988373583740108771, guid: 05658b18f0f7e424ab65681bac2d82db, type: 3}
+  - {fileID: 7052132024062216307, guid: 517e3c971b669d54fbe36f0e5d3d33e8, type: 3}
 --- !u!1 &6889057925581184722
 GameObject:
   m_ObjectHideFlags: 0

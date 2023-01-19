@@ -143,6 +143,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 55f7c94e48c515d409a3b483469b76a8, type: 3}
   - {fileID: 21300000, guid: 9ea68c7ebd2a0d94f9327d061d4b941b, type: 3}
   - {fileID: 21300000, guid: d8797cde542b62745a08e8f032feb472, type: 3}
+  - {fileID: 1276876017428745107, guid: 87fa462f2721a0d418fc7c99f1bb2e84, type: 3}
+  - {fileID: 3819773824737479955, guid: 87fa462f2721a0d418fc7c99f1bb2e84, type: 3}
+  - {fileID: -5410317151654032799, guid: 87fa462f2721a0d418fc7c99f1bb2e84, type: 3}
   - {fileID: 21300000, guid: 3a5e643fad88df541aa406f103798f38, type: 3}
   - {fileID: 21300000, guid: 936c817f39871eb41924488669508a67, type: 3}
   - {fileID: 21300000, guid: 70cae59f33406a54d8142eb1e489a6da, type: 3}
@@ -244,6 +247,9 @@ SpriteAtlas:
   - OP_LogoutBtn
   - mail_font
   - newsharebtn
+  - haouitem_0
+  - haouitem_1
+  - haouitem_2
   - RestartBtn
   - id_font
   - GameStart_clush

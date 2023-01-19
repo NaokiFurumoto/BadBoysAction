@@ -281,7 +281,8 @@ public partial class GlobalValue
     /// <summary>
     /// 無敵ドロップ確率
     /// </summary>
-    public readonly static int MUTEKI_DROPINDEX = 700;
+    //public readonly static int MUTEKI_DROPINDEX = 700;
+    public readonly static int MUTEKI_DROPINDEX = 100;
 
     /// <summary>
     /// 無敵ドロップ当たり
