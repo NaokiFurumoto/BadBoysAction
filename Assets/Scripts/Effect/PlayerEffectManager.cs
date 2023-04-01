@@ -23,6 +23,9 @@ public class PlayerEffectManager : MonoBehaviour
     private Transform top_root;
 
     [SerializeField]
+    private Transform bgCenter_root;
+
+    [SerializeField]
     private List<EffectStatus> effectObjects = new List<EffectStatus>();
 
     /// <summary>
@@ -58,6 +61,7 @@ public class PlayerEffectManager : MonoBehaviour
         under_root = GameObject.FindWithTag("Pl_Under").gameObject.transform;
         center_root = GameObject.FindWithTag("Pl_Center").gameObject.transform;
         top_root = GameObject.FindWithTag("Pl_Top").gameObject.transform;
+        bgCenter_root = GameObject.FindWithTag("BG_Center").gameObject.transform;
     }
 
     /// <summary>
@@ -81,6 +85,9 @@ public class PlayerEffectManager : MonoBehaviour
                 break;
             case PEFFECT_ROOT_TYPE.TOP:
                 parent = top_root;
+                break;
+            case PEFFECT_ROOT_TYPE.BG:
+                parent = bgCenter_root;
                 break;
         }
 

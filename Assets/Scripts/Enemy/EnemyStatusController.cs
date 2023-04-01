@@ -300,6 +300,7 @@ public class EnemyStatusController : MonoBehaviour
             SHAKETIME
         ).OnComplete(() =>
         {
+            shadow.SetActive(false);
             EnemyDead();
         });
     }

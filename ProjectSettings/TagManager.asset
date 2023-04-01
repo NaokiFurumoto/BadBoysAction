@@ -30,6 +30,7 @@ TagManager:
   - Pl_Center
   - Pl_Top
   - GameOver
+  - BG_Center
   layers:
   - Default
   - TransparentFX

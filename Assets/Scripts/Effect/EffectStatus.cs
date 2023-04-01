@@ -10,7 +10,8 @@ public enum EFFECT_TYPE
     NONE,
     LIFE_RECOVERY,
     MUTEKI,
-    HAOU
+    HAOU,
+    HAOUBG
 }
 
 public enum PEFFECT_ROOT_TYPE
@@ -19,6 +20,7 @@ public enum PEFFECT_ROOT_TYPE
     UNDER,
     TOP,
     CENTER,
+    BG
 }
 public class EffectStatus : MonoBehaviour,IPlayerEffect
 {

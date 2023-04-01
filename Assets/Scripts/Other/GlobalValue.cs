@@ -241,7 +241,7 @@ public partial class GlobalValue
     /// 画面に表示させる加算値
     /// </summary>
     /// </summary>
-    public readonly static int ENEMY_SCREEN_ADDCOUNT = 2;
+    public readonly static int ENEMY_SCREEN_ADDCOUNT = 3;
 
     /// <summary>
     /// 初期経験値
@@ -266,7 +266,7 @@ public partial class GlobalValue
     /// <summary>
     /// レベルアップ時の生成時間減算値
     /// </summary>
-    public readonly static float CREATE_TIMEDIFF = 0.015f;
+    public readonly static float CREATE_TIMEDIFF = 0.01f;
 
     /// <summary>
     /// 敵の生成時間最終値
@@ -281,8 +281,8 @@ public partial class GlobalValue
     /// <summary>
     /// 無敵ドロップ確率
     /// </summary>
-    //public readonly static int MUTEKI_DROPINDEX = 700;
-    public readonly static int MUTEKI_DROPINDEX = 100;
+    public readonly static int MUTEKI_DROPINDEX = 700;
+    //public readonly static int MUTEKI_DROPINDEX = 100;
 
     /// <summary>
     /// 無敵ドロップ当たり

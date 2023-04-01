@@ -3,29 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "BH902FBM4S",
         "name": "com.furumoto.BadBoyAction",
-        "processId": 15987,
+        "processId": 15296,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "BH902FBM4S",
-            "name": "com.furumoto.BadBoyAction",
-            "processId": 27745,
-            "exited": true
-        },
-        {
-            "deviceId": "BH902FBM4S",
-            "name": "com.furumoto.BadBoyAction",
-            "processId": 31102,
-            "exited": true
-        },
-        {
-            "deviceId": "BH902FBM4S",
-            "name": "com.furumoto.BadBoyAction",
-            "processId": 2936,
-            "exited": true
-        },
         {
             "deviceId": "BH902FBM4S",
             "name": "com.sonyericsson.home",
@@ -35,19 +17,61 @@
         {
             "deviceId": "BH902FBM4S",
             "name": "com.furumoto.BadBoyAction",
-            "processId": 7339,
-            "exited": true
-        },
-        {
-            "deviceId": "BH902FBM4S",
-            "name": "com.furumoto.BadBoyAction",
-            "processId": 11659,
-            "exited": true
-        },
-        {
-            "deviceId": "BH902FBM4S",
-            "name": "com.furumoto.BadBoyAction",
             "processId": 15987,
+            "exited": true
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 11745,
+            "exited": true
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 15982,
+            "exited": true
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 19542,
+            "exited": true
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 21579,
+            "exited": true
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 24601,
+            "exited": false
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 32372,
+            "exited": false
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 32377,
+            "exited": false
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 6823,
+            "exited": false
+        },
+        {
+            "deviceId": "BH902FBM4S",
+            "name": "com.furumoto.BadBoyAction",
+            "processId": 15296,
             "exited": false
         }
     ],

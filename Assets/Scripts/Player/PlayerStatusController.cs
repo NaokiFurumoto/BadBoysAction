@@ -222,14 +222,15 @@ public class PlayerStatusController : MonoBehaviour
         //取得アイテム削除
         OnComplate();
         var effect = PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.HAOU);
-        StartCoroutine("HaouActions", effect);
+        var effectBG = PlayerEffectManager.Instance.EffectPlay(EFFECT_TYPE.HAOUBG);
+        StartCoroutine(HaouActions(effect, effectBG));
     }
 
     /// <summary>
     /// 覇王アクション中
     /// </summary>
     /// <returns></returns>
-    private IEnumerator HaouActions(GameObject effect)
+    private IEnumerator HaouActions(GameObject effect, GameObject effectBG)
     {
         yield return new WaitForSeconds(0.75f);
         //表示されてる敵の死亡
@@ -244,6 +245,7 @@ public class PlayerStatusController : MonoBehaviour
             status.EnemyHaouDamage();
         }
         PlayerEffectManager.Instance.DeleteEffect(effect);
+        PlayerEffectManager.Instance.DeleteEffect(effectBG);
     }
 
     /// <summary>
